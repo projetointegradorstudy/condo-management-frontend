@@ -1,5 +1,4 @@
 import { Login } from './pages/Login';
-
 import './styles/_global.scss';
 
 function App() {
