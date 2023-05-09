@@ -1,0 +1,70 @@
+@import './theme';
+@import './variables';
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100vh;
+  margin: 0 20px;
+
+
+  h1 {
+    color: $primary;
+    font-size: 64px;
+    line-height: 64px;
+    font-weight: 600;
+
+    span {
+      font-weight: 400;
+    }
+
+    @include breakpoint(sm) {
+      font-size: 30px;
+      line-height: 30px;
+    }
+  }
+
+  h4 {
+    color: $primary;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 400;
+    margin-top: 30px;
+
+    @include breakpoint(sm) {
+      font-size: 18px;
+      line-height: 18px;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(sm) {
+      width: 100%;
+    }
+
+    div {
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+      gap: 2rem;
+
+      a {
+        color: $primary;
+        font-size: 14px;
+        line-height: 14px;
+        text-decoration: none;
+
+        @include breakpoint(sm) {
+          font-size: 12px;
+          line-height: 12px;
+        }
+      }
+    }
+  }
+}
