@@ -5,11 +5,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
 }
 
-export function Input({ title, ...props }: InputProps) {
+export function Input({ title }: InputProps) {
   return (
     <>
       <label>{title}</label>
-      <input {...props} />
+      <input />
     </>
   );
 }
