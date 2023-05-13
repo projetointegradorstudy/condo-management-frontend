@@ -1,14 +1,31 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+import { auth } from '../services/api';
+import { useNavigate } from 'react-router-dom';
+import { GlobalContext } from '../contexts/GlobalContext';
 import '../styles/login.scss';
 
 export function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const { login } = useContext(GlobalContext);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const res = await auth({
+      username,
+      password,
+    })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((e) => {
+        return e.response;
+      });
+
+    // if (res.access_token) navigate('/dashboard-admin');
   };
 
   return (
@@ -18,7 +35,7 @@ export function Login() {
       </h1>
 
       <h4>Sign in</h4>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={async (e) => await handleSubmit(e)}>
         <Input
           title="Username"
           name="username"
