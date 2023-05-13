@@ -5,6 +5,6 @@ type buttonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   title: string;
 };
 
-export function Button({ title }: buttonProps) {
-  return <button>{title}</button>;
+export function Button({ title, ...props }: buttonProps) {
+  return <button {...props}>{title}</button>;
 }

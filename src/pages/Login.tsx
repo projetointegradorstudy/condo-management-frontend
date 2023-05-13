@@ -1,8 +1,16 @@
+import { useState } from 'react';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
 import '../styles/login.scss';
 
 export function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+  };
+
   return (
     <main>
       <h1>
@@ -10,9 +18,25 @@ export function Login() {
       </h1>
 
       <h4>Sign in</h4>
-      <form>
-        <Input title="Username" name="username" id="username" type="text" placeholder="Insira o seu username" />
-        <Input title="Senha" name="senha" id="senha" type="password" placeholder="Insira a sua senha" />
+      <form onSubmit={handleSubmit}>
+        <Input
+          title="Username"
+          name="username"
+          id="username"
+          type="text"
+          placeholder="Insira o seu username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <Input
+          title="Senha"
+          name="senha"
+          id="senha"
+          type="password"
+          placeholder="Insira a sua senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <div>
           <a href="#">Esqueceu sua senha?</a>
           <Button title="Sign in" type="submit" />

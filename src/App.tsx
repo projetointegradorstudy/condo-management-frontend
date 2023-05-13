@@ -1,10 +1,10 @@
-import { Login } from './pages/Login';
+import AppRoutes from './routes/AppRoutes';
 import './styles/_global.scss';
 
 function App() {
   return (
     <>
-      <Login />
+      <AppRoutes />
     </>
   );
 }
