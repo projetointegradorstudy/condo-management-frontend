@@ -1,0 +1,143 @@
+@import './theme';
+@import './variables';
+
+// nav.mobile {
+//   width: 100%;
+//   height: 50px;
+//   background-color: $primary;
+
+//   div.content-mobile {
+//     display: flex;
+//     align-items: center;
+//     height: 50px;
+//     padding: 0 30px;
+
+//     svg {
+//       color: $white;
+//     }
+//   }
+
+//   @include breakpoint(xxl) {
+//     display: none;
+//   }
+
+//   @include breakpoint(md) {
+//     display: block;
+//   }
+// }
+
+aside.desktop {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3rem;
+  background-color: $primary;
+  transition: width 0.7s ease-in-out;
+  height: 100vh;
+  padding: 30px 0px 80px;
+
+  @include breakpoint(sm) {
+    display: none;
+  }
+
+  div.content-button {
+    display: flex;
+    width: 100%;
+    padding: 0px 16px;
+    
+    div.toggle-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+    
+      svg {
+        color: $white;
+      }
+    }
+  }
+
+  img.logo-lg {
+    width: 139px;
+    transition: opacity 0.7s ease-in-out;
+  }
+
+  img.logo-sm {
+    width: 40px;
+    transition: opacity 0.7s ease-in-out;
+  }
+
+  div.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+
+    h4 {
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+    }
+
+    span {
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+    }
+
+    img {
+      border-radius: 30px;
+      margin-bottom: 10px;
+      transition: all 0.7s ease-in-out;
+    }
+  }
+
+  div.middle-sidebar {
+    display: flex;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: relative;
+    justify-content: center;
+    
+    ul.sidebar-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      list-style: none;
+      gap: 0.5rem;
+      width: 100%;
+      padding-left: 0px;
+
+      li {
+        width: 100%;
+        position: relative;
+
+        &:hover {
+          border-left: 3px solid #ffffff;
+          background-color: rgba(181, 194, 193, 0.178);
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          color: #ffffff;
+          font-family: 'Roboto', sans-serif;
+          font-weight: 400;
+          font-size: 16px;
+          text-decoration: none;
+          
+          span {
+            transition: all 0.3s cubic-bezier(0.64, 0.2, 1, 0.03);
+          }
+        }
+      }
+    }
+  }
+}
