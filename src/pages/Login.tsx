@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
-import { auth } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../contexts/GlobalContext';
 import '../styles/login.scss';
@@ -10,22 +9,22 @@ export function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { login } = useContext(GlobalContext);
+  const context = useContext(GlobalContext);
+
+  if (!context) return null;
+
+  const { signin, setToken, setIsAuthenticated } = context;
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const res = await auth({
-      username,
-      password,
-    })
-      .then((res) => {
-        return res.data;
-      })
-      .catch((e) => {
-        return e.response;
-      });
 
-    // if (res.access_token) navigate('/dashboard-admin');
+    const res = await signin({ username, password });
+
+    if (res.success && res.data?.access_token) {
+      setToken(res.data?.access_token);
+      setIsAuthenticated(true);
+      navigate('/dashboard-admin');
+    }
   };
 
   return (

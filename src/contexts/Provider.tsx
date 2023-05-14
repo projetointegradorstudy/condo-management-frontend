@@ -1,38 +1,68 @@
 import { api, auth, authProps } from '../services/api';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { GlobalContext } from './GlobalContext';
+import { useNavigate } from 'react-router-dom';
+import { useJwt } from 'react-jwt';
+import useStorage from '../utils/useStorage';
 
-interface GlobalProviderProps {
+interface Iprops {
   children: ReactNode;
 }
 
-export function GlobalProvider({ children }: GlobalProviderProps) {
-  // const [token, setToken] = use;
-  async function login(credentials: authProps) {
-    let success;
+export function GlobalProvider({ children }: Iprops) {
+  const [token, setToken, removeToken] = useStorage('token');
+  const [isAuthenticated, setIsAuthenticated, removeIsAuthenticated] = useStorage('isAuthenticated');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const { decodedToken } = useJwt(token);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const storagedToken = localStorage.getItem('token');
+    const storagedIsAuthenticated = localStorage.getItem('isAuthenticated');
+    if (storagedToken && storagedIsAuthenticated) {
+      setToken(JSON.parse(storagedToken));
+      setIsAuthenticated(JSON.parse(storagedIsAuthenticated));
+      api.defaults.headers.Authorization = `Bearer ${token}`;
+    }
+  }, [token, isAuthenticated]);
+
+  useEffect(() => {
+    if ((decodedToken as { user: { role: string } })?.user?.role === 'admin') {
+      setIsAdmin(true);
+    }
+  }, [decodedToken]);
+
+  async function signin(credentials: authProps) {
     const data = await auth(credentials)
       .then((res) => {
-        success = true;
         api.defaults.headers.Authorization = `Bearer ${res.data.access_token}`;
-        return res.data;
+        return { data: res.data, success: true } as { success: boolean; data: any };
       })
       .catch((e) => {
-        success = false;
-        return e.response;
+        return { data: e.response, success: false } as { success: boolean; data: any };
       });
+    return data;
+  }
+
+  async function signout() {
+    api.defaults.headers.Authorization = null;
+    removeToken();
+    removeIsAuthenticated();
+    setIsAdmin(false);
+    navigate('/');
   }
 
   return (
     <GlobalContext.Provider
       value={{
-        // token,
-        // setToken,
-        // isAuthenticated,
-        // setIsAuthenticated,
-        // isAdmin,
-        // setIsAdmin,
-        login,
+        token,
+        setToken,
+        isAuthenticated,
+        setIsAuthenticated,
+        isAdmin,
+        setIsAdmin,
+        signin,
+        signout,
       }}
     >
       {children}
