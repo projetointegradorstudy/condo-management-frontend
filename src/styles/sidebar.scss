@@ -1,31 +1,6 @@
 @import './theme';
 @import './variables';
 
-// nav.mobile {
-//   width: 100%;
-//   height: 50px;
-//   background-color: $primary;
-
-//   div.content-mobile {
-//     display: flex;
-//     align-items: center;
-//     height: 50px;
-//     padding: 0 30px;
-
-//     svg {
-//       color: $white;
-//     }
-//   }
-
-//   @include breakpoint(xxl) {
-//     display: none;
-//   }
-
-//   @include breakpoint(md) {
-//     display: block;
-//   }
-// }
-
 aside.desktop {
   display: flex;
   flex-direction: column;
@@ -60,14 +35,17 @@ aside.desktop {
     }
   }
 
-  img.logo-lg {
-    width: 139px;
-    transition: opacity 0.7s ease-in-out;
-  }
+  div.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: 0 20px;
 
-  img.logo-sm {
-    width: 40px;
-    transition: opacity 0.7s ease-in-out;
+    img {
+      transition: width 0.7s ease-in-out;
+    }
   }
 
   div.profile {
