@@ -11,7 +11,6 @@ import {
 } from 'phosphor-react';
 import '../styles/sidebar.scss';
 import LogoLg from '../assets/logo_lg.svg';
-import LogoSm from '../assets/logo_sm.svg';
 
 export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,14 +51,15 @@ export function Sidebar() {
   ];
 
   return (
-    <aside style={{ width: isOpen ? '250px' : '80px' }} className="desktop">
+    <aside style={{ width: isOpen ? '250px' : '100px' }} className="desktop">
       <div className="content-button" style={{ justifyContent: isOpen ? 'flex-end' : 'center' }}>
         <div className="toggle-button">
           {!isOpen ? <CaretRight size={22} onClick={toggle} /> : <CaretLeft size={22} onClick={toggle} />}
         </div>
       </div>
-
-      <img src={`${isOpen ? LogoLg : LogoSm}`} alt="Logo Condo Management" className={isOpen ? 'logo-lg' : 'logo-sm'} />
+      <div className="logo">
+        <img src={LogoLg} alt="Logo Condo Management" style={{ width: isOpen ? '139px' : '78px' }} />
+      </div>
 
       <div className="profile" style={{ margin: isOpen ? '0px 30px 30px' : '0px 10px 10px' }}>
         <img
