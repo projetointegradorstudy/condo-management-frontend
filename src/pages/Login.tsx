@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+import { Label } from '../components/Label';
 import '../styles/login.scss';
 
 export function Login() {
@@ -19,8 +20,9 @@ export function Login() {
 
       <h4>Sign in</h4>
       <form onSubmit={handleSubmit}>
+        <label htmlFor=""></label>
+        <Label title="Username" htmlFor="username" />
         <Input
-          title="Username"
           name="username"
           id="username"
           type="text"
@@ -28,8 +30,8 @@ export function Login() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        <Label title="Password" htmlFor="senha" />
         <Input
-          title="Senha"
           name="senha"
           id="senha"
           type="password"
