@@ -1,0 +1,23 @@
+@import './theme';
+@import './variables';
+
+div.modal {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  
+  div.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $white;
+    border-radius: 20px;
+    border: 1px solid $black;
+    width: 400px;
+    height: 600px;
+  }
+}

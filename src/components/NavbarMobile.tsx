@@ -4,16 +4,20 @@ import '../styles/navbarmobile.scss';
 
 const navItems = [
   {
-    path: '/',
+    path: '/dashboard-admin',
     name: 'Página inicial',
   },
   {
-    path: '/',
+    path: '/register-user',
     name: 'Cadastro de pessoas',
   },
   {
     path: '/',
     name: 'Cadastro de ambientes',
+  },
+  {
+    path: '/list-users',
+    name: 'Lista de usuários',
   },
   {
     path: '/',

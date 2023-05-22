@@ -8,6 +8,7 @@ import {
   SignOut,
   CaretRight,
   CaretLeft,
+  Users,
 } from 'phosphor-react';
 import '../styles/sidebar.scss';
 import LogoLg from '../assets/logo_lg.svg';
@@ -19,12 +20,12 @@ export function Sidebar() {
 
   const navItems = [
     {
-      path: '/',
+      path: '/dashboard-admin',
       name: 'Página inicial',
       icon: <House size={isOpen ? 20 : 26} />,
     },
     {
-      path: '/',
+      path: '/register-user',
       name: 'Cadastro de pessoas',
       icon: <UserPlus size={isOpen ? 20 : 26} />,
     },
@@ -32,6 +33,11 @@ export function Sidebar() {
       path: '/',
       name: 'Cadastro de ambientes',
       icon: <PlusCircle size={isOpen ? 20 : 26} />,
+    },
+    {
+      path: '/list-users',
+      name: 'Lista de usuários',
+      icon: <Users size={isOpen ? 20 : 26} />,
     },
     {
       path: '/',
