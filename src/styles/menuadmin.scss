@@ -1,20 +1,20 @@
 @import './theme';
 @import './variables';
 
-div.page {
+div.page-menu-admin {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: $white;
 
-  div.container {
+  div.container-menu-admin {
     display: flex;
 
     @include breakpoint(sm) {
       flex-direction: column;
     }
 
-    div.content {
+    div.content-menu-admin {
       display: flex;
       flex-direction: column;
       flex: 1;

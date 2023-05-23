@@ -18,6 +18,14 @@ button {
     background-color: #0D1717;
   }
 
+  &.button-confirm {
+    background:#38ba7c;
+  }
+
+  &.button-cancel {
+    background: #f34542;
+  }
+
   @include breakpoint(sm) {
     width: 100%;
   }

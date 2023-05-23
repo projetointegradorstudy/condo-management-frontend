@@ -1,21 +1,24 @@
 @import './theme';
 @import './variables';
 
-div.page {
+div.page-list-users {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: $white;
 
-  div.container {
+  div.container-list-users {
     display: flex;
+    
+    @include breakpoint(sm) {
+      flex-direction: column;
+    }
 
-    div.content {
+    div.content-list-users {
       display: flex;
       flex-direction: column;
       flex: 1;
       justify-content: flex-start;
-      margin: 100px 76px 30px;
       gap: 3rem;
 
       @include breakpoint(sm) {
@@ -37,13 +40,18 @@ div.page {
     }
 
     div.content-list {
+      overflow-x: auto;
 
       table {
-        width: 60%;
+        width: 80%;
         margin: 0 auto;
 
         @include breakpoint(lg) {
           width: 100%;
+        }
+
+        @include breakpoint(sm) {
+          width: 600px;
         }
 
         th {
@@ -55,8 +63,8 @@ div.page {
           padding-bottom: 10px;
 
           @include breakpoint(sm) {
-            font-size: 10px;
-            line-height: 14px;
+            font-size: 13px;
+            line-height: 15px;
           }
         }
 
@@ -71,8 +79,8 @@ div.page {
           color: $black;
 
           @include breakpoint(sm) {
-            font-size: 8px;
-            line-height: 12px;
+            font-size: 12px;
+            line-height: 16px;
           }
 
           img {
@@ -86,20 +94,26 @@ div.page {
             }
           }
 
-          button {
-            background: transparent;
-            width: 16px;
-            height: 16px;
+          div.content-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
 
-            svg {
-              z-index: 1;
+            button {
+              background: transparent;
               width: 16px;
               height: 16px;
-              color: $black;
           
-              @include breakpoint(sm) {
-                width: 10px;
-                height: 10px;
+              svg {
+                z-index: 1;
+                width: 16px;
+                height: 16px;
+                color: $black;
+          
+                @include breakpoint(sm) {
+                  width: 14px;
+                  height: 14px;
+                }
               }
             }
           }

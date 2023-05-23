@@ -11,11 +11,11 @@ export function RegisterUser() {
   const [image, setImage] = useState(null);
 
   return (
-    <div className="page">
-      <div className="container">
+    <div className="page-register-user">
+      <div className="container-register-user">
         <Sidebar />
         <NavibarMobile />
-        <div className="content">
+        <div className="content-register-user">
           <h1>Cadastro de pessoas</h1>
 
           <div className="content-form">

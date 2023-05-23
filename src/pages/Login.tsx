@@ -36,7 +36,6 @@ export function Login() {
 
       <h4>Sign in</h4>
       <form onSubmit={handleSubmit}>
-        <label htmlFor=""></label>
         <Label title="Username" htmlFor="username" />
         <Input
           name="username"

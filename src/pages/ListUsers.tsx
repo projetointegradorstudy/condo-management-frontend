@@ -10,12 +10,12 @@ export function ListUsers() {
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    <div className="page">
-      <div className="container">
+    <div className="page-list-users">
+      <div className="container-list-users">
         <Sidebar />
         <NavibarMobile />
 
-        <div className="content">
+        <div className="content-list-users" style={{ margin: openModal ? '0' : '100px 76px 30px' }}>
           <h1>Lista de usuários</h1>
 
           <div className="content-list">
@@ -51,12 +51,14 @@ export function ListUsers() {
                         <p>{user.registered_at}</p>
                       </td>
                       <td>
-                        <button onClick={() => setOpenModal(true)}>
-                          <PencilSimpleLine />
-                        </button>
-                        <button>
-                          <Trash />
-                        </button>
+                        <div className="content-buttons">
+                          <button onClick={() => setOpenModal(true)}>
+                            <PencilSimpleLine />
+                          </button>
+                          <button>
+                            <Trash />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   );
@@ -64,7 +66,7 @@ export function ListUsers() {
               </tbody>
             </table>
           </div>
-          <EditUserModal isOpen={openModal} />
+          <EditUserModal isOpen={openModal} setOpenModal={() => setOpenModal(!openModal)} />
         </div>
       </div>
     </div>
