@@ -78,12 +78,11 @@ export function AppRoutes() {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard-admin" element={<MenuAdmin />} />
-        <Route path="/register-user" element={<RegisterUser />} />
-        <Route path="/list-users" element={<ListUsers />} />
-      </Routes>
+      <GlobalProvider>
+        <GetLoggoutRoutesHandler />
+        <GetUserRoutesHandler />
+        <GetAdminRoutesHandler />
+      </GlobalProvider>
     </Router>
   );
 }
