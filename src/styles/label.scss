@@ -1,0 +1,35 @@
+@import './theme';
+@import './variables';
+
+label {
+  color: $primary;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+
+  &.isUploadFile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $primary;
+    width: 124px;
+    height: 36px;
+    color: $primary;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    @include breakpoint(sm) {
+      width: 100px;
+      height: 30px;
+      font-size: 12px;
+      }
+  }
+
+  @include breakpoint(sm) {
+    font-size: 14px;
+    line-height: 14px;
+  }
+}

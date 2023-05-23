@@ -1,18 +1,6 @@
 @import './theme';
 @import './variables';
 
-label {
-  color: $primary;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 8px;
-
-  @include breakpoint(sm) {
-    font-size: 14px;
-    line-height: 14px;
-  }
-}
-
 input {
   width: 370px;
   height: 40px;

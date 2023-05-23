@@ -5,6 +5,7 @@ import { MenuUser } from '../pages/MenuUser';
 import { GlobalProvider, Iprops } from '../contexts/Provider';
 import { useContext } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
+import { RegisterUser } from '../pages/RegisterUser';
 
 export function AppRoutes() {
   const getContext = (): any => {

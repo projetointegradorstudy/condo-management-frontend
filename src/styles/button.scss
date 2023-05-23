@@ -14,11 +14,11 @@ button {
   cursor: pointer;
   transition: filter 0.2;
 
-  @include breakpoint(sm) {
-    width: 100%;
-  }
-
   &:hover {
     background-color: #0D1717;
+  }
+
+  @include breakpoint(sm) {
+    width: 100%;
   }
 }
