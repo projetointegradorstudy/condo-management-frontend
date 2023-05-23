@@ -1,15 +1,31 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+import { useNavigate } from 'react-router-dom';
+import { GlobalContext } from '../contexts/GlobalContext';
 import { Label } from '../components/Label';
 import '../styles/login.scss';
 
 export function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const context = useContext(GlobalContext);
 
-  const handleSubmit = (e: any) => {
+  if (!context) return null;
+
+  const { signin, setToken, setIsAuthenticated } = context;
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+
+    const res = await signin({ username, password });
+
+    if (res.success && res.data?.access_token) {
+      setToken(res.data?.access_token);
+      setIsAuthenticated(true);
+      navigate('/dashboard-admin');
+    }
   };
 
   return (
