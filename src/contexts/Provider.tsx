@@ -1,11 +1,11 @@
-import { api, auth, authProps } from '../services/api';
 import { ReactNode, useEffect, useState } from 'react';
-import { GlobalContext } from './GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
+import { api, auth, authProps } from '../services/api';
+import { GlobalContext } from './GlobalContext';
 import useStorage from '../utils/useStorage';
 
-interface Iprops {
+export interface Iprops {
   children: ReactNode;
 }
 
@@ -17,11 +17,11 @@ export function GlobalProvider({ children }: Iprops) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storagedToken = localStorage.getItem('token');
-    const storagedIsAuthenticated = localStorage.getItem('isAuthenticated');
-    if (storagedToken && storagedIsAuthenticated) {
-      setToken(JSON.parse(storagedToken));
-      setIsAuthenticated(JSON.parse(storagedIsAuthenticated));
+    // const storagedToken = localStorage.getItem('token');
+    // const storagedIsAuthenticated = localStorage.getItem('isAuthenticated');
+    if (!token && !isAuthenticated) {
+      setToken(JSON.parse(token));
+      setIsAuthenticated(JSON.parse(isAuthenticated));
       api.defaults.headers.Authorization = `Bearer ${token}`;
     }
   }, [token, isAuthenticated]);
@@ -30,7 +30,7 @@ export function GlobalProvider({ children }: Iprops) {
     if ((decodedToken as { user: { role: string } })?.user?.role === 'admin') {
       setIsAdmin(true);
     }
-  }, [decodedToken]);
+  }, [decodedToken, setIsAdmin]);
 
   async function signin(credentials: authProps) {
     const data = await auth(credentials)

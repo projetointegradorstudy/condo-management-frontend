@@ -7,7 +7,7 @@ interface StorageState<T> {
   remove: () => void;
 }
 
-interface GlobalContextProps {
+export interface GlobalContextProps {
   token: StorageState<string>;
   setToken: Dispatch<SetStateAction<string>>;
   isAuthenticated: StorageState<boolean>;
