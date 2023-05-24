@@ -24,11 +24,11 @@ const cardItems = [
 
 export function MenuAdmin() {
   return (
-    <div className="page">
-      <div className="container">
+    <div className="page-menu-admin">
+      <div className="container-menu-admin">
         <Sidebar />
         <NavibarMobile />
-        <div className="content">
+        <div className="content-menu-admin">
           <div className="content-welcome">
             <h1>
               Seja bem-vindo(a),

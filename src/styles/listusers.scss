@@ -1,0 +1,137 @@
+@import './theme';
+@import './variables';
+
+div.page-list-users {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $white;
+
+  div.container-list-users {
+    display: flex;
+    
+    @include breakpoint(sm) {
+      flex-direction: column;
+    }
+
+    div.content-list-users {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: flex-start;
+      gap: 3rem;
+
+      h1 {
+        font-size: 32px;
+        line-height: 38px;
+        font-weight: 600;
+        color: $black;
+
+        @include breakpoint(sm) {
+          font-size: 24px;
+          line-height: 28px;
+        }
+      }
+    }
+
+    div.mgReset {
+      margin: 0px;
+    }
+
+    div.mgDefault {
+      margin: 100px 76px 30px;
+
+       @include breakpoint(md) {
+        margin: 60px 30px 30px;
+        gap: 5rem;
+      }
+    }
+
+    div.content-list {
+      @include breakpoint(sm) {
+        overflow-x: auto;
+      }
+      
+      table {
+        margin: 0 auto;
+
+        @include breakpoint(xxl) {
+          width: 80%;
+        }
+
+        @include breakpoint(xl) {
+          width: 100%;
+        }
+
+        @include breakpoint(sm) {
+          width: 600px;
+        }
+
+        th {
+          font-size: 16px;
+          line-height: 24px;
+          color: $black;
+          text-align: left;
+          border-bottom: 1px solid $black;
+          padding-bottom: 10px;
+
+          @include breakpoint(sm) {
+            font-size: 13px;
+            line-height: 15px;
+          }
+        }
+
+        tbody tr:nth-child(odd) {
+          background-color: $gray-lightest;
+        }
+
+        td {
+          padding: 6px 10px;
+          font-size: 14px;
+          line-height: 24px;
+          color: $black;
+
+          @include breakpoint(sm) {
+            font-size: 12px;
+            line-height: 16px;
+          }
+
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+
+            @include breakpoint(sm) {
+              width: 25px;
+              height: 25px;
+            }
+          }
+
+          div.content-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            button {
+              background: transparent;
+              width: 16px;
+              height: 16px;
+          
+              svg {
+                z-index: 1;
+                width: 16px;
+                height: 16px;
+                color: $black;
+          
+                @include breakpoint(sm) {
+                  width: 14px;
+                  height: 14px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

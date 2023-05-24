@@ -1,20 +1,20 @@
 @import './theme';
 @import './variables';
 
-div.page {
+div.page-register-user {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: $white;
 
-  div.container {
+  div.container-register-user {
     display: flex;
 
     @include breakpoint(sm) {
       flex-direction: column;
     }
 
-    div.content {
+    div.content-register-user {
       display: flex;
       flex-direction: column;
       flex: 1;

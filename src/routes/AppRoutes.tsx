@@ -6,6 +6,7 @@ import { GlobalProvider, Iprops } from '../contexts/Provider';
 import { useContext } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import { RegisterUser } from '../pages/RegisterUser';
+import { ListUsers } from '../pages/ListUsers';
 
 export function AppRoutes() {
   const getContext = (): any => {
@@ -69,6 +70,8 @@ export function AppRoutes() {
         <IsAdmin>
           <Routes>
             <Route path="/dashboard-admin" element={<MenuAdmin />} />
+            <Route path="/register-user" element={<RegisterUser />} />
+            <Route path="/list-users" element={<ListUsers />} />
           </Routes>
         </IsAdmin>
       </IsLoggedIn>

@@ -1,0 +1,89 @@
+@import './theme';
+@import './variables';
+
+div.modal-delete-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(66, 66, 66);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  div.modal-delete-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 440px;
+    height: 280px;
+    border-radius: 10px;
+    background-color: $white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 0px 30px;
+
+    @include breakpoint(sm) {
+      width: 100%;
+      height: 240px;
+      margin: 20px;
+      padding: 0px 20px;
+    }
+
+    div.modal-delete-button-close {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+
+      button.modal-delete-button-default {
+        background-color: transparent;
+        width: 22px;
+        height: 22px;
+
+        svg {
+          color: $black;
+        }
+      }
+    }
+
+    div.modal-delete-title {
+      display: flex;
+      justify-content: center;
+      width: 370px;
+
+      @include breakpoint(sm) {
+        width: 100%;
+      }
+
+      h4 {
+        font-size: 18px;
+        line-height: 24px;
+        color: $black;
+        text-align: center;
+        font-weight: 400;
+      }
+    }
+
+    div.modal-delete-content-form {
+      display: flex;
+      justify-content: space-evenly;
+      width: 370px;
+
+      @include breakpoint(sm) {
+        width: 100%;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        div.modal-delete-form-button {
+          display: flex;
+          justify-content: space-evenly;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
