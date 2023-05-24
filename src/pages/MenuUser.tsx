@@ -1,3 +1,5 @@
+import { NavbarUser } from '../components/NavbarUser';
+
 export function MenuUser() {
-  return <h1>Menu usuario</h1>;
+  return <NavbarUser />;
 }

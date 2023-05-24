@@ -1,0 +1,147 @@
+@import './theme';
+@import './variables';
+
+div.navbar-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 80px;
+  background-color: $primary;
+  padding: 0 60px;
+
+  @include breakpoint(sm) {
+    padding: 0 20px;
+  }
+  
+  div.navbar-user-logo {
+    width: auto;
+
+    img {
+      width: 194px;
+      height: auto;
+
+      @include breakpoint(sm) {
+        width: 150px;
+      }
+    }
+  }
+
+  div.navbar-user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+
+    div.navbar-user-avatar {
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+
+        @include breakpoint(sm) {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+
+    div.navbar-user-arrow-menu {
+
+      button {
+        background-color: transparent;
+        width: 18px;
+        height: 18px;
+
+        svg {
+          color: $white;
+          width: 18px;
+          height: 18px;
+
+          @include breakpoint(sm) {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  div.navbar-user-content {
+    position: absolute;
+    top: 4.5rem;
+    right: 4rem;
+    width: 160px;
+    height: 92px;
+    background-color: $white;
+    border-radius: 10px;
+    border: 1px solid $gray-lightest;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    @include breakpoint(sm) {
+      right: 1.5rem;
+      height: 74px;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.5rem;
+      height: 92px;
+      padding: 0 20px;
+
+      @include breakpoint(sm) {
+        height: 74px;
+      }
+
+      li {
+        color: $black;
+        font-size: 16px;
+        line-height: 24px;
+
+        @include breakpoint(sm) {
+          font-size: 14px;
+          line-height: 18px;
+        }
+
+        a {
+          display: flex;
+          gap: 0.5rem;
+          text-decoration: none;
+          color: $black;
+
+          svg {
+            color: $black;
+            width: 18px;
+            height: 18px;
+
+            @include breakpoint(sm) {
+              width: 16px;
+              height: 16px;
+            }
+          }
+        }
+      }
+    }
+
+    &::before{
+      content: '';
+      position: absolute;
+      top: -0.2rem;
+      right: 2rem;
+      width: 16px;
+      height: 16px;
+      transform: rotate(45deg);
+      background-color: $white;
+
+      @include breakpoint(sm) {
+        right: 1.6rem;
+        top: -0.3rem;
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}
