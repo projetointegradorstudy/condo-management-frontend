@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { NavibarMobile } from '../components/NavbarMobile';
-import { Sidebar } from '../components/Sidebar';
-import { EditUserModal } from '../components/EditUserModal';
 import { PencilSimpleLine, Trash } from 'phosphor-react';
+import { Sidebar } from '../components/Sidebar';
+import { NavibarMobile } from '../components/NavbarMobile';
+import { EditUserModal } from '../components/EditUserModal';
+import { DeleteUserModal } from '../components/DeleteUserModal';
 import { USERS } from '../utils/users';
 import '../styles/listusers.scss';
 
 export function ListUsers() {
-  const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [openDeleteModal, setOpenDeletModal] = useState(false);
 
   return (
     <div className="page-list-users">
@@ -15,7 +17,7 @@ export function ListUsers() {
         <Sidebar />
         <NavibarMobile />
 
-        <div className="content-list-users" style={{ margin: openModal ? '0' : '100px 76px 30px' }}>
+        <div className={`content-list-users ${openEditModal || openDeleteModal ? 'mgReset' : 'mgDefault'}`}>
           <h1>Lista de usuários</h1>
 
           <div className="content-list">
@@ -52,10 +54,10 @@ export function ListUsers() {
                       </td>
                       <td>
                         <div className="content-buttons">
-                          <button onClick={() => setOpenModal(true)}>
+                          <button onClick={() => setOpenEditModal(true)}>
                             <PencilSimpleLine />
                           </button>
-                          <button>
+                          <button onClick={() => setOpenDeletModal(true)}>
                             <Trash />
                           </button>
                         </div>
@@ -66,7 +68,11 @@ export function ListUsers() {
               </tbody>
             </table>
           </div>
-          <EditUserModal isOpen={openModal} setOpenModal={() => setOpenModal(!openModal)} />
+          <DeleteUserModal
+            isOpenDeleteModal={openDeleteModal}
+            setOpenDeleteModal={() => setOpenDeletModal(!openDeleteModal)}
+          />
+          <EditUserModal isOpenEditModal={openEditModal} setOpenEditModal={() => setOpenEditModal(!openEditModal)} />
         </div>
       </div>
     </div>

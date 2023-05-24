@@ -20,10 +20,18 @@ button {
 
   &.button-confirm {
     background:#38ba7c;
+
+    @include breakpoint(sm) {
+      width: 110px;
+    }
   }
 
   &.button-cancel {
     background: #f34542;
+
+    @include breakpoint(sm) {
+      width: 110px;
+    }
   }
 
   @include breakpoint(sm) {

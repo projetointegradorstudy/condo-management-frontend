@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Camera, X } from 'phosphor-react';
+import { X } from 'phosphor-react';
 import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
@@ -7,25 +6,19 @@ import { USERS } from '../utils/users';
 import '../styles/editusermodal.scss';
 
 interface EditUserModalProps {
-  isOpen: boolean;
-  setOpenModal: () => void;
+  isOpenEditModal: boolean;
+  setOpenEditModal: () => void;
 }
 
-export function EditUserModal({ isOpen, setOpenModal }: EditUserModalProps) {
-  const [image, setImage] = useState(null);
-
-  if (isOpen) {
+export function EditUserModal({ isOpenEditModal, setOpenEditModal }: EditUserModalProps) {
+  if (isOpenEditModal) {
     return (
-      <div className="modal-background">
+      <div className="modal-edit-background">
         <div className="modal-content">
           <div className="modal-button-close">
-            <button className="modal-button-default" onClick={setOpenModal}>
+            <button className="modal-button-default" onClick={setOpenEditModal}>
               <X size={20} />
             </button>
-          </div>
-
-          <div className="modal-title">
-            <h4>Editar {USERS[0].name}</h4>
           </div>
 
           <div className="modal-content-form">
@@ -50,7 +43,7 @@ export function EditUserModal({ isOpen, setOpenModal }: EditUserModalProps) {
               <Input name="register" id="register" type="text" placeholder={USERS[0].registered_at} disabled />
 
               <div className="modal-form-button">
-                <Button title="Cancelar" onClick={setOpenModal} isCancel />
+                <Button title="Cancelar" onClick={setOpenEditModal} isCancel />
                 <Button title="Confirmar" type="submit" isConfirm />
               </div>
             </form>
