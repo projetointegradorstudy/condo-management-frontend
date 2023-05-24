@@ -37,7 +37,7 @@ export function AppRoutes() {
 
   const IsUser = ({ children }: Iprops) => {
     const { isAdmin } = getContext();
-    if (isAdmin) return <Navigate to="/list-users" replace />;
+    if (isAdmin) return <Navigate to="/dashboard-admin" replace />;
 
     return <>{children}</>;
   };
