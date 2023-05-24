@@ -40,7 +40,7 @@ const navItems = [
   },
 ];
 
-export function NavibarMobile() {
+export function NavbarMobile() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="navbar-mobile">

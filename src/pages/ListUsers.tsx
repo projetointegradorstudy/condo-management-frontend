@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { PencilSimpleLine, Trash } from 'phosphor-react';
 import { Sidebar } from '../components/Sidebar';
-import { NavibarMobile } from '../components/NavbarMobile';
+import { NavbarMobile } from '../components/NavbarMobile';
 import { EditUserModal } from '../components/EditUserModal';
 import { DeleteUserModal } from '../components/DeleteUserModal';
 import { USERS } from '../utils/users';
@@ -15,7 +15,7 @@ export function ListUsers() {
     <div className="page-list-users">
       <div className="container-list-users">
         <Sidebar />
-        <NavibarMobile />
+        <NavbarMobile />
 
         <div className={`content-list-users ${openEditModal || openDeleteModal ? 'mgReset' : 'mgDefault'}`}>
           <h1>Lista de usuários</h1>

@@ -2,7 +2,7 @@ import { Users, ListPlus, Question } from 'phosphor-react';
 import { Lead } from '../components/Lead';
 import { Sidebar } from '../components/Sidebar';
 import '../styles/menuadmin.scss';
-import { NavibarMobile } from '../components/NavbarMobile';
+import { NavbarMobile } from '../components/NavbarMobile';
 
 const cardItems = [
   {
@@ -27,7 +27,7 @@ export function MenuAdmin() {
     <div className="page-menu-admin">
       <div className="container-menu-admin">
         <Sidebar />
-        <NavibarMobile />
+        <NavbarMobile />
         <div className="content-menu-admin">
           <div className="content-welcome">
             <h1>

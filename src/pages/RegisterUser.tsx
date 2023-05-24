@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Camera } from 'phosphor-react';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
-import { NavibarMobile } from '../components/NavbarMobile';
+import { NavbarMobile } from '../components/NavbarMobile';
 import { Sidebar } from '../components/Sidebar';
 import { Label } from '../components/Label';
 import '../styles/registeruser.scss';
@@ -14,7 +14,7 @@ export function RegisterUser() {
     <div className="page-register-user">
       <div className="container-register-user">
         <Sidebar />
-        <NavibarMobile />
+        <NavbarMobile />
         <div className="content-register-user">
           <h1>Cadastro de pessoas</h1>
 
