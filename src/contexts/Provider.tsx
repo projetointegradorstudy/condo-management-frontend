@@ -17,16 +17,15 @@ export function GlobalProvider({ children }: Iprops) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // const storagedToken = localStorage.getItem('token');
-    // const storagedIsAuthenticated = localStorage.getItem('isAuthenticated');
     if (!token && !isAuthenticated) {
-      setToken(JSON.parse(token));
-      setIsAuthenticated(JSON.parse(isAuthenticated));
+      setToken(token);
+      setIsAuthenticated(isAuthenticated);
       api.defaults.headers.Authorization = `Bearer ${token}`;
     }
   }, [token, isAuthenticated]);
 
   useEffect(() => {
+    console.log('useeffect2', isAdmin);
     if ((decodedToken as { user: { role: string } })?.user?.role === 'admin') {
       setIsAdmin(true);
     }

@@ -16,74 +16,71 @@ export function AppRoutes() {
   };
   const IsLoggedOut = ({ children }: Iprops) => {
     const { token, isAuthenticated } = getContext();
-    if (isAuthenticated || token) return <Navigate to="/dashboard-admin" replace />;
+    if (isAuthenticated && token) return <Navigate to="/dashboard-admin" replace />;
 
     return <>{children}</>;
   };
 
   const IsLoggedIn = ({ children }: Iprops) => {
-    const { token, isAuthenticated } = getContext();
-    if (!isAuthenticated && !token) return <Navigate to="/" replace />;
-
+    const { isAdmin, token, isAuthenticated } = getContext();
+    if (!isAuthenticated || !token) return <Navigate to="/" replace />;
+    if (isAdmin) return <Navigate to="/dashboard-admin" replace />;
     return <>{children}</>;
   };
 
   const IsAdmin = ({ children }: Iprops) => {
-    const { isAdmin } = getContext();
+    const { isAdmin, token, isAuthenticated } = getContext();
+    if (!isAuthenticated || !token) return <Navigate to="/" replace />;
     if (!isAdmin) return <Navigate to="/menu-user" replace />;
-
     return <>{children}</>;
-  };
-
-  const IsUser = ({ children }: Iprops) => {
-    const { isAdmin } = getContext();
-    if (isAdmin) return <Navigate to="/dashboard-admin" replace />;
-
-    return <>{children}</>;
-  };
-
-  const GetLoggoutRoutesHandler = () => {
-    return (
-      <IsLoggedOut>
-        <Routes>
-          <Route path="/" element={<Login />} />
-        </Routes>
-      </IsLoggedOut>
-    );
-  };
-
-  const GetUserRoutesHandler = () => {
-    return (
-      <IsLoggedIn>
-        <IsUser>
-          <Routes>
-            <Route path="/menu-user" element={<MenuUser />} />
-          </Routes>
-        </IsUser>
-      </IsLoggedIn>
-    );
-  };
-
-  const GetAdminRoutesHandler = () => {
-    return (
-      <IsLoggedIn>
-        <IsAdmin>
-          <Routes>
-            <Route path="/dashboard-admin" element={<MenuAdmin />} />
-            <Route path="/register-user" element={<RegisterUser />} />
-            <Route path="/list-users" element={<ListUsers />} />
-          </Routes>
-        </IsAdmin>
-      </IsLoggedIn>
-    );
   };
 
   return (
     <Router>
       <GlobalProvider>
-        <GetLoggoutRoutesHandler />
-        <GetUserRoutesHandler />
-        <GetAdminRoutesHandler />
+        <Routes>
+          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route
+            path="/"
+            element={
+              <IsLoggedOut>
+                <Login />
+              </IsLoggedOut>
+            }
+          />
+          <Route
+            path="/menu-user"
+            element={
+              <IsLoggedIn>
+                <MenuUser />
+              </IsLoggedIn>
+            }
+          />
+          <Route
+            path="/dashboard-admin"
+            element={
+              <IsAdmin>
+                <MenuAdmin />
+              </IsAdmin>
+            }
+          />
+          <Route
+            path="/register-user"
+            element={
+              <IsAdmin>
+                <RegisterUser />
+              </IsAdmin>
+            }
+          />
+          <Route
+            path="/list-users"
+            element={
+              <IsAdmin>
+                <ListUsers />
+              </IsAdmin>
+            }
+          />
+        </Routes>
       </GlobalProvider>
     </Router>
   );
