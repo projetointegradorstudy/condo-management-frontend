@@ -20,32 +20,32 @@ export function NavbarMobile() {
     {
       path: '/dashboard-admin',
       name: 'Página inicial',
-      icon: <House size={isOpen ? 20 : 26} />,
+      icon: <House size={isOpen ? 22 : 26} />,
     },
     {
       path: '/register-user',
       name: 'Cadastro de pessoas',
-      icon: <UserPlus size={isOpen ? 20 : 26} />,
+      icon: <UserPlus size={isOpen ? 22 : 26} />,
     },
     {
       path: '/',
       name: 'Cadastro de ambientes',
-      icon: <PlusCircle size={isOpen ? 20 : 26} />,
+      icon: <PlusCircle size={isOpen ? 22 : 26} />,
     },
     {
       path: '/list-users',
       name: 'Lista de usuários',
-      icon: <Users size={isOpen ? 20 : 26} />,
+      icon: <Users size={isOpen ? 22 : 26} />,
     },
     {
       path: '/',
       name: 'Aprovaçõess',
-      icon: <ListChecks size={isOpen ? 20 : 26} />,
+      icon: <ListChecks size={isOpen ? 22 : 26} />,
     },
     {
       path: '/',
       name: 'Logs',
-      icon: <BracketsSquare size={isOpen ? 20 : 26} />,
+      icon: <BracketsSquare size={isOpen ? 22 : 26} />,
     },
   ];
 
@@ -53,17 +53,17 @@ export function NavbarMobile() {
     {
       path: '/dashboard-admin',
       name: 'Ambientes',
-      icon: <House size={isOpen ? 20 : 26} />,
+      icon: <House size={isOpen ? 22 : 26} />,
     },
     {
       path: '/register-user',
       name: 'Solicitações',
-      icon: <UserPlus size={isOpen ? 20 : 26} />,
+      icon: <UserPlus size={isOpen ? 22 : 26} />,
     },
     {
       path: '/',
       name: 'Editar perfil',
-      icon: <PlusCircle size={isOpen ? 20 : 26} />,
+      icon: <PlusCircle size={isOpen ? 22 : 26} />,
     },
   ];
 
@@ -92,7 +92,7 @@ export function NavbarMobile() {
                 </li>
               ))}
             </div>
-            <div className="sidebar-list-logout" style={{ width: isAdmin ? '178px' : '110px' }}>
+            <div className="sidebar-list-logout" style={{ width: isAdmin ? '178px' : '115px' }}>
               <button
                 className="sidebar-button-logout"
                 onClick={handleSubmit}
