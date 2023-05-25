@@ -26,6 +26,10 @@ export function Sidebar() {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const handleSubmit = () => {
+    signout();
+  };
+
   const navItemsAdmin = [
     {
       path: '/dashboard-admin',
@@ -77,10 +81,6 @@ export function Sidebar() {
     },
   ];
 
-  const handleSubmit = () => {
-    signout();
-  };
-
   const navItems = isAdmin ? navItemsAdmin : navItemsUser;
 
   return (
@@ -104,7 +104,7 @@ export function Sidebar() {
         {isOpen ? (
           <>
             <h4>Lorem Ipsum</h4>
-            <span>Admin | Lorem Ipsum</span>
+            {isAdmin ? <span>Admin | Lorem Ipsum</span> : <span>User | Lorem Ipsum</span>}
           </>
         ) : (
           ''

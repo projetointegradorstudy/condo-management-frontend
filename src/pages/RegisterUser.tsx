@@ -35,7 +35,7 @@ export function RegisterUser() {
               <Label title="Username" htmlFor="username" />
               <Input name="username" id="username" type="text" placeholder="Username do usuário" />
               <Label title="Password" htmlFor="password" />
-              <Input name="password" id="password" type="password" placeholder="Senha do usuário" />
+              <Input name="password" id="password" type="password" placeholder="Senha do usuário" autoComplete="off" />
 
               <div className="form-button">
                 <Button title="Cadastrar" type="submit" />

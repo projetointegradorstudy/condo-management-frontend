@@ -5,8 +5,11 @@ div.page-menu-user {
   display: flex;
   background-color: $gray-lightest;
   height: 100vh;
-  
 
+  @include breakpoint(sm) {
+    flex-direction: column;
+  }
+  
   div.container-menu-user {
     margin: 100px 76px 30px;
 
