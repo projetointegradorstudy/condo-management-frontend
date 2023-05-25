@@ -117,14 +117,20 @@ export function Sidebar() {
             <li key={navItem.name} style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}>
               <NavLink to={navItem.path} style={{ justifyContent: isOpen ? '' : 'center' }}>
                 {navItem.icon}
-                <span style={{ opacity: isOpen ? '1' : '0', display: !isOpen ? 'none' : 'block' }}>{navItem.name}</span>
+                <span style={{ display: !isOpen ? 'none' : 'block' }}>{navItem.name}</span>
               </NavLink>
             </li>
           ))}
-          <button onClick={handleSubmit}>
-            <SignOut size={isOpen ? 20 : 26} />
-            Sair
-          </button>
+          <div className="sidebar-list-logout" style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}>
+            <button
+              className="sidebar-button-logout"
+              onClick={handleSubmit}
+              style={{ justifyContent: isOpen ? '' : 'center' }}
+            >
+              <SignOut size={isOpen ? 20 : 26} />
+              <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
+            </button>
+          </div>
         </ul>
       </div>
     </aside>

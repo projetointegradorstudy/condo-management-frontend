@@ -116,6 +116,28 @@ aside.desktop {
           }
         }
       }
+
+      div.sidebar-list-logout {
+        display: flex;
+        width: 100%;
+
+        button.sidebar-button-logout {
+          display: flex;
+          width: 100%;
+          align-items: center;
+          background-color: transparent; 
+          gap: 0.8rem;
+          height: auto;
+
+          span {
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            text-decoration: none;
+          }
+        }
+      } 
     }
   }
 }
