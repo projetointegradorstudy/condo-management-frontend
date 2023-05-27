@@ -40,7 +40,7 @@ export function MenuUser() {
             <b>UserName</b>
           </h1>
         </div>
-        <div className="content-welcome-user">
+        <div className="content-title-user">
           <h2>Ambientes disponíveis</h2>
         </div>
         <div className="content-menu-user">

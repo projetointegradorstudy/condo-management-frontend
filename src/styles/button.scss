@@ -17,6 +17,13 @@ button {
   &:hover {
     background-color: #0D1717;
   }
+  
+  &.button-full {
+    
+    @include breakpoint(sm) {
+      width: 100%;
+    }
+  }
 
   &.button-confirm {
     background-color:#38ba7c;
@@ -32,9 +39,5 @@ button {
     @include breakpoint(sm) {
       width: 110px;
     }
-  }
-
-  @include breakpoint(sm) {
-    width: 100%;
   }
 }

@@ -4,20 +4,22 @@
 div.card-environment {
   display: flex;
   width: 320px;
-  height: auto;
+  height: 405px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 5px;
+  margin-bottom: 10px;
 
   @include breakpoint(sm) {
     width: 100%;
     max-width: 300px;
+    height: 394px;
   }
 
   div.card-content {
     padding: 20px;
 
     @include breakpoint(sm) {
-      padding: 20px 0px;
+      padding: 20px;
     }
     
     div.card-image {
@@ -37,6 +39,11 @@ div.card-environment {
       h3 {
         font-size: 18px;
         line-height: 24px;
+
+        @include breakpoint(sm) {
+          font-size: 16px;
+          line-height: 24px;
+        }
       }
     }
 
@@ -46,6 +53,11 @@ div.card-environment {
       span {
         font-size: 14px;
         line-height: 20px;
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        display: -webkit-box;
+        -webkit-line-clamp: 4; 
+        -webkit-box-orient: vertical;
       }
     }
 
@@ -66,7 +78,6 @@ div.card-environment {
 
         strong {
           font-size: 16px;
-
         }
       }
     
