@@ -5,7 +5,7 @@ div.page-list-users {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: $white;
+  background-color: $gray-lightest;
 
   div.container-list-users {
     display: flex;
@@ -82,7 +82,7 @@ div.page-list-users {
         }
 
         tbody tr:nth-child(odd) {
-          background-color: $gray-lightest;
+          background-color: $white;
         }
 
         td {

@@ -5,7 +5,7 @@ import { NavbarMobile } from '../components/NavbarMobile';
 import { EditUserModal } from '../components/EditUserModal';
 import { DeleteUserModal } from '../components/DeleteUserModal';
 import { USERS } from '../utils/users';
-import '../styles/listusers.scss';
+import '../styles/list-users.scss';
 
 export function ListUsers() {
   const [openEditModal, setOpenEditModal] = useState(false);

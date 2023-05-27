@@ -1,0 +1,78 @@
+@import './theme';
+@import './variables';
+
+div.card-environment {
+  display: flex;
+  width: 320px;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 5px;
+
+  @include breakpoint(sm) {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  div.card-content {
+    padding: 20px;
+
+    @include breakpoint(sm) {
+      padding: 20px 0px;
+    }
+    
+    div.card-image {
+      width: 100%;
+
+      img {
+        width: 100%;
+        border-radius: 10px;
+      }
+    }
+
+    div.card-title {
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 10px;
+
+      h3 {
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+
+    div.card-description {
+      width: 100%;
+
+      span {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+
+    div.card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+
+      div.card-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        svg {
+          color: $black;
+        }
+
+        strong {
+          font-size: 16px;
+
+        }
+      }
+    
+      div.card-button {
+        display: flex;
+      }
+    }
+  } 
+}

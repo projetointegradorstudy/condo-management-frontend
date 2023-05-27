@@ -3,7 +3,7 @@
 
 div.page-menu-user {
   display: flex;
-  background-color: $gray-lightest;
+  width: 100vw;
   height: 100vh;
 
   @include breakpoint(sm) {
@@ -13,6 +13,10 @@ div.page-menu-user {
   div.container-menu-user {
     margin: 100px 76px 30px;
 
+    @include breakpoint(sm) {
+      margin: 60px 30px 30px;
+    }
+
     div.content-welcome-user {
 
       h1 {
@@ -20,11 +24,27 @@ div.page-menu-user {
         line-height: 38px;
         font-weight: 400;
         color: $black;
+        margin-bottom: 40px;
     
         @include breakpoint(sm) {
           font-size: 24px;
           line-height: 28px;
+          margin-bottom: 30px;
         }
+      }
+    }
+  }
+
+  div.content-menu-user {
+    display: flex;
+
+    div.content-cards-menu-user {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      @include breakpoint(sm) {
+        justify-content: center;
       }
     }
   }

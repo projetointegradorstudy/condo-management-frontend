@@ -1,9 +1,12 @@
+@import './theme';
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body, input, button, textarea {
+body {
   font-family:'Roboto', sans-serif;
+  background-color: $gray-lightest;
 }

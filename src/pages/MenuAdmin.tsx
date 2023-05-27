@@ -1,8 +1,8 @@
 import { Users, ListPlus, Question } from 'phosphor-react';
 import { Lead } from '../components/Lead';
 import { Sidebar } from '../components/Sidebar';
-import '../styles/menuadmin.scss';
 import { NavbarMobile } from '../components/NavbarMobile';
+import '../styles/menu-admin.scss';
 
 const cardItems = [
   {

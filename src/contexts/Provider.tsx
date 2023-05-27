@@ -25,7 +25,6 @@ export function GlobalProvider({ children }: Iprops) {
   }, [token, isAuthenticated]);
 
   useEffect(() => {
-    console.log('useeffect2', isAdmin);
     if ((decodedToken as { user: { role: string } })?.user?.role === 'admin') {
       setIsAdmin(true);
     }

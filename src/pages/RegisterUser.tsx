@@ -5,7 +5,7 @@ import { Input } from '../components/Input';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Sidebar } from '../components/Sidebar';
 import { Label } from '../components/Label';
-import '../styles/registeruser.scss';
+import '../styles/register-user.scss';
 
 export function RegisterUser() {
   const [image, setImage] = useState(null);

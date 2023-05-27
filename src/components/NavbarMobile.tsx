@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BracketsSquare, House, List, ListChecks, PlusCircle, SignOut, UserPlus, Users, X } from 'phosphor-react';
 import { GlobalContext } from '../contexts/GlobalContext';
-import '../styles/navbarmobile.scss';
+import '../styles/navbar-mobile.scss';
 
 export function NavbarMobile() {
   const [isOpen, setIsOpen] = useState(false);
@@ -92,7 +92,7 @@ export function NavbarMobile() {
                 </li>
               ))}
             </div>
-            <div className="sidebar-list-logout" style={{ width: isAdmin ? '178px' : '115px' }}>
+            <div className="sidebar-list-logout" style={{ width: isAdmin ? '188px' : '115px' }}>
               <button
                 className="sidebar-button-logout"
                 onClick={handleSubmit}

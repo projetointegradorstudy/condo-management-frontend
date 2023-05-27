@@ -1,6 +1,7 @@
 import { Sidebar } from '../components/Sidebar';
 import { NavbarMobile } from '../components/NavbarMobile';
-import '../styles/menuuser.scss';
+import { CardEnvironment } from '../components/CardEnvironment';
+import '../styles/menu-user.scss';
 
 export function MenuUser() {
   return (
@@ -15,7 +16,19 @@ export function MenuUser() {
             <b>UserName</b>
           </h1>
         </div>
-        <div className="content-main"></div>
+        <div className="content-welcome-user">
+          <h2>Ambientes disponíveis</h2>
+        </div>
+        <div className="content-menu-user">
+          <div className="content-cards-menu-user">
+            <CardEnvironment />
+            <CardEnvironment />
+            <CardEnvironment />
+            <CardEnvironment />
+            <CardEnvironment />
+            <CardEnvironment />
+          </div>
+        </div>
       </div>
     </div>
   );
