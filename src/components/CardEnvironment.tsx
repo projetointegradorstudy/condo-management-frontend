@@ -1,6 +1,7 @@
 import { Users } from 'phosphor-react';
 import { Button } from './Button';
 import piscinaImg from '../assets/piscina.png';
+
 import '../styles/card-environment.scss';
 
 export function CardEnvironment() {
@@ -15,8 +16,9 @@ export function CardEnvironment() {
         </div>
         <div className="card-description">
           <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id sem in sem fringilla volutpat ac et massa.
-            Integer efficitur cursus...
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id sem in sem fringilla volutpat ac et
+            massa.Integer efficitur cursus ajsiosdjiosdj jsdi ojsdi jsidj isdjios jisdo jsijdijdisss s idjisdjdsioj isj
+            isj oisjsdsdsdjsdoisdjsiodjdiojsdsjisdojsio jds sdjiosdjiojsdio joisjd ojdi sjsido jdo
           </span>
         </div>
 
