@@ -1,0 +1,27 @@
+.spinnerContent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.spinnerGif {
+  max-width: 100px;
+  max-height: 50px;
+
+  @media (max-width: 844px) {
+    max-width: 350px;
+    max-height: 175px;
+  }
+
+  @media (max-width: 428px) {
+    max-width: 300px;
+    max-height: 150px;
+  }
+}

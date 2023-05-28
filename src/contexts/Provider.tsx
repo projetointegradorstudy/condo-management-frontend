@@ -1,9 +1,10 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
-import { api, auth, authProps } from '../services/api';
+import { api, auth } from '../services/api';
 import { GlobalContext } from './GlobalContext';
 import useStorage from '../utils/useStorage';
+import { IAuthProps } from '../interfaces/index';
 
 export interface Iprops {
   children: ReactNode;
@@ -13,6 +14,7 @@ export function GlobalProvider({ children }: Iprops) {
   const [token, setToken, removeToken] = useStorage('token');
   const [isAuthenticated, setIsAuthenticated, removeIsAuthenticated] = useStorage('isAuthenticated');
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isUser, setIsUser] = useState(false);
   const { decodedToken } = useJwt(token);
   const navigate = useNavigate();
 
@@ -27,10 +29,12 @@ export function GlobalProvider({ children }: Iprops) {
   useEffect(() => {
     if ((decodedToken as { user: { role: string } })?.user?.role === 'admin') {
       setIsAdmin(true);
+    } else if ((decodedToken as { user: { role: string } })?.user?.role === 'user') {
+      setIsUser(true);
     }
   }, [decodedToken, setIsAdmin]);
 
-  async function signin(credentials: authProps) {
+  async function signin(credentials: IAuthProps) {
     const data = await auth(credentials)
       .then((res) => {
         api.defaults.headers.Authorization = `Bearer ${res.data.access_token}`;
@@ -47,6 +51,7 @@ export function GlobalProvider({ children }: Iprops) {
     removeToken();
     removeIsAuthenticated();
     setIsAdmin(false);
+    setIsUser(false);
     navigate('/');
   }
 
@@ -59,6 +64,8 @@ export function GlobalProvider({ children }: Iprops) {
         setIsAuthenticated,
         isAdmin,
         setIsAdmin,
+        isUser,
+        setIsUser,
         signin,
         signout,
       }}
