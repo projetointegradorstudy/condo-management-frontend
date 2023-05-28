@@ -44,12 +44,10 @@ export function MenuUser() {
           <h2>Ambientes disponíveis</h2>
         </div>
         <div className="content-menu-user">
-          <div className="content-cards-menu-user">
-            {environments &&
-              environments.map((environment, index) => {
-                return <CardEnvironment key={index++} data={environment} />;
-              })}
-          </div>
+          {environments &&
+            environments.map((environment, index) => {
+              return <CardEnvironment key={index++} data={environment} />;
+            })}
         </div>
       </div>
     </div>
