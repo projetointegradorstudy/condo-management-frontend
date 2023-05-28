@@ -69,6 +69,10 @@ div.page-menu-user {
     @include breakpoint(sm) {
       margin: 0px;
     }
+
+    @include breakpoint(xs) {
+      padding: 20px 14px;
+    }
   }
     
   div.content-menu-user::-webkit-scrollbar {
