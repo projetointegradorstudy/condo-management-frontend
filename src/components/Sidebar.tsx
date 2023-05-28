@@ -115,13 +115,21 @@ export function Sidebar() {
         <ul className="sidebar-list">
           {navItems.map((navItem) => (
             <li key={navItem.name} style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}>
-              <NavLink to={navItem.path} style={{ justifyContent: isOpen ? '' : 'center' }}>
+              <NavLink
+                to={navItem.path}
+                style={{ justifyContent: isOpen ? '' : 'center' }}
+                title={`${isOpen ? '' : navItem.name}`}
+              >
                 {navItem.icon}
                 <span style={{ display: !isOpen ? 'none' : 'block' }}>{navItem.name}</span>
               </NavLink>
             </li>
           ))}
-          <div className="sidebar-list-logout" style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}>
+          <div
+            className="sidebar-list-logout"
+            style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}
+            title={`${isOpen ? '' : 'Sair'}`}
+          >
             <button
               className="sidebar-button-logout"
               onClick={handleSubmit}
