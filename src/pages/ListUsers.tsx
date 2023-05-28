@@ -8,6 +8,8 @@ import '../styles/list-users.scss';
 import { getUsers } from '../services/api';
 import { IUser } from '../interfaces';
 import { Spinner } from '../components/Spinner';
+import { WarningFeedback } from '../components/WarningFeedback';
+import avatarDefault from '../assets/avatar-default.png';
 
 export function ListUsers() {
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -56,7 +58,7 @@ export function ListUsers() {
                       return (
                         <tr key={user.id}>
                           <td>
-                            <img src={user.avatar} alt="avatar" />
+                            <img src={user?.avatar ? user.avatar : avatarDefault} alt="avatar" />
                           </td>
                           <td>
                             <h4>{user.name}</h4>
@@ -86,9 +88,9 @@ export function ListUsers() {
                 </tbody>
               </table>
             ) : users?.length === 0 && isLoading ? (
-              <Spinner></Spinner>
+              <Spinner />
             ) : (
-              <div>NÃO POSSUI REGISTROS</div>
+              <WarningFeedback />
             )}
           </div>
           <DeleteUserModal
