@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Camera } from 'phosphor-react';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
-import { NavibarMobile } from '../components/NavbarMobile';
+import { NavbarMobile } from '../components/NavbarMobile';
 import { Sidebar } from '../components/Sidebar';
 import { Label } from '../components/Label';
-import '../styles/registeruser.scss';
+import '../styles/register-user.scss';
 
 export function RegisterUser() {
   const [image, setImage] = useState(null);
@@ -14,7 +14,7 @@ export function RegisterUser() {
     <div className="page-register-user">
       <div className="container-register-user">
         <Sidebar />
-        <NavibarMobile />
+        <NavbarMobile />
         <div className="content-register-user">
           <h1>Cadastro de pessoas</h1>
 
@@ -35,7 +35,7 @@ export function RegisterUser() {
               <Label title="Username" htmlFor="username" />
               <Input name="username" id="username" type="text" placeholder="Username do usuário" />
               <Label title="Password" htmlFor="password" />
-              <Input name="password" id="password" type="password" placeholder="Senha do usuário" />
+              <Input name="password" id="password" type="password" placeholder="Senha do usuário" autoComplete="on" />
 
               <div className="form-button">
                 <Button title="Cadastrar" type="submit" />

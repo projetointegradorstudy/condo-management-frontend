@@ -3,7 +3,7 @@ import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
 import { USERS } from '../utils/users';
-import '../styles/editusermodal.scss';
+import '../styles/edit-user-modal.scss';
 
 interface EditUserModalProps {
   isOpenEditModal: boolean;
@@ -38,7 +38,7 @@ export function EditUserModal({ isOpenEditModal, setOpenEditModal }: EditUserMod
               <Label title="Username" htmlFor="username" />
               <Input name="username" id="username" type="text" placeholder={USERS[0].user_name} />
               <Label title="Senha" htmlFor="password" />
-              <Input name="password" id="password" type="password" placeholder="******" />
+              <Input name="password" id="password" type="password" placeholder="******" autoComplete="on" />
               <Label title="Registrado" htmlFor="register" />
               <Input name="register" id="register" type="text" placeholder={USERS[0].registered_at} disabled />
 

@@ -5,7 +5,6 @@ div.page-register-user {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: $white;
 
   div.container-register-user {
     display: flex;
@@ -73,7 +72,7 @@ div.page-register-user {
               align-items: center;
               width: 100px;
               height: 100px;
-              background-color: $gray-lightest;
+              background-color: #EAEEF2;
               border-radius: 50%;
 
               @include breakpoint(sm) {

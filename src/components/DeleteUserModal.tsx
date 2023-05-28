@@ -1,7 +1,7 @@
 import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { USERS } from '../utils/users';
-import '../styles/deleteusermodal.scss';
+import '../styles/delete-user-modal.scss';
 
 interface DeleteUserModalProps {
   isOpenDeleteModal: boolean;

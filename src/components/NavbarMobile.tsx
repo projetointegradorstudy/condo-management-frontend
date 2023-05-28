@@ -1,47 +1,74 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { BracketsSquare, House, List, ListChecks, PlusCircle, SignOut, UserPlus, Users, X } from 'phosphor-react';
-import '../styles/navbarmobile.scss';
+import { GlobalContext } from '../contexts/GlobalContext';
+import '../styles/navbar-mobile.scss';
 
-const navItems = [
-  {
-    path: '/dashboard-admin',
-    name: 'Página inicial',
-    icon: <House />,
-  },
-  {
-    path: '/register-user',
-    name: 'Cadastro de pessoas',
-    icon: <UserPlus />,
-  },
-  {
-    path: '/',
-    name: 'Cadastro de ambientes',
-    icon: <PlusCircle />,
-  },
-  {
-    path: '/list-users',
-    name: 'Lista de usuários',
-    icon: <Users />,
-  },
-  {
-    path: '/',
-    name: 'Aprovaçõess',
-    icon: <ListChecks />,
-  },
-  {
-    path: '/',
-    name: 'Logs',
-    icon: <BracketsSquare />,
-  },
-  {
-    path: '/',
-    name: 'Sair',
-    icon: <SignOut />,
-  },
-];
-
-export function NavibarMobile() {
+export function NavbarMobile() {
   const [isOpen, setIsOpen] = useState(false);
+  const context = useContext(GlobalContext);
+
+  if (!context) return null;
+
+  const { signout, isAdmin } = context;
+
+  const handleSubmit = () => {
+    signout();
+  };
+
+  const navItemsAdmin = [
+    {
+      path: '/dashboard-admin',
+      name: 'Página inicial',
+      icon: <House size={isOpen ? 22 : 26} />,
+    },
+    {
+      path: '/register-user',
+      name: 'Cadastro de pessoas',
+      icon: <UserPlus size={isOpen ? 22 : 26} />,
+    },
+    {
+      path: '/',
+      name: 'Cadastro de ambientes',
+      icon: <PlusCircle size={isOpen ? 22 : 26} />,
+    },
+    {
+      path: '/list-users',
+      name: 'Lista de usuários',
+      icon: <Users size={isOpen ? 22 : 26} />,
+    },
+    {
+      path: '/',
+      name: 'Aprovaçõess',
+      icon: <ListChecks size={isOpen ? 22 : 26} />,
+    },
+    {
+      path: '/',
+      name: 'Logs',
+      icon: <BracketsSquare size={isOpen ? 22 : 26} />,
+    },
+  ];
+
+  const navItemsUser = [
+    {
+      path: '/dashboard-admin',
+      name: 'Ambientes',
+      icon: <House size={isOpen ? 22 : 26} />,
+    },
+    {
+      path: '/register-user',
+      name: 'Solicitações',
+      icon: <UserPlus size={isOpen ? 22 : 26} />,
+    },
+    {
+      path: '/',
+      name: 'Editar perfil',
+      icon: <PlusCircle size={isOpen ? 22 : 26} />,
+    },
+  ];
+
+  const navItems = isAdmin ? navItemsAdmin : navItemsUser;
+
   return (
     <div className="navbar-mobile">
       <nav>
@@ -50,18 +77,30 @@ export function NavibarMobile() {
           <ul style={{ transform: isOpen ? 'translateY(100%)' : 'translateY(0)' }}>
             <div className="profile">
               <img src="https://github.com/projetointegradorstudy.png" alt="avatar" />
-              <h4>Lorem Ipsum</h4>
-              <span>Admin | Lorem Ipsum</span>
+              <>
+                <h4>Lorem Ipsum</h4>
+                {isAdmin ? <span>Admin | Lorem Ipsum</span> : <span>User | Lorem Ipsum</span>}
+              </>
             </div>
             <div className="navbar-items">
               {navItems.map((navItem) => (
                 <li key={navItem.name}>
                   <>{navItem.icon}</>
-                  <a href={navItem.path}>
+                  <NavLink to={navItem.path}>
                     <span>{navItem.name}</span>
-                  </a>
+                  </NavLink>
                 </li>
               ))}
+            </div>
+            <div className="sidebar-list-logout" style={{ width: isAdmin ? '188px' : '115px' }}>
+              <button
+                className="sidebar-button-logout"
+                onClick={handleSubmit}
+                style={{ justifyContent: isOpen ? '' : 'center' }}
+              >
+                <SignOut size={isOpen ? 20 : 26} />
+                <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
+              </button>
             </div>
           </ul>
         </div>

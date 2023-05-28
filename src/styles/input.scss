@@ -4,7 +4,7 @@
 input {
   width: 370px;
   height: 40px;
-  background-color: $gray-lightest;
+  background-color: #EAEEF2;
   border-radius: 5px;
   border: 0px;
   padding: 12px 16px;
@@ -19,7 +19,7 @@ input {
   }
 
   &::placeholder {
-    color: $gray;
+    color: #AFB8C1;
     font-size: 14px;
   }
 }

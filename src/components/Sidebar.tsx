@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   House,
   UserPlus,
@@ -12,13 +12,25 @@ import {
 } from 'phosphor-react';
 import '../styles/sidebar.scss';
 import LogoLg from '../assets/logo_lg.svg';
+import { NavLink } from 'react-router-dom';
+import { GlobalContext } from '../contexts/GlobalContext';
 
 export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const context = useContext(GlobalContext);
+
+  if (!context) return null;
+
+  const { signout, isAdmin } = context;
+
   const toggle = () => setIsOpen(!isOpen);
 
-  const navItems = [
+  const handleSubmit = () => {
+    signout();
+  };
+
+  const navItemsAdmin = [
     {
       path: '/dashboard-admin',
       name: 'Página inicial',
@@ -49,12 +61,27 @@ export function Sidebar() {
       name: 'Logs',
       icon: <BracketsSquare size={isOpen ? 20 : 26} />,
     },
+  ];
+
+  const navItemsUser = [
+    {
+      path: '/dashboard-admin',
+      name: 'Ambientes',
+      icon: <House size={isOpen ? 20 : 26} />,
+    },
+    {
+      path: '/register-user',
+      name: 'Solicitações',
+      icon: <UserPlus size={isOpen ? 20 : 26} />,
+    },
     {
       path: '/',
-      name: 'Sair',
-      icon: <SignOut size={isOpen ? 20 : 26} />,
+      name: 'Editar perfil',
+      icon: <PlusCircle size={isOpen ? 20 : 26} />,
     },
   ];
+
+  const navItems = isAdmin ? navItemsAdmin : navItemsUser;
 
   return (
     <aside style={{ width: isOpen ? '250px' : '100px' }} className="desktop">
@@ -77,7 +104,7 @@ export function Sidebar() {
         {isOpen ? (
           <>
             <h4>Lorem Ipsum</h4>
-            <span>Admin | Lorem Ipsum</span>
+            {isAdmin ? <span>Admin | Lorem Ipsum</span> : <span>User | Lorem Ipsum</span>}
           </>
         ) : (
           ''
@@ -88,12 +115,22 @@ export function Sidebar() {
         <ul className="sidebar-list">
           {navItems.map((navItem) => (
             <li key={navItem.name} style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}>
-              <a href={navItem.path} style={{ justifyContent: isOpen ? '' : 'center' }}>
+              <NavLink to={navItem.path} style={{ justifyContent: isOpen ? '' : 'center' }}>
                 {navItem.icon}
-                <span style={{ opacity: isOpen ? '1' : '0', display: !isOpen ? 'none' : 'block' }}>{navItem.name}</span>
-              </a>
+                <span style={{ display: !isOpen ? 'none' : 'block' }}>{navItem.name}</span>
+              </NavLink>
             </li>
           ))}
+          <div className="sidebar-list-logout" style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}>
+            <button
+              className="sidebar-button-logout"
+              onClick={handleSubmit}
+              style={{ justifyContent: isOpen ? '' : 'center' }}
+            >
+              <SignOut size={isOpen ? 20 : 26} />
+              <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
+            </button>
+          </div>
         </ul>
       </div>
     </aside>

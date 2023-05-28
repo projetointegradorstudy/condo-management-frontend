@@ -4,7 +4,7 @@
 button {
   width: 124px;
   height: 40px;
-  background: $primary;
+  background-color: $primary;
   color: $white;
   border-radius: 5px;
   border: 0;
@@ -17,9 +17,16 @@ button {
   &:hover {
     background-color: #0D1717;
   }
+  
+  &.button-full {
+    
+    @include breakpoint(sm) {
+      width: 100%;
+    }
+  }
 
   &.button-confirm {
-    background:#38ba7c;
+    background-color:#38ba7c;
 
     @include breakpoint(sm) {
       width: 110px;
@@ -27,14 +34,10 @@ button {
   }
 
   &.button-cancel {
-    background: #f34542;
+    background-color: #f34542;
 
     @include breakpoint(sm) {
       width: 110px;
     }
-  }
-
-  @include breakpoint(sm) {
-    width: 100%;
   }
 }

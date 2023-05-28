@@ -53,6 +53,7 @@ export function Login() {
           placeholder="Insira a sua senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="on"
         />
         <div>
           <a href="#">Esqueceu sua senha?</a>
