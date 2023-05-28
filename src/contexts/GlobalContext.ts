@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
-import { authProps } from '../services/api';
+import { IAuthProps } from '../interfaces/index';
 
 interface StorageState<T> {
   state: T;
@@ -14,7 +14,9 @@ export interface GlobalContextProps {
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
   isAdmin: boolean;
   setIsAdmin: Dispatch<SetStateAction<boolean>>;
-  signin: (credentials: authProps) => Promise<{ success: boolean; data: any }>;
+  isUser: boolean;
+  setIsUser: Dispatch<SetStateAction<boolean>>;
+  signin: (credentials: IAuthProps) => Promise<{ success: boolean; data: any }>;
   signout: () => void;
 }
 

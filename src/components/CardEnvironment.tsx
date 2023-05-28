@@ -1,29 +1,26 @@
 import { Users } from 'phosphor-react';
 import { Button } from './Button';
-import piscinaImg from '../assets/piscina.png';
 import '../styles/card-environment.scss';
+import { IDataElementProps } from '../interfaces';
 
-export function CardEnvironment() {
+export function CardEnvironment({ data }: IDataElementProps) {
   return (
     <div className="card-environment">
       <div className="card-content">
         <div className="card-image">
-          <img src={piscinaImg} alt="" />
+          <img src={data.image} alt="" />
         </div>
         <div className="card-title">
-          <h3>Piscina</h3>
+          <h3>{data.name}</h3>
         </div>
         <div className="card-description">
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id sem in sem fringilla volutpat ac et massa.
-            Integer efficitur cursus...
-          </span>
+          <span>{data.description}</span>
         </div>
 
         <div className="card-footer">
           <div className="card-info" title="Quantidade de pessoas">
             <Users size={20} />
-            <strong>90</strong>
+            <strong>{data.capacity}</strong>
           </div>
 
           <div className="card-button">
