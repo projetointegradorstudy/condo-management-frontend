@@ -15,11 +15,15 @@ div.card-environment {
     height: 394px;
   }
 
+  @include breakpoint(xs) {
+    height: 370px;
+  }
+
   div.card-content {
     padding: 20px;
 
-    @include breakpoint(sm) {
-      padding: 20px;
+    @include breakpoint(xs) {
+      padding: 20px 10px;
     }
     
     div.card-image {
@@ -58,6 +62,11 @@ div.card-environment {
         display: -webkit-box;
         -webkit-line-clamp: 4; 
         -webkit-box-orient: vertical;
+
+        @include breakpoint(xs) {
+          font-size: 12px;
+          line-height: 18px;
+        }
       }
     }
 
