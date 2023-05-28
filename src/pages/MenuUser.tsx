@@ -6,9 +6,11 @@ import { IEnvironment } from '../interfaces';
 import { useContext, useEffect, useState } from 'react';
 import { getEnvironments } from '../services/api';
 import { GlobalContext } from '../contexts/GlobalContext';
+import { Spinner } from '../components/Spinner';
+import { WarningFeedback } from '../components/WarningFeedback';
 
 export function MenuUser() {
-  const [environments, setEnvironments] = useState<IEnvironment[]>();
+  const [environments, setEnvironments] = useState<IEnvironment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const context = useContext(GlobalContext);
 
@@ -43,12 +45,18 @@ export function MenuUser() {
         <div className="content-title-user">
           <h2>Ambientes disponíveis</h2>
         </div>
-        <div className="content-menu-user">
-          {environments &&
-            environments.map((environment, index) => {
-              return <CardEnvironment key={index++} data={environment} />;
-            })}
-        </div>
+        {environments?.length > 0 && !isLoading ? (
+          <div className="content-menu-user">
+            {environments &&
+              environments.map((environment, index) => {
+                return <CardEnvironment key={index++} data={environment} />;
+              })}
+          </div>
+        ) : environments?.length === 0 && isLoading ? (
+          <Spinner />
+        ) : (
+          <WarningFeedback />
+        )}
       </div>
     </div>
   );
