@@ -5,7 +5,7 @@ export function WarningFeedback() {
   return (
     <div className="content-warning">
       <Warning />
-      <span>NÃO POSSUI REGISTROS</span>
+      <span>VOCÊ AINDA NÃO POSSUI REGISTROS</span>
     </div>
   );
 }
