@@ -1,17 +1,6 @@
 import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import {
-  BracketsSquare,
-  House,
-  List,
-  ListChecks,
-  PlusCircle,
-  SignOut,
-  UserPlus,
-  UserList,
-  X,
-  ListDashes,
-} from 'phosphor-react';
+import { House, List, ListChecks, PlusCircle, SignOut, UserPlus, UserList, X, ListDashes } from 'phosphor-react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import '../styles/navbar-mobile.scss';
 
