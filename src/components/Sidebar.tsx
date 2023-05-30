@@ -4,11 +4,11 @@ import {
   UserPlus,
   PlusCircle,
   ListChecks,
-  BracketsSquare,
   SignOut,
   CaretRight,
   CaretLeft,
-  Users,
+  UserList,
+  ListDashes,
 } from 'phosphor-react';
 import '../styles/sidebar.scss';
 import LogoLg from '../assets/logo_lg.svg';
@@ -34,32 +34,32 @@ export function Sidebar() {
     {
       path: '/dashboard-admin',
       name: 'Página inicial',
-      icon: <House size={isOpen ? 20 : 26} />,
+      icon: <House size={isOpen ? 20 : 22} />,
     },
     {
       path: '/register-user',
       name: 'Cadastro de pessoas',
-      icon: <UserPlus size={isOpen ? 20 : 26} />,
+      icon: <UserPlus size={isOpen ? 20 : 22} />,
     },
     {
       path: '/',
       name: 'Cadastro de ambientes',
-      icon: <PlusCircle size={isOpen ? 20 : 26} />,
+      icon: <PlusCircle size={isOpen ? 20 : 22} />,
     },
     {
       path: '/list-users',
       name: 'Lista de usuários',
-      icon: <Users size={isOpen ? 20 : 26} />,
+      icon: <UserList size={isOpen ? 20 : 22} />,
+    },
+    {
+      path: '/list-environments',
+      name: 'Lista de ambientes',
+      icon: <ListDashes size={isOpen ? 20 : 22} />,
     },
     {
       path: '/',
       name: 'Aprovaçõess',
-      icon: <ListChecks size={isOpen ? 20 : 26} />,
-    },
-    {
-      path: '/',
-      name: 'Logs',
-      icon: <BracketsSquare size={isOpen ? 20 : 26} />,
+      icon: <ListChecks size={isOpen ? 20 : 22} />,
     },
   ];
 
@@ -67,17 +67,17 @@ export function Sidebar() {
     {
       path: '/dashboard-admin',
       name: 'Ambientes',
-      icon: <House size={isOpen ? 20 : 26} />,
+      icon: <House size={isOpen ? 20 : 22} />,
     },
     {
       path: '/register-user',
       name: 'Solicitações',
-      icon: <UserPlus size={isOpen ? 20 : 26} />,
+      icon: <UserPlus size={isOpen ? 20 : 22} />,
     },
     {
       path: '/',
       name: 'Editar perfil',
-      icon: <PlusCircle size={isOpen ? 20 : 26} />,
+      icon: <PlusCircle size={isOpen ? 20 : 22} />,
     },
   ];
 
@@ -91,14 +91,14 @@ export function Sidebar() {
         </div>
       </div>
       <div className="logo">
-        <img src={LogoLg} alt="Logo Condo Management" style={{ width: isOpen ? '139px' : '78px' }} />
+        <img src={LogoLg} alt="Logo Condo Management" style={{ width: isOpen ? '130px' : '78px' }} />
       </div>
 
-      <div className="profile" style={{ margin: isOpen ? '0px 30px 30px' : '0px 10px 10px' }}>
+      <div className="profile" style={{ margin: isOpen ? '30px 30px 4px' : '0px 10px 10px' }}>
         <img
           src="https://github.com/projetointegradorstudy.png"
           alt="avatar"
-          style={{ width: isOpen ? '60px' : '46px', height: isOpen ? '60px' : '46px' }}
+          style={{ width: isOpen ? '50px' : '40px', height: isOpen ? '50px' : '40px' }}
         />
 
         {isOpen ? (
@@ -135,7 +135,7 @@ export function Sidebar() {
               onClick={handleSubmit}
               style={{ justifyContent: isOpen ? '' : 'center' }}
             >
-              <SignOut size={isOpen ? 20 : 26} />
+              <SignOut size={isOpen ? 19 : 21} />
               <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
             </button>
           </div>
