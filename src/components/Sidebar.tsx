@@ -1,5 +1,15 @@
 import { useContext, useState } from 'react';
-import { House, UserPlus, PlusCircle, ListChecks, SignOut, CaretRight, CaretLeft, Users } from 'phosphor-react';
+import {
+  House,
+  UserPlus,
+  PlusCircle,
+  ListChecks,
+  SignOut,
+  CaretRight,
+  CaretLeft,
+  UserList,
+  ListDashes,
+} from 'phosphor-react';
 import '../styles/sidebar.scss';
 import LogoLg from '../assets/logo_lg.svg';
 import { NavLink } from 'react-router-dom';
@@ -39,12 +49,12 @@ export function Sidebar() {
     {
       path: '/list-users',
       name: 'Lista de usuários',
-      icon: <Users size={isOpen ? 20 : 22} />,
+      icon: <UserList size={isOpen ? 20 : 22} />,
     },
     {
       path: '/list-environments',
       name: 'Lista de ambientes',
-      icon: <Users size={isOpen ? 20 : 22} />,
+      icon: <ListDashes size={isOpen ? 20 : 22} />,
     },
     {
       path: '/',

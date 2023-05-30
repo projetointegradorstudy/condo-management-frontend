@@ -1,6 +1,17 @@
 import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { BracketsSquare, House, List, ListChecks, PlusCircle, SignOut, UserPlus, Users, X } from 'phosphor-react';
+import {
+  BracketsSquare,
+  House,
+  List,
+  ListChecks,
+  PlusCircle,
+  SignOut,
+  UserPlus,
+  UserList,
+  X,
+  ListDashes,
+} from 'phosphor-react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import '../styles/navbar-mobile.scss';
 
@@ -35,17 +46,17 @@ export function NavbarMobile() {
     {
       path: '/list-users',
       name: 'Lista de usuários',
-      icon: <Users size={isOpen ? 22 : 26} />,
+      icon: <UserList size={isOpen ? 22 : 26} />,
+    },
+    {
+      path: '/list-environments',
+      name: 'Lista de ambientes',
+      icon: <ListDashes size={isOpen ? 20 : 22} />,
     },
     {
       path: '/',
       name: 'Aprovaçõess',
       icon: <ListChecks size={isOpen ? 22 : 26} />,
-    },
-    {
-      path: '/',
-      name: 'Logs',
-      icon: <BracketsSquare size={isOpen ? 22 : 26} />,
     },
   ];
 
