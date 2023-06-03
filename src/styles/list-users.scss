@@ -20,6 +20,7 @@ div.page-list-users {
       flex: 1;
       justify-content: flex-start;
       gap: 3rem;
+      margin: 100px 76px 30px;
 
       h1 {
         font-size: 32px;
@@ -31,19 +32,6 @@ div.page-list-users {
           font-size: 24px;
           line-height: 28px;
         }
-      }
-    }
-
-    div.mgReset {
-      margin: 0px;
-    }
-
-    div.mgDefault {
-      margin: 100px 76px 30px;
-
-       @include breakpoint(md) {
-        margin: 60px 30px 30px;
-        gap: 5rem;
       }
     }
 
