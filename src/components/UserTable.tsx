@@ -1,9 +1,10 @@
 import { PencilSimpleLine, Trash } from 'phosphor-react';
 import avatarDefault from '../assets/avatar-default.png';
 import { getContext } from '../utils/context-import';
+import { IDataElementProps, IUser } from '../interfaces';
 
-export function Table({ data, parent }: any) {
-  const userFields = ['Avatar', 'nome', 'username', 'tipo', 'criado', ''];
+export function UserTable({ data }: IDataElementProps<IUser[]>) {
+  const userFields = ['Avatar', 'Nome', 'Username', 'Tipo', 'Data de registro', ''];
   const { setOpenEditModal, setOpenDeletModal, formatDate } = getContext();
 
   return (
@@ -19,7 +20,7 @@ export function Table({ data, parent }: any) {
 
         <tbody>
           {data &&
-            data.map((user: any) => {
+            data.map((user: IUser) => {
               return (
                 <tr key={user.id}>
                   <td>

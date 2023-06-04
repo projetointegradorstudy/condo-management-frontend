@@ -9,7 +9,7 @@ import { IUser } from '../interfaces';
 import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
 import { GlobalContext } from '../contexts/GlobalContext';
-import { Table } from '../components/Table';
+import { UserTable } from '../components/UserTable';
 
 export function ListUsers() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -43,7 +43,7 @@ export function ListUsers() {
 
           <div className="content-list">
             {users?.length > 0 && !isLoading ? (
-              <Table data={users} />
+              <UserTable data={users} />
             ) : users?.length === 0 && isLoading ? (
               <Spinner />
             ) : (
