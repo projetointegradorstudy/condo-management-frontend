@@ -1,6 +1,10 @@
 @import './theme';
 @import './variables';
 
+.error-notice {
+  outline: #f00 auto 1px;
+}
+
 div.page-register-user {
   display: flex;
   flex-direction: column;

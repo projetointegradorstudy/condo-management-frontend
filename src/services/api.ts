@@ -1,10 +1,14 @@
 import axios from 'axios';
-import { IAuthProps } from '../interfaces/index';
+import { CreateUserType, IAuthProps } from '../interfaces/index';
 
 export const api = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}` });
 
 export async function auth(authprops: IAuthProps) {
   return api.post('/auth', authprops);
+}
+
+export async function createUser(createUserDto: CreateUserType) {
+  return api.post('/users', createUserDto);
 }
 
 export async function getUsers() {

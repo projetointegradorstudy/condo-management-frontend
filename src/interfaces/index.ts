@@ -12,6 +12,7 @@ export interface IDataElementProps {
   data: IEnvironment;
 }
 
+export type CreateUserType = Partial<IUser>;
 export interface IUser {
   id: string;
   avatar: string;
