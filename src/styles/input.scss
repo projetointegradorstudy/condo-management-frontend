@@ -13,8 +13,11 @@ input {
   font-size: 16px;
   line-height: 16px;
 
-  @include breakpoint(sm) {
+  @include breakpoint(lg) {
     width: 100%;
+  }
+
+  @include breakpoint(sm) {
     font-size: 14px;
   }
 

@@ -10,7 +10,7 @@ div.page-login {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex: 7;
+    flex: 6;
     background: $primary;
     color: $white;
     padding: 120px 80px;
@@ -75,6 +75,22 @@ div.page-login {
       margin-top: 10px;
       color: $white;
     }
+
+    svg.wave-primary {
+      transform: rotate(90deg);
+      position: absolute;
+      top: 40%;
+      left: 0;
+      z-index: 1;
+    }
+
+    svg.wave-second {
+      transform: rotate(90deg);
+      position: absolute;
+      top: 43%;
+      left: 2%;
+    }
+    
   }
 
   main {
@@ -82,8 +98,8 @@ div.page-login {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    flex: 8;
-    background: $gray-lightest;
+    flex: 9;
+    background: $white;
     padding: 0 32px;
 
     div.page-login-content {
@@ -93,7 +109,11 @@ div.page-login {
       gap: 1rem;
       width: 370px;
 
-      @include breakpoint(md) {
+      @include breakpoint(lg) {
+        width: 320px;
+      }
+
+      @include breakpoint(sm) {
         width: 100%;
       }
       
@@ -103,6 +123,11 @@ div.page-login {
         line-height: 24px;
         font-weight: 400;
         margin-top: 30px;
+
+        @include breakpoint(lg) {
+          font-size: 18px;
+          line-height: 18px;
+        }
     
         @include breakpoint(sm) {
           font-size: 18px;
@@ -113,10 +138,7 @@ div.page-login {
       form {
         display: flex;
         flex-direction: column;
-    
-        @include breakpoint(sm) {
-          width: 100%;
-        }
+        width: 100%;
     
         div.page-login-footer {
           display: flex;
