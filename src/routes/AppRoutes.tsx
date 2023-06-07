@@ -7,6 +7,8 @@ import { useContext } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import { RegisterUser } from '../pages/RegisterUser';
 import { ListUsers } from '../pages/ListUsers';
+import { ListEnvironments } from '../pages/ListEnvironments';
+import { RegisterEnvironment } from '../pages/RegisterEnvironment';
 
 export function AppRoutes() {
   const getContext = (): any => {
@@ -77,6 +79,24 @@ export function AppRoutes() {
             element={
               <IsAdmin>
                 <ListUsers />
+              </IsAdmin>
+            }
+          />
+
+          <Route
+            path="/list-environments"
+            element={
+              <IsAdmin>
+                <ListEnvironments />
+              </IsAdmin>
+            }
+          />
+
+          <Route
+            path="/register-environment"
+            element={
+              <IsAdmin>
+                <RegisterEnvironment />
               </IsAdmin>
             }
           />

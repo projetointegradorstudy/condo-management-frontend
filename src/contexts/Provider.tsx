@@ -15,6 +15,8 @@ export function GlobalProvider({ children }: Iprops) {
   const [isAuthenticated, setIsAuthenticated, removeIsAuthenticated] = useStorage('isAuthenticated');
   const [isAdmin, setIsAdmin] = useState(false);
   const [isUser, setIsUser] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [openDeleteModal, setOpenDeletModal] = useState(false);
   const { decodedToken } = useJwt(token);
   const navigate = useNavigate();
 
@@ -22,8 +24,8 @@ export function GlobalProvider({ children }: Iprops) {
     if (!token && !isAuthenticated) {
       setToken(token);
       setIsAuthenticated(isAuthenticated);
-      api.defaults.headers.Authorization = `Bearer ${token}`;
     }
+    api.defaults.headers.Authorization = `Bearer ${token}`;
   }, [token, isAuthenticated]);
 
   useEffect(() => {
@@ -55,6 +57,18 @@ export function GlobalProvider({ children }: Iprops) {
     navigate('/');
   }
 
+  function formatDate(date: string) {
+    const locale = navigator.language || 'pt-BR';
+    return Intl.DateTimeFormat(locale, {
+      timeZone: 'America/Recife',
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(new Date(date));
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -66,8 +80,13 @@ export function GlobalProvider({ children }: Iprops) {
         setIsAdmin,
         isUser,
         setIsUser,
+        openEditModal,
+        setOpenEditModal,
+        openDeleteModal,
+        setOpenDeletModal,
         signin,
         signout,
+        formatDate,
       }}
     >
       {children}

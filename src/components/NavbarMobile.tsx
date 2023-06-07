@@ -28,7 +28,7 @@ export function NavbarMobile() {
       icon: <UserPlus size={isOpen ? 22 : 26} />,
     },
     {
-      path: '/',
+      path: '/register-environment',
       name: 'Cadastro de ambientes',
       icon: <PlusCircle size={isOpen ? 22 : 26} />,
     },
@@ -77,10 +77,6 @@ export function NavbarMobile() {
           <ul style={{ transform: isOpen ? 'translateY(100%)' : 'translateY(0)' }}>
             <div className="profile">
               <img src="https://github.com/projetointegradorstudy.png" alt="avatar" />
-              <>
-                <h4>Lorem Ipsum</h4>
-                {isAdmin ? <span>Admin | Lorem Ipsum</span> : <span>User | Lorem Ipsum</span>}
-              </>
             </div>
             <div className="navbar-items">
               {navItems.map((navItem) => (

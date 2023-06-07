@@ -1,9 +1,9 @@
 import { Users } from 'phosphor-react';
 import { Button } from './Button';
 import '../styles/card-environment.scss';
-import { IDataElementProps } from '../interfaces';
+import { IDataElementProps, IEnvironment } from '../interfaces';
 
-export function CardEnvironment({ data }: IDataElementProps) {
+export function CardEnvironment({ data }: IDataElementProps<IEnvironment>) {
   return (
     <div className="card-environment">
       <div className="card-content">

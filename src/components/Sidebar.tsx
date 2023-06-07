@@ -7,7 +7,7 @@ import {
   SignOut,
   CaretRight,
   CaretLeft,
-  UserList,
+  Users,
   ListDashes,
 } from 'phosphor-react';
 import '../styles/sidebar.scss';
@@ -42,14 +42,14 @@ export function Sidebar() {
       icon: <UserPlus size={isOpen ? 20 : 22} />,
     },
     {
-      path: '/',
+      path: '/register-environment',
       name: 'Cadastro de ambientes',
       icon: <PlusCircle size={isOpen ? 20 : 22} />,
     },
     {
       path: '/list-users',
       name: 'Lista de usuários',
-      icon: <UserList size={isOpen ? 20 : 22} />,
+      icon: <Users size={isOpen ? 20 : 22} />,
     },
     {
       path: '/list-environments',
@@ -98,17 +98,8 @@ export function Sidebar() {
         <img
           src="https://github.com/projetointegradorstudy.png"
           alt="avatar"
-          style={{ width: isOpen ? '50px' : '40px', height: isOpen ? '50px' : '40px' }}
+          style={{ width: isOpen ? '60px' : '40px', height: isOpen ? '60px' : '40px' }}
         />
-
-        {isOpen ? (
-          <>
-            <h4>Lorem Ipsum</h4>
-            {isAdmin ? <span>Admin | Lorem Ipsum</span> : <span>User | Lorem Ipsum</span>}
-          </>
-        ) : (
-          ''
-        )}
       </div>
 
       <div className="middle-sidebar" style={{ alignItems: isOpen ? '' : 'center' }}>

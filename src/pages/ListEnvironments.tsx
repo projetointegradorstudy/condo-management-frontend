@@ -1,18 +1,18 @@
 import { useContext, useEffect, useState } from 'react';
-import { Sidebar } from '../components/Sidebar';
-import { NavbarMobile } from '../components/NavbarMobile';
-import { EditUserModal } from '../components/EditUserModal';
 import { DeleteUserModal } from '../components/DeleteUserModal';
-import '../styles/list-users.scss';
-import { getUsers } from '../services/api';
-import { IUser } from '../interfaces';
+import { NavbarMobile } from '../components/NavbarMobile';
+import { Sidebar } from '../components/Sidebar';
 import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
+import { IEnvironment } from '../interfaces';
 import { GlobalContext } from '../contexts/GlobalContext';
-import { UserTable } from '../components/UserTable';
+import { EnvironmentTable } from '../components/EnvironmentTable';
+import { getEnvironments } from '../services/api';
+import { EditEnvironmentModal } from '../components/EditEnvironmentModal';
+import '../styles/list-environments.scss';
 
-export function ListUsers() {
-  const [users, setUsers] = useState<IUser[]>([]);
+export function ListEnvironments() {
+  const [environments, setEnvironments] = useState<IEnvironment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const context = useContext(GlobalContext);
 
@@ -23,28 +23,28 @@ export function ListUsers() {
   useEffect(() => {
     if (isLoading)
       (async () => {
-        await getUsers()
+        await getEnvironments()
           .then((res) => {
             setIsLoading(false);
-            setUsers(res.data);
+            setEnvironments(res.data);
           })
           .catch(() => {});
       })();
   }, [isLoading]);
 
   return (
-    <div className="page-list-users">
-      <div className="container-list-users">
+    <div className="page-list-environments">
+      <div className="container-list-environments">
         <Sidebar />
         <NavbarMobile />
 
-        <div className="content-list-users">
-          <h1>Lista de usuários</h1>
+        <div className="content-list-environments">
+          <h1>Lista de ambientes</h1>
 
           <div className="content-list">
-            {users?.length > 0 && !isLoading ? (
-              <UserTable data={users} />
-            ) : users?.length === 0 && isLoading ? (
+            {environments?.length > 0 && !isLoading ? (
+              <EnvironmentTable data={environments} />
+            ) : environments?.length === 0 && isLoading ? (
               <Spinner />
             ) : (
               <WarningFeedback />
@@ -56,7 +56,10 @@ export function ListUsers() {
         isOpenDeleteModal={openDeleteModal}
         setOpenDeleteModal={() => setOpenDeletModal(!openDeleteModal)}
       />
-      <EditUserModal isOpenEditModal={openEditModal} setOpenEditModal={() => setOpenEditModal(!openEditModal)} />
+      <EditEnvironmentModal
+        isOpenEditEnvironmentModal={openEditModal}
+        setOpenEditEnvironmentModal={() => setOpenEditModal(!openEditModal)}
+      />
     </div>
   );
 }

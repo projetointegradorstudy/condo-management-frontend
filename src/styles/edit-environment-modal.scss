@@ -1,7 +1,7 @@
 @import './theme';
 @import './variables';
 
-div.modal-edit-background {
+div.modal-edit-background-environment  {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -11,7 +11,7 @@ div.modal-edit-background {
   align-items: center;
   z-index: 1000;
   
-  div.modal-content {
+  div.modal-content-environment {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,12 +30,12 @@ div.modal-edit-background {
       padding: 0px 20px;
     }
 
-    div.modal-button-close {
+    div.modal-button-close-environment {
       display: flex;
       justify-content: flex-end;
       width: 100%;
 
-      button.modal-button-default {
+      button.modal-button-default-environment {
         background-color: transparent;
         width: 22px;
         height: 22px;
@@ -46,7 +46,7 @@ div.modal-edit-background {
       }
     }
 
-    div.modal-content-form {
+    div.modal-content-form-environment {
       display: flex;
       justify-content: center;
       width: 370px;
@@ -63,37 +63,70 @@ div.modal-edit-background {
           width: 100%;
         }
 
-        div.modal-form-button {
+        textarea {
+          width: 370px;
+          height: 100px;
+          background-color: #EAEEF2;
+          border-radius: 5px;
+          border: 0px;
+          padding: 12px 16px;
+          color: $primary;
+          margin-bottom: 20px;
+          font-size: 16px;
+          line-height: 16px;
+          resize: none;
+
+          @include breakpoint(lg) {
+            width: 100%;
+          }
+        
+          @include breakpoint(sm) {
+            font-size: 14px;
+          }
+        
+          &::placeholder {
+            color: #AFB8C1;
+            font-size: 14px;
+          }
+        }
+
+        div.modal-form-button-environment {
           display: flex;
           justify-content: space-between;
           margin-top: 10px;
         }
       }
     
-      div.modal-content-upload {
+      div.modal-content-upload-environment {
         display: flex;
-        align-items: center;
-        gap: 1.5rem;
+        flex-direction: column;
         height: 150px;
     
         @include breakpoint(sm) {
           height: 140px;
-          gap: 1rem;
         }
-    
-        div.modal-image-upload {
+
+        p {
+          font-size: 14px;
+          line-height: 22px;
+          font-weight: 600;
+          color: $black;
+          margin-bottom: 8px;
+
+          @include breakpoint(sm) {
+            font-size: 14px;
+            line-height: 14px;
+          }
+        }
+
+        div.modal-image-upload-environment {
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 100px;
+          width: 100%;
           height: 100px;
-          background-color: $gray-lightest;
-          border-radius: 50%;
-    
-          @include breakpoint(sm) {
-            width: 70px;
-            height: 70px;
-          }
+          border: 1px dashed $primary;
+          border-radius: 10px;
 
           img {
             width: 100px;
@@ -104,24 +137,11 @@ div.modal-edit-background {
               width: 70px;
               height: 70px;
             }
-          }      
-        }
-    
-        div.modal-button-upload {
-          display: flex;
-          flex-direction: column;
-    
-          p {
-            font-size: 16px;
-            line-height: 24px;
-            font-weight: 600;
-            color: $black;
-            margin-bottom: 8px;
-    
-            @include breakpoint(sm) {
-              font-size: 14px;
-              line-height: 14px;
-            }
+          }
+
+          div.modal-button-upload-environment {
+            display: flex;
+            flex-direction: column;
           }
         }
       }

@@ -83,12 +83,12 @@ aside.desktop {
     }
 
     img {
-      border-radius: 30px;
+      border-radius: 50%;
       margin-bottom: 10px;
       transition: all 0.7s ease-in-out;
 
       @include breakpoint(xl) {
-        margin-bottom: 6px;
+        margin-bottom: 10px;
       }
     }
   }

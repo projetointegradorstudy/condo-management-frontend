@@ -8,8 +8,8 @@ export interface IAuthProps {
   password: string;
 }
 
-export interface IDataElementProps {
-  data: IEnvironment;
+export interface IDataElementProps<T> {
+  data: T;
 }
 
 export type CreateUserType = Partial<IUser>;
