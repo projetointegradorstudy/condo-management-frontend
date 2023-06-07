@@ -88,17 +88,8 @@ export function Sidebar() {
         <img
           src="https://github.com/projetointegradorstudy.png"
           alt="avatar"
-          style={{ width: isOpen ? '50px' : '40px', height: isOpen ? '50px' : '40px' }}
+          style={{ width: isOpen ? '60px' : '40px', height: isOpen ? '60px' : '40px' }}
         />
-
-        {isOpen ? (
-          <>
-            <h4>Lorem Ipsum</h4>
-            {isAdmin ? <span>Admin | Lorem Ipsum</span> : <span>User | Lorem Ipsum</span>}
-          </>
-        ) : (
-          ''
-        )}
       </div>
 
       <div className="middle-sidebar" style={{ alignItems: isOpen ? '' : 'center' }}>

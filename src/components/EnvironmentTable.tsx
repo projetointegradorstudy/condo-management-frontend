@@ -1,7 +1,7 @@
 import { PencilSimpleLine, Trash } from 'phosphor-react';
-import avatarDefault from '../assets/avatar-default.png';
 import { getContext } from '../utils/context-import';
 import { IDataElementProps, IEnvironment } from '../interfaces';
+import imageDefault from '../assets/image-default.png';
 
 export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
   const environmentFields = ['Imagem', 'Nome', 'Descrição', 'Capacidade', 'Data de registro', ''];
@@ -13,7 +13,7 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
         <thead>
           <tr>
             {environmentFields.map((field, index) => {
-              return <th key={index}>{field} </th>;
+              return <th key={index}>{field}</th>;
             })}
           </tr>
         </thead>
@@ -24,13 +24,13 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
               return (
                 <tr key={environment.id}>
                   <td>
-                    <img src={environment?.image ? environment.image : avatarDefault} alt="No image" />
+                    <img src={environment?.image ? environment.image : imageDefault} alt="No image" />
                   </td>
                   <td>
                     <h4>{environment.name}</h4>
                   </td>
                   <td>
-                    <p>{environment.description}</p>
+                    <span className="column-description">{environment.description}</span>
                   </td>
                   <td>
                     <p>{environment.capacity}</p>
