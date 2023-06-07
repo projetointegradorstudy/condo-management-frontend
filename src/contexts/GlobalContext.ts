@@ -16,8 +16,13 @@ export interface GlobalContextProps {
   setIsAdmin: Dispatch<SetStateAction<boolean>>;
   isUser: boolean;
   setIsUser: Dispatch<SetStateAction<boolean>>;
+  openEditModal: boolean;
+  setOpenEditModal: Dispatch<SetStateAction<boolean>>;
+  openDeleteModal: boolean;
+  setOpenDeletModal: Dispatch<SetStateAction<boolean>>;
   signin: (credentials: IAuthProps) => Promise<{ success: boolean; data: any }>;
   signout: () => void;
+  formatDate: (date: string) => string;
 }
 
-export const GlobalContext = createContext<GlobalContextProps | null>(null);
+export const GlobalContext = createContext<GlobalContextProps | any>(null);
