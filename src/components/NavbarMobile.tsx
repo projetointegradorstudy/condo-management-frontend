@@ -77,10 +77,6 @@ export function NavbarMobile() {
           <ul style={{ transform: isOpen ? 'translateY(100%)' : 'translateY(0)' }}>
             <div className="profile">
               <img src="https://github.com/projetointegradorstudy.png" alt="avatar" />
-              <>
-                <h4>Lorem Ipsum</h4>
-                {isAdmin ? <span>Admin | Lorem Ipsum</span> : <span>User | Lorem Ipsum</span>}
-              </>
             </div>
             <div className="navbar-items">
               {navItems.map((navItem) => (

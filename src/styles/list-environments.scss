@@ -1,20 +1,20 @@
 @import './theme';
 @import './variables';
 
-div.page-list-users {
+div.page-list-environments {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: $gray-lightest;
 
-  div.container-list-users {
+  div.container-list-environments {
     display: flex;
-    
+
     @include breakpoint(sm) {
       flex-direction: column;
     }
 
-    div.content-list-users {
+    div.content-list-environments {
       display: flex;
       flex-direction: column;
       flex: 1;
@@ -29,7 +29,7 @@ div.page-list-users {
       @include breakpoint(sm) {
         margin: 60px 30px 30px;
       }
-
+      
       h1 {
         font-size: 32px;
         line-height: 38px;
@@ -47,13 +47,14 @@ div.page-list-users {
       overflow-y: auto;
       scroll-behavior: smooth;
       height: 58vh;
-    
+
       @include breakpoint(sm) {
         overflow-x: auto;
       }
-      
+
       table {
         margin: 0 auto;
+        table-layout: auto;
 
         @include breakpoint(xxl) {
           width: 80%;
@@ -79,6 +80,30 @@ div.page-list-users {
             font-size: 13px;
             line-height: 15px;
           }
+
+          &:nth-child(1) {
+            width: 170px;
+          }
+
+          &:nth-child(2) {
+            width: 140px;
+          }
+
+          &:nth-child(3) {
+            width: 600px;
+          }
+                    
+          &:nth-child(4) {
+            width: 140px;
+          }
+
+          &:nth-child(5) {
+            width: 200px;
+          }
+
+          &:nth-child(6) {
+            width: 150px;
+          }
         }
 
         tbody tr:nth-child(odd) {
@@ -86,25 +111,40 @@ div.page-list-users {
         }
 
         td {
-          padding: 6px 10px;
+          padding: 10px;
           font-size: 14px;
-          line-height: 24px;
+          line-height: 22px;
           color: $black;
 
+          span.column-description {
+            font-size: 14px;
+            line-height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        
+            @include breakpoint(sm) {
+              -webkit-line-clamp: 3;
+            }
+          }
+          
+          
           @include breakpoint(sm) {
             font-size: 12px;
             line-height: 16px;
           }
 
           img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            max-width: 200px;
+            width: 100%;
+            height: 90px;
+            border-radius: 4px;
             object-fit: cover;
 
             @include breakpoint(sm) {
-              width: 25px;
-              height: 25px;
+              height: 50px;
             }
           }
 
@@ -117,13 +157,13 @@ div.page-list-users {
               background: transparent;
               width: 16px;
               height: 16px;
-          
+
               svg {
                 z-index: 1;
                 width: 16px;
                 height: 16px;
                 color: $black;
-          
+
                 @include breakpoint(sm) {
                   width: 14px;
                   height: 14px;
