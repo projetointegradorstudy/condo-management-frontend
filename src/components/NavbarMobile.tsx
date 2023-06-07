@@ -28,7 +28,7 @@ export function NavbarMobile() {
       icon: <UserPlus size={isOpen ? 22 : 26} />,
     },
     {
-      path: '/',
+      path: '/register-environment',
       name: 'Cadastro de ambientes',
       icon: <PlusCircle size={isOpen ? 22 : 26} />,
     },

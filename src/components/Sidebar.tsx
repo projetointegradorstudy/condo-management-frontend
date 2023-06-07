@@ -1,5 +1,15 @@
 import { useContext, useState } from 'react';
-import { House, UserPlus, PlusCircle, ListChecks, SignOut, CaretRight, CaretLeft, Users } from 'phosphor-react';
+import {
+  House,
+  UserPlus,
+  PlusCircle,
+  ListChecks,
+  SignOut,
+  CaretRight,
+  CaretLeft,
+  Users,
+  ListDashes,
+} from 'phosphor-react';
 import '../styles/sidebar.scss';
 import LogoLg from '../assets/logo_lg.svg';
 import { NavLink } from 'react-router-dom';
@@ -32,7 +42,7 @@ export function Sidebar() {
       icon: <UserPlus size={isOpen ? 20 : 22} />,
     },
     {
-      path: '/',
+      path: '/register-environment',
       name: 'Cadastro de ambientes',
       icon: <PlusCircle size={isOpen ? 20 : 22} />,
     },
@@ -44,7 +54,7 @@ export function Sidebar() {
     {
       path: '/list-environments',
       name: 'Lista de ambientes',
-      icon: <Users size={isOpen ? 20 : 22} />,
+      icon: <ListDashes size={isOpen ? 20 : 22} />,
     },
     {
       path: '/',
