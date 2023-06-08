@@ -1,0 +1,78 @@
+@import './theme';
+@import './variables';
+
+div.page-confirm-user{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  div.page-confirm-user-logo {
+
+    h1 {
+      color: $primary;
+      font-size: 42px;
+      line-height: 42px;
+      font-weight: 600;
+      margin-bottom: 30px;
+      padding: 0 10px;
+  
+      @include breakpoint(lg) {
+        font-size: 30px;
+        line-height: 30px;
+      }
+  
+      span {
+        font-weight: 400;
+      } 
+    }
+  }
+
+  div.page-confirm-user-form {
+    display: flex;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 370px;
+    width: 100%;
+    gap: 0.5rem;
+  
+    @include breakpoint(lg) {
+      width: 320px;
+    }
+  
+    @include breakpoint(sm) {
+      width: 100%;
+    }
+
+    h4 {
+      color: $primary;
+      font-size: 24px;
+      line-height: 24px;
+      font-weight: 400;
+      margin-top: 30px;
+
+      @include breakpoint(lg) {
+        font-size: 18px;
+        line-height: 18px;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 20px;
+
+      div.page-confirm-user-footer {
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 4px;
+      }
+    }
+  }
+}

@@ -47,7 +47,7 @@ export function ListEnvironments() {
             ) : environments?.length === 0 && isLoading ? (
               <Spinner />
             ) : (
-              <WarningFeedback />
+              <WarningFeedback title="Não há registros." />
             )}
           </div>
         </div>

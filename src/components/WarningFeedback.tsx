@@ -1,11 +1,15 @@
 import { Warning } from 'phosphor-react';
 import '../styles/warning-feedback.scss';
 
-export function WarningFeedback() {
+type WarningFeedbackProps = {
+  title: string;
+};
+
+export function WarningFeedback({ title }: WarningFeedbackProps) {
   return (
     <div className="content-warning">
       <Warning />
-      <span>VOCÊ AINDA NÃO POSSUI REGISTROS</span>
+      <span>{title}</span>
     </div>
   );
 }
