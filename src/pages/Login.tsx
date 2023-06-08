@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../contexts/GlobalContext';
 import { Input } from '../components/Input';
 import { InputPassword } from '../components/InputPassword';
@@ -67,7 +67,7 @@ export function Login() {
               autoComplete="on"
             />
             <div className="page-login-footer">
-              <a href="#">Esqueceu sua senha?</a>
+              <NavLink to="/forgot-password">Esqueceu sua senha?</NavLink>
               <Button isFull title="Sign in" type="submit" />
             </div>
           </form>
