@@ -60,7 +60,6 @@ export function Login() {
                 id="username"
                 type="text"
                 placeholder="Insira o seu username"
-                value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
               <Label title="Password" htmlFor="senha" />
@@ -68,7 +67,6 @@ export function Login() {
                 name="senha"
                 id="senha"
                 placeholder="Insira a sua senha"
-                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="on"
               />

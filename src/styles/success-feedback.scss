@@ -1,0 +1,45 @@
+@import './theme';
+@import './variables';
+
+div.content-success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  gap: 0.5rem;
+
+  svg {
+    width: 60px;
+    height: 60px;
+    color: $primary;
+
+    @include breakpoint(xl) {
+      width: 50px;
+      height: 50px;
+    }
+
+    @include breakpoint(sm) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  span {
+    font-size: 18px;
+    line-height: 22px;
+    color: $primary;
+    font-weight: 800;
+
+    @include breakpoint(xl) {
+      font-size: 18px;
+      line-height: 18px;
+    }
+
+    @include breakpoint(sm) {
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
+}
