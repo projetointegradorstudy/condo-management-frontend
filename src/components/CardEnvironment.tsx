@@ -2,13 +2,14 @@ import { Users } from 'phosphor-react';
 import { Button } from './Button';
 import '../styles/card-environment.scss';
 import { IDataElementProps, IEnvironment } from '../interfaces';
+import imageDefault from '../assets/image-default.png';
 
 export function CardEnvironment({ data }: IDataElementProps<IEnvironment>) {
   return (
     <div className="card-environment">
       <div className="card-content">
         <div className="card-image">
-          <img src={data.image} alt="" />
+          <img src={data?.image ? data.image : imageDefault} alt="No image" />
         </div>
         <div className="card-title">
           <h3>{data.name}</h3>

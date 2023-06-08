@@ -4,7 +4,7 @@ export enum Role {
 }
 
 export interface IAuthProps {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -12,15 +12,19 @@ export interface IDataElementProps<T> {
   data: T;
 }
 
-export type CreateUserType = Partial<IUser>;
+export interface ICreateUser {
+  email: string;
+}
+
 export interface IUser {
   id: string;
   avatar: string;
   name: string;
-  username: string;
+  email: string;
   password: string;
   role: Role;
-  registered_at: string;
+  is_active: boolean;
+  partial_token: string;
   created_at: string;
   updated_at: string;
 }

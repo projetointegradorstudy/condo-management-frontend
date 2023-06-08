@@ -16,10 +16,12 @@ export interface GlobalContextProps {
   setIsAdmin: Dispatch<SetStateAction<boolean>>;
   isUser: boolean;
   setIsUser: Dispatch<SetStateAction<boolean>>;
-  openEditModal: boolean;
+  isOpenEditModal: boolean;
   setOpenEditModal: Dispatch<SetStateAction<boolean>>;
-  openDeleteModal: boolean;
+  isOpenDeleteModal: boolean;
   setOpenDeletModal: Dispatch<SetStateAction<boolean>>;
+  isOpenCreateUserModal: boolean;
+  setOpenCreateUserModal: Dispatch<SetStateAction<boolean>>;
   signin: (credentials: IAuthProps) => Promise<{ success: boolean; data: any }>;
   signout: () => void;
   formatDate: (date: string) => string;

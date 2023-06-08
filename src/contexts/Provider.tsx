@@ -15,8 +15,9 @@ export function GlobalProvider({ children }: Iprops) {
   const [isAuthenticated, setIsAuthenticated, removeIsAuthenticated] = useStorage('isAuthenticated');
   const [isAdmin, setIsAdmin] = useState(false);
   const [isUser, setIsUser] = useState(false);
-  const [openEditModal, setOpenEditModal] = useState(false);
-  const [openDeleteModal, setOpenDeletModal] = useState(false);
+  const [isOpenEditModal, setOpenEditModal] = useState(false);
+  const [isOpenDeleteModal, setOpenDeletModal] = useState(false);
+  const [isOpenCreateUserModal, setOpenCreateUserModal] = useState(false);
   const { decodedToken } = useJwt(token);
   const navigate = useNavigate();
 
@@ -80,10 +81,12 @@ export function GlobalProvider({ children }: Iprops) {
         setIsAdmin,
         isUser,
         setIsUser,
-        openEditModal,
+        isOpenEditModal,
         setOpenEditModal,
-        openDeleteModal,
+        isOpenDeleteModal,
         setOpenDeletModal,
+        isOpenCreateUserModal,
+        setOpenCreateUserModal,
         signin,
         signout,
         formatDate,

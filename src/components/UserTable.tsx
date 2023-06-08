@@ -4,7 +4,7 @@ import { getContext } from '../utils/context-import';
 import { IDataElementProps, IUser } from '../interfaces';
 
 export function UserTable({ data }: IDataElementProps<IUser[]>) {
-  const userFields = ['Avatar', 'Nome', 'Username', 'Tipo', 'Data de registro', ''];
+  const userFields = ['Avatar', 'Nome', 'Email', 'Tipo', 'Ativo', 'Data de registro', ''];
   const { setOpenEditModal, setOpenDeletModal, formatDate } = getContext();
 
   return (
@@ -30,13 +30,16 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                     <h4>{user.name}</h4>
                   </td>
                   <td>
-                    <p>{user.username}</p>
+                    <p>{user.email}</p>
                   </td>
                   <td>
                     <p>{user.role}</p>
                   </td>
                   <td>
-                    <p>{formatDate(user.registered_at)}</p>
+                    <p>{user.is_active ? 'sim' : 'não'}</p>
+                  </td>
+                  <td>
+                    <p>{formatDate(user.created_at)}</p>
                   </td>
                   <td>
                     <div className="content-buttons">

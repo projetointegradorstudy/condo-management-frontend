@@ -5,7 +5,6 @@ import { MenuUser } from '../pages/MenuUser';
 import { GlobalProvider, Iprops } from '../contexts/Provider';
 import { useContext } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
-import { RegisterUser } from '../pages/RegisterUser';
 import { ListUsers } from '../pages/ListUsers';
 import { ListEnvironments } from '../pages/ListEnvironments';
 import { RegisterEnvironment } from '../pages/RegisterEnvironment';
@@ -63,14 +62,6 @@ export function AppRoutes() {
             element={
               <IsAdmin>
                 <MenuAdmin />
-              </IsAdmin>
-            }
-          />
-          <Route
-            path="/register-user"
-            element={
-              <IsAdmin>
-                <RegisterUser />
               </IsAdmin>
             }
           />

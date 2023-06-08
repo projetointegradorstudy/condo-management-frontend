@@ -10,6 +10,8 @@ import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
 import { GlobalContext } from '../contexts/GlobalContext';
 import { UserTable } from '../components/UserTable';
+import { Button } from '../components/Button';
+import { CreateUserModal } from '../components/CreateUserModal';
 
 export function ListUsers() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -18,7 +20,14 @@ export function ListUsers() {
 
   if (!context) return null;
 
-  const { openEditModal, setOpenEditModal, openDeleteModal, setOpenDeletModal } = context;
+  const {
+    isOpenEditModal,
+    setOpenEditModal,
+    isOpenDeleteModal,
+    setOpenDeletModal,
+    isOpenCreateUserModal,
+    setOpenCreateUserModal,
+  } = context;
 
   useEffect(() => {
     if (isLoading)
@@ -41,6 +50,10 @@ export function ListUsers() {
         <div className="content-list-users">
           <h1>Lista de usuários</h1>
 
+          <div className="content-list-button">
+            <Button title="Adicionar" onClick={setOpenCreateUserModal} />
+          </div>
+
           <div className="content-list">
             {users?.length > 0 && !isLoading ? (
               <UserTable data={users} />
@@ -53,10 +66,11 @@ export function ListUsers() {
         </div>
       </div>
       <DeleteUserModal
-        isOpenDeleteModal={openDeleteModal}
-        setOpenDeleteModal={() => setOpenDeletModal(!openDeleteModal)}
+        isOpenDeleteModal={isOpenDeleteModal}
+        setOpenDeleteModal={() => setOpenDeletModal(!isOpenDeleteModal)}
       />
-      <EditUserModal isOpenEditModal={openEditModal} setOpenEditModal={() => setOpenEditModal(!openEditModal)} />
+      <EditUserModal isOpenEditModal={isOpenEditModal} setOpenEditModal={() => setOpenEditModal(!isOpenEditModal)} />
+      <CreateUserModal />
     </div>
   );
 }

@@ -35,8 +35,8 @@ export function EditUserModal({ isOpenEditModal, setOpenEditModal }: EditUserMod
               </div>
               <Label title="Nome" htmlFor="nome" />
               <Input name="nome" id="nome" type="text" placeholder={USERS[0].name} />
-              <Label title="Username" htmlFor="username" />
-              <Input name="username" id="username" type="text" placeholder={USERS[0].user_name} />
+              <Label title="Email" htmlFor="email" />
+              <Input name="email" id="email" type="text" placeholder={USERS[0].user_name} />
               <Label title="Senha" htmlFor="password" />
               <Input name="password" id="password" type="password" placeholder="******" autoComplete="on" />
               <Label title="Registrado" htmlFor="register" />

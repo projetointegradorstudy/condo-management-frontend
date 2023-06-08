@@ -7,21 +7,18 @@ import { Label } from '../components/Label';
 import { Button } from '../components/Button';
 import cityImage from '../assets/city_life_gnpr_color.svg';
 import '../styles/login.scss';
+import { getContext } from '../utils/context-import';
 
 export function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const context = useContext(GlobalContext);
-
-  if (!context) return null;
-
-  const { signin, setToken, setIsAuthenticated } = context;
+  const { signin, setToken, setIsAuthenticated } = getContext();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const res = await signin({ username, password });
+    const res = await signin({ email, password });
 
     if (res.success && res.data?.access_token) {
       setToken(res.data?.access_token);
@@ -64,13 +61,12 @@ export function Login() {
         <div className="page-login-content">
           <h4>Sign in</h4>
           <form onSubmit={handleSubmit}>
-            <Label title="Username" htmlFor="username" />
+            <Label title="Email" htmlFor="email" />
             <Input
-              name="username"
-              id="username"
+              name="email"
+              id="email"
               type="text"
-              placeholder="Insira o seu username"
-              value={username}
+              placeholder="Insira o seu email"
               onChange={(e) => setUsername(e.target.value)}
             />
             <Label title="Password" htmlFor="senha" />
@@ -78,7 +74,6 @@ export function Login() {
               name="senha"
               id="senha"
               placeholder="Insira a sua senha"
-              value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="on"
             />
