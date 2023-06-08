@@ -9,6 +9,7 @@ import { RegisterUser } from '../pages/RegisterUser';
 import { ListUsers } from '../pages/ListUsers';
 import { ListEnvironments } from '../pages/ListEnvironments';
 import { RegisterEnvironment } from '../pages/RegisterEnvironment';
+import { ConfirmUser } from '../pages/ConfirmUser';
 
 export function AppRoutes() {
   const getContext = (): any => {
@@ -47,6 +48,14 @@ export function AppRoutes() {
             element={
               <IsLoggedOut>
                 <Login />
+              </IsLoggedOut>
+            }
+          />
+          <Route
+            path="/confirm-user"
+            element={
+              <IsLoggedOut>
+                <ConfirmUser />
               </IsLoggedOut>
             }
           />
