@@ -91,7 +91,6 @@ export function AppRoutes() {
               </IsAdmin>
             }
           />
-
           <Route
             path="/list-environments"
             element={
@@ -100,7 +99,6 @@ export function AppRoutes() {
               </IsAdmin>
             }
           />
-
           <Route
             path="/register-environment"
             element={
