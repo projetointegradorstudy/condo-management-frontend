@@ -14,6 +14,12 @@ div.page-list-users {
       flex-direction: column;
     }
 
+    div.content-list-button {
+      display: flex;
+      width: 90%;
+      justify-content: flex-end;
+    }
+
     div.content-list-users {
       display: flex;
       flex-direction: column;

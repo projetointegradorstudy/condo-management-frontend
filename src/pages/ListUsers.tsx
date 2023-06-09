@@ -1,27 +1,22 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { NavbarMobile } from '../components/NavbarMobile';
-import { EditUserModal } from '../components/EditUserModal';
-import { DeleteUserModal } from '../components/DeleteUserModal';
 import '../styles/list-users.scss';
 import { getUsers } from '../services/api';
 import { IUser } from '../interfaces';
 import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
-import { GlobalContext } from '../contexts/GlobalContext';
 import { UserTable } from '../components/UserTable';
+import { Button } from '../components/Button';
+import { getContext } from '../utils/context-import';
 
 export function ListUsers() {
   const [users, setUsers] = useState<IUser[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const context = useContext(GlobalContext);
-
-  if (!context) return null;
-
-  const { openEditModal, setOpenEditModal, openDeleteModal, setOpenDeletModal } = context;
+  const { setIsOpenCreateUserModal, isNeedRefresh, setIsNeedRefresh } = getContext();
 
   useEffect(() => {
-    if (isLoading)
+    if (isLoading || isNeedRefresh)
       (async () => {
         await getUsers()
           .then((res) => {
@@ -30,7 +25,8 @@ export function ListUsers() {
           })
           .catch(() => {});
       })();
-  }, [isLoading]);
+    setIsNeedRefresh(false);
+  }, [isLoading, isNeedRefresh]);
 
   return (
     <div className="page-list-users">
@@ -40,6 +36,10 @@ export function ListUsers() {
 
         <div className="content-list-users">
           <h1>Lista de usuários</h1>
+
+          <div className="content-list-button">
+            <Button title="Adicionar" onClick={() => setIsOpenCreateUserModal(true)} />
+          </div>
 
           <div className="content-list">
             {users?.length > 0 && !isLoading ? (
@@ -52,11 +52,6 @@ export function ListUsers() {
           </div>
         </div>
       </div>
-      <DeleteUserModal
-        isOpenDeleteModal={openDeleteModal}
-        setOpenDeleteModal={() => setOpenDeletModal(!openDeleteModal)}
-      />
-      <EditUserModal isOpenEditModal={openEditModal} setOpenEditModal={() => setOpenEditModal(!openEditModal)} />
     </div>
   );
 }

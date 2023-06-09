@@ -37,11 +37,6 @@ export function Sidebar() {
       icon: <House size={isOpen ? 20 : 22} />,
     },
     {
-      path: '/register-user',
-      name: 'Cadastro de pessoas',
-      icon: <UserPlus size={isOpen ? 20 : 22} />,
-    },
-    {
       path: '/register-environment',
       name: 'Cadastro de ambientes',
       icon: <PlusCircle size={isOpen ? 20 : 22} />,
@@ -65,17 +60,17 @@ export function Sidebar() {
 
   const navItemsUser = [
     {
-      path: '/dashboard-admin',
+      path: '/menu-user',
       name: 'Ambientes',
       icon: <House size={isOpen ? 20 : 22} />,
     },
     {
-      path: '/register-user',
+      path: '/requests',
       name: 'Solicitações',
       icon: <UserPlus size={isOpen ? 20 : 22} />,
     },
     {
-      path: '/',
+      path: '/edit-profile',
       name: 'Editar perfil',
       icon: <PlusCircle size={isOpen ? 20 : 22} />,
     },

@@ -13,10 +13,12 @@ export interface Iprops {
 export function GlobalProvider({ children }: Iprops) {
   const [token, setToken, removeToken] = useStorage('token');
   const [isAuthenticated, setIsAuthenticated, removeIsAuthenticated] = useStorage('isAuthenticated');
+  const [isNeedRefresh, setIsNeedRefresh] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isUser, setIsUser] = useState(false);
-  const [openEditModal, setOpenEditModal] = useState(false);
-  const [openDeleteModal, setOpenDeletModal] = useState(false);
+  const [isOpenEditModal, setIsOpenEditModal] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeletModal] = useState(false);
+  const [isOpenCreateUserModal, setIsOpenCreateUserModal] = useState(false);
   const { decodedToken } = useJwt(token);
   const navigate = useNavigate();
 
@@ -69,6 +71,18 @@ export function GlobalProvider({ children }: Iprops) {
     }).format(new Date(date));
   }
 
+  const handleInputErros = (e: any) => {
+    const input: HTMLInputElement = e.target;
+    input.setCustomValidity("It can't be empty");
+    input.classList.add('field-error');
+  };
+
+  const handleInputErrosClean = (e: any) => {
+    const input: HTMLInputElement = e.target;
+    e.target.setCustomValidity('');
+    e.target.classList.remove('field-error');
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -76,17 +90,23 @@ export function GlobalProvider({ children }: Iprops) {
         setToken,
         isAuthenticated,
         setIsAuthenticated,
+        isNeedRefresh,
+        setIsNeedRefresh,
         isAdmin,
         setIsAdmin,
         isUser,
         setIsUser,
-        openEditModal,
-        setOpenEditModal,
-        openDeleteModal,
-        setOpenDeletModal,
+        isOpenEditModal,
+        setIsOpenEditModal,
+        isOpenDeleteModal,
+        setIsOpenDeletModal,
+        isOpenCreateUserModal,
+        setIsOpenCreateUserModal,
         signin,
         signout,
         formatDate,
+        handleInputErros,
+        handleInputErrosClean,
       }}
     >
       {children}

@@ -5,7 +5,7 @@ import imageDefault from '../assets/image-default.png';
 
 export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
   const environmentFields = ['Imagem', 'Nome', 'Descrição', 'Capacidade', 'Data de registro', ''];
-  const { setOpenEditModal, setOpenDeletModal, formatDate } = getContext();
+  const { setIsOpenEditModal, setIsOpenDeletModal, formatDate } = getContext();
 
   return (
     <>
@@ -40,10 +40,10 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                   </td>
                   <td>
                     <div className="content-buttons">
-                      <button onClick={() => setOpenEditModal(true)}>
+                      <button onClick={() => setIsOpenEditModal(true)}>
                         <PencilSimpleLine />
                       </button>
-                      <button onClick={() => setOpenDeletModal(true)}>
+                      <button onClick={() => setIsOpenDeletModal(true)}>
                         <Trash />
                       </button>
                     </div>

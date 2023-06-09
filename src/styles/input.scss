@@ -21,4 +21,8 @@ input {
     color: #AFB8C1;
     font-size: 14px;
   }
+
+  &.field-error {
+    outline: 1px solid #f34542!important;
+  }
 }

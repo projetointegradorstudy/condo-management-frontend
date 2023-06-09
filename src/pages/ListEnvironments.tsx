@@ -18,7 +18,7 @@ export function ListEnvironments() {
 
   if (!context) return null;
 
-  const { openEditModal, setOpenEditModal, openDeleteModal, setOpenDeletModal } = context;
+  const { isOpenEditModal, setIsOpenEditModal } = context;
 
   useEffect(() => {
     if (isLoading)
@@ -52,14 +52,8 @@ export function ListEnvironments() {
           </div>
         </div>
       </div>
-      <DeleteUserModal
-        isOpenDeleteModal={openDeleteModal}
-        setOpenDeleteModal={() => setOpenDeletModal(!openDeleteModal)}
-      />
-      <EditEnvironmentModal
-        isOpenEditEnvironmentModal={openEditModal}
-        setOpenEditEnvironmentModal={() => setOpenEditModal(!openEditModal)}
-      />
+      {/* <DeleteUserModal /> */}
+      <EditEnvironmentModal />
     </div>
   );
 }

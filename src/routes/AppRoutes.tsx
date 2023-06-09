@@ -5,11 +5,11 @@ import { MenuUser } from '../pages/MenuUser';
 import { GlobalProvider, Iprops } from '../contexts/Provider';
 import { useContext } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
-import { RegisterUser } from '../pages/RegisterUser';
 import { ListUsers } from '../pages/ListUsers';
 import { ListEnvironments } from '../pages/ListEnvironments';
 import { RegisterEnvironment } from '../pages/RegisterEnvironment';
 import { ConfirmUser } from '../pages/ConfirmUser';
+import { ForgotPassaword } from '../pages/ForgotPassaword';
 
 export function AppRoutes() {
   const getContext = (): any => {
@@ -60,6 +60,14 @@ export function AppRoutes() {
             }
           />
           <Route
+            path="/forgot-password"
+            element={
+              <IsLoggedOut>
+                <ForgotPassaword />
+              </IsLoggedOut>
+            }
+          />
+          <Route
             path="/menu-user"
             element={
               <IsLoggedIn>
@@ -76,14 +84,6 @@ export function AppRoutes() {
             }
           />
           <Route
-            path="/register-user"
-            element={
-              <IsAdmin>
-                <RegisterUser />
-              </IsAdmin>
-            }
-          />
-          <Route
             path="/list-users"
             element={
               <IsAdmin>
@@ -91,7 +91,6 @@ export function AppRoutes() {
               </IsAdmin>
             }
           />
-
           <Route
             path="/list-environments"
             element={
@@ -100,7 +99,6 @@ export function AppRoutes() {
               </IsAdmin>
             }
           />
-
           <Route
             path="/register-environment"
             element={

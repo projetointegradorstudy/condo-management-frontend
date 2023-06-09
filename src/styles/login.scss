@@ -14,7 +14,7 @@ div.page-login {
     background: $primary;
     color: $white;
     padding: 120px 80px;
-    
+
     @include breakpoint(lg) {
       padding: 120px 40px;
     }
@@ -39,11 +39,11 @@ div.page-login {
           font-size: 30px;
           line-height: 30px;
         }
-    
+
         span {
           font-weight: 400;
         }
-    
+
         @include breakpoint(sm) {
           font-size: 30px;
           line-height: 30px;
@@ -138,16 +138,16 @@ div.page-login {
         font-weight: 600;
         margin-bottom: 30px;
         text-align: center;
-    
+
         @include breakpoint(xl) {
           font-size: 30px;
           line-height: 30px;
         }
-    
+
         span {
           font-weight: 400;
         }
-    
+
         @include breakpoint(sm) {
           font-size: 30px;
           line-height: 30px;
@@ -160,68 +160,53 @@ div.page-login {
     }
 
     div.page-login-content {
+      max-width: 370px;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
+      padding: 0 30px;
 
-      div.page-login-form {
-        padding: 0 32px;
+      h4 {
+        color: $primary;
+        font-size: 24px;
+        line-height: 24px;
+        font-weight: 400;
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+        @include breakpoint(lg) {
+          font-size: 18px;
+          line-height: 18px;
+        }
+
+        @include breakpoint(sm) {
+          font-size: 18px;
+          line-height: 18px;
+        }
+      }
+
+      form {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        max-width: 370px;
         width: 100%;
-    
-        @include breakpoint(lg) {
-          width: 320px;
-        }
-    
-        @include breakpoint(sm) {
-          width: 100%;
-        }
-    
-        h4 {
-          color: $primary;
-          font-size: 24px;
-          line-height: 24px;
-          font-weight: 400;
-          margin-top: 30px;
-    
-          @include breakpoint(lg) {
-            font-size: 18px;
-            line-height: 18px;
-          }
-    
-          @include breakpoint(sm) {
-            font-size: 18px;
-            line-height: 18px;
-          }
-        }
-      
-        form {
+
+        div.page-login-footer {
           display: flex;
+          align-items: flex-end;
           flex-direction: column;
-          width: 100%;
-    
-          div.page-login-footer {
-            display: flex;
-            align-items: flex-end;
-            flex-direction: column;
-            gap: 2rem;
-            margin-top: 20px;
-    
-            a {
-              color: $primary;
-              font-size: 14px;
-              line-height: 14px;
-              text-decoration: none;
-    
-              @include breakpoint(sm) {
-                font-size: 12px;
-                line-height: 12px;
-              }
+          gap: 2rem;
+
+          a {
+            color: $primary;
+            font-size: 14px;
+            line-height: 14px;
+            text-decoration: none;
+
+            @include breakpoint(sm) {
+              font-size: 12px;
+              line-height: 12px;
             }
           }
         }

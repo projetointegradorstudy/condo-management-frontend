@@ -12,17 +12,23 @@ export interface GlobalContextProps {
   setToken: Dispatch<SetStateAction<string>>;
   isAuthenticated: StorageState<boolean>;
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
+  isNeedRefresh: boolean;
+  setIsNeedRefresh: Dispatch<SetStateAction<boolean>>;
   isAdmin: boolean;
   setIsAdmin: Dispatch<SetStateAction<boolean>>;
   isUser: boolean;
   setIsUser: Dispatch<SetStateAction<boolean>>;
-  openEditModal: boolean;
-  setOpenEditModal: Dispatch<SetStateAction<boolean>>;
-  openDeleteModal: boolean;
-  setOpenDeletModal: Dispatch<SetStateAction<boolean>>;
+  isOpenEditModal: boolean;
+  setIsOpenEditModal: Dispatch<SetStateAction<boolean>>;
+  isOpenDeleteModal: boolean;
+  setIsOpenDeletModal: Dispatch<SetStateAction<boolean>>;
+  isOpenCreateUserModal: boolean;
+  setIsOpenCreateUserModal: Dispatch<SetStateAction<boolean>>;
   signin: (credentials: IAuthProps) => Promise<{ success: boolean; data: any }>;
   signout: () => void;
   formatDate: (date: string) => string;
+  handleInputErros: (e: any) => void;
+  handleInputErrosClean: (e: any) => void;
 }
 
 export const GlobalContext = createContext<GlobalContextProps | any>(null);

@@ -23,11 +23,6 @@ export function NavbarMobile() {
       icon: <House size={isOpen ? 22 : 26} />,
     },
     {
-      path: '/register-user',
-      name: 'Cadastro de pessoas',
-      icon: <UserPlus size={isOpen ? 22 : 26} />,
-    },
-    {
       path: '/register-environment',
       name: 'Cadastro de ambientes',
       icon: <PlusCircle size={isOpen ? 22 : 26} />,

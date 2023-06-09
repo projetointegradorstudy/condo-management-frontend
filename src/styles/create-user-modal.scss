@@ -1,7 +1,7 @@
 @import './theme';
 @import './variables';
 
-div.modal-delete-background {
+div.modal-create-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,10 +13,10 @@ div.modal-delete-background {
   align-items: center;
   z-index: 2;
 
-  div.modal-delete-content {
+  div.modal-create-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     width: 440px;
     height: 280px;
@@ -32,12 +32,12 @@ div.modal-delete-background {
       padding: 0px 20px;
     }
 
-    div.modal-delete-button-close {
+    div.modal-create-button-close {
       display: flex;
       justify-content: flex-end;
       width: 100%;
 
-      button.modal-delete-button-default {
+      button.modal-create-button-default {
         background-color: transparent;
         width: 22px;
         height: 22px;
@@ -48,9 +48,10 @@ div.modal-delete-background {
       }
     }
 
-    div.modal-delete-title {
+    div.modal-create-title {
       display: flex;
       justify-content: center;
+      flex-direction: column;
       width: 370px;
 
       @include breakpoint(sm) {
@@ -62,11 +63,12 @@ div.modal-delete-background {
         line-height: 24px;
         color: $black;
         text-align: center;
-        font-weight: 400;
+        font-weight: 600;
+        margin-bottom: 30px;
       }
     }
 
-    div.modal-delete-content-form {
+    div.modal-create-content-form {
       display: flex;
       justify-content: space-evenly;
       width: 370px;
@@ -80,9 +82,9 @@ div.modal-delete-background {
         flex-direction: column;
         width: 100%;
 
-        div.modal-delete-form-button {
+        div.modal-create-form-button {
           display: flex;
-          justify-content: space-evenly;
+          justify-content: space-between;
           margin-top: 10px;
         }
       }
