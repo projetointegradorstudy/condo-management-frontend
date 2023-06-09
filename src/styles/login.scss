@@ -79,21 +79,6 @@ div.page-login {
       margin-top: 10px;
       color: $white;
     }
-
-    svg.wave-primary {
-      transform: rotate(90deg);
-      position: absolute;
-      top: 40%;
-      left: 0;
-      z-index: 1;
-    }
-
-    svg.wave-second {
-      transform: rotate(90deg);
-      position: absolute;
-      top: 43%;
-      left: 2%;
-    }
   }
 
   main {
@@ -170,11 +155,10 @@ div.page-login {
 
       h4 {
         color: $primary;
-        font-size: 24px;
-        line-height: 24px;
-        font-weight: 400;
-        margin-top: 30px;
-        margin-bottom: 30px;
+        font-size: 28px;
+        line-height: 28px;
+        font-weight: 600;
+        margin: 40px 0px;
 
         @include breakpoint(lg) {
           font-size: 18px;

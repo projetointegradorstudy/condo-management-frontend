@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { GlobalContext } from '../contexts/GlobalContext';
 import { Input } from '../components/Input';
 import { InputPassword } from '../components/InputPassword';
 import { Label } from '../components/Label';
