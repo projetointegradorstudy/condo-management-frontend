@@ -1,11 +1,16 @@
 import { PencilSimpleLine, Trash } from 'phosphor-react';
 import avatarDefault from '../assets/avatar-default.png';
 import { getContext } from '../utils/context-import';
-import { IDataElementProps, IUser } from '../interfaces';
+import { IDataElementProps, IDeleteModal, IUser } from '../interfaces';
+import { DeleteUserModal } from './DeleteUserModal';
+import { EditUserModal } from './EditUserModal';
+import { CreateUserModal } from './CreateUserModal';
+import { useState } from 'react';
 
 export function UserTable({ data }: IDataElementProps<IUser[]>) {
+  const [isPosition, setIsPosition] = useState<IDeleteModal>({ id: '', name: '' });
   const userFields = ['Avatar', 'Nome', 'Email', 'Tipo', 'Ativo', 'Data de registro', ''];
-  const { setOpenEditModal, setOpenDeletModal, formatDate } = getContext();
+  const { isOpenEditModal, setIsOpenEditModal, setIsOpenDeletModal, formatDate } = getContext();
 
   return (
     <>
@@ -43,10 +48,20 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                   </td>
                   <td>
                     <div className="content-buttons">
-                      <button onClick={() => setOpenEditModal(true)}>
+                      <button
+                        onClick={() => {
+                          setIsPosition({ id: user.id, name: user.email });
+                          setIsOpenEditModal(true);
+                        }}
+                      >
                         <PencilSimpleLine />
                       </button>
-                      <button onClick={() => setOpenDeletModal(true)}>
+                      <button
+                        onClick={() => {
+                          setIsPosition({ id: user.id, name: user.email });
+                          setIsOpenDeletModal(true);
+                        }}
+                      >
                         <Trash />
                       </button>
                     </div>
@@ -56,6 +71,9 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
             })}
         </tbody>
       </table>
+      <DeleteUserModal id={isPosition?.id} name={isPosition?.name} />
+      <EditUserModal isOpenEditModal={isOpenEditModal} setOpenEditModal={() => setIsOpenEditModal(!isOpenEditModal)} />
+      <CreateUserModal />
     </>
   );
 }

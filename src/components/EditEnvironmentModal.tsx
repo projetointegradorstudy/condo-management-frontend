@@ -3,22 +3,16 @@ import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
 import '../styles/edit-environment-modal.scss';
+import { getContext } from '../utils/context-import';
 
-interface EditEnvironmentModalProps {
-  isOpenEditEnvironmentModal: boolean;
-  setOpenEditEnvironmentModal: () => void;
-}
-
-export function EditEnvironmentModal({
-  isOpenEditEnvironmentModal,
-  setOpenEditEnvironmentModal,
-}: EditEnvironmentModalProps) {
-  if (isOpenEditEnvironmentModal) {
+export function EditEnvironmentModal() {
+  const { isOpenEditModal, setIsOpenEditModal } = getContext();
+  if (isOpenEditModal) {
     return (
       <div className="modal-edit-background-environment">
         <div className="modal-content-environment">
           <div className="modal-button-close-environment">
-            <button className="modal-button-default-environment" onClick={setOpenEditEnvironmentModal}>
+            <button className="modal-button-default-environment" onClick={() => setIsOpenEditModal(false)}>
               <X size={20} />
             </button>
           </div>
@@ -44,7 +38,7 @@ export function EditEnvironmentModal({
               <textarea name="description" id="description"></textarea>
 
               <div className="modal-form-button-environment">
-                <Button title="Cancelar" onClick={setOpenEditEnvironmentModal} isCancel />
+                <Button title="Cancelar" onClick={() => setIsOpenEditModal(false)} isCancel />
                 <Button title="Confirmar" type="submit" isConfirm />
               </div>
             </form>
