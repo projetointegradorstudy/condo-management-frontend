@@ -17,16 +17,7 @@ export function ForgotPassaword() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-
-    // await createUser({ email: isEmail })
-    //   .then((res) => {
-    //     setIsMessage(createUserMessages[res.data.message]);
-    //     if (res.status === 201) setIsNeedRefresh(true);
-    //   })
-    //   .catch((e) => {
-    //     setIsMessage(createUserMessages[e.response.data.message]);
-    //   });
-
+    //
     setIsLoading(false);
   };
 

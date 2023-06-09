@@ -5,18 +5,20 @@ import { InputPassword } from '../components/InputPassword';
 import { Label } from '../components/Label';
 import { Button } from '../components/Button';
 import cityImage from '../assets/city_life_gnpr_color.svg';
-import '../styles/login.scss';
 import { getContext } from '../utils/context-import';
+// import { loginMessages } from '../interfaces';
+import '../styles/login.scss';
 
 export function Login() {
   const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { signin, setToken, setIsAuthenticated } = getContext();
+  const { signin, setToken, setIsAuthenticated, handleInputErros, handleInputErrosClean } = getContext();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
+    setIsLoading(true);
     const res = await signin({ email, password });
 
     if (res.success && res.data?.access_token) {
@@ -24,6 +26,7 @@ export function Login() {
       setIsAuthenticated(true);
       navigate('/dashboard-admin');
     }
+    setIsLoading(false);
   };
 
   return (
@@ -55,14 +58,24 @@ export function Login() {
               id="email"
               type="text"
               placeholder="Insira o seu email"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                handleInputErrosClean(e);
+              }}
+              required
+              onInvalid={handleInputErros}
             />
             <Label title="Password" htmlFor="senha" />
             <InputPassword
               name="senha"
               id="senha"
               placeholder="Insira a sua senha"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                handleInputErrosClean(e);
+              }}
+              required
+              onInvalid={handleInputErros}
               autoComplete="on"
             />
             <div className="page-login-footer">
