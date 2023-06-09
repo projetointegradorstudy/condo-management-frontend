@@ -11,19 +11,25 @@ button {
   line-height: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: filter 0.2;
+  border: 0;
   
   &.button-full {
     width: 100%;
   }
 
+  @include breakpoint(sm) {
+    height: 36px;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
   &.button-confirm {
     background-color: transparent;
-    color: #38ba7c;
-    border: 2px solid #38ba7c;
+    color: $green;
+    border: 2px solid $green;
 
     &:hover {
-      background-color: #38ba7c;
+      background-color: $green;
       color: $white;
     }
 
@@ -34,12 +40,12 @@ button {
 
   &.button-cancel {
     background-color: transparent;
-    color: #f34542;
-    border: 2px solid #f34542;
+    color: $red;
+    border: 2px solid $red;
     transition: 0.2s;
 
     &:hover {
-      background-color: #f34542;
+      background-color: $red;
       color: $white;
     }
 
