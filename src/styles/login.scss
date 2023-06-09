@@ -132,15 +132,6 @@ div.page-login {
         span {
           font-weight: 400;
         }
-
-        @include breakpoint(sm) {
-          font-size: 30px;
-          line-height: 30px;
-        }
-      }
-
-      img {
-        width: 150px;
       }
     }
 
