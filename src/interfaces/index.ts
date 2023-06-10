@@ -63,7 +63,7 @@ export const createUserMessages: { [key: string]: string } = {
 };
 
 export const deleteMessages: { [key: string]: string } = {
-  'User deleted successfully': 'Usuário apagado.',
+  'User deleted successfully': 'Usuário apagado com sucesso.',
   'Not Found': 'Já excluido.',
   'Validation failed (uuid is expected)': 'ID inválido.',
 };

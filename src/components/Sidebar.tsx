@@ -123,7 +123,7 @@ export function Sidebar() {
               onClick={handleSubmit}
               style={{ justifyContent: isOpen ? '' : 'center' }}
             >
-              <SignOut size={isOpen ? 19 : 21} />
+              <SignOut size={isOpen ? 18 : 20} />
               <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
             </button>
           </div>

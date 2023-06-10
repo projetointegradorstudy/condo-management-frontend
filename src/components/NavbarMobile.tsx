@@ -100,7 +100,7 @@ export function NavbarMobile() {
                 onClick={handleSubmit}
                 style={{ justifyContent: isOpen ? '' : 'center' }}
               >
-                <SignOut size={isOpen ? 20 : 26} />
+                <SignOut size={isOpen ? 18 : 24} />
                 <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
               </button>
             </div>

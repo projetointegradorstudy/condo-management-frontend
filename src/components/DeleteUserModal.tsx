@@ -1,4 +1,4 @@
-import { X } from 'phosphor-react';
+import { CheckCircle, X } from 'phosphor-react';
 import { Button } from './Button';
 import '../styles/delete-user-modal.scss';
 import { getContext } from '../utils/context-import';
@@ -54,18 +54,18 @@ export function DeleteUserModal({ id, name }: IDeleteModal) {
               </div>
 
               <div className="modal-delete-content-form">
-                <Button title="Cancelar" onClick={() => setIsOpenDeletModal(false)} isCancel />
+                <Button title="Cancelar" onClick={handleCloser} isCancel />
                 <Button title="Confirmar" isConfirm onClick={handleDeleteUser} />
               </div>
             </div>
           )}
           {isMessage && (
-            <div className="modal-create-content-feedback">
-              <div>
-                <span>{isMessage}</span>
-              </div>
+            <div className="modal-delete-content-feedback">
+              <CheckCircle />
 
-              <div className="modal-create-form-button">
+              <span>{isMessage}</span>
+
+              <div className="modal-delete-form-button">
                 <Button title="Fechar" onClick={handleCloser} isCancel />
               </div>
             </div>
