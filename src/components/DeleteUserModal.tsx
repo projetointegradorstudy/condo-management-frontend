@@ -1,6 +1,5 @@
 import { X } from 'phosphor-react';
 import { Button } from './Button';
-import { USERS } from '../utils/users';
 import '../styles/delete-user-modal.scss';
 import { getContext } from '../utils/context-import';
 import { IDeleteModal, deleteMessages } from '../interfaces';
@@ -37,7 +36,7 @@ export function DeleteUserModal({ id, name }: IDeleteModal) {
   if (isOpenDeleteModal) {
     return (
       <div className="modal-delete-background">
-        <div className="modal-delete-content">
+        <div className="modal-delete">
           <div className="modal-delete-button-close">
             <button className="modal-delete-button-default" onClick={() => setIsOpenDeletModal(false)}>
               <X size={20} />
@@ -46,19 +45,17 @@ export function DeleteUserModal({ id, name }: IDeleteModal) {
 
           {isLoading && <Spinner />}
           {!isMessage && (
-            <div>
-              <div className="modal-delete-title">
+            <div className="modal-delete-content">
+              <div className="modal-delete-message">
                 <h4>
-                  Tem certeza de que quer excluir este usuário:
-                  <b> {name}</b>?
+                  Tem certeza que deseja excluir este usuário:
+                  <strong> {name}</strong>?
                 </h4>
               </div>
 
               <div className="modal-delete-content-form">
-                <div className="modal-delete-form-button">
-                  <Button title="Cancelar" onClick={() => setIsOpenDeletModal(false)} isCancel />
-                  <Button title="Confirmar" isConfirm onClick={handleDeleteUser} />
-                </div>
+                <Button title="Cancelar" onClick={() => setIsOpenDeletModal(false)} isCancel />
+                <Button title="Confirmar" isConfirm onClick={handleDeleteUser} />
               </div>
             </div>
           )}

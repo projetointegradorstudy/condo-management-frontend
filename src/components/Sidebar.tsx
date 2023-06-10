@@ -9,6 +9,8 @@ import {
   CaretLeft,
   Users,
   ListDashes,
+  PencilSimpleLine,
+  ListBullets,
 } from 'phosphor-react';
 import '../styles/sidebar.scss';
 import LogoLg from '../assets/logo_lg.svg';
@@ -49,7 +51,7 @@ export function Sidebar() {
     {
       path: '/list-environments',
       name: 'Lista de ambientes',
-      icon: <ListDashes size={isOpen ? 20 : 22} />,
+      icon: <ListDashes size={isOpen ? 21 : 23} />,
     },
     {
       path: '/',
@@ -67,12 +69,12 @@ export function Sidebar() {
     {
       path: '/requests',
       name: 'Solicitações',
-      icon: <UserPlus size={isOpen ? 20 : 22} />,
+      icon: <ListBullets size={isOpen ? 21 : 23} />,
     },
     {
       path: '/edit-profile',
       name: 'Editar perfil',
-      icon: <PlusCircle size={isOpen ? 20 : 22} />,
+      icon: <PencilSimpleLine size={isOpen ? 19 : 21} />,
     },
   ];
 

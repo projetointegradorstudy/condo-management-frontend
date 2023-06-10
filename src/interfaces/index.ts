@@ -22,6 +22,7 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
+  passwordConfirmation: string;
   role: Role;
   is_active: boolean;
   partial_token: string;
@@ -43,6 +44,14 @@ export interface IEnvironment {
 export interface IDeleteModal {
   id: string;
   name: string;
+}
+
+export interface IEditModal {
+  avatar: string;
+  password: string;
+  passwordConfirmation: string;
+  created_at: string;
+  role: Role;
 }
 
 export const createUserMessages: { [key: string]: string } = {

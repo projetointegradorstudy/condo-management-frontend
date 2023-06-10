@@ -16,6 +16,7 @@ input {
   @include breakpoint(sm) {
     font-size: 14px;
     height: 36px;
+    padding: 6px 16px;
   }
 
   &::placeholder {
