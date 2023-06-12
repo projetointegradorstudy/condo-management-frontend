@@ -5,9 +5,9 @@ import { Input } from '../components/Input';
 import { Label } from '../components/Label';
 import { Spinner } from '../components/Spinner';
 import { getContext } from '../utils/context-import';
-import twoFactorAuthenticationNamy from '../assets/undraw_building_re_xfcm.svg';
 import '../styles/forgot-password.scss';
 import { CheckCircle } from 'phosphor-react';
+import buildingReXfcm from '../assets/undraw_building_re_xfcm.svg';
 
 export function ForgotPassaword() {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +32,7 @@ export function ForgotPassaword() {
           </h1>
         </div>
         <div className="page-forgot-password-image">
-          <img src={twoFactorAuthenticationNamy} />
+          <img src={buildingReXfcm} />
         </div>
         <div className="page-forgot-password-description">
           <strong>Esqueceu sua senha?</strong>
