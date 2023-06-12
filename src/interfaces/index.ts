@@ -22,6 +22,7 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
+  passwordConfirmation: string;
   role: Role;
   is_active: boolean;
   partial_token: string;
@@ -45,6 +46,14 @@ export interface IDeleteModal {
   name: string;
 }
 
+export interface IEditModal {
+  avatar: string;
+  password: string;
+  passwordConfirmation: string;
+  created_at: string;
+  role: Role;
+}
+
 export const createUserMessages: { [key: string]: string } = {
   'user created successfully': 'Email cadastrado com sucesso.',
   'This email exist on our databases, an email with confirmate instructions will be sent':
@@ -54,7 +63,7 @@ export const createUserMessages: { [key: string]: string } = {
 };
 
 export const deleteMessages: { [key: string]: string } = {
-  'User deleted successfully': 'Usuário apagado.',
+  'User deleted successfully': 'Usuário apagado com sucesso.',
   'Not Found': 'Já excluido.',
   'Validation failed (uuid is expected)': 'ID inválido.',
 };

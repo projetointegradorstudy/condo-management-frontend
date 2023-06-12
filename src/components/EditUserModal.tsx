@@ -2,51 +2,50 @@ import { X } from 'phosphor-react';
 import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
-import { USERS } from '../utils/users';
-import '../styles/edit-user-modal.scss';
 import { InputPassword } from './InputPassword';
+import { getContext } from '../utils/context-import';
+import { IEditModal } from '../interfaces';
+import avatarDefault from '../assets/avatar-default.png';
+import '../styles/edit-user-modal.scss';
 
-interface EditUserModalProps {
-  isOpenEditModal: boolean;
-  setOpenEditModal: () => void;
-}
+export function EditUserModal({ avatar, password, passwordConfirmation, created_at, role }: IEditModal) {
+  const { isOpenEditModal, setIsOpenEditModal, formatDate } = getContext();
 
-export function EditUserModal({ isOpenEditModal, setOpenEditModal }: EditUserModalProps) {
   if (isOpenEditModal) {
     return (
-      <div className="modal-edit-background">
-        <div className="modal-content">
-          <div className="modal-button-close">
-            <button className="modal-button-default" onClick={setOpenEditModal}>
+      <div className="modal-edit-user-background">
+        <div className="modal-edit-user">
+          <div className="modal-edit-user-button-close">
+            <button className="modal-edit-user-button-default" onClick={() => setIsOpenEditModal(false)}>
               <X size={20} />
             </button>
           </div>
 
-          <div className="modal-content-form">
+          <div className="modal-edit-user-content">
+            <div className="modal-edit-user-image">
+              <img src={avatar ? avatar : avatarDefault} alt="avatar" />
+            </div>
             <form>
-              <div className="modal-content-upload">
-                <div className="modal-image-upload">
-                  <img src={USERS[0].avatar} alt="avatar" />
-                </div>
-              </div>
-
               <Label title="Senha" htmlFor="senha" />
-              <InputPassword name="senha" id="senha" placeholder="Insira a senha" autoComplete="on" />
+              <InputPassword name="senha" id="senha" placeholder={password} autoComplete="on"></InputPassword>
 
               <Label title="Confirmar senha" htmlFor="senha" />
-              <InputPassword name="senha" id="senha" placeholder="Confirme a senha" autoComplete="on" />
+              <InputPassword name="senha" id="senha" placeholder={passwordConfirmation} autoComplete="on" />
 
               <Label title="Registrado" htmlFor="register" />
-              <Input name="register" id="register" type="text" disabled placeholder="01/02/23" />
+              <Input name="register" id="register" type="text" disabled placeholder={formatDate(created_at)} />
 
-              <Label title="Registrado" htmlFor="register" />
+              <Label title="Regra" htmlFor="role" />
               <select name="role">
-                <option value="admin">ADMIN</option>
-                <option value="user">USER</option>
+                <option disabled selected value="default">
+                  Selecione a regra de usuário
+                </option>
+                <option value="admin">{role}</option>
+                <option value="user">{role}</option>
               </select>
 
               <div className="modal-form-button">
-                <Button title="Cancelar" onClick={setOpenEditModal} isCancel />
+                <Button title="Cancelar" onClick={() => setIsOpenEditModal(false)} isCancel />
                 <Button title="Confirmar" type="submit" isConfirm />
               </div>
             </form>

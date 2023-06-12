@@ -1,7 +1,7 @@
 import { PencilSimpleLine, Trash } from 'phosphor-react';
 import avatarDefault from '../assets/avatar-default.png';
 import { getContext } from '../utils/context-import';
-import { IDataElementProps, IDeleteModal, IUser } from '../interfaces';
+import { IDataElementProps, IDeleteModal, IEditModal, IUser, Role } from '../interfaces';
 import { DeleteUserModal } from './DeleteUserModal';
 import { EditUserModal } from './EditUserModal';
 import { CreateUserModal } from './CreateUserModal';
@@ -9,8 +9,15 @@ import { useState } from 'react';
 
 export function UserTable({ data }: IDataElementProps<IUser[]>) {
   const [isPosition, setIsPosition] = useState<IDeleteModal>({ id: '', name: '' });
+  const [isEditPosition, setIsEditPosition] = useState<IEditModal>({
+    avatar: '',
+    password: '',
+    passwordConfirmation: '',
+    created_at: '',
+    role: Role.ADMIN || Role.USER,
+  });
   const userFields = ['Avatar', 'Nome', 'Email', 'Tipo', 'Ativo', 'Data de registro', ''];
-  const { isOpenEditModal, setIsOpenEditModal, setIsOpenDeletModal, formatDate } = getContext();
+  const { setIsOpenEditModal, setIsOpenDeletModal, formatDate } = getContext();
 
   return (
     <>
@@ -51,6 +58,13 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                       <button
                         onClick={() => {
                           setIsPosition({ id: user.id, name: user.email });
+                          setIsEditPosition({
+                            avatar: user.avatar,
+                            password: user.password,
+                            passwordConfirmation: user.passwordConfirmation,
+                            created_at: user.created_at,
+                            role: user.role,
+                          });
                           setIsOpenEditModal(true);
                         }}
                       >
@@ -72,7 +86,13 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
         </tbody>
       </table>
       <DeleteUserModal id={isPosition?.id} name={isPosition?.name} />
-      <EditUserModal isOpenEditModal={isOpenEditModal} setOpenEditModal={() => setIsOpenEditModal(!isOpenEditModal)} />
+      <EditUserModal
+        avatar={isEditPosition?.avatar}
+        password={isEditPosition?.password}
+        passwordConfirmation={isEditPosition.passwordConfirmation}
+        created_at={isEditPosition.created_at}
+        role={isEditPosition.role}
+      />
       <CreateUserModal />
     </>
   );

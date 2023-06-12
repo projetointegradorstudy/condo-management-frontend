@@ -24,9 +24,8 @@ button {
   }
 
   &.button-confirm {
-    background-color: transparent;
-    color: $green;
-    border: 2px solid $green;
+    background-color: $green;
+    color: $white;
 
     &:hover {
       background-color: $green;

@@ -1,13 +1,13 @@
-import { X, CheckCircle } from 'phosphor-react';
+import { X, CheckCircle, WarningCircle } from 'phosphor-react';
 import { Button } from './Button';
 import { Input } from './Input';
 import { Label } from './Label';
-import '../styles/create-user-modal.scss';
 import { createUser } from '../services/api';
 import { useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
 import { Spinner } from './Spinner';
 import { createUserMessages } from '../interfaces';
+import '../styles/create-user-modal.scss';
 
 export function CreateUserModal() {
   const [isEmail, setIsEmail] = useState('');
@@ -42,7 +42,7 @@ export function CreateUserModal() {
   if (isOpenCreateUserModal) {
     return (
       <div className="modal-create-background">
-        <div className="modal-create-content">
+        <div className="modal-create">
           <div className="modal-create-button-close">
             <button className="modal-create-button-default" onClick={handleCloser}>
               <X size={20} />
@@ -50,8 +50,8 @@ export function CreateUserModal() {
           </div>
           {isLoading && <Spinner />}
           {!isMessage && (
-            <div className="modal-create">
-              <div className="modal-create-title">
+            <div className="modal-create-content">
+              <div className="modal-create-message">
                 <h4>Adicionar usuário</h4>
               </div>
 
@@ -83,9 +83,7 @@ export function CreateUserModal() {
             <div className="modal-create-content-feedback">
               <CheckCircle />
 
-              <div>
-                <span>{isMessage}</span>
-              </div>
+              <span>{isMessage}</span>
 
               <div className="modal-create-form-button">
                 <Button title="Fechar" onClick={handleCloser} isCancel />

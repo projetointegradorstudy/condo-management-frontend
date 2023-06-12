@@ -1,6 +1,17 @@
 import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { House, List, ListChecks, PlusCircle, SignOut, UserPlus, UserList, X, ListDashes } from 'phosphor-react';
+import {
+  House,
+  List,
+  ListChecks,
+  PlusCircle,
+  SignOut,
+  X,
+  ListDashes,
+  Users,
+  PencilSimpleLine,
+  ListBullets,
+} from 'phosphor-react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import '../styles/navbar-mobile.scss';
 
@@ -30,7 +41,7 @@ export function NavbarMobile() {
     {
       path: '/list-users',
       name: 'Lista de usuários',
-      icon: <UserList size={isOpen ? 22 : 26} />,
+      icon: <Users size={isOpen ? 22 : 26} />,
     },
     {
       path: '/list-environments',
@@ -46,19 +57,19 @@ export function NavbarMobile() {
 
   const navItemsUser = [
     {
-      path: '/dashboard-admin',
+      path: '/menu-user',
       name: 'Ambientes',
       icon: <House size={isOpen ? 22 : 26} />,
     },
     {
-      path: '/register-user',
+      path: ';requests',
       name: 'Solicitações',
-      icon: <UserPlus size={isOpen ? 22 : 26} />,
+      icon: <ListBullets size={isOpen ? 22 : 26} />,
     },
     {
-      path: '/',
+      path: '/edit-profile',
       name: 'Editar perfil',
-      icon: <PlusCircle size={isOpen ? 22 : 26} />,
+      icon: <PencilSimpleLine size={isOpen ? 22 : 26} />,
     },
   ];
 
@@ -89,7 +100,7 @@ export function NavbarMobile() {
                 onClick={handleSubmit}
                 style={{ justifyContent: isOpen ? '' : 'center' }}
               >
-                <SignOut size={isOpen ? 20 : 26} />
+                <SignOut size={isOpen ? 18 : 24} />
                 <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
               </button>
             </div>
