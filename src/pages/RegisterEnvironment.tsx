@@ -3,6 +3,7 @@ import { Input } from '../components/Input';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Sidebar } from '../components/Sidebar';
 import { Label } from '../components/Label';
+import { Footer } from '../components/Footer';
 import '../styles/register-environment.scss';
 
 export function RegisterEnvironment() {
@@ -41,6 +42,7 @@ export function RegisterEnvironment() {
           </div>
         </div>
       </div>
+      <Footer isFull />
     </div>
   );
 }

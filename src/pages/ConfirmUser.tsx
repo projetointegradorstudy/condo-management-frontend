@@ -5,6 +5,7 @@ import { Label } from '../components/Label';
 import { getContext } from '../utils/context-import';
 import { CheckCircle, Spinner } from 'phosphor-react';
 import navigatorA479 from '../assets/undraw_navigator_a479.svg';
+import { Footer } from '../components/Footer';
 import '../styles/confirm-user.scss';
 
 export function ConfirmUser() {
@@ -86,6 +87,7 @@ export function ConfirmUser() {
             <span>{isMessage}</span>
           </div>
         )}
+        <Footer />
       </main>
     </div>
   );

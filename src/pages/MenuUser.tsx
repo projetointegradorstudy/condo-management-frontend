@@ -1,13 +1,14 @@
 import { Sidebar } from '../components/Sidebar';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { CardEnvironment } from '../components/CardEnvironment';
-import '../styles/menu-user.scss';
 import { IEnvironment } from '../interfaces';
 import { useContext, useEffect, useState } from 'react';
 import { getEnvironments } from '../services/api';
 import { GlobalContext } from '../contexts/GlobalContext';
 import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
+import { Footer } from '../components/Footer';
+import '../styles/menu-user.scss';
 
 export function MenuUser() {
   const [environments, setEnvironments] = useState<IEnvironment[]>([]);
@@ -58,6 +59,7 @@ export function MenuUser() {
           <WarningFeedback title="Não há registros." />
         )}
       </div>
+      <Footer isFull />
     </div>
   );
 }

@@ -1,0 +1,32 @@
+@import './theme';
+@import './variables';
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  bottom: 0;
+  position: absolute;
+  background-color: $gray-lightest;
+
+  &.full {
+    width: 100%;
+  }
+  
+  @include breakpoint(sm) {
+    height: 40px;
+  }
+
+  span {
+    font-size: 11px;
+    line-height: 11px;
+    color: $black;
+    text-align: center;
+
+    @include breakpoint(sm) {
+      font-size: 9px;
+      line-height: 9px;
+    }
+  }
+}
