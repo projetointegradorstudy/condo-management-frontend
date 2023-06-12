@@ -9,6 +9,7 @@ import { GlobalContext } from '../contexts/GlobalContext';
 import { EnvironmentTable } from '../components/EnvironmentTable';
 import { getEnvironments } from '../services/api';
 import { EditEnvironmentModal } from '../components/EditEnvironmentModal';
+import { Footer } from '../components/Footer';
 import '../styles/list-environments.scss';
 
 export function ListEnvironments() {
@@ -54,6 +55,7 @@ export function ListEnvironments() {
       </div>
       {/* <DeleteUserModal /> */}
       <EditEnvironmentModal />
+      <Footer isFull />
     </div>
   );
 }

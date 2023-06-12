@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { NavbarMobile } from '../components/NavbarMobile';
-import '../styles/list-users.scss';
 import { getUsers } from '../services/api';
 import { IUser } from '../interfaces';
 import { Spinner } from '../components/Spinner';
@@ -9,6 +8,8 @@ import { WarningFeedback } from '../components/WarningFeedback';
 import { UserTable } from '../components/UserTable';
 import { Button } from '../components/Button';
 import { getContext } from '../utils/context-import';
+import { Footer } from '../components/Footer';
+import '../styles/list-users.scss';
 
 export function ListUsers() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -52,6 +53,7 @@ export function ListUsers() {
           </div>
         </div>
       </div>
+      <Footer isFull />
     </div>
   );
 }

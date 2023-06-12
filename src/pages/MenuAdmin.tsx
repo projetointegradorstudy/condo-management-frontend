@@ -2,6 +2,7 @@ import { Users, ListPlus, Question } from 'phosphor-react';
 import { Lead } from '../components/Lead';
 import { Sidebar } from '../components/Sidebar';
 import { NavbarMobile } from '../components/NavbarMobile';
+import { Footer } from '../components/Footer';
 import '../styles/menu-admin.scss';
 
 const cardItems = [
@@ -52,6 +53,7 @@ export function MenuAdmin() {
           </div>
         </div>
       </div>
+      <Footer isFull />
     </div>
   );
 }

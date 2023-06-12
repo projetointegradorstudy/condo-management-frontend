@@ -7,6 +7,7 @@ import { Button } from '../components/Button';
 import cityImage from '../assets/city_life_gnpr_color.svg';
 import { getContext } from '../utils/context-import';
 // import { loginMessages } from '../interfaces';
+import { Footer } from '../components/Footer';
 import '../styles/login.scss';
 
 export function Login() {
@@ -84,6 +85,7 @@ export function Login() {
             </div>
           </form>
         </div>
+        <Footer />
       </main>
     </div>
   );
