@@ -18,7 +18,7 @@ div.modal-delete-background {
     flex-direction: column;
     align-items: center;
     width: 370px;
-    height: 280px;
+    height: 230px;
     border-radius: 10px;
     background-color: $white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -58,7 +58,7 @@ div.modal-delete-background {
       justify-content: center;
       flex-direction: column;
       gap: 2rem;
-      height: 280px;
+      height: 230px;
 
       div.modal-delete-message {
         width: 100%;
@@ -79,7 +79,7 @@ div.modal-delete-background {
 
       div.modal-delete-content-form {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         width: 100%;
       }
     }
