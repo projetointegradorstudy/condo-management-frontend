@@ -8,10 +8,10 @@ footer {
   height: 60px;
   bottom: 0;
   position: absolute;
-  background-color: $gray-lightest;
-
+ 
   &.full {
     width: 100%;
+    background-color: $gray-lightest;
   }
   
   @include breakpoint(sm) {
