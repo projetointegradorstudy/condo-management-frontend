@@ -90,7 +90,7 @@ div.page-list-users {
           border-bottom: 1px solid $black;
           padding-bottom: 10px;
 
-          @include breakpoint(sm) {
+          @include breakpoint(md) {
             font-size: 13px;
             line-height: 15px;
           }
@@ -106,7 +106,7 @@ div.page-list-users {
           line-height: 24px;
           color: $black;
 
-          @include breakpoint(sm) {
+          @include breakpoint(md) {
             font-size: 12px;
             line-height: 16px;
           }
@@ -117,7 +117,7 @@ div.page-list-users {
             border-radius: 50%;
             object-fit: cover;
 
-            @include breakpoint(sm) {
+            @include breakpoint(md) {
               width: 25px;
               height: 25px;
             }
@@ -132,6 +132,7 @@ div.page-list-users {
               background: transparent;
               width: 16px;
               height: 16px;
+              margin: 0px 2px;
           
               svg {
                 z-index: 1;
@@ -139,7 +140,7 @@ div.page-list-users {
                 height: 16px;
                 color: $black;
           
-                @include breakpoint(sm) {
+                @include breakpoint(md) {
                   width: 14px;
                   height: 14px;
                 }
