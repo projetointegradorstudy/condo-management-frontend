@@ -1,9 +1,20 @@
 import { PencilSimpleLine, Trash } from 'phosphor-react';
 import { getContext } from '../utils/context-import';
-import { IDataElementProps, IEnvironment } from '../interfaces';
+import { IDataElementProps, IDeleteModal, IEditEnvironmentModal, IEnvironment } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
+import { DeleteModal } from './DeleteModal';
+import { EditEnvironmentModal } from './EditEnvironmentModal';
+import { useState } from 'react';
 
 export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
+  const [isPosition, setIsPosition] = useState<IDeleteModal>({ id: '', name: '' });
+  const [isEditPosition, setIsEditPosition] = useState<IEditEnvironmentModal>({
+    name: '',
+    description: '',
+    status: '',
+    image: '',
+    capacity: '',
+  });
   const environmentFields = ['Imagem', 'Nome', 'Descrição', 'Capacidade', 'Data de registro', ''];
   const { setIsOpenEditModal, setIsOpenDeletModal, formatDate } = getContext();
 
@@ -40,10 +51,27 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                   </td>
                   <td>
                     <div className="content-buttons">
-                      <button onClick={() => setIsOpenEditModal(true)}>
+                      <button
+                        onClick={() => {
+                          setIsPosition({ id: environment.id, name: environment.name });
+                          setIsEditPosition({
+                            name: environment.name,
+                            description: environment.description,
+                            status: environment.status,
+                            image: environment.image,
+                            capacity: environment.capacity,
+                          });
+                          setIsOpenEditModal(true);
+                        }}
+                      >
                         <PencilSimpleLine />
                       </button>
-                      <button onClick={() => setIsOpenDeletModal(true)}>
+                      <button
+                        onClick={() => {
+                          setIsPosition({ id: environment.id, name: environment.name });
+                          setIsOpenDeletModal(true);
+                        }}
+                      >
                         <Trash />
                       </button>
                     </div>
@@ -53,6 +81,14 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
             })}
         </tbody>
       </table>
+      <DeleteModal id={isPosition?.id} name={isPosition?.name} />
+      <EditEnvironmentModal
+        name={isEditPosition.name}
+        description={isEditPosition.description}
+        status={isEditPosition.status}
+        image={isEditPosition.image}
+        capacity={isEditPosition.capacity}
+      />
     </>
   );
 }

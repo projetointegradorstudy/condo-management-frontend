@@ -4,11 +4,11 @@ import { Input } from './Input';
 import { Button } from './Button';
 import { InputPassword } from './InputPassword';
 import { getContext } from '../utils/context-import';
-import { IEditModal } from '../interfaces';
+import { IEditUserModal } from '../interfaces';
 import avatarDefault from '../assets/avatar-default.png';
 import '../styles/edit-user-modal.scss';
 
-export function EditUserModal({ avatar, password, passwordConfirmation, created_at, role }: IEditModal) {
+export function EditUserModal({ avatar, password, passwordConfirmation, created_at, role }: IEditUserModal) {
   const { isOpenEditModal, setIsOpenEditModal, formatDate } = getContext();
 
   if (isOpenEditModal) {

@@ -1,15 +1,15 @@
 import { PencilSimpleLine, Trash } from 'phosphor-react';
 import avatarDefault from '../assets/avatar-default.png';
 import { getContext } from '../utils/context-import';
-import { IDataElementProps, IDeleteModal, IEditModal, IUser, Role } from '../interfaces';
-import { DeleteUserModal } from './DeleteUserModal';
+import { IDataElementProps, IDeleteModal, IEditUserModal, IUser, Role } from '../interfaces';
+import { DeleteModal } from './DeleteModal';
 import { EditUserModal } from './EditUserModal';
 import { CreateUserModal } from './CreateUserModal';
 import { useState } from 'react';
 
 export function UserTable({ data }: IDataElementProps<IUser[]>) {
   const [isPosition, setIsPosition] = useState<IDeleteModal>({ id: '', name: '' });
-  const [isEditPosition, setIsEditPosition] = useState<IEditModal>({
+  const [isEditPosition, setIsEditPosition] = useState<IEditUserModal>({
     avatar: '',
     password: '',
     passwordConfirmation: '',
@@ -85,7 +85,7 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
             })}
         </tbody>
       </table>
-      <DeleteUserModal id={isPosition?.id} name={isPosition?.name} />
+      <DeleteModal id={isPosition?.id} name={isPosition?.name} />
       <EditUserModal
         avatar={isEditPosition?.avatar}
         password={isEditPosition?.password}

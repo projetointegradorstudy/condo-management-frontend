@@ -31,27 +31,27 @@ export function NavbarMobile() {
     {
       path: '/dashboard-admin',
       name: 'Página inicial',
-      icon: <House size={isOpen ? 22 : 26} />,
+      icon: <House size={18} />,
     },
     {
       path: '/register-environment',
       name: 'Cadastro de ambientes',
-      icon: <PlusCircle size={isOpen ? 22 : 26} />,
+      icon: <PlusCircle size={18} />,
     },
     {
       path: '/list-users',
       name: 'Lista de usuários',
-      icon: <Users size={isOpen ? 22 : 26} />,
+      icon: <Users size={18} />,
     },
     {
       path: '/list-environments',
       name: 'Lista de ambientes',
-      icon: <ListDashes size={isOpen ? 20 : 22} />,
+      icon: <ListDashes size={18} />,
     },
     {
       path: '/',
-      name: 'Aprovaçõess',
-      icon: <ListChecks size={isOpen ? 22 : 26} />,
+      name: 'Aprovações',
+      icon: <ListChecks size={18} />,
     },
   ];
 
@@ -59,17 +59,17 @@ export function NavbarMobile() {
     {
       path: '/menu-user',
       name: 'Ambientes',
-      icon: <House size={isOpen ? 22 : 26} />,
+      icon: <House size={18} />,
     },
     {
       path: ';requests',
       name: 'Solicitações',
-      icon: <ListBullets size={isOpen ? 22 : 26} />,
+      icon: <ListBullets size={18} />,
     },
     {
       path: '/edit-profile',
       name: 'Editar perfil',
-      icon: <PencilSimpleLine size={isOpen ? 22 : 26} />,
+      icon: <PencilSimpleLine size={18} />,
     },
   ];
 
@@ -100,7 +100,7 @@ export function NavbarMobile() {
                 onClick={handleSubmit}
                 style={{ justifyContent: isOpen ? '' : 'center' }}
               >
-                <SignOut size={isOpen ? 18 : 24} />
+                <SignOut size={16} />
                 <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
               </button>
             </div>

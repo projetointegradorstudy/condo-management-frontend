@@ -46,12 +46,20 @@ export interface IDeleteModal {
   name: string;
 }
 
-export interface IEditModal {
+export interface IEditUserModal {
   avatar: string;
   password: string;
   passwordConfirmation: string;
   created_at: string;
   role: Role;
+}
+
+export interface IEditEnvironmentModal {
+  name: string;
+  description: string;
+  status: string;
+  image: string;
+  capacity: string;
 }
 
 export const createUserMessages: { [key: string]: string } = {
