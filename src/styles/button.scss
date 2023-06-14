@@ -17,10 +17,16 @@ button {
     width: 100%;
   }
 
-  @include breakpoint(sm) {
+  @include breakpoint(md) {
     height: 36px;
     font-size: 13px;
     line-height: 13px;
+  }
+
+  @include breakpoint(md) {
+    height: 34px;
+    font-size: 12px;
+    line-height: 12px;
   }
 
   &.button-confirm {
