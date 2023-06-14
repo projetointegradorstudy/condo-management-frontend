@@ -1,25 +1,17 @@
-import { useContext, useEffect, useState } from 'react';
-import { DeleteUserModal } from '../components/DeleteUserModal';
+import { useEffect, useState } from 'react';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Sidebar } from '../components/Sidebar';
 import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
 import { IEnvironment } from '../interfaces';
-import { GlobalContext } from '../contexts/GlobalContext';
 import { EnvironmentTable } from '../components/EnvironmentTable';
 import { getEnvironments } from '../services/api';
-import { EditEnvironmentModal } from '../components/EditEnvironmentModal';
 import { Footer } from '../components/Footer';
 import '../styles/list-environments.scss';
 
 export function ListEnvironments() {
   const [environments, setEnvironments] = useState<IEnvironment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const context = useContext(GlobalContext);
-
-  if (!context) return null;
-
-  const { isOpenEditModal, setIsOpenEditModal } = context;
 
   useEffect(() => {
     if (isLoading)
@@ -53,8 +45,6 @@ export function ListEnvironments() {
           </div>
         </div>
       </div>
-      {/* <DeleteUserModal /> */}
-      <EditEnvironmentModal />
       <Footer isFull />
     </div>
   );

@@ -7,7 +7,7 @@ import { deleteUser } from '../services/api';
 import { useEffect, useState } from 'react';
 import { Spinner } from './Spinner';
 
-export function DeleteUserModal({ id, name }: IDeleteModal) {
+export function DeleteModal({ id, name }: IDeleteModal) {
   const [isLoading, setIsLoading] = useState(false);
   const [isMessage, setIsMessage] = useState('');
   const { isOpenDeleteModal, setIsOpenDeletModal, setIsNeedRefresh } = getContext();
@@ -48,7 +48,7 @@ export function DeleteUserModal({ id, name }: IDeleteModal) {
             <div className="modal-delete-content">
               <div className="modal-delete-message">
                 <h4>
-                  Tem certeza que deseja excluir este usuário:
+                  Tem certeza que deseja excluir:
                   <strong> {name}</strong>?
                 </h4>
               </div>

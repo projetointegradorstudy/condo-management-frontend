@@ -86,16 +86,6 @@ div.navbar-mobile {
           align-items: flex-start;
           margin: 0 auto;
 
-          svg {
-            width: 20px;
-            height: 20px;
-
-            @include breakpoint(xs) {
-              width: 18px;
-              height: 18px;
-            } 
-          }
-
           li {
             display: flex;
             justify-content: center;

@@ -2,7 +2,7 @@ import { LabelHTMLAttributes } from 'react';
 import '../styles/label.scss';
 
 interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
-  title: string;
+  title?: string;
   isUploadFile?: boolean;
 }
 

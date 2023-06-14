@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import {
   House,
-  UserPlus,
   PlusCircle,
   ListChecks,
   SignOut,
@@ -51,11 +50,11 @@ export function Sidebar() {
     {
       path: '/list-environments',
       name: 'Lista de ambientes',
-      icon: <ListDashes size={isOpen ? 21 : 23} />,
+      icon: <ListDashes size={isOpen ? 20 : 22} />,
     },
     {
       path: '/',
-      name: 'Aprovaçõess',
+      name: 'Aprovações',
       icon: <ListChecks size={isOpen ? 20 : 22} />,
     },
   ];
@@ -69,12 +68,12 @@ export function Sidebar() {
     {
       path: '/requests',
       name: 'Solicitações',
-      icon: <ListBullets size={isOpen ? 21 : 23} />,
+      icon: <ListBullets size={isOpen ? 20 : 22} />,
     },
     {
       path: '/edit-profile',
       name: 'Editar perfil',
-      icon: <PencilSimpleLine size={isOpen ? 19 : 21} />,
+      icon: <PencilSimpleLine size={isOpen ? 18 : 20} />,
     },
   ];
 

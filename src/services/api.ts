@@ -24,3 +24,7 @@ export async function deleteUser(id: string) {
 export async function getEnvironments() {
   return api.get('/environments');
 }
+
+export async function deleteEnvironment(id: string) {
+  return api.delete(`/environments/${id}`);
+}
