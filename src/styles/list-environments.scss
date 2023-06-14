@@ -80,7 +80,7 @@ div.page-list-environments {
           border-bottom: 1px solid $black;
           padding-bottom: 10px;
 
-          @include breakpoint(sm) {
+          @include breakpoint(md) {
             font-size: 13px;
             line-height: 15px;
           }
@@ -129,13 +129,15 @@ div.page-list-environments {
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
         
-            @include breakpoint(sm) {
+            @include breakpoint(md) {
               -webkit-line-clamp: 3;
+              font-size: 12px;
+              line-height: 16px;
             }
           }
           
           
-          @include breakpoint(sm) {
+          @include breakpoint(md) {
             font-size: 12px;
             line-height: 16px;
           }
@@ -147,7 +149,7 @@ div.page-list-environments {
             border-radius: 4px;
             object-fit: cover;
 
-            @include breakpoint(sm) {
+            @include breakpoint(md) {
               height: 50px;
             }
           }
@@ -168,7 +170,7 @@ div.page-list-environments {
                 height: 16px;
                 color: $black;
 
-                @include breakpoint(sm) {
+                @include breakpoint(md) {
                   width: 14px;
                   height: 14px;
                 }
