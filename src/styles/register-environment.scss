@@ -21,9 +21,12 @@ div.page-register-environment {
       margin: 100px 76px 30px;
       gap: 3rem;
 
+      @include breakpoint(xl) {
+        margin: 60px 40px 30px;
+      }
+    
       @include breakpoint(sm) {
         margin: 60px 30px 30px;
-        gap: 5rem;
       }
 
       h1 {
@@ -32,23 +35,28 @@ div.page-register-environment {
         font-weight: 600;
         color: $black;
 
-        @include breakpoint(sm) {
+        @include breakpoint(md) {
           font-size: 24px;
-          line-height: 28px;
+          line-height: 30px;
+        }
+      
+        @include breakpoint(sm) {
+          font-size: 20px;
+          line-height: 26px;
         }
       }
 
-      div.content-form-environment {
+      div.content-form-register-environment {
         display: flex;
         justify-content: center;
+        width: 100%;
 
         form {
           display: flex;
           flex-direction: column;
-
-          @include breakpoint(sm) {
-            width: 100%;
-          }
+          width: 100%;
+          max-width: 370px;
+          
 
           textarea {
             width: 370px;
@@ -62,6 +70,10 @@ div.page-register-environment {
             font-size: 16px;
             line-height: 16px;
             resize: none;
+
+            &.field-error {
+              outline: 1px solid #f34542 !important;
+            }
         
             @include breakpoint(lg) {
               width: 100%;
@@ -77,12 +89,12 @@ div.page-register-environment {
             }
           }
 
-          div.form-button-environment {
+          div.form-button-register-environment {
             display: flex;
             justify-content: flex-end;
           }
 
-          div.content-upload-environment {
+          div.content-upload-register-environment {
             display: flex;
             flex-direction: column;
             height: 150px;
@@ -104,7 +116,7 @@ div.page-register-environment {
               }
             }
 
-            div.image-upload-environment {
+            div.image-upload-register-environment {
               display: flex;
               justify-content: center;
               align-items: center;
@@ -112,11 +124,24 @@ div.page-register-environment {
               height: 100px;
               border: 1px dashed $primary;
               border-radius: 10px;
+              background-color: #EAEEF2;
+
+              label {
+                color: $primary;
+              }
+
+              svg {
+                width: 24px;
+                height: 24px;
+                color: $primary;
+              }
             }
 
-            div.button-upload-environment {
+            div.button-upload-register-environment {
               display: flex;
               flex-direction: column;
+              justify-content: center;
+              align-items: center;
             }
           }
         }

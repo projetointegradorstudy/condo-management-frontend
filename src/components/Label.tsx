@@ -8,7 +8,7 @@ interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
 
 export function Label({ title, isUploadFile, ...props }: LabelProps) {
   return (
-    <label {...props} className={`input ${isUploadFile ? 'isUploadFile' : ''}`}>
+    <label {...props} className={`label ${isUploadFile ? 'isUploadFile' : ''}`}>
       {title}
     </label>
   );
