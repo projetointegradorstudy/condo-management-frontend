@@ -1,4 +1,4 @@
-import { X, CheckCircle, WarningCircle } from 'phosphor-react';
+import { X, CheckCircle, WarningCircle, XCircle } from 'phosphor-react';
 import { Button } from './Button';
 import { Input } from './Input';
 import { Label } from './Label';
@@ -6,13 +6,13 @@ import { createUser } from '../services/api';
 import { useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
 import { Spinner } from './Spinner';
-import { createUserMessages } from '../interfaces';
+import { IResultRequest, createUserMessages } from '../interfaces';
 import '../styles/create-user-modal.scss';
 
 export function CreateUserModal() {
   const [isEmail, setIsEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isMessage, setIsMessage] = useState('');
+  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const { isOpenCreateUserModal, setIsOpenCreateUserModal, handleInputErros, handleInputErrosClean, setIsNeedRefresh } =
     getContext();
 
@@ -21,21 +21,25 @@ export function CreateUserModal() {
     setIsLoading(true);
     await createUser({ email: isEmail })
       .then((res) => {
-        setIsMessage(createUserMessages[res.data.message]);
-        if (res.status === 201) setIsNeedRefresh(true);
+        if (res.status === 201) {
+          setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle /> });
+          setIsNeedRefresh(true);
+          return;
+        }
+        setIsResult({ message: createUserMessages[res.data.message], icon: <WarningCircle /> });
       })
       .catch((e) => {
-        setIsMessage(createUserMessages[e.response.data.message]);
+        setIsResult({ message: createUserMessages[e.response.data.message], icon: <XCircle /> });
       });
 
     setIsLoading(false);
   };
 
-  useEffect(() => {}, [isMessage, isLoading]);
+  useEffect(() => {}, [isResult, isLoading]);
 
   const handleCloser = () => {
     setIsOpenCreateUserModal(false);
-    setIsMessage('');
+    setIsResult(null);
     setIsLoading(false);
   };
 
@@ -49,7 +53,7 @@ export function CreateUserModal() {
             </button>
           </div>
           {isLoading && <Spinner />}
-          {!isMessage && (
+          {!isResult?.message && (
             <div className="modal-create-content">
               <div className="modal-create-message">
                 <h4>Adicionar usuário</h4>
@@ -79,11 +83,11 @@ export function CreateUserModal() {
             </div>
           )}
 
-          {isMessage && (
+          {isResult?.message && (
             <div className="modal-create-content-feedback">
-              <CheckCircle />
+              {isResult.icon}
 
-              <span>{isMessage}</span>
+              <span>{isResult?.message}</span>
 
               <div className="modal-create-form-button">
                 <Button title="Fechar" onClick={handleCloser} isCancel />

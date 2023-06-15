@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ICreateUser, IAuthProps } from '../interfaces/index';
+import { ICreateUser, IAuthProps, IEditUserModal } from '../interfaces/index';
 
 export const api = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}` });
 
@@ -14,6 +14,10 @@ export async function createUser(createUserDto: ICreateUser) {
 
 export async function getUsers() {
   return api.get('/users');
+}
+
+export async function adminUpdateUser(id: string, updateDto: Partial<IEditUserModal>) {
+  return api.patch(`/users/admin/${id}/update`, updateDto);
 }
 
 export async function deleteUser(id: string) {
