@@ -1,4 +1,6 @@
-export enum Role {
+import { ReactElement } from 'react';
+
+export enum Roles {
   USER = 'user',
   ADMIN = 'admin',
 }
@@ -23,7 +25,7 @@ export interface IUser {
   email: string;
   password: string;
   passwordConfirmation: string;
-  role: Role;
+  role: Roles;
   is_active: boolean;
   partial_token: string;
   created_at: string;
@@ -47,11 +49,12 @@ export interface IDeleteModal {
 }
 
 export interface IEditUserModal {
+  id: string;
   avatar: string;
   password: string;
   passwordConfirmation: string;
   created_at: string;
-  role: Role;
+  role: Roles;
 }
 
 export interface IEditEnvironmentModal {
@@ -63,7 +66,7 @@ export interface IEditEnvironmentModal {
 }
 
 export const createUserMessages: { [key: string]: string } = {
-  'user created successfully': 'Email cadastrado com sucesso.',
+  'User created successfully': 'Email cadastrado com sucesso.',
   'This email exist on our databases, an email with confirmate instructions will be sent':
     'Email previamente cadastrado, instruções serão enviadas para cadastro de senha.',
   "There's an email conflict": 'Email já existe.',
@@ -79,3 +82,8 @@ export const deleteMessages: { [key: string]: string } = {
 export const loginMessages: { [key: string]: string } = {
   'Wrong email': 'Email e senha incorretos.',
 };
+
+export interface IResultRequest {
+  message: string;
+  icon: ReactElement;
+}

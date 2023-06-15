@@ -1,7 +1,7 @@
 import { PencilSimpleLine, Trash } from 'phosphor-react';
 import avatarDefault from '../assets/avatar-default.png';
 import { getContext } from '../utils/context-import';
-import { IDataElementProps, IDeleteModal, IEditUserModal, IUser, Role } from '../interfaces';
+import { IDataElementProps, IDeleteModal, IEditUserModal, IUser, Roles } from '../interfaces';
 import { DeleteModal } from './DeleteModal';
 import { EditUserModal } from './EditUserModal';
 import { CreateUserModal } from './CreateUserModal';
@@ -10,11 +10,12 @@ import { useState } from 'react';
 export function UserTable({ data }: IDataElementProps<IUser[]>) {
   const [isPosition, setIsPosition] = useState<IDeleteModal>({ id: '', name: '' });
   const [isEditPosition, setIsEditPosition] = useState<IEditUserModal>({
+    id: '',
     avatar: '',
     password: '',
     passwordConfirmation: '',
     created_at: '',
-    role: Role.ADMIN || Role.USER,
+    role: Roles.USER,
   });
   const userFields = ['Avatar', 'Nome', 'Email', 'Tipo', 'Ativo', 'Data de registro', ''];
   const { setIsOpenEditModal, setIsOpenDeletModal, formatDate } = getContext();
@@ -59,6 +60,7 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                         onClick={() => {
                           setIsPosition({ id: user.id, name: user.email });
                           setIsEditPosition({
+                            id: user.id,
                             avatar: user.avatar,
                             password: user.password,
                             passwordConfirmation: user.passwordConfirmation,
@@ -87,8 +89,9 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
       </table>
       <DeleteModal id={isPosition?.id} name={isPosition?.name} />
       <EditUserModal
-        avatar={isEditPosition?.avatar}
-        password={isEditPosition?.password}
+        id={isEditPosition.id}
+        avatar={isEditPosition.avatar}
+        password={isEditPosition.password}
         passwordConfirmation={isEditPosition.passwordConfirmation}
         created_at={isEditPosition.created_at}
         role={isEditPosition.role}
