@@ -1,35 +1,39 @@
-import { CheckCircle, X } from 'phosphor-react';
+import { CheckCircle, WarningCircle, X, XCircle } from 'phosphor-react';
 import { Button } from './Button';
 import '../styles/delete-user-modal.scss';
 import { getContext } from '../utils/context-import';
-import { IDeleteModal, deleteMessages } from '../interfaces';
+import { IDeleteModal, IResultRequest, deleteMessages } from '../interfaces';
 import { deleteUser } from '../services/api';
 import { useEffect, useState } from 'react';
 import { Spinner } from './Spinner';
 
 export function DeleteModal({ id, name }: IDeleteModal) {
   const [isLoading, setIsLoading] = useState(false);
-  const [isMessage, setIsMessage] = useState('');
+  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const { isOpenDeleteModal, setIsOpenDeletModal, setIsNeedRefresh } = getContext();
 
   const handleDeleteUser = async () => {
     setIsLoading(true);
     await deleteUser(id)
       .then((res) => {
-        setIsMessage(deleteMessages[res.data.message]);
-        if (res.status === 200) setIsNeedRefresh(true);
+        if (res.status === 200) {
+          setIsResult({ message: deleteMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
+          setIsNeedRefresh(true);
+          return;
+        }
+        setIsResult({ message: deleteMessages[res.data.message], icon: <WarningCircle color="#ffc107" /> });
       })
       .catch((e) => {
-        setIsMessage(deleteMessages[e.response.data.message]);
+        setIsResult({ message: deleteMessages[e.data.message], icon: <XCircle color="#f34542" /> });
       });
     setIsLoading(false);
   };
 
-  useEffect(() => {}, [isMessage, isLoading]);
+  useEffect(() => {}, [isResult, isLoading]);
 
   const handleCloser = () => {
     setIsOpenDeletModal(false);
-    setIsMessage('');
+    setIsResult(null);
     setIsLoading(false);
   };
 
@@ -44,7 +48,7 @@ export function DeleteModal({ id, name }: IDeleteModal) {
           </div>
 
           {isLoading && <Spinner />}
-          {!isMessage && (
+          {!isResult && (
             <div className="modal-delete-content">
               <div className="modal-delete-message">
                 <h4>
@@ -59,11 +63,11 @@ export function DeleteModal({ id, name }: IDeleteModal) {
               </div>
             </div>
           )}
-          {isMessage && (
+          {isResult && (
             <div className="modal-delete-content-feedback">
-              <CheckCircle />
+              {isResult.icon}
 
-              <span>{isMessage}</span>
+              <span>{isResult.message}</span>
 
               <div className="modal-delete-form-button">
                 <Button title="Fechar" onClick={handleCloser} isCancel />
