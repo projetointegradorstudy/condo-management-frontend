@@ -79,8 +79,8 @@ export const deleteMessages: { [key: string]: string } = {
   'Validation failed (uuid is expected)': 'ID inválido.',
 };
 
-export const loginMessages: { [key: string]: string } = {
-  'Wrong email': 'Email e senha incorretos.',
+export const createPasswordMessages: { [key: string]: string } = {
+  'Invalid token': 'Token expirado.',
 };
 
 export interface IResultRequest {
