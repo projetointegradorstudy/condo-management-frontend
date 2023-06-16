@@ -10,6 +10,7 @@ import { ListEnvironments } from '../pages/ListEnvironments';
 import { RegisterEnvironment } from '../pages/RegisterEnvironment';
 import { ConfirmUser } from '../pages/ConfirmUser';
 import { ForgotPassaword } from '../pages/ForgotPassaword';
+import { RecoverPassword } from '../pages/RecoverPassword';
 
 export function AppRoutes() {
   const getContext = (): any => {
@@ -56,6 +57,14 @@ export function AppRoutes() {
             element={
               <IsLoggedOut>
                 <ConfirmUser />
+              </IsLoggedOut>
+            }
+          />
+          <Route
+            path="/recover-password"
+            element={
+              <IsLoggedOut>
+                <RecoverPassword />
               </IsLoggedOut>
             }
           />
