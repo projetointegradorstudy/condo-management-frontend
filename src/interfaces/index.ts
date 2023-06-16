@@ -48,7 +48,7 @@ export interface IDeleteModal {
   name: string;
 }
 
-export interface IEditUserModal {
+export interface IEditUser {
   id: string;
   avatar: string;
   password: string;
@@ -57,7 +57,7 @@ export interface IEditUserModal {
   role: Roles;
 }
 
-export interface IEditEnvironmentModal {
+export interface IEditEnvironment {
   name: string;
   description: string;
   status: string;
@@ -86,4 +86,23 @@ export const loginMessages: { [key: string]: string } = {
 export interface IResultRequest {
   message: string;
   icon: ReactElement;
+}
+
+export class Form {
+  private formValues: Partial<IEditUser> = {};
+
+  get(): Partial<IEditUser> {
+    return this.formValues;
+  }
+
+  set(prop: Partial<IEditUser>): void {
+    const newFormValues: Partial<IEditUser> = { ...this.formValues };
+    for (const key in prop) {
+      newFormValues[key] = prop[key];
+      if (!prop[key].length) {
+        delete newFormValues[key];
+      }
+    }
+    this.formValues = newFormValues;
+  }
 }

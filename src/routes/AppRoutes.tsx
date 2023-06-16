@@ -18,9 +18,9 @@ export function AppRoutes() {
     return context;
   };
   const IsLoggedOut = ({ children }: Iprops) => {
-    const { token, isAuthenticated } = getContext();
-    if (isAuthenticated && token) return <Navigate to="/dashboard-admin" replace />;
-
+    const { isAdmin, token, isAuthenticated } = getContext();
+    if (isAuthenticated && token && !isAdmin) return <Navigate to="/menu-user" replace />;
+    if (isAuthenticated && token && isAdmin) return <Navigate to="/dashboard-admin" replace />;
     return <>{children}</>;
   };
 

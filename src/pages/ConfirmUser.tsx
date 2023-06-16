@@ -7,20 +7,43 @@ import { CheckCircle, Spinner } from 'phosphor-react';
 import navigatorA479 from '../assets/undraw_navigator_a479.svg';
 import { Footer } from '../components/Footer';
 import '../styles/confirm-user.scss';
+import { useLocation } from 'react-router';
+import { Form } from '../interfaces';
+import { createUserPassword } from '../services/api';
 
 export function ConfirmUser() {
   const [isLoading, setIsLoading] = useState(false);
   const [isMessage, setIsMessage] = useState('');
-  const { handleInputErros, handleInputErrosClean } = getContext();
+  const { setToken, setIsAuthenticated, handleInputErros, handleInputErrosClean } = getContext();
+  const location = useLocation();
+  const form = new Form();
+
+  const getToken = (): string => {
+    return new URLSearchParams(location.search).get('token')?.trim() || '';
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    //
+
+    await createUserPassword(getToken(), form.get())
+      .then((res) => {
+        console.log(res);
+        // if (res.status === 201) {
+        //   setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle /> });
+        //   setIsNeedRefresh(true);
+        //   return;
+        // }
+        setToken(res.data.access_token);
+        setIsAuthenticated(true);
+      })
+      .catch((e) => {
+        console.log(e.response.data.message);
+      });
     setIsLoading(false);
   };
 
-  useEffect(() => {}, [isMessage, isLoading]);
+  useEffect(() => {}, [isLoading, isMessage]);
 
   return (
     <div className="page-confirm-user">
@@ -56,6 +79,7 @@ export function ConfirmUser() {
                 placeholder="Insira a sua senha"
                 onChange={(e) => {
                   handleInputErrosClean(e);
+                  form.set({ password: e.target.value });
                 }}
                 required
                 onInvalid={handleInputErros}
@@ -68,6 +92,7 @@ export function ConfirmUser() {
                 placeholder="Confirme a sua senha"
                 onChange={(e) => {
                   handleInputErrosClean(e);
+                  form.set({ passwordConfirmation: e.target.value });
                 }}
                 required
                 onInvalid={handleInputErros}

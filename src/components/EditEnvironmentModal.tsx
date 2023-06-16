@@ -3,11 +3,11 @@ import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { IEditEnvironmentModal } from '../interfaces';
+import { IEditEnvironment } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
 import '../styles/edit-environment-modal.scss';
 
-export function EditEnvironmentModal({ name, description, status, image, capacity }: IEditEnvironmentModal) {
+export function EditEnvironmentModal({ name, description, status, image, capacity }: IEditEnvironment) {
   const { isOpenEditModal, setIsOpenEditModal } = getContext();
   if (isOpenEditModal) {
     return (
