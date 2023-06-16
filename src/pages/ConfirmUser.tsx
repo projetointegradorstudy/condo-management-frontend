@@ -3,24 +3,48 @@ import { Button } from '../components/Button';
 import { InputPassword } from '../components/InputPassword';
 import { Label } from '../components/Label';
 import { getContext } from '../utils/context-import';
-import { CheckCircle, Spinner } from 'phosphor-react';
+import { CheckCircle, Spinner, XCircle } from 'phosphor-react';
 import navigatorA479 from '../assets/undraw_navigator_a479.svg';
 import { Footer } from '../components/Footer';
 import '../styles/confirm-user.scss';
+import { useLocation } from 'react-router';
+import { Form, IResultRequest, createPasswordMessages } from '../interfaces';
+import { createUserPassword } from '../services/api';
 
 export function ConfirmUser() {
   const [isLoading, setIsLoading] = useState(false);
-  const [isMessage, setIsMessage] = useState('');
-  const { handleInputErros, handleInputErrosClean } = getContext();
+  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const { setToken, setIsAuthenticated, handleInputErros, handleInputErrosClean } = getContext();
+  const location = useLocation();
+  const form = new Form();
+
+  const getToken = (): string => {
+    return new URLSearchParams(location.search).get('token')?.trim() || '';
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    //
+
+    await createUserPassword(getToken(), form.get())
+      .then((res) => {
+        console.log(res);
+        // if (res.status === 201) {
+        //   setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle /> });
+        //   setIsNeedRefresh(true);
+        //   return;
+        // }
+        setToken(res.data.access_token);
+        setIsAuthenticated(true);
+      })
+      .catch((e) => {
+        setIsResult({ message: createPasswordMessages[e.response.data.message], icon: <XCircle color="#f34542" /> });
+        console.log(e.response.data.message);
+      });
     setIsLoading(false);
   };
 
-  useEffect(() => {}, [isMessage, isLoading]);
+  useEffect(() => {}, [isLoading, isResult]);
 
   return (
     <div className="page-confirm-user">
@@ -45,7 +69,7 @@ export function ConfirmUser() {
           </h1>
         </div>
         {isLoading && <Spinner />}
-        {!isMessage && (
+        {!isResult && (
           <div className="page-confirm-user-form">
             <h4>Cadastre sua senha</h4>
             <form onSubmit={handleSubmit}>
@@ -56,6 +80,7 @@ export function ConfirmUser() {
                 placeholder="Insira a sua senha"
                 onChange={(e) => {
                   handleInputErrosClean(e);
+                  form.set({ password: e.target.value });
                 }}
                 required
                 onInvalid={handleInputErros}
@@ -68,6 +93,7 @@ export function ConfirmUser() {
                 placeholder="Confirme a sua senha"
                 onChange={(e) => {
                   handleInputErrosClean(e);
+                  form.set({ passwordConfirmation: e.target.value });
                 }}
                 required
                 onInvalid={handleInputErros}
@@ -80,11 +106,11 @@ export function ConfirmUser() {
           </div>
         )}
 
-        {isMessage && (
+        {isResult && (
           <div className="page-confirm-user-feedback">
-            <CheckCircle />
+            {isResult.icon}
 
-            <span>{isMessage}</span>
+            <span>{isResult.message}</span>
           </div>
         )}
         <Footer />

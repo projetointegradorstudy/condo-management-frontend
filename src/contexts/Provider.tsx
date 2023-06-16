@@ -5,6 +5,7 @@ import { api, auth } from '../services/api';
 import { GlobalContext } from './GlobalContext';
 import useStorage from '../utils/useStorage';
 import { IAuthProps } from '../interfaces/index';
+import { AxiosError } from 'axios';
 
 export interface Iprops {
   children: ReactNode;
@@ -33,21 +34,25 @@ export function GlobalProvider({ children }: Iprops) {
   useEffect(() => {
     if ((decodedToken as { user: { role: string } })?.user?.role === 'admin') {
       setIsAdmin(true);
+      navigate('/dashboard-admin');
     } else if ((decodedToken as { user: { role: string } })?.user?.role === 'user') {
       setIsUser(true);
+      navigate('/menu-user');
     }
-  }, [decodedToken, setIsAdmin]);
+  }, [decodedToken, token]);
 
   async function signin(credentials: IAuthProps) {
-    const data = await auth(credentials)
+    const result = await auth(credentials)
       .then((res) => {
+        setToken(res.data?.access_token);
+        setIsAuthenticated(true);
         api.defaults.headers.Authorization = `Bearer ${res.data.access_token}`;
-        return { data: res.data, success: true } as { success: boolean; data: any };
+        return { result: true, message: 'Login succeed' };
       })
       .catch((e) => {
-        return { data: e.response, success: false } as { success: boolean; data: any };
+        return { result: false, message: e.response?.data.message };
       });
-    return data;
+    return result;
   }
 
   async function signout() {

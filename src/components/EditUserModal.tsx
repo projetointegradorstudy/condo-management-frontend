@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { X } from 'phosphor-react';
 import Select from 'react-select';
-import { IEditUserModal, Roles } from '../interfaces';
+import { IEditUser, Roles } from '../interfaces';
 import { adminUpdateUser } from '../services/api';
 import { getContext } from '../utils/context-import';
 import { Label } from './Label';
@@ -11,16 +11,16 @@ import { InputPassword } from './InputPassword';
 import avatarDefault from '../assets/avatar-default.png';
 import '../styles/edit-user-modal.scss';
 
-export function EditUserModal({ id, avatar, password, passwordConfirmation, created_at, role }: IEditUserModal) {
+export function EditUserModal({ id, avatar, password, passwordConfirmation, created_at, role }: IEditUser) {
   const { isOpenEditModal, setIsOpenEditModal, formatDate, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(false);
-  const [isRoleField, setIsRoleField] = useState<Partial<IEditUserModal>>({
+  const [isRoleField, setIsRoleField] = useState<Partial<IEditUser>>({
     role,
   });
-  const [isFormValue, setIsFormValue] = useState<Partial<IEditUserModal>>();
-  const newFormValues: Partial<IEditUserModal> = { ...isFormValue };
+  const [isFormValue, setIsFormValue] = useState<Partial<IEditUser>>();
+  const newFormValues: Partial<IEditUser> = { ...isFormValue };
 
-  const setFormValue = (prop: Partial<IEditUserModal>): void => {
+  const setFormValue = (prop: Partial<IEditUser>): void => {
     for (const key in prop) {
       newFormValues[`${key}`] = prop[key];
       if (!prop[key].length) delete newFormValues[`${key}`];

@@ -1,6 +1,6 @@
 import { PencilSimpleLine, Trash } from 'phosphor-react';
 import { getContext } from '../utils/context-import';
-import { IDataElementProps, IDeleteModal, IEditEnvironmentModal, IEnvironment } from '../interfaces';
+import { IDataElementProps, IDeleteModal, IEditEnvironment, IEnvironment } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
 import { DeleteModal } from './DeleteModal';
 import { EditEnvironmentModal } from './EditEnvironmentModal';
@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
   const [isPosition, setIsPosition] = useState<IDeleteModal>({ id: '', name: '' });
-  const [isEditPosition, setIsEditPosition] = useState<IEditEnvironmentModal>({
+  const [isEditPosition, setIsEditPosition] = useState<IEditEnvironment>({
     name: '',
     description: '',
     status: '',

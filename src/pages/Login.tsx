@@ -14,19 +14,13 @@ export function Login() {
   const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-  const { signin, setToken, setIsAuthenticated, handleInputErros, handleInputErrosClean } = getContext();
+  const { signin, handleInputErros, handleInputErrosClean } = getContext();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    const res = await signin({ email, password });
+    await signin({ email, password });
 
-    if (res.success && res.data?.access_token) {
-      setToken(res.data?.access_token);
-      setIsAuthenticated(true);
-      navigate('/dashboard-admin');
-    }
     setIsLoading(false);
   };
 
