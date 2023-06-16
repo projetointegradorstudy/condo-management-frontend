@@ -1,14 +1,15 @@
+import { useState } from 'react';
 import { X } from 'phosphor-react';
+import Select from 'react-select';
+import { IEditUserModal, Roles } from '../interfaces';
+import { adminUpdateUser } from '../services/api';
+import { getContext } from '../utils/context-import';
 import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
 import { InputPassword } from './InputPassword';
-import { getContext } from '../utils/context-import';
-import { IEditUserModal, Roles } from '../interfaces';
 import avatarDefault from '../assets/avatar-default.png';
 import '../styles/edit-user-modal.scss';
-import { useState } from 'react';
-import { adminUpdateUser } from '../services/api';
 
 export function EditUserModal({ id, avatar, password, passwordConfirmation, created_at, role }: IEditUserModal) {
   const { isOpenEditModal, setIsOpenEditModal, formatDate, setIsNeedRefresh } = getContext();
@@ -44,6 +45,8 @@ export function EditUserModal({ id, avatar, password, passwordConfirmation, crea
       .catch(() => {});
     setIsLoading(false);
   };
+
+  const option = Object;
 
   if (isOpenEditModal) {
     return (
@@ -82,6 +85,7 @@ export function EditUserModal({ id, avatar, password, passwordConfirmation, crea
               <Input name="register" id="register" type="text" disabled placeholder={formatDate(created_at)} />
 
               <Label title="Regra" htmlFor="role" />
+
               <select
                 value={isRoleField.role}
                 name="role"

@@ -22,14 +22,14 @@ export function CreateUserModal() {
     await createUser({ email: isEmail })
       .then((res) => {
         if (res.status === 201) {
-          setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle /> });
+          setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
           setIsNeedRefresh(true);
           return;
         }
-        setIsResult({ message: createUserMessages[res.data.message], icon: <WarningCircle /> });
+        setIsResult({ message: createUserMessages[res.data.message], icon: <WarningCircle color="#ffc107" /> });
       })
       .catch((e) => {
-        setIsResult({ message: createUserMessages[e.response.data.message], icon: <XCircle /> });
+        setIsResult({ message: createUserMessages[e.response.data.message], icon: <XCircle color="#f34542" /> });
       });
 
     setIsLoading(false);
@@ -39,6 +39,12 @@ export function CreateUserModal() {
 
   const handleCloser = () => {
     setIsOpenCreateUserModal(false);
+    setIsResult(null);
+    setIsLoading(false);
+  };
+
+  const handleRefresh = () => {
+    setIsOpenCreateUserModal(true);
     setIsResult(null);
     setIsLoading(false);
   };
@@ -91,7 +97,7 @@ export function CreateUserModal() {
 
               <div className="modal-create-form-button">
                 <Button title="Fechar" onClick={handleCloser} isCancel />
-                <Button title="Adicionar novo" type="submit" />
+                <Button title="Adicionar novo" onClick={handleRefresh} />
               </div>
             </div>
           )}

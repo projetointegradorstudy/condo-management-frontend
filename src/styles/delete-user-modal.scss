@@ -96,7 +96,6 @@ div.modal-delete-background {
       svg {
         width: 60px;
         height: 60px;
-        color: $green;
     
         @include breakpoint(sm) {
           width: 40px;
