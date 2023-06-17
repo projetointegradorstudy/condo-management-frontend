@@ -3,8 +3,6 @@ import { Login } from '../pages/Login';
 import { MenuAdmin } from '../pages/MenuAdmin';
 import { MenuUser } from '../pages/MenuUser';
 import { GlobalProvider } from '../contexts/Provider';
-import { useContext } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
 import { ListUsers } from '../pages/ListUsers';
 import { ListEnvironments } from '../pages/ListEnvironments';
 import { RegisterEnvironment } from '../pages/RegisterEnvironment';
@@ -12,13 +10,9 @@ import { ConfirmUser } from '../pages/ConfirmUser';
 import { ForgotPassaword } from '../pages/ForgotPassaword';
 import { RecoverPassword } from '../pages/RecoverPassword';
 import { Iprops } from '../interfaces';
+import { getContext } from '../utils/context-import';
 
 export function AppRoutes() {
-  const getContext = (): any => {
-    const context = useContext(GlobalContext);
-    if (!context) return null;
-    return context;
-  };
   const IsLoggedOut = ({ children }: Iprops) => {
     const { isAdmin, token, isAuthenticated } = getContext();
     if (isAuthenticated && token && !isAdmin) return <Navigate to="/menu-user" replace />;

@@ -83,6 +83,10 @@ export const createPasswordMessages: { [key: string]: string } = {
   'Invalid token': 'Token expirado.',
 };
 
+export const editUserMessages: { [key: string]: string } = {
+  OK: 'Usuário atualizado com sucesso.',
+};
+
 export interface IResultRequest {
   message: string;
   icon: ReactElement;
