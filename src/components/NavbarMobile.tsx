@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   House,
@@ -12,27 +12,23 @@ import {
   PencilSimpleLine,
   ListBullets,
 } from 'phosphor-react';
-import { GlobalContext } from '../contexts/GlobalContext';
 import '../styles/navbar-mobile.scss';
 import { getContext } from '../utils/context-import';
 import avatarDefault from '../assets/avatar-default.png';
 
 export function NavbarMobile() {
   const [isOpen, setIsOpen] = useState(false);
-  const context = useContext(GlobalContext);
-
-  if (!context) return null;
-
-  const { signout, isAdmin } = context;
+  const { isAdmin, isMyselfData, isNeedRefresh, setIsNeedRefresh, getUserData, signout } = getContext();
 
   const handleSubmit = () => {
     signout();
   };
 
-  const { isMyselfData, isNeedRefresh, getUserData } = getContext();
-
   useEffect(() => {
-    getUserData();
+    if (isNeedRefresh) {
+      getUserData();
+      setIsNeedRefresh(false);
+    }
   }, [isNeedRefresh]);
 
   const navItemsAdmin = [

@@ -26,11 +26,11 @@ const cardItems = [
 ];
 
 export function MenuAdmin() {
-  const { isMyselfData, isNeedRefresh, getUserData } = getContext();
+  const { isMyselfData, getUserData } = getContext();
 
   useEffect(() => {
     getUserData();
-  }, [isNeedRefresh]);
+  }, []);
 
   return (
     <div className="page-menu-admin">

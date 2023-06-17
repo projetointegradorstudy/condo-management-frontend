@@ -2,22 +2,22 @@ import { Sidebar } from '../components/Sidebar';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { CardEnvironment } from '../components/CardEnvironment';
 import { IEnvironment } from '../interfaces';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getEnvironments } from '../services/api';
-import { GlobalContext } from '../contexts/GlobalContext';
 import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
 import { Footer } from '../components/Footer';
 import '../styles/menu-user.scss';
+import { getContext } from '../utils/context-import';
 
 export function MenuUser() {
   const [environments, setEnvironments] = useState<IEnvironment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const context = useContext(GlobalContext);
+  const { isUser, isMyselfData, getUserData } = getContext();
 
-  if (!context) return null;
-
-  const { isUser } = context;
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   useEffect(() => {
     if (isLoading && isUser)
@@ -40,7 +40,7 @@ export function MenuUser() {
           <h1>
             Seja bem-vindo(a),
             <br />
-            <b>UserName</b>
+            <b>{isMyselfData?.name || isMyselfData?.email}</b>
           </h1>
         </div>
         <div className="content-title-user">
