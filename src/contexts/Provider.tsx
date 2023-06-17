@@ -1,15 +1,10 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
-import { api, auth } from '../services/api';
+import { api, auth, getMyself } from '../services/api';
 import { GlobalContext } from './GlobalContext';
 import useStorage from '../utils/useStorage';
-import { IAuthProps } from '../interfaces/index';
-import { AxiosError } from 'axios';
-
-export interface Iprops {
-  children: ReactNode;
-}
+import { IAuthProps, IResult, IUser, Iprops } from '../interfaces/index';
 
 export function GlobalProvider({ children }: Iprops) {
   const [token, setToken, removeToken] = useStorage('token');
@@ -20,6 +15,7 @@ export function GlobalProvider({ children }: Iprops) {
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeletModal] = useState(false);
   const [isOpenCreateUserModal, setIsOpenCreateUserModal] = useState(false);
+  const [isMyselfData, setIsMyselfData] = useState<IUser | null>(null);
   const { decodedToken } = useJwt(token);
   const navigate = useNavigate();
 
@@ -41,7 +37,7 @@ export function GlobalProvider({ children }: Iprops) {
     }
   }, [decodedToken, token]);
 
-  async function signin(credentials: IAuthProps) {
+  async function signin(credentials: IAuthProps): Promise<IResult> {
     const result = await auth(credentials)
       .then((res) => {
         setToken(res.data?.access_token);
@@ -55,7 +51,7 @@ export function GlobalProvider({ children }: Iprops) {
     return result;
   }
 
-  async function signout() {
+  async function signout(): Promise<void> {
     api.defaults.headers.Authorization = null;
     removeToken();
     removeIsAuthenticated();
@@ -64,7 +60,16 @@ export function GlobalProvider({ children }: Iprops) {
     navigate('/');
   }
 
-  function formatDate(date: string) {
+  async function getUserData(): Promise<void> {
+    await getMyself()
+      .then((res) => {
+        console.log(res.data);
+        setIsMyselfData(res.data);
+      })
+      .catch((e) => {});
+  }
+
+  function formatDate(date: string): string {
     const locale = navigator.language || 'pt-BR';
     return Intl.DateTimeFormat(locale, {
       timeZone: 'America/Recife',
@@ -76,16 +81,16 @@ export function GlobalProvider({ children }: Iprops) {
     }).format(new Date(date));
   }
 
-  const handleInputErros = (e: any) => {
+  const handleInputErros = (e: any): void => {
     const input: HTMLInputElement = e.target;
     input.setCustomValidity("It can't be empty");
     input.classList.add('field-error');
   };
 
-  const handleInputErrosClean = (e: any) => {
+  const handleInputErrosClean = (e: any): void => {
     const input: HTMLInputElement = e.target;
-    e.target.setCustomValidity('');
-    e.target.classList.remove('field-error');
+    input.setCustomValidity('');
+    input.classList.remove('field-error');
   };
 
   return (
@@ -107,8 +112,11 @@ export function GlobalProvider({ children }: Iprops) {
         setIsOpenDeletModal,
         isOpenCreateUserModal,
         setIsOpenCreateUserModal,
+        isMyselfData,
+        setIsMyselfData,
         signin,
         signout,
+        getUserData,
         formatDate,
         handleInputErros,
         handleInputErrosClean,

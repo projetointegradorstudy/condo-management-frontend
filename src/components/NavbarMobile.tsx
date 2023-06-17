@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   House,
@@ -14,6 +14,8 @@ import {
 } from 'phosphor-react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import '../styles/navbar-mobile.scss';
+import { getContext } from '../utils/context-import';
+import avatarDefault from '../assets/avatar-default.png';
 
 export function NavbarMobile() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +28,12 @@ export function NavbarMobile() {
   const handleSubmit = () => {
     signout();
   };
+
+  const { isMyselfData, isNeedRefresh, getUserData } = getContext();
+
+  useEffect(() => {
+    getUserData();
+  }, [isNeedRefresh]);
 
   const navItemsAdmin = [
     {
@@ -82,7 +90,8 @@ export function NavbarMobile() {
         <div>
           <ul style={{ transform: isOpen ? 'translateY(100%)' : 'translateY(0)' }}>
             <div className="profile">
-              <img src="https://github.com/projetointegradorstudy.png" alt="avatar" />
+              <img src={isMyselfData?.avatar || avatarDefault} alt="avatar" />
+              <strong>{isMyselfData?.name || isMyselfData?.email}</strong>
             </div>
             <div className="navbar-items">
               {navItems.map((navItem) => (
@@ -95,13 +104,9 @@ export function NavbarMobile() {
               ))}
             </div>
             <div className="sidebar-list-logout" style={{ width: isAdmin ? '188px' : '115px' }}>
-              <button
-                className="sidebar-button-logout"
-                onClick={handleSubmit}
-                style={{ justifyContent: isOpen ? '' : 'center' }}
-              >
+              <button className="sidebar-button-logout" onClick={handleSubmit}>
                 <SignOut size={16} />
-                <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
+                <span>Sair</span>
               </button>
             </div>
           </ul>
