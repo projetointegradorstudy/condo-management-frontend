@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { Login } from '../pages/Login';
 import { MenuAdmin } from '../pages/MenuAdmin';
 import { MenuUser } from '../pages/MenuUser';
-import { GlobalProvider, Iprops } from '../contexts/Provider';
+import { GlobalProvider } from '../contexts/Provider';
 import { useContext } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import { ListUsers } from '../pages/ListUsers';
@@ -11,6 +11,7 @@ import { RegisterEnvironment } from '../pages/RegisterEnvironment';
 import { ConfirmUser } from '../pages/ConfirmUser';
 import { ForgotPassaword } from '../pages/ForgotPassaword';
 import { RecoverPassword } from '../pages/RecoverPassword';
+import { Iprops } from '../interfaces';
 
 export function AppRoutes() {
   const getContext = (): any => {

@@ -65,7 +65,15 @@ div.navbar-mobile {
           img {
             border-radius: 50%;
             width: 70px;
+            height: 70px;
             margin-bottom: 10px;
+            object-fit: cover;
+          }
+
+          strong {
+            color: $white;
+            font-size: 12px;
+            line-height: 16px;
           }
 
           h4 {
@@ -102,6 +110,7 @@ div.navbar-mobile {
             }
           }
         }
+        
         div.sidebar-list-logout {
           display: flex;
           margin: 0 auto;

@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 
 export enum Roles {
   USER = 'user',
@@ -105,4 +105,19 @@ export class Form {
     }
     this.formValues = newFormValues;
   }
+}
+
+export interface IResult {
+  result: boolean;
+  message: string;
+}
+
+export interface Iprops {
+  children: ReactNode;
+}
+
+export interface IStorageState<T> {
+  state: T;
+  set: (newValue: T) => void;
+  remove: () => void;
 }

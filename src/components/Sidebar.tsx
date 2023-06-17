@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   House,
   PlusCircle,
@@ -15,6 +15,8 @@ import '../styles/sidebar.scss';
 import LogoLg from '../assets/logo_lg.svg';
 import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../contexts/GlobalContext';
+import { getContext } from '../utils/context-import';
+import avatarDefault from '../assets/avatar-default.png';
 
 export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +32,12 @@ export function Sidebar() {
   const handleSubmit = () => {
     signout();
   };
+
+  const { isMyselfData, isNeedRefresh, getUserData } = getContext();
+
+  useEffect(() => {
+    getUserData();
+  }, [isNeedRefresh]);
 
   const navItemsAdmin = [
     {
@@ -92,10 +100,11 @@ export function Sidebar() {
 
       <div className="profile" style={{ margin: isOpen ? '30px 30px 4px' : '0px 10px 10px' }}>
         <img
-          src="https://github.com/projetointegradorstudy.png"
+          src={isMyselfData?.avatar || avatarDefault}
           alt="avatar"
           style={{ width: isOpen ? '60px' : '40px', height: isOpen ? '60px' : '40px' }}
         />
+        {isOpen && <strong>{isMyselfData?.name || isMyselfData?.email}</strong>}
       </div>
 
       <div className="middle-sidebar" style={{ alignItems: isOpen ? '' : 'center' }}>

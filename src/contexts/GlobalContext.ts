@@ -1,16 +1,10 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
-import { IAuthProps } from '../interfaces/index';
-
-interface StorageState<T> {
-  state: T;
-  set: (newValue: T) => void;
-  remove: () => void;
-}
+import { IAuthProps, IResult, IStorageState, IUser } from '../interfaces/index';
 
 export interface GlobalContextProps {
-  token: StorageState<string>;
+  token: IStorageState<string>;
   setToken: Dispatch<SetStateAction<string>>;
-  isAuthenticated: StorageState<boolean>;
+  isAuthenticated: IStorageState<boolean>;
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
   isNeedRefresh: boolean;
   setIsNeedRefresh: Dispatch<SetStateAction<boolean>>;
@@ -24,11 +18,14 @@ export interface GlobalContextProps {
   setIsOpenDeletModal: Dispatch<SetStateAction<boolean>>;
   isOpenCreateUserModal: boolean;
   setIsOpenCreateUserModal: Dispatch<SetStateAction<boolean>>;
-  signin: (credentials: IAuthProps) => Promise<{ success: boolean; data: any }>;
+  isMyselfData: IUser | null;
+  setIsMyselfData: Dispatch<SetStateAction<IUser | null>>;
+  signin: (credentials: IAuthProps) => Promise<IResult>;
   signout: () => void;
+  getUserData: () => void;
   formatDate: (date: string) => string;
   handleInputErros: (e: any) => void;
   handleInputErrosClean: (e: any) => void;
 }
 
-export const GlobalContext = createContext<GlobalContextProps | any>(null);
+export const GlobalContext: React.Context<GlobalContextProps> = createContext<GlobalContextProps | any>(null);

@@ -86,9 +86,21 @@ aside.desktop {
       border-radius: 50%;
       margin-bottom: 10px;
       transition: all 0.7s ease-in-out;
+      object-fit: cover;
 
       @include breakpoint(xl) {
         margin-bottom: 10px;
+      }
+    }
+
+    strong { 
+      color: $white;
+      font-size: 14px;
+      line-height: 20px;
+
+      @include breakpoint(sm) {
+        font-size: 12px;
+        line-height: 16px;
       }
     }
   }

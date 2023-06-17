@@ -4,6 +4,8 @@ import { Sidebar } from '../components/Sidebar';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Footer } from '../components/Footer';
 import '../styles/menu-admin.scss';
+import { useEffect } from 'react';
+import { getContext } from '../utils/context-import';
 
 const cardItems = [
   {
@@ -24,6 +26,12 @@ const cardItems = [
 ];
 
 export function MenuAdmin() {
+  const { isMyselfData, isNeedRefresh, getUserData } = getContext();
+
+  useEffect(() => {
+    getUserData();
+  }, [isNeedRefresh]);
+
   return (
     <div className="page-menu-admin">
       <div className="container-menu-admin">
@@ -34,7 +42,7 @@ export function MenuAdmin() {
             <h1>
               Seja bem-vindo(a),
               <br />
-              <b>UserName</b>
+              <b>{isMyselfData?.name || isMyselfData?.email}</b>
             </h1>
           </div>
           <div className="content-main">

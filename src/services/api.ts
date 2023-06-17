@@ -8,6 +8,10 @@ export async function auth(authprops: IAuthProps) {
 }
 
 /** USER CONTEXT */
+export async function getMyself() {
+  return api.get('/users/myself');
+}
+
 export async function createUser(createUserDto: ICreateUser) {
   return api.post('/users', createUserDto);
 }
