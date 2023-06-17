@@ -5,17 +5,13 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
+  height: 40px;
+  position: fixed;
   bottom: 0;
-  position: absolute;
  
   &.full {
     width: 100%;
     background-color: $gray-lightest;
-  }
-  
-  @include breakpoint(sm) {
-    height: 40px;
   }
 
   span {

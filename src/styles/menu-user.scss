@@ -84,7 +84,7 @@ div.page-menu-user {
     }
 
     @include breakpoint(sm) {
-      margin: 0px;
+      margin: 0px 0px 30px;
     }
 
     @include breakpoint(xs) {
