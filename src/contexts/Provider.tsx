@@ -35,7 +35,7 @@ export function GlobalProvider({ children }: Iprops) {
       setIsUser(true);
       navigate('/menu-user');
     }
-  }, [decodedToken, token]);
+  }, [decodedToken]);
 
   async function signin(credentials: IAuthProps): Promise<IResult> {
     const result = await auth(credentials)
@@ -63,7 +63,6 @@ export function GlobalProvider({ children }: Iprops) {
   async function getUserData(): Promise<void> {
     await getMyself()
       .then((res) => {
-        console.log(res.data);
         setIsMyselfData(res.data);
       })
       .catch((e) => {});
