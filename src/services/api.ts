@@ -20,6 +20,14 @@ export async function createUserPassword(token: string, createUserPasswordDto: P
   return api.patch(`/users/${token}/create-password`, createUserPasswordDto);
 }
 
+export async function forgotUserPassword(email: string) {
+  return api.patch(`/users/send-reset-email`, email);
+}
+
+export async function updateUser(updateDto: Partial<IEditUser>) {
+  return api.patch(`/users/myself/update`, updateDto);
+}
+
 export async function getUsers() {
   return api.get('/users');
 }
