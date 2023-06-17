@@ -26,26 +26,28 @@ export function ListEnvironments() {
   }, [isLoading]);
 
   return (
-    <div className="page-list-environments">
-      <div className="container-list-environments">
-        <Sidebar />
-        <NavbarMobile />
+    <>
+      <div className="page-list-environments">
+        <div className="container-list-environments">
+          <Sidebar />
+          <NavbarMobile />
 
-        <div className="content-list-environments">
-          <h1>Lista de ambientes</h1>
+          <div className="content-list-environments">
+            <h1>Lista de ambientes</h1>
 
-          <div className="content-list">
-            {environments?.length > 0 && !isLoading ? (
-              <EnvironmentTable data={environments} />
-            ) : environments?.length === 0 && isLoading ? (
-              <Spinner />
-            ) : (
-              <WarningFeedback title="Não há registros." />
-            )}
+            <div className="content-list">
+              {environments?.length > 0 && !isLoading ? (
+                <EnvironmentTable data={environments} />
+              ) : environments?.length === 0 && isLoading ? (
+                <Spinner />
+              ) : (
+                <WarningFeedback title="Não há registros." />
+              )}
+            </div>
           </div>
         </div>
       </div>
       <Footer isFull />
-    </div>
+    </>
   );
 }

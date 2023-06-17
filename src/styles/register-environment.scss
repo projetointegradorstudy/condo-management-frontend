@@ -51,6 +51,10 @@ div.page-register-environment {
         justify-content: center;
         width: 100%;
 
+        @include breakpoint(sm) {
+          margin-bottom: 30px;
+        }
+
         form {
           display: flex;
           flex-direction: column;

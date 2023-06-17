@@ -32,34 +32,36 @@ export function MenuUser() {
   }, [isLoading, isUser]);
 
   return (
-    <div className="page-menu-user">
-      <Sidebar />
-      <NavbarMobile />
-      <div className="container-menu-user">
-        <div className="content-welcome-user">
-          <h1>
-            Seja bem-vindo(a),
-            <br />
-            <b>{isMyselfData?.name || isMyselfData?.email}</b>
-          </h1>
-        </div>
-        <div className="content-title-user">
-          <h2>Ambientes disponíveis</h2>
-        </div>
-        {environments?.length > 0 && !isLoading ? (
-          <div className="content-menu-user">
-            {environments &&
-              environments.map((environment, index) => {
-                return <CardEnvironment key={index++} data={environment} />;
-              })}
+    <>
+      <div className="page-menu-user">
+        <Sidebar />
+        <NavbarMobile />
+        <div className="container-menu-user">
+          <div className="content-welcome-user">
+            <h1>
+              Seja bem-vindo(a),
+              <br />
+              <b>{isMyselfData?.name || isMyselfData?.email}</b>
+            </h1>
           </div>
-        ) : environments?.length === 0 && isLoading ? (
-          <Spinner />
-        ) : (
-          <WarningFeedback title="Não há registros." />
-        )}
+          <div className="content-title-user">
+            <h2>Ambientes disponíveis</h2>
+          </div>
+          {environments?.length > 0 && !isLoading ? (
+            <div className="content-menu-user">
+              {environments &&
+                environments.map((environment, index) => {
+                  return <CardEnvironment key={index++} data={environment} />;
+                })}
+            </div>
+          ) : environments?.length === 0 && isLoading ? (
+            <Spinner />
+          ) : (
+            <WarningFeedback title="Não há registros." />
+          )}
+        </div>
       </div>
       <Footer isFull />
-    </div>
+    </>
   );
 }

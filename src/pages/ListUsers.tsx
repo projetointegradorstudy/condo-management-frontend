@@ -30,30 +30,32 @@ export function ListUsers() {
   }, [isLoading, isNeedRefresh]);
 
   return (
-    <div className="page-list-users">
-      <div className="container-list-users">
-        <Sidebar />
-        <NavbarMobile />
+    <>
+      <div className="page-list-users">
+        <div className="container-list-users">
+          <Sidebar />
+          <NavbarMobile />
 
-        <div className="content-list-users">
-          <h1>Lista de usuários</h1>
+          <div className="content-list-users">
+            <h1>Lista de usuários</h1>
 
-          <div className="content-list-button">
-            <Button title="Adicionar" onClick={() => setIsOpenCreateUserModal(true)} />
-          </div>
+            <div className="content-list-button">
+              <Button title="Adicionar" onClick={() => setIsOpenCreateUserModal(true)} />
+            </div>
 
-          <div className="content-list">
-            {users?.length > 0 && !isLoading ? (
-              <UserTable data={users} />
-            ) : users?.length === 0 && isLoading ? (
-              <Spinner />
-            ) : (
-              <WarningFeedback title="Não há registros." />
-            )}
+            <div className="content-list">
+              {users?.length > 0 && !isLoading ? (
+                <UserTable data={users} />
+              ) : users?.length === 0 && isLoading ? (
+                <Spinner />
+              ) : (
+                <WarningFeedback title="Não há registros." />
+              )}
+            </div>
           </div>
         </div>
       </div>
       <Footer isFull />
-    </div>
+    </>
   );
 }
