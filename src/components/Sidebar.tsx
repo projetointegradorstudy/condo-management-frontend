@@ -33,10 +33,13 @@ export function Sidebar() {
     signout();
   };
 
-  const { isMyselfData, isNeedRefresh, getUserData } = getContext();
+  const { isMyselfData, isNeedRefresh, setIsNeedRefresh, getUserData } = getContext();
 
   useEffect(() => {
-    getUserData();
+    if (isNeedRefresh) {
+      getUserData();
+      setIsNeedRefresh(false);
+    }
   }, [isNeedRefresh]);
 
   const navItemsAdmin = [

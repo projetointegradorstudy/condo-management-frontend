@@ -5,6 +5,11 @@ export enum Roles {
   ADMIN = 'admin',
 }
 
+export interface IDashboardData {
+  userQty: number;
+  environmentQty: number;
+}
+
 export interface IAuthProps {
   email: string;
   password: string;
@@ -81,6 +86,10 @@ export const deleteMessages: { [key: string]: string } = {
 
 export const createPasswordMessages: { [key: string]: string } = {
   'Invalid token': 'Token expirado.',
+};
+
+export const editUserMessages: { [key: string]: string } = {
+  OK: 'Usuário atualizado com sucesso.',
 };
 
 export interface IResultRequest {

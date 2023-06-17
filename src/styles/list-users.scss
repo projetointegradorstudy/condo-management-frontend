@@ -65,6 +65,7 @@ div.page-list-users {
     
       @include breakpoint(sm) {
         overflow-x: auto;
+        margin-bottom: 30px;
       }
       
       table {
