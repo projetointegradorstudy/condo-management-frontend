@@ -110,7 +110,7 @@ export function EditUserModal({ id, avatar, password, passwordConfirmation, crea
                 </select>
 
                 <div className="modal-form-button">
-                  <Button title="Cancelar" onClick={() => setIsOpenEditModal(false)} isCancel />
+                  <Button title="Cancelar" onClick={handleCloser} isCancel />
                   <Button title="Confirmar" type="submit" isConfirm />
                 </div>
               </form>
