@@ -5,6 +5,11 @@ export enum Roles {
   ADMIN = 'admin',
 }
 
+export interface IDashboardData {
+  userQty: number;
+  environmentQty: number;
+}
+
 export interface IAuthProps {
   email: string;
   password: string;

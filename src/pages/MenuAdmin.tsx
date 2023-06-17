@@ -1,35 +1,37 @@
-import { Users, ListPlus, Question } from 'phosphor-react';
+import { Users, ListPlus } from 'phosphor-react';
 import { Lead } from '../components/Lead';
 import { Sidebar } from '../components/Sidebar';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Footer } from '../components/Footer';
 import '../styles/menu-admin.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
+import { getCountEnvironments, getCountUsers } from '../services/api';
+import { IDashboardData } from '../interfaces';
 
 const cardItems = [
   {
     title: 'Pessoas cadastradas',
-    total: 68,
     icon: <Users size={40} />,
   },
   {
     title: 'Ambientes cadastrados',
-    total: 23,
     icon: <ListPlus size={40} />,
-  },
-  {
-    title: 'Solicitações',
-    total: 37,
-    icon: <Question size={40} />,
   },
 ];
 
 export function MenuAdmin() {
   const { isMyselfData, getUserData } = getContext();
+  const [isDashboardData, setIsDashboardData] = useState<number[] | null>(null);
+  const getDashboardData = async (): Promise<void> => {
+    const userQty = +(await getCountUsers().then((res) => res.data)) || 0;
+    const environmentQty = +(await getCountEnvironments().then((res) => res.data)) || 0;
+    setIsDashboardData([userQty, environmentQty]);
+  };
 
   useEffect(() => {
     getUserData();
+    getDashboardData();
   }, []);
 
   return (
@@ -49,10 +51,10 @@ export function MenuAdmin() {
             <div className="content-main">
               <h2>Overview</h2>
               <div className="content-lead">
-                {cardItems.map((cardItem) => (
+                {cardItems.map((cardItem, index) => (
                   <div className="card" key={cardItem.title}>
                     <div className="card-icon">{cardItem.icon}</div>
-                    <Lead title={cardItem.title} total={cardItem.total} />
+                    <Lead title={cardItem.title} total={(isDashboardData && isDashboardData[index]) || 0} />
                   </div>
                 ))}
               </div>

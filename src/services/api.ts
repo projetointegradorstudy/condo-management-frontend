@@ -7,6 +7,15 @@ export async function auth(authprops: IAuthProps) {
   return api.post('/auth', authprops);
 }
 
+/** DASHBOARD-DATA */
+export async function getCountUsers() {
+  return api.get('/users/count');
+}
+
+export async function getCountEnvironments() {
+  return api.get('/environments/count');
+}
+
 /** USER CONTEXT */
 export async function getMyself() {
   return api.get('/users/myself');
