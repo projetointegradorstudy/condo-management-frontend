@@ -8,8 +8,8 @@ interface LeadProps {
 export function Lead(props: LeadProps) {
   return (
     <div className="card-lead">
-      <p>{props.title}</p>
       <h3>{props.total}</h3>
+      <p>{props.title}</p>
     </div>
   );
 }

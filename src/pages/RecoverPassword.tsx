@@ -8,12 +8,11 @@ import forSale from '../assets/undraw_cabin_hkfr.svg';
 import { Footer } from '../components/Footer';
 import { useLocation } from 'react-router';
 import { Form, IResultRequest, createPasswordMessages } from '../interfaces';
-import { createUserPassword, resetPassword } from '../services/api';
+import { resetPassword } from '../services/api';
 import '../styles/recover-password.scss';
 
 export function RecoverPassword() {
   const [isRemainingSeconds, setIsRemaingSeconds] = useState<number>();
-  const [isLetters, setIsLetters] = useState<string[]>();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const { setToken, setIsAuthenticated, handleInputErros, handleInputErrosClean } = getContext();
@@ -45,7 +44,7 @@ export function RecoverPassword() {
     await resetPassword(getToken(), form.get())
       .then((res) => {
         setIsRemaingSeconds(3);
-        setIsResult({ message: 'Você será redirecionado em ...', icon: <CheckCircle color="#38ba7c" /> });
+        setIsResult({ message: 'Você será redirecionado em...', icon: <CheckCircle color="#38ba7c" /> });
         setTimeout(() => {
           setToken(res.data.access_token);
           setIsAuthenticated(true);

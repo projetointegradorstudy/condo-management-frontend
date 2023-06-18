@@ -3,11 +3,10 @@ import { Lead } from '../components/Lead';
 import { Sidebar } from '../components/Sidebar';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Footer } from '../components/Footer';
-import '../styles/menu-admin.scss';
 import { useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
 import { getCountEnvironments, getCountUsers } from '../services/api';
-import { IDashboardData } from '../interfaces';
+import '../styles/menu-admin.scss';
 
 const cardItems = [
   {

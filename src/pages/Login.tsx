@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Input } from '../components/Input';
 import { InputPassword } from '../components/InputPassword';
 import { Label } from '../components/Label';
 import { Button } from '../components/Button';
 import cityImage from '../assets/city_life_gnpr_color.svg';
 import { getContext } from '../utils/context-import';
-// import { loginMessages } from '../interfaces';
 import { Footer } from '../components/Footer';
 import '../styles/login.scss';
 
@@ -14,7 +13,7 @@ export function Login() {
   const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { signin, handleInputErros, handleInputErrosClean } = getContext();
+  const { signin, handleInputErros, handleInputErrosClean, setIsOpenConfirmSignoutModal } = getContext();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -22,6 +21,7 @@ export function Login() {
     await signin({ email, password });
 
     setIsLoading(false);
+    setIsOpenConfirmSignoutModal(false);
   };
 
   return (
