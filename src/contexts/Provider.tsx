@@ -15,6 +15,7 @@ export function GlobalProvider({ children }: Iprops) {
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeletModal] = useState(false);
   const [isOpenCreateUserModal, setIsOpenCreateUserModal] = useState(false);
+  const [isOpenCreateEnvironmentModal, setIsOpenCreateEnvironmentModal] = useState(false);
   const [isMyselfData, setIsMyselfData] = useState<IUser | null>(null);
   const { decodedToken } = useJwt(token);
   const navigate = useNavigate();
@@ -111,6 +112,8 @@ export function GlobalProvider({ children }: Iprops) {
         setIsOpenDeletModal,
         isOpenCreateUserModal,
         setIsOpenCreateUserModal,
+        isOpenCreateEnvironmentModal,
+        setIsOpenCreateEnvironmentModal,
         isMyselfData,
         setIsMyselfData,
         signin,

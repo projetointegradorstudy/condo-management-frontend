@@ -99,7 +99,7 @@ export function NavbarMobile() {
                 </li>
               ))}
             </div>
-            <div className="sidebar-list-logout" style={{ width: isAdmin ? '188px' : '115px' }}>
+            <div className="sidebar-list-logout" style={{ width: isAdmin ? '184px' : '115px' }}>
               <button className="sidebar-button-logout" onClick={handleSubmit}>
                 <SignOut size={16} />
                 <span>Sair</span>

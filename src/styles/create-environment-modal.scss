@@ -1,0 +1,259 @@
+@import './theme';
+@import './variables';
+
+div.modal-create-environment-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+  div.modal-create-environment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 440px;
+    height: 632px;
+    border-radius: 10px;
+    background-color: $white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 30px;
+
+    @include breakpoint(sm) {
+      width: 100%;
+      height: 582px;
+      padding: 20px 24px;
+      margin: 0 20px;
+    }
+
+    div.modal-create-environment-button-close {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      width: 100%;
+
+      button.modal-create-environment-button-default {
+        background-color: transparent;
+        width: 22px;
+        height: 22px;
+
+        svg {
+          color: $black;
+
+          @include breakpoint(sm) {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+
+    div.modal-create-environment-content {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      height: 580px;
+
+      div.modal-create-environment-title {
+         width: 100%;
+    
+        h4 {
+          font-size: 18px;
+          line-height: 24px;
+          color: $black;
+          text-align: center;
+          font-weight: 600;
+
+          @include breakpoint(sm) {
+            font-size: 16px;
+            line-height: 22px;
+          }
+        }
+      }
+    }
+
+    div.modal-create-environment-content-form {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 370px;
+  
+        textarea {
+          width: 100%;
+          height: 100px;
+          background-color: #EAEEF2;
+          border-radius: 5px;
+          border: 0px;
+          padding: 12px 16px;
+          color: $primary;
+          margin-bottom: 20px;
+          font-size: 16px;
+          line-height: 16px;
+          resize: none;
+  
+          &.field-error {
+            outline: 1px solid #f34542 !important;
+          }
+  
+          @include breakpoint(lg) {
+            width: 100%;
+          }
+  
+          @include breakpoint(sm) {
+            font-size: 14px;
+          }
+  
+          &::placeholder {
+            color: #AFB8C1;
+            font-size: 14px;
+          }
+        }
+  
+        div.form-button-register-environment {
+          display: flex;
+          justify-content: flex-end;
+        }
+  
+        div.content-upload-register-environment {
+          display: flex;
+          flex-direction: column;
+          height: 144px;
+  
+          @include breakpoint(sm) {
+            height: 140px;
+          }
+  
+          p {
+            font-size: 14px;
+            line-height: 14px;
+            font-weight: 600;
+            color: $black;
+            margin-bottom: 8px;
+  
+            @include breakpoint(sm) {
+              font-size: 14px;
+              line-height: 14px;
+            }
+          }
+  
+          div.image-upload-register-environment {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100px;
+            border: 1px dashed $primary;
+            border-radius: 10px;
+            background-color: #EAEEF2;
+  
+            label {
+              color: $primary;
+            }
+  
+            svg {
+              width: 24px;
+              height: 24px;
+              color: $primary;
+            }
+          }
+  
+          div.button-upload-register-environment {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+
+      div.modal-create-environment-form-button {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+    }
+    
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  div.modal-create-environment-content-feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    height: 280px;
+
+    svg {
+      width: 60px;
+      height: 60px;
+      color: $green;
+
+      @include breakpoint(sm) {
+        width: 40px;
+        height: 40px
+      }
+    }
+
+    span {
+      color: $primary;
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+
+      @include breakpoint(sm) {
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+
+    div.modal-create-environment-form-button {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 10px;
+    }
+  } 
+}

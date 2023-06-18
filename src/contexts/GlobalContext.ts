@@ -18,6 +18,8 @@ export interface GlobalContextProps {
   setIsOpenDeletModal: Dispatch<SetStateAction<boolean>>;
   isOpenCreateUserModal: boolean;
   setIsOpenCreateUserModal: Dispatch<SetStateAction<boolean>>;
+  isOpenCreateEnvironmentModal: boolean;
+  setIsOpenCreateEnvironmentModal: Dispatch<SetStateAction<boolean>>;
   isMyselfData: IUser | null;
   setIsMyselfData: Dispatch<SetStateAction<IUser | null>>;
   signin: (credentials: IAuthProps) => Promise<IResult>;
