@@ -126,7 +126,7 @@ export function Sidebar() {
           ))}
           <div
             className="sidebar-list-logout"
-            style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}
+            style={{ padding: isOpen ? '10px 1px 10px 20px' : '10px' }}
             title={`${isOpen ? '' : 'Sair'}`}
           >
             <button

@@ -5,6 +5,7 @@ import imageDefault from '../assets/image-default.png';
 import { DeleteModal } from './DeleteModal';
 import { EditEnvironmentModal } from './EditEnvironmentModal';
 import { useState } from 'react';
+import { CreateEnvironmentModal } from './CreateEnvironmentModal';
 
 export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
   const [isPosition, setIsPosition] = useState<IDeleteModal>({ id: '', name: '' });
@@ -89,6 +90,7 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
         image={isEditPosition.image}
         capacity={isEditPosition.capacity}
       />
+      <CreateEnvironmentModal />
     </>
   );
 }

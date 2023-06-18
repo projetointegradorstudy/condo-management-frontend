@@ -7,14 +7,17 @@ import { IEnvironment } from '../interfaces';
 import { EnvironmentTable } from '../components/EnvironmentTable';
 import { getEnvironments } from '../services/api';
 import { Footer } from '../components/Footer';
+import { Button } from '../components/Button';
+import { getContext } from '../utils/context-import';
 import '../styles/list-environments.scss';
 
 export function ListEnvironments() {
   const [environments, setEnvironments] = useState<IEnvironment[]>([]);
+  const { setIsOpenCreateEnvironmentModal, isNeedRefresh, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isLoading)
+    if (isLoading || isNeedRefresh)
       (async () => {
         await getEnvironments()
           .then((res) => {
@@ -23,7 +26,8 @@ export function ListEnvironments() {
           })
           .catch(() => {});
       })();
-  }, [isLoading]);
+    setIsNeedRefresh(false);
+  }, [isLoading, isNeedRefresh]);
 
   return (
     <>
@@ -34,6 +38,10 @@ export function ListEnvironments() {
 
           <div className="content-list-environments">
             <h1>Lista de ambientes</h1>
+
+            <div className="content-list-button">
+              <Button title="Adicionar" onClick={() => setIsOpenCreateEnvironmentModal(true)} />
+            </div>
 
             <div className="content-list">
               {environments?.length > 0 && !isLoading ? (

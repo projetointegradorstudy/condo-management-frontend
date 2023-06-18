@@ -14,6 +14,16 @@ div.page-list-environments {
       flex-direction: column;
     }
 
+    div.content-list-button {
+      display: flex;
+      width: 89.3%;
+      justify-content: flex-end;
+
+      @include breakpoint(xl) {
+        width: 100%;
+      }
+    }
+
     div.content-list-environments {
       display: flex;
       flex-direction: column;
