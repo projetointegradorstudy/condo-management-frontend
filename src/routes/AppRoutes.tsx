@@ -5,7 +5,6 @@ import { MenuUser } from '../pages/MenuUser';
 import { GlobalProvider } from '../contexts/Provider';
 import { ListUsers } from '../pages/ListUsers';
 import { ListEnvironments } from '../pages/ListEnvironments';
-import { RegisterEnvironment } from '../pages/RegisterEnvironment';
 import { ConfirmUser } from '../pages/ConfirmUser';
 import { ForgotPassaword } from '../pages/ForgotPassaword';
 import { RecoverPassword } from '../pages/RecoverPassword';
@@ -100,14 +99,6 @@ export function AppRoutes() {
             element={
               <IsAdmin>
                 <ListEnvironments />
-              </IsAdmin>
-            }
-          />
-          <Route
-            path="/register-environment"
-            element={
-              <IsAdmin>
-                <RegisterEnvironment />
               </IsAdmin>
             }
           />
