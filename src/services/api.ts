@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { IAuthProps, IEditUser, IEnvironment } from '../interfaces/index';
+import { IAuthProps, IEditEnvironment, IEditUser, IEnvironment } from '../interfaces/index';
 
 export const api = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}` });
 
