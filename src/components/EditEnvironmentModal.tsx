@@ -5,10 +5,10 @@ import { Button } from './Button';
 import { getContext } from '../utils/context-import';
 import { IEditEnvironment, IResultRequest, editEnvironmentMessages } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
-import '../styles/edit-environment-modal.scss';
 import { useState } from 'react';
 import { updateEnvironment } from '../services/api';
 import { Spinner } from './Spinner';
+import '../styles/edit-environment-modal.scss';
 
 export function EditEnvironmentModal({ id, name, description, status, image, capacity }: IEditEnvironment) {
   const { isOpenEditModal, setIsOpenEditModal, setIsNeedRefresh } = getContext();
