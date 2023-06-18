@@ -24,6 +24,8 @@ export interface GlobalContextProps {
   setIsOpenConfirmSignoutModal: Dispatch<SetStateAction<boolean>>;
   isMyselfData: IUser | null;
   setIsMyselfData: Dispatch<SetStateAction<IUser | null>>;
+  isRemainingSeconds: number | undefined;
+  setIsRemaingSeconds: Dispatch<SetStateAction<number | undefined>>;
   signin: (credentials: IAuthProps) => Promise<IResult>;
   signout: () => void;
   getUserData: () => void;

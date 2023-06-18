@@ -9,33 +9,26 @@ import { Footer } from '../components/Footer';
 import { useLocation } from 'react-router';
 import { Form, IResultRequest, createPasswordMessages } from '../interfaces';
 import { resetPassword } from '../services/api';
+import { CountDown } from '../components/CountDown';
 import '../styles/recover-password.scss';
 
 export function RecoverPassword() {
-  const [isRemainingSeconds, setIsRemaingSeconds] = useState<number>();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
-  const { setToken, setIsAuthenticated, handleInputErros, handleInputErrosClean } = getContext();
+  const {
+    setToken,
+    setIsAuthenticated,
+    handleInputErros,
+    handleInputErrosClean,
+    isRemainingSeconds,
+    setIsRemaingSeconds,
+  } = getContext();
   const location = useLocation();
   const form = new Form();
 
   const getToken = (): string => {
     return new URLSearchParams(location.search).get('token')?.trim() || '';
   };
-
-  useEffect(() => {
-    const countdownInterval = setInterval(() => {
-      if (isRemainingSeconds && isRemainingSeconds <= 0) {
-        clearInterval(countdownInterval);
-      } else {
-        setIsRemaingSeconds((prevSeconds) => prevSeconds && prevSeconds - 1);
-      }
-    }, 1000);
-
-    return () => {
-      clearInterval(countdownInterval);
-    };
-  }, [isRemainingSeconds]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -123,7 +116,7 @@ export function RecoverPassword() {
             {isResult.icon}
 
             <span>{isResult.message}</span>
-            <span>{isRemainingSeconds}s</span>
+            {isRemainingSeconds && <CountDown />}
           </div>
         )}
         <Footer />

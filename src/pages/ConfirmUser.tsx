@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Button } from '../components/Button';
 import { InputPassword } from '../components/InputPassword';
 import { Label } from '../components/Label';
@@ -6,15 +6,23 @@ import { getContext } from '../utils/context-import';
 import { CheckCircle, Spinner, XCircle } from 'phosphor-react';
 import navigatorA479 from '../assets/undraw_navigator_a479.svg';
 import { Footer } from '../components/Footer';
-import '../styles/confirm-user.scss';
 import { useLocation } from 'react-router';
 import { Form, IResultRequest, createPasswordMessages } from '../interfaces';
 import { createUserPassword } from '../services/api';
+import '../styles/confirm-user.scss';
+import { CountDown } from '../components/CountDown';
 
 export function ConfirmUser() {
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
-  const { setToken, setIsAuthenticated, handleInputErros, handleInputErrosClean } = getContext();
+  const {
+    setToken,
+    setIsAuthenticated,
+    handleInputErros,
+    handleInputErrosClean,
+    isRemainingSeconds,
+    setIsRemaingSeconds,
+  } = getContext();
   const location = useLocation();
   const form = new Form();
 
@@ -22,14 +30,18 @@ export function ConfirmUser() {
     return new URLSearchParams(location.search).get('token')?.trim() || '';
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
     await createUserPassword(getToken(), form.get())
       .then((res) => {
-        setToken(res.data.access_token);
-        setIsAuthenticated(true);
+        setIsRemaingSeconds(3);
+        setIsResult({ message: 'Você será redirecionado em...', icon: <CheckCircle color="#38ba7c" /> });
+        setTimeout(() => {
+          setToken(res.data.access_token);
+          setIsAuthenticated(true);
+        }, 4000);
       })
       .catch((e) => {
         setIsResult({ message: createPasswordMessages[e.response.data.message], icon: <XCircle color="#f34542" /> });
@@ -104,6 +116,7 @@ export function ConfirmUser() {
             {isResult.icon}
 
             <span>{isResult.message}</span>
+            {isRemainingSeconds && <CountDown />}
           </div>
         )}
         <Footer />

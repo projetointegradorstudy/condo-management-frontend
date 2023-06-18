@@ -77,7 +77,14 @@ export function CreateEnvironmentModal() {
                       <div className="button-upload-register-environment">
                         <Image />
                         <Label title="Choose file" htmlFor="avatar" isUploadFile />
-                        <Input title="Choose file" type="file" name="avatar" id="avatar" accept=".png, .jpg" hidden />
+                        <Input
+                          title="Choose file"
+                          type="file"
+                          name="avatar"
+                          id="avatar"
+                          accept=".png, .jpg, .jpeg"
+                          hidden
+                        />
                       </div>
                     </div>
                   </div>
