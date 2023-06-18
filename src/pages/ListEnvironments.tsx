@@ -8,13 +8,15 @@ import { EnvironmentTable } from '../components/EnvironmentTable';
 import { getEnvironments } from '../services/api';
 import { Footer } from '../components/Footer';
 import '../styles/list-environments.scss';
+import { getContext } from '../utils/context-import';
 
 export function ListEnvironments() {
   const [environments, setEnvironments] = useState<IEnvironment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { isNeedRefresh, setIsNeedRefresh } = getContext();
 
   useEffect(() => {
-    if (isLoading)
+    if (isLoading || isNeedRefresh)
       (async () => {
         await getEnvironments()
           .then((res) => {
@@ -23,7 +25,8 @@ export function ListEnvironments() {
           })
           .catch(() => {});
       })();
-  }, [isLoading]);
+    setIsNeedRefresh(false);
+  }, [isLoading, isNeedRefresh]);
 
   return (
     <>
