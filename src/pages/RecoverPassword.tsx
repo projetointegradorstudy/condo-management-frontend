@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Button } from '../components/Button';
 import { InputPassword } from '../components/InputPassword';
 import { Label } from '../components/Label';
@@ -8,10 +8,12 @@ import forSale from '../assets/undraw_cabin_hkfr.svg';
 import { Footer } from '../components/Footer';
 import { useLocation } from 'react-router';
 import { Form, IResultRequest, createPasswordMessages } from '../interfaces';
-import { createUserPassword } from '../services/api';
+import { createUserPassword, resetPassword } from '../services/api';
 import '../styles/recover-password.scss';
 
 export function RecoverPassword() {
+  const [isRemainingSeconds, setIsRemaingSeconds] = useState<number>();
+  const [isLetters, setIsLetters] = useState<string[]>();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const { setToken, setIsAuthenticated, handleInputErros, handleInputErrosClean } = getContext();
@@ -22,24 +24,35 @@ export function RecoverPassword() {
     return new URLSearchParams(location.search).get('token')?.trim() || '';
   };
 
-  const handleSubmit = async (e: any) => {
+  useEffect(() => {
+    const countdownInterval = setInterval(() => {
+      if (isRemainingSeconds && isRemainingSeconds <= 0) {
+        clearInterval(countdownInterval);
+      } else {
+        setIsRemaingSeconds((prevSeconds) => prevSeconds && prevSeconds - 1);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(countdownInterval);
+    };
+  }, [isRemainingSeconds]);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
-    await createUserPassword(getToken(), form.get())
+    await resetPassword(getToken(), form.get())
       .then((res) => {
-        console.log(res);
-        // if (res.status === 201) {
-        //   setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle /> });
-        //   setIsNeedRefresh(true);
-        //   return;
-        // }
-        setToken(res.data.access_token);
-        setIsAuthenticated(true);
+        setIsRemaingSeconds(3);
+        setIsResult({ message: 'Você será redirecionado em ...', icon: <CheckCircle color="#38ba7c" /> });
+        setTimeout(() => {
+          setToken(res.data.access_token);
+          setIsAuthenticated(true);
+        }, 4000);
       })
       .catch((e) => {
         setIsResult({ message: createPasswordMessages[e.response.data.message], icon: <XCircle color="#f34542" /> });
-        console.log(e.response.data.message);
       });
     setIsLoading(false);
   };
@@ -111,6 +124,7 @@ export function RecoverPassword() {
             {isResult.icon}
 
             <span>{isResult.message}</span>
+            <span>{isRemainingSeconds}s</span>
           </div>
         )}
         <Footer />
