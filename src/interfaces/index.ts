@@ -5,6 +5,11 @@ export enum Roles {
   ADMIN = 'admin',
 }
 
+export interface IDashboardData {
+  userQty: number;
+  environmentQty: number;
+}
+
 export interface IAuthProps {
   email: string;
   password: string;
@@ -12,10 +17,6 @@ export interface IAuthProps {
 
 export interface IDataElementProps<T> {
   data: T;
-}
-
-export interface ICreateUser {
-  email: string;
 }
 
 export interface IUser {
@@ -68,26 +69,31 @@ export interface IEditEnvironment {
 }
 
 export const createUserMessages: { [key: string]: string } = {
-  'User created successfully': 'Email cadastrado com sucesso.',
+  'User created successfully': 'Email cadastrado com sucesso',
   'This email exist on our databases, an email with confirmate instructions will be sent':
-    'Email previamente cadastrado, instruções serão enviadas para cadastro de senha.',
-  "There's an email conflict": 'Email já existe.',
-  'email must be valid': 'Email deve ser válido.',
+    'Email previamente cadastrado, instruções serão enviadas para cadastro de senha',
+  "There's an email conflict": 'Email já existe',
+  'email must be valid': 'Email deve ser válido',
+};
+
+export const resetUserPasswordMessages: { [key: string]: string } = {
+  'An email with recovery password instructions will be sent': 'Enviaremos um email com as instruções',
+  "There are something wrong in email's smtp": 'Estamos passando por inconcistências, agradecemos a compreensão',
 };
 
 export const deleteMessages: { [key: string]: string } = {
-  'User deleted successfully': 'Usuário apagado com sucesso.',
+  'User deleted successfully': 'Usuário apagado com sucesso',
   'Not Found': 'Já excluido.',
   'Validation failed (uuid is expected)': 'ID inválido.',
   'Environment deleted successfully': 'Ambiente apagado com sucesso.',
 };
 
 export const createPasswordMessages: { [key: string]: string } = {
-  'Invalid token': 'Token expirado.',
+  'Invalid token': 'Token expirado',
 };
 
 export const editUserMessages: { [key: string]: string } = {
-  OK: 'Usuário atualizado com sucesso.',
+  OK: 'Usuário atualizado com sucesso',
 };
 
 export const editEnvironmentMessages: { [key: string]: string } = {

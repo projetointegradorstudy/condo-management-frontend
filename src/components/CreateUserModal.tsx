@@ -19,7 +19,7 @@ export function CreateUserModal() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    await createUser({ email: isEmail })
+    await createUser(isEmail)
       .then((res) => {
         if (res.status === 201) {
           setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });

@@ -28,18 +28,11 @@ export function ConfirmUser() {
 
     await createUserPassword(getToken(), form.get())
       .then((res) => {
-        console.log(res);
-        // if (res.status === 201) {
-        //   setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle /> });
-        //   setIsNeedRefresh(true);
-        //   return;
-        // }
         setToken(res.data.access_token);
         setIsAuthenticated(true);
       })
       .catch((e) => {
         setIsResult({ message: createPasswordMessages[e.response.data.message], icon: <XCircle color="#f34542" /> });
-        console.log(e.response.data.message);
       });
     setIsLoading(false);
   };
