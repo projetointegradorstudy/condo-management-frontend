@@ -87,7 +87,7 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
             })}
         </tbody>
       </table>
-      <DeleteModal id={isPosition?.id} name={isPosition?.name} />
+      <DeleteModal id={isPosition?.id} name={isPosition?.name} source="user" />
       <EditUserModal
         id={isEditPosition.id}
         avatar={isEditPosition.avatar}

@@ -10,11 +10,13 @@ import { Footer } from '../components/Footer';
 import { Button } from '../components/Button';
 import { getContext } from '../utils/context-import';
 import '../styles/list-environments.scss';
+import { getContext } from '../utils/context-import';
 
 export function ListEnvironments() {
   const [environments, setEnvironments] = useState<IEnvironment[]>([]);
   const { setIsOpenCreateEnvironmentModal, isNeedRefresh, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(true);
+  const { isNeedRefresh, setIsNeedRefresh } = getContext();
 
   useEffect(() => {
     if (isLoading || isNeedRefresh)

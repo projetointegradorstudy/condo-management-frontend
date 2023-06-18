@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { IAuthProps, IEditUser, IEnvironment } from '../interfaces/index';
 
 export const api = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}` });
@@ -64,4 +65,8 @@ export async function createEnvironment(createEnvironment: Partial<IEnvironment>
 
 export async function deleteEnvironment(id: string) {
   return api.delete(`/environments/${id}`);
+}
+
+export async function updateEnvironment(id: string, updateEnvironmentDto: Partial<IEditEnvironment>) {
+  return api.patch(`/environments/${id}`, updateEnvironmentDto);
 }

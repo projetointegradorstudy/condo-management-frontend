@@ -1,31 +1,46 @@
 import { CheckCircle, WarningCircle, X, XCircle } from 'phosphor-react';
 import { Button } from './Button';
-import '../styles/delete-user-modal.scss';
 import { getContext } from '../utils/context-import';
 import { IDeleteModal, IResultRequest, deleteMessages } from '../interfaces';
-import { deleteUser } from '../services/api';
+import { deleteUser, deleteEnvironment } from '../services/api';
 import { useEffect, useState } from 'react';
 import { Spinner } from './Spinner';
+import '../styles/delete-user-modal.scss';
 
-export function DeleteModal({ id, name }: IDeleteModal) {
+export function DeleteModal({ id, name, source }: IDeleteModal) {
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const { isOpenDeleteModal, setIsOpenDeletModal, setIsNeedRefresh } = getContext();
 
   const handleDeleteUser = async () => {
     setIsLoading(true);
-    await deleteUser(id)
-      .then((res) => {
-        if (res.status === 200) {
-          setIsResult({ message: deleteMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
-          setIsNeedRefresh(true);
-          return;
-        }
-        setIsResult({ message: deleteMessages[res.data.message], icon: <WarningCircle color="#ffc107" /> });
-      })
-      .catch((e) => {
-        setIsResult({ message: deleteMessages[e.data.message], icon: <XCircle color="#f34542" /> });
-      });
+    if (source === 'user') {
+      await deleteUser(id)
+        .then((res) => {
+          if (res.status === 200) {
+            setIsResult({ message: deleteMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
+            setIsNeedRefresh(true);
+            return;
+          }
+          setIsResult({ message: deleteMessages[res.data.message], icon: <WarningCircle color="#ffc107" /> });
+        })
+        .catch((e) => {
+          setIsResult({ message: deleteMessages[e.data.message], icon: <XCircle color="#f34542" /> });
+        });
+    } else if (source === 'environment') {
+      await deleteEnvironment(id)
+        .then((res) => {
+          if (res.status === 200) {
+            setIsResult({ message: deleteMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
+            setIsNeedRefresh(true);
+            return;
+          }
+          setIsResult({ message: deleteMessages[res.data.message], icon: <WarningCircle color="#ffc107" /> });
+        })
+        .catch((e) => {
+          setIsResult({ message: deleteMessages[e.data.message], icon: <XCircle color="#f34542" /> });
+        });
+    }
     setIsLoading(false);
   };
 

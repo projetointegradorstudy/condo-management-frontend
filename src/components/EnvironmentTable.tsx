@@ -10,6 +10,7 @@ import { CreateEnvironmentModal } from './CreateEnvironmentModal';
 export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
   const [isPosition, setIsPosition] = useState<IDeleteModal>({ id: '', name: '' });
   const [isEditPosition, setIsEditPosition] = useState<IEditEnvironment>({
+    id: '',
     name: '',
     description: '',
     status: '',
@@ -56,6 +57,7 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                         onClick={() => {
                           setIsPosition({ id: environment.id, name: environment.name });
                           setIsEditPosition({
+                            id: environment.id,
                             name: environment.name,
                             description: environment.description,
                             status: environment.status,
@@ -82,8 +84,9 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
             })}
         </tbody>
       </table>
-      <DeleteModal id={isPosition?.id} name={isPosition?.name} />
+      <DeleteModal id={isPosition?.id} name={isPosition?.name} source="environment" />
       <EditEnvironmentModal
+        id={isEditPosition.id}
         name={isEditPosition.name}
         description={isEditPosition.description}
         status={isEditPosition.status}

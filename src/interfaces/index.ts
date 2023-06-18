@@ -47,6 +47,7 @@ export interface IEnvironment {
 export interface IDeleteModal {
   id: string;
   name: string;
+  source?: string;
 }
 
 export interface IEditUser {
@@ -59,6 +60,7 @@ export interface IEditUser {
 }
 
 export interface IEditEnvironment {
+  id: string;
   name: string;
   description: string;
   status: string;
@@ -82,7 +84,8 @@ export const resetUserPasswordMessages: { [key: string]: string } = {
 export const deleteMessages: { [key: string]: string } = {
   'User deleted successfully': 'Usuário apagado com sucesso',
   'Not Found': 'Já excluido.',
-  'Validation failed (uuid is expected)': 'ID inválido',
+  'Validation failed (uuid is expected)': 'ID inválido.',
+  'Environment deleted successfully': 'Ambiente apagado com sucesso.',
 };
 
 export const createPasswordMessages: { [key: string]: string } = {
@@ -91,6 +94,10 @@ export const createPasswordMessages: { [key: string]: string } = {
 
 export const editUserMessages: { [key: string]: string } = {
   OK: 'Usuário atualizado com sucesso',
+};
+
+export const editEnvironmentMessages: { [key: string]: string } = {
+  OK: 'Ambiente atualizado com sucesso.',
 };
 
 export interface IResultRequest {
