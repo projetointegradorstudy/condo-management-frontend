@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   House,
-  PlusCircle,
   ListChecks,
   SignOut,
   CaretRight,
@@ -11,27 +10,18 @@ import {
   PencilSimpleLine,
   ListBullets,
 } from 'phosphor-react';
-import '../styles/sidebar.scss';
 import LogoLg from '../assets/logo_lg.svg';
 import { NavLink } from 'react-router-dom';
-import { GlobalContext } from '../contexts/GlobalContext';
 import { getContext } from '../utils/context-import';
 import avatarDefault from '../assets/avatar-default.png';
+import { ConfirmSignoutModal } from './ConfirmSignoutModal';
+import '../styles/sidebar.scss';
 
 export function Sidebar() {
+  const { isAdmin, setIsOpenConfirmSignoutModal } = getContext();
   const [isOpen, setIsOpen] = useState(false);
 
-  const context = useContext(GlobalContext);
-
-  if (!context) return null;
-
-  const { signout, isAdmin } = context;
-
   const toggle = () => setIsOpen(!isOpen);
-
-  const handleSubmit = () => {
-    signout();
-  };
 
   const { isMyselfData, isNeedRefresh, setIsNeedRefresh, getUserData } = getContext();
 
@@ -47,11 +37,6 @@ export function Sidebar() {
       path: '/dashboard-admin',
       name: 'Página inicial',
       icon: <House size={isOpen ? 20 : 22} />,
-    },
-    {
-      path: '/register-environment',
-      name: 'Cadastro de ambientes',
-      icon: <PlusCircle size={isOpen ? 20 : 22} />,
     },
     {
       path: '/list-users',
@@ -91,55 +76,58 @@ export function Sidebar() {
   const navItems = isAdmin ? navItemsAdmin : navItemsUser;
 
   return (
-    <aside style={{ width: isOpen ? '250px' : '100px' }} className="desktop">
-      <div className="content-button" style={{ justifyContent: isOpen ? 'flex-end' : 'center' }}>
-        <div className="toggle-button">
-          {!isOpen ? <CaretRight size={22} onClick={toggle} /> : <CaretLeft size={22} onClick={toggle} />}
-        </div>
-      </div>
-      <div className="logo">
-        <img src={LogoLg} alt="Logo Condo Management" style={{ width: isOpen ? '130px' : '78px' }} />
-      </div>
-
-      <div className="profile" style={{ margin: isOpen ? '30px 30px 4px' : '0px 10px 10px' }}>
-        <img
-          src={isMyselfData?.avatar || avatarDefault}
-          alt="avatar"
-          style={{ width: isOpen ? '60px' : '40px', height: isOpen ? '60px' : '40px' }}
-        />
-        {isOpen && <strong>{isMyselfData?.name || isMyselfData?.email}</strong>}
-      </div>
-
-      <div className="middle-sidebar" style={{ alignItems: isOpen ? '' : 'center' }}>
-        <ul className="sidebar-list">
-          {navItems.map((navItem) => (
-            <li key={navItem.name} style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}>
-              <NavLink
-                to={navItem.path}
-                style={{ justifyContent: isOpen ? '' : 'center' }}
-                title={`${isOpen ? '' : navItem.name}`}
-              >
-                {navItem.icon}
-                <span style={{ display: !isOpen ? 'none' : 'block' }}>{navItem.name}</span>
-              </NavLink>
-            </li>
-          ))}
-          <div
-            className="sidebar-list-logout"
-            style={{ padding: isOpen ? '10px 1px 10px 20px' : '10px' }}
-            title={`${isOpen ? '' : 'Sair'}`}
-          >
-            <button
-              className="sidebar-button-logout"
-              onClick={handleSubmit}
-              style={{ justifyContent: isOpen ? '' : 'center' }}
-            >
-              <SignOut size={isOpen ? 18 : 20} />
-              <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
-            </button>
+    <>
+      <aside style={{ width: isOpen ? '250px' : '100px' }} className="desktop">
+        <div className="content-button" style={{ justifyContent: isOpen ? 'flex-end' : 'center' }}>
+          <div className="toggle-button">
+            {!isOpen ? <CaretRight size={22} onClick={toggle} /> : <CaretLeft size={22} onClick={toggle} />}
           </div>
-        </ul>
-      </div>
-    </aside>
+        </div>
+        <div className="logo">
+          <img src={LogoLg} alt="Logo Condo Management" style={{ width: isOpen ? '130px' : '78px' }} />
+        </div>
+
+        <div className="profile" style={{ margin: isOpen ? '30px 30px 4px' : '0px 10px 10px' }}>
+          <img
+            src={isMyselfData?.avatar || avatarDefault}
+            alt="avatar"
+            style={{ width: isOpen ? '60px' : '40px', height: isOpen ? '60px' : '40px' }}
+          />
+          {isOpen && <strong>{isMyselfData?.name || isMyselfData?.email}</strong>}
+        </div>
+
+        <div className="middle-sidebar" style={{ alignItems: isOpen ? '' : 'center' }}>
+          <ul className="sidebar-list">
+            {navItems.map((navItem) => (
+              <li key={navItem.name} style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}>
+                <NavLink
+                  to={navItem.path}
+                  style={{ justifyContent: isOpen ? '' : 'center' }}
+                  title={`${isOpen ? '' : navItem.name}`}
+                >
+                  {navItem.icon}
+                  <span style={{ display: !isOpen ? 'none' : 'block' }}>{navItem.name}</span>
+                </NavLink>
+              </li>
+            ))}
+            <div
+              className="sidebar-list-logout"
+              style={{ padding: isOpen ? '10px 1px 10px 20px' : '10px' }}
+              title={`${isOpen ? '' : 'Sair'}`}
+            >
+              <button
+                className="sidebar-button-logout"
+                onClick={() => setIsOpenConfirmSignoutModal(true)}
+                style={{ justifyContent: isOpen ? '' : 'center' }}
+              >
+                <SignOut size={isOpen ? 18 : 20} />
+                <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
+              </button>
+            </div>
+          </ul>
+        </div>
+      </aside>
+      <ConfirmSignoutModal />
+    </>
   );
 }
