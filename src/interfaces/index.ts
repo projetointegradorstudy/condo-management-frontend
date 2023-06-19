@@ -5,6 +5,13 @@ export enum Roles {
   ADMIN = 'admin',
 }
 
+export enum Status {
+  AVAILABLE = 'available',
+  LOCKED = 'locked',
+  PENDING = 'pending',
+  DISABLED = 'disabled',
+}
+
 export interface IDashboardData {
   userQty: number;
   environmentQty: number;
@@ -42,6 +49,13 @@ export interface IEnvironment {
   capacity: string;
   created_at: string;
   updated_at: string;
+}
+
+export interface ICreateEnvironment {
+  name: string;
+  description: string;
+  image?: File;
+  capacity: string;
 }
 
 export interface IDeleteModal {
@@ -98,6 +112,10 @@ export const editUserMessages: { [key: string]: string } = {
 
 export const editEnvironmentMessages: { [key: string]: string } = {
   OK: 'Ambiente atualizado com sucesso.',
+};
+
+export const createEnvironmentMessages: { [key: string]: string } = {
+  Created: 'Ambiente criado com sucesso.',
 };
 
 export interface IResultRequest {

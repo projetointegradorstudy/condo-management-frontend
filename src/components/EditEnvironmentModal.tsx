@@ -69,7 +69,7 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
                     <img src={image ? image : imageDefault} />
                     <div className="modal-button-upload-environment">
                       <Image />
-                      <Label title="Choose a file" htmlFor="image" isUploadFile />
+                      <Label title="Escolher foto" htmlFor="image" isUploadFile />
                       <Input
                         title="Choose a file"
                         type="file"

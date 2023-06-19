@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { X, CheckCircle, WarningCircle, XCircle, Image } from 'phosphor-react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { X, CheckCircle, Image, Trash } from 'phosphor-react';
 import { Button } from './Button';
 import { Input } from './Input';
 import { Label } from './Label';
 import { createEnvironment } from '../services/api';
 import { getContext } from '../utils/context-import';
 import { Spinner } from './Spinner';
-import { IEnvironment, IResultRequest, createUserMessages } from '../interfaces';
+import { ICreateEnvironment, IResultRequest, createEnvironmentMessages } from '../interfaces';
 import '../styles/create-environment-modal.scss';
 
 export function CreateEnvironmentModal() {
-  const [isEmail, setIsEmail] = useState('');
+  const [previewImage, setPreviewImage] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const {
@@ -20,43 +20,71 @@ export function CreateEnvironmentModal() {
     handleInputErrosClean,
     setIsNeedRefresh,
   } = getContext();
+  const [isFormValue, setIsFormValue] = useState<Partial<ICreateEnvironment>>();
+  const newFormValues: Partial<ICreateEnvironment> = { ...isFormValue };
 
-  const handleSubmit = async (e: any) => {
-    //   e.preventDefault();
-    //   setIsLoading(true);
-    //   await createEnvironment()
-    //     .then((res) => {
-    //       if (res.status === 201) {
-    //         setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
-    //         setIsNeedRefresh(true);
-    //         return;
-    //       }
-    //       setIsResult({ message: createUserMessages[res.data.message], icon: <WarningCircle color="#ffc107" /> });
-    //     })
-    //     .catch((e) => {
-    //       setIsResult({ message: createUserMessages[e.response.data.message], icon: <XCircle color="#f34542" /> });
-    //     });
-    //   setIsLoading(false);
+  const setFormValue = (prop: Partial<ICreateEnvironment>): void => {
+    for (const key in prop) {
+      newFormValues[`${key}`] = prop[key];
+      console.log(newFormValues);
+      if (!prop[key].length) delete newFormValues[`${key}`];
+    }
+    setIsFormValue(newFormValues);
   };
 
-  useEffect(() => {}, [isResult, isLoading]);
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    await createEnvironment(newFormValues)
+      .then((res) => {
+        if (res.status === 201) {
+          setIsResult({ message: createEnvironmentMessages[res.statusText], icon: <CheckCircle color="#38ba7c" /> });
+          setIsNeedRefresh(true);
+          // cleanData();
+          return;
+        }
+      })
+      .catch(() => {});
+    setIsLoading(false);
+  };
+
+  useEffect(() => {}, [isResult, isLoading, isFormValue]);
+
+  const cleanData = () => {
+    setIsResult(null);
+    setIsFormValue(undefined);
+    setPreviewImage(undefined);
+    setIsLoading(false);
+  };
 
   const handleCloser = () => {
     setIsOpenCreateEnvironmentModal(false);
-    setIsResult(null);
-    setIsLoading(false);
+    cleanData();
   };
 
   const handleRefresh = () => {
     setIsOpenCreateEnvironmentModal(true);
-    setIsResult(null);
-    setIsLoading(false);
+    cleanData();
+  };
+
+  const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      setIsFormValue({ image: file });
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   if (isOpenCreateEnvironmentModal) {
     return (
       <div className="modal-create-environment-background">
-        <div className="modal-create-environment">
+        <div className={!isResult ? 'modal-create-environment' : 'modal-create-environment-feedback'}>
           <div className="modal-create-environment-button-close">
             <button className="modal-create-environment-button-default" onClick={handleCloser}>
               <X size={20} />
@@ -73,29 +101,44 @@ export function CreateEnvironmentModal() {
                 <form onSubmit={handleSubmit}>
                   <div className="content-upload-register-environment">
                     <p>Imagem</p>
-                    <div className="image-upload-register-environment">
-                      <div className="button-upload-register-environment">
-                        <Image />
-                        <Label title="Choose file" htmlFor="avatar" isUploadFile />
-                        <Input
-                          title="Choose file"
-                          type="file"
-                          name="avatar"
-                          id="avatar"
-                          accept=".png, .jpg, .jpeg"
-                          hidden
-                        />
+                    {!previewImage ? (
+                      <div className="image-upload-register-environment">
+                        <div className="button-upload-register-environment">
+                          <Image />
+                          <Label title="Escolher foto" htmlFor="image" isUploadFile />
+                          <Input
+                            type="file"
+                            name="image"
+                            id="image"
+                            accept=".png, .jpg, .jpeg"
+                            hidden
+                            onChange={(e) => {
+                              handleImagePreview(e);
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="image-upload-register-environment-preview">
+                        <img src={previewImage} alt="Preview" />
+                        <div className="button-upload-register-environment-preview">
+                          <Trash />
+                          <button className="trash" onClick={() => setPreviewImage(undefined)}>
+                            Excluir foto
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <Label title="Nome" htmlFor="nome" />
+                  <Label title="Nome" htmlFor="name" />
                   <Input
-                    name="nome"
-                    id="nome"
+                    name="name"
+                    id="name"
                     type="text"
-                    placeholder=""
+                    placeholder="Ex: Piscina"
                     onChange={(e) => {
                       handleInputErrosClean(e);
+                      setFormValue({ name: e.target.value });
                     }}
                     required
                     onInvalid={handleInputErros}
@@ -105,24 +148,21 @@ export function CreateEnvironmentModal() {
                   <Input
                     name="capacity"
                     id="capacity"
-                    type="text"
-                    placeholder=""
+                    type="number"
+                    placeholder="Ex: 18"
                     onChange={(e) => {
-                      handleInputErrosClean(e);
+                      setFormValue({ capacity: e.target.value });
                     }}
-                    required
-                    onInvalid={handleInputErros}
                   />
 
                   <Label title="Descrição" htmlFor="description" />
                   <textarea
                     name="description"
                     id="description"
+                    placeholder="..."
                     onChange={(e) => {
-                      handleInputErrosClean(e);
+                      setFormValue({ description: e.target.value });
                     }}
-                    required
-                    onInvalid={handleInputErros}
                   />
                   <div className="modal-create-environment-form-button">
                     <Button title="Cancelar" onClick={handleCloser} isCancel />
