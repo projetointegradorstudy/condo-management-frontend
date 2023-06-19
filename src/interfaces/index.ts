@@ -114,6 +114,10 @@ export const editEnvironmentMessages: { [key: string]: string } = {
   OK: 'Ambiente atualizado com sucesso.',
 };
 
+export const createEnvironmentMessages: { [key: string]: string } = {
+  Created: 'Ambiente criado com sucesso.',
+};
+
 export interface IResultRequest {
   message: string;
   icon: ReactElement;

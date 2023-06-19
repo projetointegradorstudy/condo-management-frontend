@@ -1,12 +1,12 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { X, CheckCircle, WarningCircle, XCircle, Image } from 'phosphor-react';
+import { X, CheckCircle, Image, Trash } from 'phosphor-react';
 import { Button } from './Button';
 import { Input } from './Input';
 import { Label } from './Label';
 import { createEnvironment } from '../services/api';
 import { getContext } from '../utils/context-import';
 import { Spinner } from './Spinner';
-import { ICreateEnvironment, IResultRequest, createUserMessages } from '../interfaces';
+import { ICreateEnvironment, IResultRequest, createEnvironmentMessages } from '../interfaces';
 import '../styles/create-environment-modal.scss';
 
 export function CreateEnvironmentModal() {
@@ -38,16 +38,13 @@ export function CreateEnvironmentModal() {
     await createEnvironment(newFormValues)
       .then((res) => {
         if (res.status === 201) {
-          // setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
+          setIsResult({ message: createEnvironmentMessages[res.statusText], icon: <CheckCircle color="#38ba7c" /> });
           setIsNeedRefresh(true);
-          cleanData();
-          // return;
+          // cleanData();
+          return;
         }
-        // setIsResult({ message: createUserMessages[res.data.message], icon: <WarningCircle color="#ffc107" /> });
       })
-      .catch((e) => {
-        // setIsResult({ message: createUserMessages[e.response.data.message], icon: <XCircle color="#f34542" /> });
-      });
+      .catch(() => {});
     setIsLoading(false);
   };
 
@@ -87,7 +84,7 @@ export function CreateEnvironmentModal() {
   if (isOpenCreateEnvironmentModal) {
     return (
       <div className="modal-create-environment-background">
-        <div className="modal-create-environment">
+        <div className={!isResult ? 'modal-create-environment' : 'modal-create-environment-feedback'}>
           <div className="modal-create-environment-button-close">
             <button className="modal-create-environment-button-default" onClick={handleCloser}>
               <X size={20} />
@@ -123,9 +120,12 @@ export function CreateEnvironmentModal() {
                       </div>
                     ) : (
                       <div className="image-upload-register-environment-preview">
+                        <img src={previewImage} alt="Preview" />
                         <div className="button-upload-register-environment-preview">
-                          <Image />
-                          <img src={previewImage} alt="Preview" />
+                          <Trash />
+                          <button className="trash" onClick={() => setPreviewImage(undefined)}>
+                            Excluir foto
+                          </button>
                         </div>
                       </div>
                     )}
