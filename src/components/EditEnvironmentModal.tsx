@@ -1,16 +1,17 @@
-import { X, Image, CheckCircle } from 'phosphor-react';
+import { X, Image, CheckCircle, Trash } from 'phosphor-react';
 import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
 import { IEditEnvironment, IResultRequest, editEnvironmentMessages } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { updateEnvironment } from '../services/api';
 import { Spinner } from './Spinner';
 import '../styles/edit-environment-modal.scss';
 
 export function EditEnvironmentModal({ id, name, description, status, image, capacity }: IEditEnvironment) {
+  const [previewImage, setPreviewImage] = useState<string>();
   const { isOpenEditModal, setIsOpenEditModal, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
@@ -25,7 +26,7 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
     setIsFormValue(newFormValues);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -44,10 +45,37 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
     setIsLoading(false);
   };
 
+  useEffect(() => {}, [isResult, isLoading, isFormValue]);
+
+  const cleanData = () => {
+    setIsResult(null);
+    setIsFormValue(undefined);
+    setPreviewImage(undefined);
+    setIsLoading(false);
+  };
+
   const handleCloser = () => {
     setIsOpenEditModal(false);
-    setIsResult(null);
-    setIsLoading(false);
+    cleanData();
+  };
+
+  // const handleRefresh = () => {
+  //   setIsOpenEditModal(true);
+  //   cleanData();
+  // };
+
+  const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      setIsFormValue({ image: file });
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   if (isOpenEditModal) {
@@ -65,22 +93,36 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
               <form onSubmit={handleSubmit}>
                 <div className="modal-content-upload-environment">
                   <p>Imagem</p>
-                  <div className="modal-image-upload-environment">
-                    <img src={image ? image : imageDefault} />
-                    <div className="modal-button-upload-environment">
-                      <Image />
-                      <Label title="Escolher foto" htmlFor="image" isUploadFile />
-                      <Input
-                        title="Choose a file"
-                        type="file"
-                        name="image"
-                        id="image"
-                        accept=".png, .jpg"
-                        hidden
-                        onChange={(e) => setFormValue({ image: e.target.value })}
-                      />
+                  {!previewImage ? (
+                    <div className="modal-image-upload-environment">
+                      <img src={image && imageDefault} />
+                      <div className="modal-button-upload-environment">
+                        <Image />
+                        <Label title="Escolher foto" htmlFor="image" isUploadFile />
+                        <Input
+                          type="file"
+                          name="image"
+                          id="image"
+                          accept=".png, .jpg, .jpeg"
+                          hidden
+                          onChange={(e) => {
+                            handleImagePreview(e);
+                            setFormValue({ image: e.target.value });
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="image-upload-edit-environment-preview">
+                      <img className="preview" src={previewImage} alt="Preview" />
+                      <div className="button-upload-edit-environment-preview">
+                        <Trash />
+                        <button className="trash" onClick={() => setPreviewImage(undefined)}>
+                          Excluir foto
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <Label title="Nome" htmlFor="nome" />
                 <Input

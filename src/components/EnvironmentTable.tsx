@@ -14,10 +14,10 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
     name: '',
     description: '',
     status: '',
-    image: '',
+    image: File[1],
     capacity: '',
   });
-  const environmentFields = ['Imagem', 'Nome', 'Descrição', 'Capacidade', 'Data de registro', ''];
+  const environmentFields = ['Imagem', 'Nome', 'Descrição', 'Capacidade', 'Status', 'Data de registro', ''];
   const { setIsOpenEditModal, setIsOpenDeletModal, formatDate } = getContext();
 
   return (
@@ -47,6 +47,9 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                   </td>
                   <td>
                     <p>{environment.capacity}</p>
+                  </td>
+                  <td>
+                    <p>{environment.status}</p>
                   </td>
                   <td>
                     <p>{formatDate(environment.created_at)}</p>
