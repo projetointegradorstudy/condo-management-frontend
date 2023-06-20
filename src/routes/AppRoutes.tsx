@@ -10,6 +10,7 @@ import { ForgotPassaword } from '../pages/ForgotPassaword';
 import { RecoverPassword } from '../pages/RecoverPassword';
 import { Iprops } from '../interfaces';
 import { getContext } from '../utils/context-import';
+import { EditProfile } from '../pages/EditProfile';
 
 export function AppRoutes() {
   const IsLoggedOut = ({ children }: Iprops) => {
@@ -75,6 +76,14 @@ export function AppRoutes() {
             element={
               <IsLoggedIn>
                 <MenuUser />
+              </IsLoggedIn>
+            }
+          />
+          <Route
+            path="/edit-profile"
+            element={
+              <IsLoggedIn>
+                <EditProfile />
               </IsLoggedIn>
             }
           />
