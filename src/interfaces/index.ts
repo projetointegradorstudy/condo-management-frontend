@@ -69,6 +69,7 @@ export interface IEditUser {
   avatar: string;
   password: string;
   passwordConfirmation: string;
+  name?: string;
   created_at: string;
   role: Roles;
 }
@@ -108,6 +109,10 @@ export const createPasswordMessages: { [key: string]: string } = {
 
 export const editUserMessages: { [key: string]: string } = {
   OK: 'Usuário atualizado com sucesso.',
+};
+
+export const editMyselUserfMessages: { [key: string]: string } = {
+  OK: 'Suas informações foram atualizadas com sucesso.',
 };
 
 export const editEnvironmentMessages: { [key: string]: string } = {
