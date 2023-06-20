@@ -35,8 +35,8 @@ export function NavbarMobile() {
       icon: <ListDashes size={18} />,
     },
     {
-      path: '/',
-      name: 'Aprovações',
+      path: '/requests',
+      name: 'Solicitações',
       icon: <ListChecks size={18} />,
     },
   ];
@@ -48,8 +48,8 @@ export function NavbarMobile() {
       icon: <House size={18} />,
     },
     {
-      path: ';requests',
-      name: 'Solicitações',
+      path: '/my-requests',
+      name: 'Minhas solicitações',
       icon: <ListBullets size={18} />,
     },
     {

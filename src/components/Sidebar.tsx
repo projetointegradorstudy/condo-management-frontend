@@ -49,8 +49,8 @@ export function Sidebar() {
       icon: <ListDashes size={isOpen ? 20 : 22} />,
     },
     {
-      path: '/',
-      name: 'Aprovações',
+      path: '/requests',
+      name: 'Solicitações',
       icon: <ListChecks size={isOpen ? 20 : 22} />,
     },
   ];
@@ -62,8 +62,8 @@ export function Sidebar() {
       icon: <House size={isOpen ? 20 : 22} />,
     },
     {
-      path: '/requests',
-      name: 'Solicitações',
+      path: '/my-requests',
+      name: 'Minhas solicitações',
       icon: <ListBullets size={isOpen ? 20 : 22} />,
     },
     {
@@ -77,7 +77,7 @@ export function Sidebar() {
 
   return (
     <>
-      <aside style={{ width: isOpen ? '250px' : '100px' }} className="desktop">
+      <aside style={{ maxWidth: isOpen ? '250px' : '100px' }} className="desktop">
         <div className="content-button" style={{ justifyContent: isOpen ? 'flex-end' : 'center' }}>
           <div className="toggle-button">
             {!isOpen ? <CaretRight size={22} onClick={toggle} /> : <CaretLeft size={22} onClick={toggle} />}

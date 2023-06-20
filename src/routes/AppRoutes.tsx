@@ -11,6 +11,7 @@ import { RecoverPassword } from '../pages/RecoverPassword';
 import { Iprops } from '../interfaces';
 import { getContext } from '../utils/context-import';
 import { EditProfile } from '../pages/EditProfile';
+import { Requests } from '../pages/Requests';
 
 export function AppRoutes() {
   const IsLoggedOut = ({ children }: Iprops) => {
@@ -108,6 +109,14 @@ export function AppRoutes() {
             element={
               <IsAdmin>
                 <ListEnvironments />
+              </IsAdmin>
+            }
+          />
+          <Route
+            path="/requests"
+            element={
+              <IsAdmin>
+                <Requests />
               </IsAdmin>
             }
           />

@@ -7,8 +7,9 @@ aside.desktop {
   justify-content: flex-start;
   align-items: center;
   gap: 3rem;
+  width: 100%;
   background-color: $primary;
-  transition: width 0.7s ease-in-out;
+  transition: max-width 0.7s ease-in-out;
   height: 100vh;
   padding: 30px 0px 80px;
   z-index: 1;
