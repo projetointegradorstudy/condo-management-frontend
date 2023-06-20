@@ -39,7 +39,9 @@ export async function resetPassword(token: string, resetPassword: Partial<IEditU
 }
 
 export async function updateUser(updateDto: Partial<IEditUser>) {
-  return api.patch(`/users/myself/update`, updateDto);
+  return api.patch(`/users/myself/update`, updateDto, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 }
 
 export async function getUsers() {
@@ -70,5 +72,7 @@ export async function deleteEnvironment(id: string) {
 }
 
 export async function updateEnvironment(id: string, updateEnvironmentDto: Partial<IEditEnvironment>) {
-  return api.patch(`/environments/${id}`, updateEnvironmentDto);
+  return api.patch(`/environments/${id}`, updateEnvironmentDto, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 }

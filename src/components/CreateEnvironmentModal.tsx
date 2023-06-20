@@ -40,7 +40,7 @@ export function CreateEnvironmentModal() {
         if (res.status === 201) {
           setIsResult({ message: createEnvironmentMessages[res.statusText], icon: <CheckCircle color="#38ba7c" /> });
           setIsNeedRefresh(true);
-          // cleanData();
+          cleanData();
           return;
         }
       })
@@ -51,7 +51,6 @@ export function CreateEnvironmentModal() {
   useEffect(() => {}, [isResult, isLoading, isFormValue]);
 
   const cleanData = () => {
-    setIsResult(null);
     setIsFormValue(undefined);
     setPreviewImage(undefined);
     setIsLoading(false);
