@@ -48,24 +48,6 @@ div.page-requests {
       }
     }
 
-    div.content-buttons-requests {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 1rem;
-      margin-bottom: 20px;
-
-      button {
-        width: 100px;
-        height: 34px;
-
-        @include breakpoint(sm) {
-          width: 80px;
-            height: 30px;
-        }
-      }
-    }
-
     div.content-requests-list {
       overflow-y: auto;
       scroll-behavior: smooth;
@@ -133,19 +115,19 @@ div.page-requests {
             }
           }
 
-          div.input-checkbox {
+          div.content-buttons-requests {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            gap: 1rem;
 
-            input {
-              width: 18px;
-              height: 18px;
-              margin-bottom: 0;
+            button {
+              width: 100px;
+              height: 34px;
 
-              @include breakpoint(md) {
-                width: 16px;
-                height: 16px;
+              @include breakpoint(sm) {
+                width: 80px;
+                  height: 30px;
               }
             }
           }

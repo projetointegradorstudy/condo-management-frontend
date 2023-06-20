@@ -2,7 +2,7 @@
 import { Button } from './Button';
 
 export function RequestTable() {
-  const userFields = ['', 'Ambiente', 'Nome', 'Qt de Pessoas', 'Data da solicitação', 'Status', 'Observações'];
+  const userFields = ['Ambiente', 'Nome', 'Qt de Pessoas', 'Data da solicitação', 'Status', 'Observações', ''];
   // const { formatDate } = getContext();
 
   return (
@@ -18,11 +18,6 @@ export function RequestTable() {
 
         <tbody>
           <tr>
-            <td>
-              <div className="input-checkbox">
-                <input type="checkbox" />
-              </div>
-            </td>
             <td>
               <h4>Piscina</h4>
             </td>
@@ -40,6 +35,12 @@ export function RequestTable() {
             </td>
             <td>
               <p>Lorem ipsum dolor sit, amet consectetur.</p>
+            </td>
+            <td>
+              <div className="content-buttons-requests">
+                <Button title="Aprovar" isConfirm />
+                <Button title="Recusar" className="button-cancel-background " />
+              </div>
             </td>
           </tr>
         </tbody>

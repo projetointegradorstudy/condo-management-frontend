@@ -16,11 +16,6 @@ export function Requests() {
           <div className="content-requests">
             <h1>Solicitações</h1>
 
-            <div className="content-buttons-requests">
-              <Button title="Aprovar" isConfirm />
-              <Button title="Recusar" className="button-cancel-background " />
-            </div>
-
             <div className="content-requests-list">
               <RequestTable />
             </div>
