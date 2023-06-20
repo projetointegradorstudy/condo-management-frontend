@@ -21,7 +21,7 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
   const setFormValue = (prop: Partial<IEditEnvironment>): void => {
     for (const key in prop) {
       newFormValues[`${key}`] = prop[key];
-      if (!prop[key].length) delete newFormValues[`${key}`];
+      if (!prop[key]) delete newFormValues[`${key}`];
     }
     setIsFormValue(newFormValues);
   };
@@ -63,7 +63,7 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
     const file = e.target.files?.[0];
 
     if (file) {
-      setIsFormValue({ image: file });
+      setFormValue({ image: file });
 
       const reader = new FileReader();
       reader.onloadend = () => {

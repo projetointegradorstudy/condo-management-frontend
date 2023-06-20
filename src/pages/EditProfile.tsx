@@ -7,11 +7,12 @@ import { getContext } from '../utils/context-import';
 import { CheckCircle, PencilSimple } from 'phosphor-react';
 import { InputPassword } from '../components/InputPassword';
 import { Button } from '../components/Button';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import avatarDefault from '../assets/avatar-default.png';
-import { IEditUser, IResultRequest, editMyselUserfMessages } from '../interfaces';
+import { Case, IEditUser, IResultRequest, editMyselUserfMessages } from '../interfaces';
 import { updateUser } from '../services/api';
 import '../styles/edit-profile.scss';
+import { ToastMessage, ToastNotifications } from '../components/ToastNotifications';
 
 export function EditProfile() {
   const [previewImage, setPreviewImage] = useState<string>();
@@ -24,30 +25,23 @@ export function EditProfile() {
   const setFormValue = (prop: Partial<IEditUser>): void => {
     for (const key in prop) {
       newFormValues[`${key}`] = prop[key];
-      if (!prop[key].length) delete newFormValues[`${key}`];
+      if (!prop[key]) delete newFormValues[`${key}`];
     }
     setIsFormValue(newFormValues);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form: HTMLFormElement | null = document.querySelector('#form');
     setIsLoading(true);
 
     await updateUser(newFormValues)
-      .then((res) => {
-        if (res.status === 200) {
-          setIsResult({
-            message: editMyselUserfMessages[res.statusText],
-            icon: <CheckCircle color="#38ba7c" />,
-          });
-          setTimeout(() => {
-            setIsResult(null);
-          }, 3000);
-          setIsNeedRefresh(true);
-          return;
-        }
+      .then(() => {
+        ToastMessage({ message: 'Alterações salvas', type: Case.SUCCESS });
+        setIsNeedRefresh(true);
       })
       .catch(() => {});
+    form?.reset();
     cleanData();
   };
 
@@ -61,7 +55,7 @@ export function EditProfile() {
     const file = e.target.files?.[0];
 
     if (file) {
-      setIsFormValue({ avatar: file });
+      setFormValue({ avatar: file });
 
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -101,7 +95,7 @@ export function EditProfile() {
                 </div>
                 <div className="content-dit-profile-form">
                   <h3>Suas informações</h3>
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit} id="form">
                     <Label title="Nome" htmlFor="name" />
                     <Input
                       name="name"
@@ -136,16 +130,10 @@ export function EditProfile() {
                 </div>
               </>
             )}
-            {isResult && (
-              <div className="edit-user-feedback">
-                {isResult.icon}
-
-                <span>{isResult.message}</span>
-              </div>
-            )}
           </div>
         </div>
       </div>
+      <ToastNotifications />
       <Footer isFull />
     </>
   );

@@ -161,3 +161,15 @@ export interface IStorageState<T> {
   set: (newValue: T) => void;
   remove: () => void;
 }
+
+export enum Case {
+  SUCCESS = 'success',
+  ERROR = 'error',
+  WARNING = 'warning',
+}
+
+export interface IToastNotification {
+  type: Case;
+  customClass?: string;
+  message: string;
+}
