@@ -78,7 +78,7 @@ export interface IEditEnvironment {
   name: string;
   description: string;
   status: string;
-  image: string;
+  image: string | File;
   capacity: string;
 }
 
