@@ -66,7 +66,7 @@ export interface IDeleteModal {
 
 export interface IEditUser {
   id: string;
-  avatar: string;
+  avatar: string | File;
   password: string;
   passwordConfirmation: string;
   name?: string;

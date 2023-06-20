@@ -7,12 +7,14 @@ import { getContext } from '../utils/context-import';
 import { CheckCircle, PencilSimple } from 'phosphor-react';
 import { InputPassword } from '../components/InputPassword';
 import { Button } from '../components/Button';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
+import avatarDefault from '../assets/avatar-default.png';
 import { IEditUser, IResultRequest, editMyselUserfMessages } from '../interfaces';
 import { updateUser } from '../services/api';
 import '../styles/edit-profile.scss';
 
 export function EditProfile() {
+  const [previewImage, setPreviewImage] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const [isFormValue, setIsFormValue] = useState<Partial<IEditUser>>();
@@ -46,7 +48,27 @@ export function EditProfile() {
         }
       })
       .catch(() => {});
+    cleanData();
+  };
+
+  const cleanData = () => {
+    setIsFormValue(undefined);
+    setPreviewImage(undefined);
     setIsLoading(false);
+  };
+
+  const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      setIsFormValue({ avatar: file });
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -63,9 +85,19 @@ export function EditProfile() {
             {!isResult && (
               <>
                 <div className="content-edit-profile-avatar">
-                  <img src={isMyselfData?.avatar} />
+                  <img src={previewImage || isMyselfData?.avatar || avatarDefault} />
                   <Label htmlFor="image" isUploadFile icon={<PencilSimple />} />
-                  <Input title="Choose a file" type="file" name="image" id="image" accept=".png, .jpg" hidden />
+                  <Input
+                    title="Choose a file"
+                    type="file"
+                    name="image"
+                    id="image"
+                    accept=".png, .jpg"
+                    hidden
+                    onChange={(e) => {
+                      handleImagePreview(e);
+                    }}
+                  />
                 </div>
                 <div className="content-dit-profile-form">
                   <h3>Suas informações</h3>

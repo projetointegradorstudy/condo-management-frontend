@@ -68,7 +68,7 @@ export function EditUserModal({ id, avatar, password, passwordConfirmation, crea
           {!isResult && (
             <div className="modal-edit-user-content">
               <div className="modal-edit-user-image">
-                <img src={avatar ? avatar : avatarDefault} alt="avatar" />
+                <img src={typeof avatar === 'string' ? avatar : avatarDefault} alt="avatar" />
               </div>
               <form onSubmit={handleSubmit}>
                 <Label title="Senha" htmlFor="password" />
