@@ -70,5 +70,7 @@ export async function deleteEnvironment(id: string) {
 }
 
 export async function updateEnvironment(id: string, updateEnvironmentDto: Partial<IEditEnvironment>) {
-  return api.patch(`/environments/${id}`, updateEnvironmentDto);
+  return api.patch(`/environments/${id}`, updateEnvironmentDto, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 }

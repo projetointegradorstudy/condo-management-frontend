@@ -59,11 +59,6 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
     cleanData();
   };
 
-  // const handleRefresh = () => {
-  //   setIsOpenEditModal(true);
-  //   cleanData();
-  // };
-
   const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
@@ -95,7 +90,7 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
                   <p>Imagem</p>
                   {!previewImage ? (
                     <div className="modal-image-upload-environment">
-                      <img src={image && imageDefault} />
+                      <img src={typeof image === 'string' ? image : imageDefault} />
                       <div className="modal-button-upload-environment">
                         <Image />
                         <Label title="Escolher foto" htmlFor="image" isUploadFile />
@@ -107,7 +102,6 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
                           hidden
                           onChange={(e) => {
                             handleImagePreview(e);
-                            setFormValue({ image: e.target.value });
                           }}
                         />
                       </div>
