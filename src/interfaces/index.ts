@@ -66,7 +66,7 @@ export interface IDeleteModal {
 
 export interface IEditUser {
   id: string;
-  avatar: string;
+  avatar: string | File;
   password: string;
   passwordConfirmation: string;
   name?: string;
@@ -160,4 +160,16 @@ export interface IStorageState<T> {
   state: T;
   set: (newValue: T) => void;
   remove: () => void;
+}
+
+export enum Case {
+  SUCCESS = 'success',
+  ERROR = 'error',
+  WARNING = 'warning',
+}
+
+export interface IToastNotification {
+  type: Case;
+  customClass?: string;
+  message: string;
 }

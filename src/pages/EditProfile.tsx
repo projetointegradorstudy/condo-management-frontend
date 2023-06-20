@@ -7,12 +7,15 @@ import { getContext } from '../utils/context-import';
 import { CheckCircle, PencilSimple } from 'phosphor-react';
 import { InputPassword } from '../components/InputPassword';
 import { Button } from '../components/Button';
-import { useState } from 'react';
-import { IEditUser, IResultRequest, editMyselUserfMessages } from '../interfaces';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import avatarDefault from '../assets/avatar-default.png';
+import { Case, IEditUser, IResultRequest, editMyselUserfMessages } from '../interfaces';
 import { updateUser } from '../services/api';
 import '../styles/edit-profile.scss';
+import { ToastMessage, ToastNotifications } from '../components/ToastNotifications';
 
 export function EditProfile() {
+  const [previewImage, setPreviewImage] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const [isFormValue, setIsFormValue] = useState<Partial<IEditUser>>();
@@ -22,31 +25,44 @@ export function EditProfile() {
   const setFormValue = (prop: Partial<IEditUser>): void => {
     for (const key in prop) {
       newFormValues[`${key}`] = prop[key];
-      if (!prop[key].length) delete newFormValues[`${key}`];
+      if (!prop[key]) delete newFormValues[`${key}`];
     }
     setIsFormValue(newFormValues);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form: HTMLFormElement | null = document.querySelector('#form');
     setIsLoading(true);
 
     await updateUser(newFormValues)
-      .then((res) => {
-        if (res.status === 200) {
-          setIsResult({
-            message: editMyselUserfMessages[res.statusText],
-            icon: <CheckCircle color="#38ba7c" />,
-          });
-          setTimeout(() => {
-            setIsResult(null);
-          }, 3000);
-          setIsNeedRefresh(true);
-          return;
-        }
+      .then(() => {
+        ToastMessage({ message: 'Alterações salvas', type: Case.SUCCESS });
+        setIsNeedRefresh(true);
       })
       .catch(() => {});
+    form?.reset();
+    cleanData();
+  };
+
+  const cleanData = () => {
+    setIsFormValue(undefined);
+    setPreviewImage(undefined);
     setIsLoading(false);
+  };
+
+  const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      setFormValue({ avatar: file });
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -63,13 +79,23 @@ export function EditProfile() {
             {!isResult && (
               <>
                 <div className="content-edit-profile-avatar">
-                  <img src={isMyselfData?.avatar} />
+                  <img src={previewImage || isMyselfData?.avatar || avatarDefault} />
                   <Label htmlFor="image" isUploadFile icon={<PencilSimple />} />
-                  <Input title="Choose a file" type="file" name="image" id="image" accept=".png, .jpg" hidden />
+                  <Input
+                    title="Choose a file"
+                    type="file"
+                    name="image"
+                    id="image"
+                    accept=".png, .jpg"
+                    hidden
+                    onChange={(e) => {
+                      handleImagePreview(e);
+                    }}
+                  />
                 </div>
                 <div className="content-dit-profile-form">
                   <h3>Suas informações</h3>
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit} id="form">
                     <Label title="Nome" htmlFor="name" />
                     <Input
                       name="name"
@@ -104,16 +130,10 @@ export function EditProfile() {
                 </div>
               </>
             )}
-            {isResult && (
-              <div className="edit-user-feedback">
-                {isResult.icon}
-
-                <span>{isResult.message}</span>
-              </div>
-            )}
           </div>
         </div>
       </div>
+      <ToastNotifications />
       <Footer isFull />
     </>
   );
