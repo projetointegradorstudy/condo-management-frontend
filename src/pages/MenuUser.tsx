@@ -7,8 +7,9 @@ import { getEnvironments } from '../services/api';
 import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
 import { Footer } from '../components/Footer';
-import '../styles/menu-user.scss';
 import { getContext } from '../utils/context-import';
+import { RequestModal } from '../components/RequestModal';
+import '../styles/menu-user.scss';
 
 export function MenuUser() {
   const [environments, setEnvironments] = useState<IEnvironment[]>([]);
@@ -62,6 +63,7 @@ export function MenuUser() {
         </div>
       </div>
       <Footer isFull />
+      <RequestModal />
     </>
   );
 }

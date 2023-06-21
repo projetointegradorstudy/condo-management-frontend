@@ -45,6 +45,8 @@ div.modal-edit-background-environment  {
         background-color: transparent;
         width: 22px;
         height: 22px;
+        border: 0;
+        cursor: pointer;
 
         svg {
           color: $black;

@@ -42,6 +42,8 @@ div.modal-create-environment-background {
         background-color: transparent;
         width: 22px;
         height: 22px;
+        border: 0;
+        cursor: pointer;
 
         svg {
           color: $black;
@@ -236,6 +238,8 @@ div.modal-create-environment-background {
                 background-color: transparent;
                 font-size: 14px;
                 height: 24px;
+                border: 0;
+                cursor: pointer;
 
                 @include breakpoint(sm) {
                   font-size: 12px;

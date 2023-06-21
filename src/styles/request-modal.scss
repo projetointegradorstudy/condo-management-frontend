@@ -1,7 +1,7 @@
 @import './theme';
 @import './variables';
 
-div.modal-edit-user-background {
+div.modal-request-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,13 +13,13 @@ div.modal-edit-user-background {
   align-items: center;
   z-index: 2;
   
-  div.modal-edit-user {
+  div.modal-request {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 370px;
-    height: 560px;
+    height: 490px;
     border-radius: 10px;
     background-color: $white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -27,18 +27,18 @@ div.modal-edit-user-background {
 
     @include breakpoint(sm) {
       width: 100%;
-      height: 520px;
+      height: 456px;
       padding: 20px 24px;
       margin: 0 20px;
     }
 
-    div.modal-edit-user-button-close {
+    div.modal-request-button-close {
       display: flex;
       justify-content: flex-end;
       align-items: flex-start;
       width: 100%;
 
-      button.modal-edit-user-button-default {
+      button.modal-request-button-default {
         background-color: transparent;
         width: 22px;
         height: 22px;
@@ -56,18 +56,19 @@ div.modal-edit-user-background {
       }
     }
 
-    div.modal-edit-user-content {
+    div.modal-request-content {
       display: flex;
       justify-content: center;
       flex-direction: column;
       gap: 1rem;
+      max-width: 370px; 
       width: 100%;
 
       @include breakpoint(sm) {
         width: 100%;
       }
 
-      div.modal-edit-user-image {
+      div.modal-request-image {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -76,15 +77,10 @@ div.modal-edit-user-background {
         margin-top: 10px;
 
         img {
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
+          width: 100%;
+          height: 130px;
           object-fit: cover;
-
-          @include breakpoint(sm) {
-            width: 60px;
-            height: 60px;
-          }
+          border-radius: 10px;
         }
       }
 
@@ -94,57 +90,41 @@ div.modal-edit-user-background {
         max-width: 370px;
         width: 100%;
 
-        select {
-          width: 100%;
-          height: 40px;
-          background-color: #EAEEF2;
-          border-radius: 5px;
-          border: 0px;
-          padding: 12px 16px;
-          color: $primary;
+        div.MuiFormControl-root {
           margin-bottom: 20px;
-          font-size: 14px;
-          line-height: 16px;
-          cursor: pointer;
-          appearance: none;
 
-          @include breakpoint(sm) {
-            font-size: 14px;
-            height: 36px;
-            padding: 6px 16px;
-          }
-
-          &::-ms-expand {
-            display: none;
-          }
-
-          &::placeholder {
-            color: #AFB8C1;
-            font-size: 14px;
-          }
-
-          &::hover {
-            background-color: #AFB8C1;
-          }
-
-          option {
-            font-size: 14px;
-            line-height: 16px;
-            background-color: #EAEEF2;
+          input.MuiInputBase-input {
+            height: 16px;
             padding: 12px 16px;
+            background-color: #EAEEF2;
+            border: 0px;
+            border-radius: 5px;
+            font-size: 16px !important;
+            line-height: 16px;   
+        
+            &::placeholder {
+              color: #AFB8C1;
+              font-size: 14px;
+            }
+
+            @include breakpoint(sm) {
+              height: 12px;
+              font-size: 14px !important;
+              line-height: 14px;
+            }
           }
         }
 
-        div.modal-form-button {
+        div.modal-request-form-button {
           display: flex;
           justify-content: space-between;
-          margin-top: 10px;
+          margin-bottom: 10px;
         }
       }
     }
   }
 
-  div.modal-edit-user-feedback {
+  div.modal-request-feedback {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -160,28 +140,6 @@ div.modal-edit-user-background {
       height: 200px;
       padding: 20px 24px;
       margin: 0 20px;
-    }
-  
-    div.modal-edit-user-button-close {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-start;
-      width: 100%;
-  
-      button.modal-edit-user-button-default {
-        background-color: transparent;
-        width: 22px;
-        height: 22px;
-  
-        svg {
-          color: $black;
-  
-          @include breakpoint(sm) {
-            width: 18px;
-            height: 18px;
-          }
-        }
-      }
     }
 
     div.modal-edit-user-content-feedback {
@@ -220,7 +178,6 @@ div.modal-edit-user-background {
       display: flex;
       justify-content: center;
       width: 100%;
-      margin-top: 10px;
     }
   }
 }
