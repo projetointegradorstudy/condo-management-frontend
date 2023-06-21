@@ -1,7 +1,7 @@
 @import './theme';
 @import './variables';
 
-button {
+button.button-primary {
   width: 124px;
   height: 40px;
   border-radius: 5px;
@@ -47,21 +47,6 @@ button {
     background-color: transparent;
     color: $red;
     border: 2px solid $red;
-    transition: 0.2s;
-
-    &:hover {
-      background-color: $red;
-      color: $white;
-    }
-
-    @include breakpoint(sm) {
-      width: 110px;
-    }
-  }
-
-  &.button-cancel-background {
-    background-color: $red;
-    color: white;
     transition: 0.2s;
 
     &:hover {

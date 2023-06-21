@@ -159,6 +159,12 @@ aside.desktop {
           background-color: transparent; 
           gap: 0.8rem;
           height: auto;
+          border: 0;
+          cursor: pointer;
+
+          svg {
+            color: $white;
+          }
 
           span {
             color: #ffffff;

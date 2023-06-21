@@ -39,7 +39,7 @@ export function RequestTable() {
             <td>
               <div className="content-buttons-requests">
                 <Button title="Aprovar" isConfirm />
-                <Button title="Recusar" className="button-cancel-background " />
+                <Button title="Recusar" isCancel />
               </div>
             </td>
           </tr>

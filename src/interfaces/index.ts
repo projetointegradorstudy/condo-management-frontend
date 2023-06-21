@@ -57,7 +57,6 @@ export interface ICreateEnvironment {
   image?: File;
   capacity: string;
 }
-
 export interface IDeleteModal {
   id: string;
   name: string;

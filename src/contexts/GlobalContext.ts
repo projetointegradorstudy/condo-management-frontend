@@ -22,6 +22,8 @@ export interface GlobalContextProps {
   setIsOpenCreateEnvironmentModal: Dispatch<SetStateAction<boolean>>;
   isOpenConfirmSignoutModal: boolean;
   setIsOpenConfirmSignoutModal: Dispatch<SetStateAction<boolean>>;
+  isOpenRequestModal: boolean;
+  setIsOpenRequestModal: Dispatch<SetStateAction<boolean>>;
   isMyselfData: IUser | null;
   setIsMyselfData: Dispatch<SetStateAction<IUser | null>>;
   isRemainingSeconds: number | undefined;

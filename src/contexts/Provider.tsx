@@ -17,6 +17,7 @@ export function GlobalProvider({ children }: Iprops) {
   const [isOpenCreateUserModal, setIsOpenCreateUserModal] = useState(false);
   const [isOpenCreateEnvironmentModal, setIsOpenCreateEnvironmentModal] = useState(false);
   const [isOpenConfirmSignoutModal, setIsOpenConfirmSignoutModal] = useState(false);
+  const [isOpenRequestModal, setIsOpenRequestModal] = useState(false);
   const [isMyselfData, setIsMyselfData] = useState<IUser | null>(null);
   const [isRemainingSeconds, setIsRemaingSeconds] = useState<number>();
   const { decodedToken } = useJwt(token);
@@ -118,6 +119,8 @@ export function GlobalProvider({ children }: Iprops) {
         setIsOpenCreateEnvironmentModal,
         isOpenConfirmSignoutModal,
         setIsOpenConfirmSignoutModal,
+        isOpenRequestModal,
+        setIsOpenRequestModal,
         isMyselfData,
         setIsMyselfData,
         isRemainingSeconds,

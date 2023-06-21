@@ -11,7 +11,7 @@ type buttonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 export function Button({ title, isCancel, isConfirm, isFull, ...props }: buttonProps) {
   return (
     <button
-      className={`${isCancel ? 'button-cancel' : ''} ${isConfirm ? 'button-confirm' : ''} ${
+      className={`button-primary ${isCancel ? 'button-cancel' : ''} ${isConfirm ? 'button-confirm' : ''} ${
         isFull ? 'button-full' : ''
       }`}
       {...props}

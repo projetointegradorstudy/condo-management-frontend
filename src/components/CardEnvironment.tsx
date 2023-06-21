@@ -1,10 +1,13 @@
 import { Users } from 'phosphor-react';
 import { Button } from './Button';
-import '../styles/card-environment.scss';
 import { IDataElementProps, IEnvironment } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
+import { getContext } from '../utils/context-import';
+import '../styles/card-environment.scss';
 
 export function CardEnvironment({ data }: IDataElementProps<IEnvironment>) {
+  const { setIsOpenRequestModal } = getContext();
+
   return (
     <div className="card-environment">
       <div className="card-content">
@@ -25,7 +28,12 @@ export function CardEnvironment({ data }: IDataElementProps<IEnvironment>) {
           </div>
 
           <div className="card-button">
-            <Button title="Mais detalhes" />
+            <Button
+              title="Mais detalhes"
+              onClick={() => {
+                setIsOpenRequestModal(true);
+              }}
+            />
           </div>
         </div>
       </div>

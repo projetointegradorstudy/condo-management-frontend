@@ -127,7 +127,19 @@ div.page-requests {
 
               @include breakpoint(sm) {
                 width: 80px;
-                  height: 30px;
+                height: 30px;
+              }
+            }
+
+            button.button-cancel {
+              width: 100px;
+              height: 34px;
+              background-color: $red;
+              color: $white;
+
+              @include breakpoint(sm) {
+                width: 80px;
+                height: 30px;
               }
             }
           }
