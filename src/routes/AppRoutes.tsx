@@ -12,6 +12,7 @@ import { Iprops } from '../interfaces';
 import { getContext } from '../utils/context-import';
 import { EditProfile } from '../pages/EditProfile';
 import { Requests } from '../pages/Requests';
+import { MyRequests } from '../pages/MyRequests';
 
 export function AppRoutes() {
   const IsLoggedOut = ({ children }: Iprops) => {
@@ -85,6 +86,14 @@ export function AppRoutes() {
             element={
               <IsLoggedIn>
                 <EditProfile />
+              </IsLoggedIn>
+            }
+          />
+          <Route
+            path="/my-requests"
+            element={
+              <IsLoggedIn>
+                <MyRequests />
               </IsLoggedIn>
             }
           />
