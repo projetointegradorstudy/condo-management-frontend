@@ -10,6 +10,8 @@ import { IDataElementProps, IEnvironment, IResultRequest } from '../interfaces';
 import { Button } from './Button';
 import { Spinner } from './Spinner';
 import '../styles/request-modal.scss';
+import { Label } from './Label';
+import { Input } from './Input';
 
 export function RequestModal() {
   const { isOpenRequestModal, setIsOpenRequestModal } = getContext();
@@ -61,9 +63,14 @@ export function RequestModal() {
                 />
               </div>
               <form>
+                <Label title="Data e hora" htmlFor="date-time" />
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDateTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
                 </LocalizationProvider>
+
+                <Label title="Capacidade" htmlFor="capacity" />
+                <Input name="capacity" id="capacity" type="number" placeholder="20" />
+
                 <div className="modal-request-form-button">
                   <Button title="Cancelar" onClick={handleCloser} isCancel />
                   <Button title="Confirmar" type="submit" isConfirm />
