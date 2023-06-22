@@ -20,6 +20,9 @@ div.card-environment {
   }
 
   div.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 20px;
     width: 100%;
 

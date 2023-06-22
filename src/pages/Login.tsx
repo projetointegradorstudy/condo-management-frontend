@@ -64,6 +64,7 @@ export function Login() {
             <InputPassword
               name="senha"
               id="senha"
+              maxLength={30}
               placeholder="Insira a sua senha"
               onChange={(e) => {
                 setPassword(e.target.value);

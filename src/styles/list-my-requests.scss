@@ -1,20 +1,20 @@
 @import './theme';
 @import './variables';
 
-div.page-requests {
+div.page-my-requests {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: $gray-lightest;
 
-  div.container-requests {
+  div.container-my-requests {
     display: flex;
 
     @include breakpoint(sm) {
       flex-direction: column;
     }
 
-    div.content-requests {
+    div.content-my-requests {
       display: flex;
       flex-direction: column;
       flex: 1;
@@ -48,7 +48,7 @@ div.page-requests {
       }
     }
 
-    div.content-requests-list {
+    div.content-my-requests-list {
       overflow-y: auto;
       scroll-behavior: smooth;
       height: 58vh;
@@ -115,7 +115,7 @@ div.page-requests {
             }
           }
 
-          div.content-buttons-requests {
+          div.content-buttons-my-requests {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -130,14 +130,6 @@ div.page-requests {
                 height: 20px;
               }
 
-              &.icon-check {
-                color: $green;
-
-                &:hover {
-                  color: $greenDark;
-                }
-              }
-
               &.icon-close {
                 color: $red;
 
@@ -145,18 +137,6 @@ div.page-requests {
                   color: $redDark;
                 }
               }  
-            }
-
-            button.button-cancel {
-              width: 100px;
-              height: 34px;
-              background-color: $red;
-              color: $white;
-
-              @include breakpoint(sm) {
-                width: 80px;
-                height: 30px;
-              }
             }
           }
         }

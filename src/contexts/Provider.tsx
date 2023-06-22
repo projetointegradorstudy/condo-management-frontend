@@ -4,20 +4,20 @@ import { useJwt } from 'react-jwt';
 import { api, auth, getMyself } from '../services/api';
 import { GlobalContext } from './GlobalContext';
 import useStorage from '../utils/useStorage';
-import { IAuthProps, IResult, IUser, Iprops } from '../interfaces/index';
+import { IAuthProps, IModalRequests, IResult, IUser, Iprops } from '../interfaces/index';
 
 export function GlobalProvider({ children }: Iprops) {
   const [token, setToken, removeToken] = useStorage('token');
   const [isAuthenticated, setIsAuthenticated, removeIsAuthenticated] = useStorage('isAuthenticated');
-  const [isNeedRefresh, setIsNeedRefresh] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isUser, setIsUser] = useState(false);
-  const [isOpenEditModal, setIsOpenEditModal] = useState(false);
-  const [isOpenDeleteModal, setIsOpenDeletModal] = useState(false);
-  const [isOpenCreateUserModal, setIsOpenCreateUserModal] = useState(false);
-  const [isOpenCreateEnvironmentModal, setIsOpenCreateEnvironmentModal] = useState(false);
-  const [isOpenConfirmSignoutModal, setIsOpenConfirmSignoutModal] = useState(false);
-  const [isOpenRequestModal, setIsOpenRequestModal] = useState(false);
+  const [isNeedRefresh, setIsNeedRefresh] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [isUser, setIsUser] = useState<boolean>(false);
+  const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false);
+  const [isOpenDeleteModal, setIsOpenDeletModal] = useState<boolean>(false);
+  const [isOpenCreateUserModal, setIsOpenCreateUserModal] = useState<boolean>(false);
+  const [isOpenCreateEnvironmentModal, setIsOpenCreateEnvironmentModal] = useState<boolean>(false);
+  const [isOpenConfirmSignoutModal, setIsOpenConfirmSignoutModal] = useState<boolean>(false);
+  const [isRequestModal, setIsRequestModal] = useState<IModalRequests>();
   const [isMyselfData, setIsMyselfData] = useState<IUser | null>(null);
   const [isRemainingSeconds, setIsRemaingSeconds] = useState<number>();
   const { decodedToken } = useJwt(token);
@@ -119,8 +119,8 @@ export function GlobalProvider({ children }: Iprops) {
         setIsOpenCreateEnvironmentModal,
         isOpenConfirmSignoutModal,
         setIsOpenConfirmSignoutModal,
-        isOpenRequestModal,
-        setIsOpenRequestModal,
+        isRequestModal,
+        setIsRequestModal,
         isMyselfData,
         setIsMyselfData,
         isRemainingSeconds,

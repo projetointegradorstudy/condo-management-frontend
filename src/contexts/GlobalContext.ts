@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
-import { IAuthProps, IResult, IStorageState, IUser } from '../interfaces/index';
+import { IAuthProps, IModalRequests, IResult, IStorageState, IUser } from '../interfaces/index';
 
 export interface GlobalContextProps {
   token: IStorageState<string>;
@@ -22,8 +22,8 @@ export interface GlobalContextProps {
   setIsOpenCreateEnvironmentModal: Dispatch<SetStateAction<boolean>>;
   isOpenConfirmSignoutModal: boolean;
   setIsOpenConfirmSignoutModal: Dispatch<SetStateAction<boolean>>;
-  isOpenRequestModal: boolean;
-  setIsOpenRequestModal: Dispatch<SetStateAction<boolean>>;
+  isRequestModal: IModalRequests | undefined;
+  setIsRequestModal: Dispatch<SetStateAction<IModalRequests | undefined>>;
   isMyselfData: IUser | null;
   setIsMyselfData: Dispatch<SetStateAction<IUser | null>>;
   isRemainingSeconds: number | undefined;

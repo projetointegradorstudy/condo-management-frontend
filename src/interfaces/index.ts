@@ -26,6 +26,11 @@ export interface IDataElementProps<T> {
   data: T;
 }
 
+export interface IModalRequests {
+  isOpen: boolean;
+  data: any;
+}
+
 export interface IUser {
   id: string;
   avatar: string;
