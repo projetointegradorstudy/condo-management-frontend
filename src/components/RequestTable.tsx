@@ -1,9 +1,7 @@
-// import { getContext } from '../utils/context-import';
-import { Button } from './Button';
+import { CheckCircle, XCircle } from 'phosphor-react';
 
 export function RequestTable() {
-  const userFields = ['Ambiente', 'Nome', 'Qt de Pessoas', 'Data da solicitação', 'Status', 'Observações', ''];
-  // const { formatDate } = getContext();
+  const userFields = ['Ambiente', 'Solicitante', 'Check-in', 'Check-out', 'Status', 'Data da solicitação', ''];
 
   return (
     <>
@@ -22,24 +20,24 @@ export function RequestTable() {
               <h4>Piscina</h4>
             </td>
             <td>
-              <h4>User123</h4>
+              <p>User123</p>
             </td>
             <td>
-              <p>20</p>
+              <p>22.06.23 08:00</p>
             </td>
             <td>
-              <p>19.06.23</p>
+              <p>22.06.23 10:00</p>
             </td>
             <td>
               <p>Pendente</p>
             </td>
             <td>
-              <p>Lorem ipsum dolor sit, amet consectetur.</p>
+              <p>22.06.23</p>
             </td>
             <td>
               <div className="content-buttons-requests">
-                <Button title="Aprovar" isConfirm />
-                <Button title="Recusar" isCancel />
+                <CheckCircle className="icon-check" weight="fill" />
+                <XCircle className="icon-close" weight="fill" />
               </div>
             </td>
           </tr>

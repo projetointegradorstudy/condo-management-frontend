@@ -6,7 +6,7 @@ import { getContext } from '../utils/context-import';
 import '../styles/card-environment.scss';
 
 export function CardEnvironment({ data }: IDataElementProps<IEnvironment>) {
-  const { setIsOpenRequestModal } = getContext();
+  const { setIsRequestModal } = getContext();
 
   return (
     <div className="card-environment">
@@ -29,9 +29,9 @@ export function CardEnvironment({ data }: IDataElementProps<IEnvironment>) {
 
           <div className="card-button">
             <Button
-              title="Mais detalhes"
+              title="Reservar"
               onClick={() => {
-                setIsOpenRequestModal(true);
+                setIsRequestModal({ isOpen: true, data });
               }}
             />
           </div>

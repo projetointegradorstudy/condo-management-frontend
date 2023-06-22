@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X } from 'phosphor-react';
+import { Users, X } from 'phosphor-react';
 import dayjs from 'dayjs';
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -14,7 +14,7 @@ import { Label } from './Label';
 import { Input } from './Input';
 
 export function RequestModal() {
-  const { isOpenRequestModal, setIsOpenRequestModal } = getContext();
+  const { isRequestModal, setIsRequestModal } = getContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
 
@@ -38,12 +38,12 @@ export function RequestModal() {
   // };
 
   const handleCloser = () => {
-    setIsOpenRequestModal(false);
+    setIsRequestModal(undefined);
     setIsResult(null);
     setIsLoading(false);
   };
 
-  if (isOpenRequestModal) {
+  if (isRequestModal?.isOpen) {
     return (
       <div className="modal-request-background">
         <div className="modal-request">
@@ -55,21 +55,23 @@ export function RequestModal() {
           {isLoading && <Spinner />}
           {!isResult && (
             <div className="modal-request-content">
-              <h4>Ambiente</h4>
+              <div className="modal-request-info">
+                <h4>{isRequestModal.data.name}</h4>
+                <div className="modal-request-info-capacity" title="Quantidade de pessoas">
+                  <Users size={20} />
+                  <strong>{isRequestModal.data.capacity}</strong>
+                </div>
+              </div>
+
               <div className="modal-request-image">
-                <img
-                  src="https://www.casadevalentina.com.br/wp-content/uploads/2019/11/Sal%C3%A3oDeFestas_CasaDeValentina-6.jpg.optimal.jpg"
-                  alt="image"
-                />
+                <img src={isRequestModal.data.image} alt="image" />
+                <span>{isRequestModal.data.description}</span>
               </div>
               <form>
                 <Label title="Data e hora" htmlFor="date-time" />
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDateTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
                 </LocalizationProvider>
-
-                <Label title="Capacidade" htmlFor="capacity" />
-                <Input name="capacity" id="capacity" type="number" placeholder="20" />
 
                 <div className="modal-request-form-button">
                   <Button title="Cancelar" onClick={handleCloser} isCancel />

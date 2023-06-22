@@ -1,4 +1,3 @@
-import { Button } from '../components/Button';
 import { Footer } from '../components/Footer';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { RequestTable } from '../components/RequestTable';

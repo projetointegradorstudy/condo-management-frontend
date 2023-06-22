@@ -1,23 +1,21 @@
-import { Button } from '../components/Button';
 import { Footer } from '../components/Footer';
 import { MyRequestTable } from '../components/MyRequestTable';
 import { NavbarMobile } from '../components/NavbarMobile';
-
 import { Sidebar } from '../components/Sidebar';
-import '../styles/list-requests.scss';
+import '../styles/list-my-requests.scss';
 
 export function MyRequests() {
   return (
     <>
-      <div className="page-requests">
-        <div className="container-requests">
+      <div className="page-my-requests">
+        <div className="container-my-requests">
           <Sidebar />
           <NavbarMobile />
 
-          <div className="content-requests">
+          <div className="content-my-requests">
             <h1>Minhas solicitações</h1>
 
-            <div className="content-requests-list">
+            <div className="content-my-requests-list">
               <MyRequestTable />
             </div>
           </div>

@@ -82,6 +82,7 @@ export function RecoverPassword() {
               <InputPassword
                 name="senha"
                 id="senha"
+                maxLength={30}
                 placeholder="Insira a sua senha"
                 onChange={(e) => {
                   handleInputErrosClean(e);
@@ -95,6 +96,7 @@ export function RecoverPassword() {
               <InputPassword
                 name="confirmar-senha"
                 id="confirmar-senha"
+                maxLength={30}
                 placeholder="Confirme a sua senha"
                 onChange={(e) => {
                   handleInputErrosClean(e);

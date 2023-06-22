@@ -101,6 +101,7 @@ export function EditProfile() {
                       name="name"
                       id="name"
                       type="text"
+                      maxLength={30}
                       placeholder={isMyselfData?.name}
                       onChange={(e) => setFormValue({ name: e.target.value })}
                     />
@@ -111,6 +112,7 @@ export function EditProfile() {
                       id="password"
                       placeholder="********"
                       autoComplete="on"
+                      maxLength={30}
                       onChange={(e) => setFormValue({ password: e.target.value })}
                     ></InputPassword>
 
@@ -120,6 +122,7 @@ export function EditProfile() {
                       id="password-confirmation"
                       placeholder="********"
                       autoComplete="on"
+                      maxLength={30}
                       onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
                     />
 

@@ -159,6 +159,7 @@ export function CreateEnvironmentModal() {
                     name="description"
                     id="description"
                     placeholder="..."
+                    maxLength={150}
                     onChange={(e) => {
                       setFormValue({ description: e.target.value });
                     }}
