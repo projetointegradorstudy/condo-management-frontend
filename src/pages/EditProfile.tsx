@@ -4,20 +4,19 @@ import { Label } from '../components/Label';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Sidebar } from '../components/Sidebar';
 import { getContext } from '../utils/context-import';
-import { CheckCircle, PencilSimple } from 'phosphor-react';
+import { PencilSimple } from 'phosphor-react';
 import { InputPassword } from '../components/InputPassword';
 import { Button } from '../components/Button';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import avatarDefault from '../assets/avatar-default.png';
-import { Case, IEditUser, IResultRequest, editMyselUserfMessages } from '../interfaces';
+import { Case, IEditUser } from '../interfaces';
 import { updateUser } from '../services/api';
-import '../styles/edit-profile.scss';
 import { ToastMessage, ToastNotifications } from '../components/ToastNotifications';
+import '../styles/edit-profile.scss';
 
 export function EditProfile() {
   const [previewImage, setPreviewImage] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const [isFormValue, setIsFormValue] = useState<Partial<IEditUser>>();
   const newFormValues: Partial<IEditUser> = { ...isFormValue };
   const { isMyselfData, setIsNeedRefresh } = getContext();
@@ -76,63 +75,59 @@ export function EditProfile() {
           </div>
 
           <div className="content-edit-profile">
-            {!isResult && (
-              <>
-                <div className="content-edit-profile-avatar">
-                  <img src={previewImage || isMyselfData?.avatar || avatarDefault} />
-                  <Label htmlFor="image" isUploadFile icon={<PencilSimple />} />
-                  <Input
-                    title="Choose a file"
-                    type="file"
-                    name="image"
-                    id="image"
-                    accept=".png, .jpg"
-                    hidden
-                    onChange={(e) => {
-                      handleImagePreview(e);
-                    }}
-                  />
+            <div className="content-edit-profile-avatar">
+              <img src={previewImage || isMyselfData?.avatar || avatarDefault} />
+              <Label htmlFor="image" isUploadFile icon={<PencilSimple />} />
+              <Input
+                title="Choose a file"
+                type="file"
+                name="image"
+                id="image"
+                accept=".png, .jpg"
+                hidden
+                onChange={(e) => {
+                  handleImagePreview(e);
+                }}
+              />
+            </div>
+            <div className="content-dit-profile-form">
+              <h3>Suas informações</h3>
+              <form onSubmit={handleSubmit} id="form">
+                <Label title="Nome" htmlFor="name" />
+                <Input
+                  name="name"
+                  id="name"
+                  type="text"
+                  maxLength={30}
+                  placeholder={isMyselfData?.name}
+                  onChange={(e) => setFormValue({ name: e.target.value })}
+                />
+
+                <Label title="Senha" htmlFor="password" />
+                <InputPassword
+                  name="password"
+                  id="password"
+                  placeholder="********"
+                  autoComplete="on"
+                  maxLength={30}
+                  onChange={(e) => setFormValue({ password: e.target.value })}
+                ></InputPassword>
+
+                <Label title="Confirmar senha" htmlFor="password-confirmation" />
+                <InputPassword
+                  name="password-confirmation"
+                  id="password-confirmation"
+                  placeholder="********"
+                  autoComplete="on"
+                  maxLength={30}
+                  onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
+                />
+
+                <div className="content-edit-profile-button">
+                  <Button title="Confirmar" type="submit" isConfirm />
                 </div>
-                <div className="content-dit-profile-form">
-                  <h3>Suas informações</h3>
-                  <form onSubmit={handleSubmit} id="form">
-                    <Label title="Nome" htmlFor="name" />
-                    <Input
-                      name="name"
-                      id="name"
-                      type="text"
-                      maxLength={30}
-                      placeholder={isMyselfData?.name}
-                      onChange={(e) => setFormValue({ name: e.target.value })}
-                    />
-
-                    <Label title="Senha" htmlFor="password" />
-                    <InputPassword
-                      name="password"
-                      id="password"
-                      placeholder="********"
-                      autoComplete="on"
-                      maxLength={30}
-                      onChange={(e) => setFormValue({ password: e.target.value })}
-                    ></InputPassword>
-
-                    <Label title="Confirmar senha" htmlFor="password-confirmation" />
-                    <InputPassword
-                      name="password-confirmation"
-                      id="password-confirmation"
-                      placeholder="********"
-                      autoComplete="on"
-                      maxLength={30}
-                      onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
-                    />
-
-                    <div className="content-edit-profile-button">
-                      <Button title="Confirmar" type="submit" isConfirm />
-                    </div>
-                  </form>
-                </div>
-              </>
-            )}
+              </form>
+            </div>
           </div>
         </div>
       </div>

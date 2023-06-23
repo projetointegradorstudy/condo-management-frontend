@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { CheckCircle, X } from 'phosphor-react';
 import Select from 'react-select';
-import { IEditUser, IResultRequest, Roles, editUserMessages } from '../interfaces';
+import { Case, IEditUser, IResultRequest, Roles, editUserMessages } from '../interfaces';
 import { adminUpdateUser } from '../services/api';
 import { getContext } from '../utils/context-import';
 import { Label } from './Label';
@@ -10,9 +10,10 @@ import { Button } from './Button';
 import { InputPassword } from './InputPassword';
 import avatarDefault from '../assets/avatar-default.png';
 import { Spinner } from './Spinner';
+import { ToastMessage } from '../components/ToastNotifications';
 import '../styles/edit-user-modal.scss';
 
-export function EditUserModal({ id, avatar, password, passwordConfirmation, created_at, role }: IEditUser) {
+export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
   const { isOpenEditModal, setIsOpenEditModal, formatDate, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
@@ -30,28 +31,29 @@ export function EditUserModal({ id, avatar, password, passwordConfirmation, crea
     setIsFormValue(newFormValues);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form: HTMLFormElement | null = document.querySelector('#form');
     setIsLoading(true);
 
     await adminUpdateUser(id, newFormValues)
-      .then((res) => {
-        if (res.status === 200) {
-          setIsResult({
-            message: editUserMessages[res.statusText],
-            icon: <CheckCircle color="#38ba7c" />,
-          });
-          setIsNeedRefresh(true);
-          return;
-        }
+      .then(() => {
+        ToastMessage({ message: 'Atualizado com sucesso', type: Case.SUCCESS });
+        setIsNeedRefresh(true);
       })
       .catch(() => {});
+    form?.reset();
+    cleanData();
     setIsLoading(false);
   };
 
   const handleCloser = () => {
     setIsOpenEditModal(false);
-    setIsResult(null);
+    setIsLoading(false);
+  };
+
+  const cleanData = () => {
+    setIsFormValue(undefined);
     setIsLoading(false);
   };
 
@@ -65,70 +67,58 @@ export function EditUserModal({ id, avatar, password, passwordConfirmation, crea
             </button>
           </div>
           {isLoading && <Spinner />}
-          {!isResult && (
-            <div className="modal-edit-user-content">
-              <div className="modal-edit-user-image">
-                <img src={typeof avatar === 'string' ? avatar : avatarDefault} alt="avatar" />
-              </div>
-              <form onSubmit={handleSubmit}>
-                <Label title="Senha" htmlFor="password" />
-                <InputPassword
-                  name="password"
-                  id="password"
-                  placeholder="********"
-                  autoComplete="on"
-                  maxLength={30}
-                  onChange={(e) => setFormValue({ password: e.target.value })}
-                ></InputPassword>
 
-                <Label title="Confirmar senha" htmlFor="password-confirmation" />
-                <InputPassword
-                  name="password-confirmation"
-                  id="password-confirmation"
-                  placeholder="********"
-                  autoComplete="on"
-                  maxLength={30}
-                  onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
-                />
-
-                <Label title="Registrado" htmlFor="register" />
-                <Input name="register" id="register" type="text" disabled placeholder={formatDate(created_at)} />
-
-                <Label title="Regra" htmlFor="role" />
-
-                <select
-                  value={isRoleField.role}
-                  name="role"
-                  onChange={(e) => {
-                    setIsRoleField({ role: Roles[e.target.value.toLocaleUpperCase()] });
-                    setFormValue({ role: Roles[e.target.value.toLocaleUpperCase()] });
-                  }}
-                >
-                  {Object.values(Roles).map((role, index) => (
-                    <option key={index} value={role}>
-                      {role.slice(0, 1).toUpperCase() + role.slice(1)}
-                    </option>
-                  ))}
-                </select>
-
-                <div className="modal-form-button">
-                  <Button title="Cancelar" onClick={handleCloser} isCancel />
-                  <Button title="Confirmar" type="submit" isConfirm />
-                </div>
-              </form>
+          <div className="modal-edit-user-content">
+            <div className="modal-edit-user-image">
+              <img src={typeof avatar === 'string' ? avatar : avatarDefault} alt="avatar" />
             </div>
-          )}
-          {isResult && (
-            <div className="modal-edit-user-content-feedback">
-              {isResult.icon}
+            <form onSubmit={handleSubmit} id="form">
+              <Label title="Senha" htmlFor="password" />
+              <InputPassword
+                name="password"
+                id="password"
+                placeholder="********"
+                autoComplete="on"
+                maxLength={30}
+                onChange={(e) => setFormValue({ password: e.target.value })}
+              ></InputPassword>
 
-              <span>{isResult.message}</span>
+              <Label title="Confirmar senha" htmlFor="password-confirmation" />
+              <InputPassword
+                name="password-confirmation"
+                id="password-confirmation"
+                placeholder="********"
+                autoComplete="on"
+                maxLength={30}
+                onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
+              />
 
-              <div className="modal-edit-user-form-button">
-                <Button title="Fechar" onClick={handleCloser} isCancel />
+              <Label title="Registrado" htmlFor="register" />
+              <Input name="register" id="register" type="text" disabled placeholder={formatDate(created_at)} />
+
+              <Label title="Regra" htmlFor="role" />
+
+              <select
+                value={isRoleField.role}
+                name="role"
+                onChange={(e) => {
+                  setIsRoleField({ role: Roles[e.target.value.toLocaleUpperCase()] });
+                  setFormValue({ role: Roles[e.target.value.toLocaleUpperCase()] });
+                }}
+              >
+                {Object.values(Roles).map((role, index) => (
+                  <option key={index} value={role}>
+                    {role.slice(0, 1).toUpperCase() + role.slice(1)}
+                  </option>
+                ))}
+              </select>
+
+              <div className="modal-form-button">
+                <Button title="Cancelar" onClick={handleCloser} isCancel />
+                <Button title="Confirmar" type="submit" isConfirm />
               </div>
-            </div>
-          )}
+            </form>
+          </div>
         </div>
       </div>
     );

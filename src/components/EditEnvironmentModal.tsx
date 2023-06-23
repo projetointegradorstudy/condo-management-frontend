@@ -1,16 +1,17 @@
-import { X, Image, CheckCircle, Trash } from 'phosphor-react';
+import { X, Image, Trash } from 'phosphor-react';
 import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { IEditEnvironment, IResultRequest, editEnvironmentMessages } from '../interfaces';
+import { Case, IEditEnvironment, IResultRequest } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { updateEnvironment } from '../services/api';
 import { Spinner } from './Spinner';
+import { ToastMessage } from '../components/ToastNotifications';
 import '../styles/edit-environment-modal.scss';
 
-export function EditEnvironmentModal({ id, name, description, status, image, capacity }: IEditEnvironment) {
+export function EditEnvironmentModal({ id, name, description, image, capacity }: IEditEnvironment) {
   const [previewImage, setPreviewImage] = useState<string>();
   const { isOpenEditModal, setIsOpenEditModal, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(false);
@@ -28,21 +29,17 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form: HTMLFormElement | null = document.querySelector('#form');
     setIsLoading(true);
 
     await updateEnvironment(id, newFormValues)
-      .then((res) => {
-        if (res.status === 200) {
-          setIsResult({
-            message: editEnvironmentMessages[res.statusText],
-            icon: <CheckCircle color="#38ba7c" />,
-          });
-          setIsNeedRefresh(true);
-          return;
-        }
+      .then(() => {
+        ToastMessage({ message: 'Ambiente atualizado', type: Case.SUCCESS });
+        setIsNeedRefresh(true);
       })
       .catch(() => {});
-    setIsLoading(false);
+    form?.reset();
+    cleanData();
   };
 
   useEffect(() => {}, [isResult, isLoading, isFormValue]);
@@ -83,86 +80,73 @@ export function EditEnvironmentModal({ id, name, description, status, image, cap
             </button>
           </div>
           {isLoading && <Spinner />}
-          {!isResult && (
-            <div className="modal-edit-environment-content">
-              <form onSubmit={handleSubmit}>
-                <div className="modal-content-upload-environment">
-                  <p>Imagem</p>
-                  {!previewImage ? (
-                    <div className="modal-image-upload-environment">
-                      <img src={typeof image === 'string' ? image : imageDefault} />
-                      <div className="modal-button-upload-environment">
-                        <Image />
-                        <Label title="Escolher foto" htmlFor="image" isUploadFile />
-                        <Input
-                          type="file"
-                          name="image"
-                          id="image"
-                          accept=".png, .jpg, .jpeg"
-                          hidden
-                          onChange={(e) => {
-                            handleImagePreview(e);
-                          }}
-                        />
-                      </div>
+          <div className="modal-edit-environment-content">
+            <form onSubmit={handleSubmit} id="form">
+              <div className="modal-content-upload-environment">
+                <p>Imagem</p>
+                {!previewImage ? (
+                  <div className="modal-image-upload-environment">
+                    <img src={typeof image === 'string' ? image : imageDefault} />
+                    <div className="modal-button-upload-environment">
+                      <Image />
+                      <Label title="Escolher foto" htmlFor="image" isUploadFile />
+                      <Input
+                        type="file"
+                        name="image"
+                        id="image"
+                        accept=".png, .jpg, .jpeg"
+                        hidden
+                        onChange={(e) => {
+                          handleImagePreview(e);
+                        }}
+                      />
                     </div>
-                  ) : (
-                    <div className="image-upload-edit-environment-preview">
-                      <img className="preview" src={previewImage} alt="Preview" />
-                      <div className="button-upload-edit-environment-preview">
-                        <Trash />
-                        <button className="trash" onClick={() => setPreviewImage(undefined)}>
-                          Excluir foto
-                        </button>
-                      </div>
+                  </div>
+                ) : (
+                  <div className="image-upload-edit-environment-preview">
+                    <img className="preview" src={previewImage} alt="Preview" />
+                    <div className="button-upload-edit-environment-preview">
+                      <Trash />
+                      <button className="trash" onClick={() => setPreviewImage(undefined)}>
+                        Excluir foto
+                      </button>
                     </div>
-                  )}
-                </div>
-                <Label title="Nome" htmlFor="nome" />
-                <Input
-                  name="nome"
-                  id="nome"
-                  type="text"
-                  placeholder={name}
-                  onChange={(e) => setFormValue({ name: e.target.value })}
-                />
-
-                <Label title="Capacidade" htmlFor="capacity" />
-                <Input
-                  name="capacity"
-                  id="capacity"
-                  type="text"
-                  placeholder={capacity}
-                  onChange={(e) => setFormValue({ capacity: e.target.value })}
-                />
-
-                <Label title="Descrição" htmlFor="description" />
-                <textarea
-                  name="description"
-                  id="description"
-                  placeholder={description}
-                  maxLength={150}
-                  onChange={(e) => setFormValue({ description: e.target.value })}
-                ></textarea>
-
-                <div className="modal-form-button-environment">
-                  <Button title="Cancelar" onClick={handleCloser} isCancel />
-                  <Button title="Confirmar" type="submit" isConfirm />
-                </div>
-              </form>
-            </div>
-          )}
-          {isResult && (
-            <div className="modal-edit-environment-content-feedback">
-              {isResult.icon}
-
-              <span>{isResult.message}</span>
-
-              <div className="modal-edit-environment-form-button">
-                <Button title="Fechar" onClick={handleCloser} isCancel />
+                  </div>
+                )}
               </div>
-            </div>
-          )}
+              <Label title="Nome" htmlFor="nome" />
+              <Input
+                name="nome"
+                id="nome"
+                type="text"
+                placeholder={name}
+                onChange={(e) => setFormValue({ name: e.target.value })}
+              />
+
+              <Label title="Capacidade" htmlFor="capacity" />
+              <Input
+                name="capacity"
+                id="capacity"
+                type="text"
+                placeholder={capacity}
+                onChange={(e) => setFormValue({ capacity: e.target.value })}
+              />
+
+              <Label title="Descrição" htmlFor="description" />
+              <textarea
+                name="description"
+                id="description"
+                placeholder={description}
+                maxLength={150}
+                onChange={(e) => setFormValue({ description: e.target.value })}
+              ></textarea>
+
+              <div className="modal-form-button-environment">
+                <Button title="Cancelar" onClick={handleCloser} isCancel />
+                <Button title="Confirmar" type="submit" isConfirm />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );
