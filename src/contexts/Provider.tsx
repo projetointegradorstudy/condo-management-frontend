@@ -18,6 +18,9 @@ export function GlobalProvider({ children }: Iprops) {
   const [isOpenCreateEnvironmentModal, setIsOpenCreateEnvironmentModal] = useState<boolean>(false);
   const [isOpenConfirmSignoutModal, setIsOpenConfirmSignoutModal] = useState<boolean>(false);
   const [isRequestModal, setIsRequestModal] = useState<IModalRequests>();
+  const [isOpenApproveRequestModal, setIsOpenApproveRequestModal] = useState<boolean>(false);
+  const [isOpenDisapproveRequestModal, setIsOpenDisapproveRequestModal] = useState<boolean>(false);
+  const [isOpenCancelRequestModal, setIsOpenCancelRequestModal] = useState<boolean>(false);
   const [isMyselfData, setIsMyselfData] = useState<IUser | null>(null);
   const [isRemainingSeconds, setIsRemaingSeconds] = useState<number>();
   const { decodedToken } = useJwt(token);
@@ -121,6 +124,12 @@ export function GlobalProvider({ children }: Iprops) {
         setIsOpenConfirmSignoutModal,
         isRequestModal,
         setIsRequestModal,
+        isOpenApproveRequestModal,
+        setIsOpenApproveRequestModal,
+        isOpenDisapproveRequestModal,
+        setIsOpenDisapproveRequestModal,
+        isOpenCancelRequestModal,
+        setIsOpenCancelRequestModal,
         isMyselfData,
         setIsMyselfData,
         isRemainingSeconds,

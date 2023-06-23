@@ -24,6 +24,12 @@ export interface GlobalContextProps {
   setIsOpenConfirmSignoutModal: Dispatch<SetStateAction<boolean>>;
   isRequestModal: IModalRequests | undefined;
   setIsRequestModal: Dispatch<SetStateAction<IModalRequests | undefined>>;
+  isOpenApproveRequestModal: boolean;
+  setIsOpenApproveRequestModal: Dispatch<SetStateAction<boolean>>;
+  isOpenDisapproveRequestModal: boolean;
+  setIsOpenDisapproveRequestModal: Dispatch<SetStateAction<boolean>>;
+  isOpenCancelRequestModal: boolean;
+  setIsOpenCancelRequestModal: Dispatch<SetStateAction<boolean>>;
   isMyselfData: IUser | null;
   setIsMyselfData: Dispatch<SetStateAction<IUser | null>>;
   isRemainingSeconds: number | undefined;

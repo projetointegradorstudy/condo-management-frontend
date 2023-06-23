@@ -57,7 +57,7 @@ export function DeleteModal({ id, name, source }: IDeleteModal) {
       <div className="modal-delete-background">
         <div className="modal-delete">
           <div className="modal-delete-button-close">
-            <button className="modal-delete-button-default" onClick={() => setIsOpenDeletModal(false)}>
+            <button className="modal-delete-button-default" onClick={handleCloser}>
               <X size={20} />
             </button>
           </div>
