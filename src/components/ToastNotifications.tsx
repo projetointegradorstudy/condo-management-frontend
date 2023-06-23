@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/toast.scss';
 
 export function ToastMessage({ message, type, customClass }: IToastNotification) {
-  toast[type](message, { autoClose: 300000, position: toast.POSITION.TOP_CENTER });
+  toast[type](message, { autoClose: 3000, position: toast.POSITION.TOP_CENTER });
 }
 
 export function ToastNotifications() {
