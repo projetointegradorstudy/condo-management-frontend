@@ -124,6 +124,7 @@ div.page-my-requests {
             svg {
               width: 28px;
               height: 28px;
+              cursor: pointer;
 
               @include breakpoint(sm) {
                 width: 20px;

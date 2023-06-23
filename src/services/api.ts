@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { IAuthProps, ICreateEnvironment, IEditEnvironment, IEditUser, IEnvironment } from '../interfaces/index';
+import { IAuthProps, ICreateEnvironment, IEditEnvironment, IEditUser } from '../interfaces/index';
 
 export const api = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}` });
 
@@ -75,4 +75,13 @@ export async function updateEnvironment(id: string, updateEnvironmentDto: Partia
   return api.patch(`/environments/${id}`, updateEnvironmentDto, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
+}
+
+/** ENV_ REQUEST CONTEXT */
+export async function getEnvironmentRequests() {
+  return api.get('/env-requests');
+}
+
+export async function getEnvRequestsbyUser() {
+  return api.get('/env-requests/user');
 }

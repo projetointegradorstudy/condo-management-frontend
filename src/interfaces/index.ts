@@ -87,6 +87,21 @@ export interface IEditEnvironment {
   capacity: string;
 }
 
+export interface IRequests {
+  id: string;
+  environment: IEnvironment;
+  user: IUser;
+  date_in: string;
+  date_out: string;
+  status: string;
+  created_at: string;
+}
+
+export interface ICancelRequest {
+  id: string;
+  name: string;
+}
+
 export const createUserMessages: { [key: string]: string } = {
   'User created successfully': 'Email cadastrado com sucesso.',
   'This email exist on our databases, an email with confirmate instructions will be sent':
