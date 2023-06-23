@@ -1,10 +1,11 @@
-import { CheckCircle, WarningCircle, X, XCircle } from 'phosphor-react';
+import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { IDeleteModal, IResultRequest, deleteMessages } from '../interfaces';
+import { Case, IDeleteModal, IResultRequest } from '../interfaces';
 import { deleteUser, deleteEnvironment } from '../services/api';
 import { useEffect, useState } from 'react';
 import { Spinner } from './Spinner';
+import { ToastMessage } from '../components/ToastNotifications';
 import '../styles/delete-user-modal.scss';
 
 export function DeleteModal({ id, name, source }: IDeleteModal) {
@@ -18,30 +19,31 @@ export function DeleteModal({ id, name, source }: IDeleteModal) {
       await deleteUser(id)
         .then((res) => {
           if (res.status === 200) {
-            setIsResult({ message: deleteMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
+            ToastMessage({ message: 'Usuário excluido', type: Case.SUCCESS });
             setIsNeedRefresh(true);
             return;
           }
-          setIsResult({ message: deleteMessages[res.data.message], icon: <WarningCircle color="#ffc107" /> });
+          ToastMessage({ message: 'Já excluido', type: Case.WARNING });
         })
-        .catch((e) => {
-          setIsResult({ message: deleteMessages[e.data.message], icon: <XCircle color="#f34542" /> });
+        .catch(() => {
+          ToastMessage({ message: 'ID inválido', type: Case.ERROR });
         });
     } else if (source === 'environment') {
       await deleteEnvironment(id)
         .then((res) => {
           if (res.status === 200) {
-            setIsResult({ message: deleteMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
+            ToastMessage({ message: 'Ambiente excluido', type: Case.SUCCESS });
             setIsNeedRefresh(true);
             return;
           }
-          setIsResult({ message: deleteMessages[res.data.message], icon: <WarningCircle color="#ffc107" /> });
+          ToastMessage({ message: 'Já excluido', type: Case.WARNING });
         })
-        .catch((e) => {
-          setIsResult({ message: deleteMessages[e.data.message], icon: <XCircle color="#f34542" /> });
+        .catch(() => {
+          ToastMessage({ message: 'ID inválido', type: Case.ERROR });
         });
     }
     setIsLoading(false);
+    setIsOpenDeletModal(false);
   };
 
   useEffect(() => {}, [isResult, isLoading]);

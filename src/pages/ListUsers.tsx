@@ -9,6 +9,7 @@ import { UserTable } from '../components/UserTable';
 import { Button } from '../components/Button';
 import { getContext } from '../utils/context-import';
 import { Footer } from '../components/Footer';
+import { ToastNotifications } from '../components/ToastNotifications';
 import '../styles/list-users.scss';
 
 export function ListUsers() {
@@ -55,6 +56,7 @@ export function ListUsers() {
           </div>
         </div>
       </div>
+      <ToastNotifications />
       <Footer isFull />
     </>
   );

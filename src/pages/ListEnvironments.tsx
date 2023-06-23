@@ -9,6 +9,7 @@ import { getEnvironments } from '../services/api';
 import { Footer } from '../components/Footer';
 import { Button } from '../components/Button';
 import { getContext } from '../utils/context-import';
+import { ToastNotifications } from '../components/ToastNotifications';
 import '../styles/list-environments.scss';
 
 export function ListEnvironments() {
@@ -55,6 +56,7 @@ export function ListEnvironments() {
           </div>
         </div>
       </div>
+      <ToastNotifications />
       <Footer isFull />
     </>
   );
