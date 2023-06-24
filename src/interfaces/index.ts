@@ -1,4 +1,5 @@
 import { ReactElement, ReactNode } from 'react';
+import { ptBR, enUS } from '@mui/x-date-pickers/locales';
 
 export enum Roles {
   USER = 'user',
@@ -11,6 +12,11 @@ export enum Status {
   PENDING = 'pending',
   DISABLED = 'disabled',
 }
+
+export const dateTimeConfig = {
+  'en-US': { format: 'MM/DD/YYYY HH:mm', locale: enUS.components.MuiLocalizationProvider.defaultProps.localeText },
+  'pt-BR': { format: 'DD/MM/YYYY HH:mm', locale: ptBR.components.MuiLocalizationProvider.defaultProps.localeText },
+};
 
 export interface IDashboardData {
   userQty: number;
@@ -95,6 +101,11 @@ export interface IRequests {
   date_out: string;
   status: string;
   created_at: string;
+}
+export interface ICreateRequest {
+  environment_id: string;
+  date_in: string;
+  date_out: string;
 }
 
 export interface ICancelRequest {

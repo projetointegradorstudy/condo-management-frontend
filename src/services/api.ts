@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { IAuthProps, ICreateEnvironment, IEditEnvironment, IEditUser } from '../interfaces/index';
+import { IAuthProps, ICreateEnvironment, ICreateRequest, IEditEnvironment, IEditUser } from '../interfaces/index';
 
 export const api = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}` });
 
@@ -84,4 +84,8 @@ export async function getEnvironmentRequests() {
 
 export async function getEnvRequestsbyUser() {
   return api.get('/env-requests/user');
+}
+
+export async function createEnvRequest(createRequestDto: Partial<ICreateRequest>) {
+  return api.post('/env-requests', createRequestDto);
 }
