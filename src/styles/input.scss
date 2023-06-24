@@ -27,9 +27,12 @@ input {
   &.field-error {
     outline: 1px solid #f34542!important;
   }
+
   &::-webkit-outer-spin-button, 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
 }
+
+

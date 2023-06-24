@@ -117,6 +117,34 @@ div.modal-request-background {
         max-width: 370px;
         width: 100%;
 
+        div.form-group {
+          position: relative;
+      
+          input {
+            /* Styles for the input element */
+            border: 1px solid #ccc;
+            padding: 8px;
+          }
+      
+          div.bubble-notification {
+            /* Styles for the bubble notification */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            padding: 4px;
+            background-color: #ffcccc;
+            color: #ff0000;
+            font-size: 12px;
+            display: none;
+          }
+      
+          input:invalid+.bubble-notification {
+            /* Styles to show the bubble notification when input is invalid */
+            display: block;
+          }
+        }
+
         div.MuiFormControl-root {
           margin-bottom: 20px;
 

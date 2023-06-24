@@ -9,6 +9,7 @@ import { WarningFeedback } from '../components/WarningFeedback';
 import { Footer } from '../components/Footer';
 import { getContext } from '../utils/context-import';
 import { RequestModal } from '../components/RequestModal';
+import { ToastNotifications } from '../components/ToastNotifications';
 import '../styles/menu-user.scss';
 
 export function MenuUser() {
@@ -64,6 +65,7 @@ export function MenuUser() {
       </div>
       <Footer isFull />
       <RequestModal />
+      <ToastNotifications />
     </>
   );
 }

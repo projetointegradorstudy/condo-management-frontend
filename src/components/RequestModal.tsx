@@ -6,18 +6,21 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { getContext } from '../utils/context-import';
-import { ICreateRequest, IResultRequest, dateTimeConfig } from '../interfaces';
+import { Case, ICreateRequest, IResultRequest, dateTimeConfig } from '../interfaces';
 import { Button } from './Button';
 import { Spinner } from './Spinner';
 import { Label } from './Label';
 import '../styles/request-modal.scss';
+import { ToastMessage } from './ToastNotifications';
+import { createEnvRequest } from '../services/api';
 
 export function RequestModal() {
-  const { isRequestModal, setIsRequestModal, handleInputErros, handleInputErrosClean } = getContext();
+  const [isDate, setIsDate] = useState<any>();
+  const { setIsNeedRefresh, isRequestModal, setIsRequestModal, handleInputErros, handleInputErrosClean } = getContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const [isFormValue, setIsFormValue] = useState<Partial<ICreateRequest>>();
-  const newFormValues: Partial<ICreateRequest> = { ...isFormValue };
+  const newFormValues: Partial<ICreateRequest> = { ...isFormValue, environment_id: isRequestModal?.data.id };
 
   const setFormValue = (prop: Partial<ICreateRequest>): void => {
     for (const key in prop) {
@@ -30,31 +33,40 @@ export function RequestModal() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form: HTMLFormElement | null = document.querySelector('#form');
-    // setIsLoading(true);
-    console.log(newFormValues);
-    // await adminUpdateUser(id, newFormValues)
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       setIsResult({
-    //         message: editUserMessages[res.statusText],
-    //         icon: <CheckCircle color="#38ba7c" />,
-    //       });
-    //       setIsNeedRefresh(true);
-    //       return;
-    //     }
-    //   })
-    //   .catch(() => {});
-    // setIsLoading(false);
-    cleanData();
-    form?.reset();
+    setIsLoading(true);
+    handleGenerateDateOut();
+    if (!validateDatefield()) {
+      await createEnvRequest(newFormValues)
+        .then(() => {
+          ToastMessage({ message: 'Reserva realizada', type: Case.SUCCESS });
+          setIsNeedRefresh(true);
+        })
+        .catch(() => {});
+      cleanData();
+      form?.reset();
+    }
+    setIsLoading(false);
   };
 
-  const validateDatefield = () => {
-    const field = document.querySelector('#form');
-    isFormValue?.date_in;
+  const handleGenerateDateOut = () => {
+    if (newFormValues.date_in && newFormValues.date_out) {
+      const dateIn = new Date(newFormValues.date_in).getTime();
+      const dateOut = dayjs(new Date(dateIn + +newFormValues.date_out).getTime()).format('YYYY-MM-DD HH:mm');
+      newFormValues.date_out = dateOut;
+    }
+  };
+
+  const validateDatefield = (): boolean => {
+    if (!isDate) {
+      ToastMessage({ message: 'Preencha todos os campos', type: Case.ERROR });
+      return true;
+    }
+    return false;
   };
 
   const cleanData = () => {
+    setIsRequestModal(undefined);
+    setIsDate(undefined);
     setIsFormValue(undefined);
     setIsLoading(false);
   };
@@ -98,13 +110,18 @@ export function RequestModal() {
                   minutesStep={5}
                   maxDate={dayjs().add(6, 'months')}
                   ampm={false}
-                  slotProps={{ textField: { required: true } }}
-                  onChange={(value: any, selectionState: any) => {
-                    console.log(selectionState);
+                  onChange={(value) => {
+                    setIsDate(value);
                     setFormValue({ date_in: dayjs(value).format('YYYY-MM-DD HH:mm') });
+                  }}
+                  slotProps={{
+                    textField: {
+                      value: isDate,
+                    },
                   }}
                 />
               </LocalizationProvider>
+
               <Label title="Duração" htmlFor="duration" />
               <select
                 defaultValue={''}
