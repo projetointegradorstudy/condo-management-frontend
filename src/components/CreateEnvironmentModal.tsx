@@ -40,8 +40,9 @@ export function CreateEnvironmentModal() {
 
     await createEnvironment(newFormValues)
       .then(() => {
-        ToastMessage({ message: 'Ambiente criado', type: Case.SUCCESS });
+        handleCloser();
         setIsNeedRefresh(true);
+        ToastMessage({ message: 'Ambiente criado', type: Case.SUCCESS });
       })
       .catch(() => {
         ToastMessage({ message: 'Preencha os campos', type: Case.ERROR });

@@ -38,8 +38,9 @@ export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
 
     await adminUpdateUser(id, newFormValues)
       .then(() => {
-        ToastMessage({ message: 'Atualizado com sucesso', type: Case.SUCCESS });
+        handleCloser();
         setIsNeedRefresh(true);
+        ToastMessage({ message: 'Atualizado com sucesso', type: Case.SUCCESS });
       })
       .catch(() => {});
     form?.reset();

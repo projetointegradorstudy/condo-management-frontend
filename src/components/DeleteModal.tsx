@@ -18,9 +18,10 @@ export function DeleteModal({ id, name, source }: IDeleteModal) {
     if (source === 'user') {
       await deleteUser(id)
         .then((res) => {
+          handleCloser();
           if (res.status === 200) {
-            ToastMessage({ message: 'Usuário excluido', type: Case.SUCCESS });
             setIsNeedRefresh(true);
+            ToastMessage({ message: 'Usuário excluido', type: Case.SUCCESS });
             return;
           }
           ToastMessage({ message: 'Já excluido', type: Case.WARNING });
@@ -31,9 +32,10 @@ export function DeleteModal({ id, name, source }: IDeleteModal) {
     } else if (source === 'environment') {
       await deleteEnvironment(id)
         .then((res) => {
+          handleCloser();
           if (res.status === 200) {
-            ToastMessage({ message: 'Ambiente excluido', type: Case.SUCCESS });
             setIsNeedRefresh(true);
+            ToastMessage({ message: 'Ambiente excluido', type: Case.SUCCESS });
             return;
           }
           ToastMessage({ message: 'Já excluido', type: Case.WARNING });

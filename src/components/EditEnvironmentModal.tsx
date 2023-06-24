@@ -34,8 +34,9 @@ export function EditEnvironmentModal({ id, name, description, image, capacity }:
 
     await updateEnvironment(id, newFormValues)
       .then(() => {
-        ToastMessage({ message: 'Ambiente atualizado', type: Case.SUCCESS });
+        handleCloser();
         setIsNeedRefresh(true);
+        ToastMessage({ message: 'Ambiente atualizado', type: Case.SUCCESS });
       })
       .catch(() => {});
     form?.reset();
