@@ -1,12 +1,13 @@
-import { X, CheckCircle, WarningCircle, XCircle } from 'phosphor-react';
+import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { Input } from './Input';
 import { Label } from './Label';
 import { createUser } from '../services/api';
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
 import { Spinner } from './Spinner';
-import { IResultRequest, createUserMessages } from '../interfaces';
+import { Case, IResultRequest } from '../interfaces';
+import { ToastMessage } from '../components/ToastNotifications';
 import '../styles/create-user-modal.scss';
 
 export function CreateUserModal() {
@@ -16,20 +17,21 @@ export function CreateUserModal() {
   const { isOpenCreateUserModal, setIsOpenCreateUserModal, handleInputErros, handleInputErrosClean, setIsNeedRefresh } =
     getContext();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     await createUser(isEmail)
       .then((res) => {
+        handleCloser();
         if (res.status === 201) {
-          setIsResult({ message: createUserMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
           setIsNeedRefresh(true);
+          ToastMessage({ message: 'Email cadastrado', type: Case.SUCCESS });
           return;
         }
-        setIsResult({ message: createUserMessages[res.data.message], icon: <WarningCircle color="#ffc107" /> });
+        ToastMessage({ message: 'Email já existe', type: Case.WARNING });
       })
-      .catch((e) => {
-        setIsResult({ message: createUserMessages[e.response.data.message], icon: <XCircle color="#f34542" /> });
+      .catch(() => {
+        ToastMessage({ message: 'Email deve ser válido', type: Case.ERROR });
       });
 
     setIsLoading(false);
@@ -39,12 +41,6 @@ export function CreateUserModal() {
 
   const handleCloser = () => {
     setIsOpenCreateUserModal(false);
-    setIsResult(null);
-    setIsLoading(false);
-  };
-
-  const handleRefresh = () => {
-    setIsOpenCreateUserModal(true);
     setIsResult(null);
     setIsLoading(false);
   };
@@ -59,48 +55,33 @@ export function CreateUserModal() {
             </button>
           </div>
           {isLoading && <Spinner />}
-          {!isResult?.message && (
-            <div className="modal-create-content">
-              <div className="modal-create-message">
-                <h4>Adicionar usuário</h4>
-              </div>
-
-              <div className="modal-create-content-form">
-                <form onSubmit={handleSubmit}>
-                  <Label title="Email" htmlFor="email" />
-                  <Input
-                    name="email"
-                    id="email"
-                    type="text"
-                    placeholder="email@email.com"
-                    onChange={(e) => {
-                      setIsEmail(e.target.value);
-                      handleInputErrosClean(e);
-                    }}
-                    required
-                    onInvalid={handleInputErros}
-                  />
-                  <div className="modal-create-form-button">
-                    <Button title="Cancelar" onClick={handleCloser} isCancel />
-                    <Button title="Confirmar" type="submit" isConfirm />
-                  </div>
-                </form>
-              </div>
+          <div className="modal-create-content">
+            <div className="modal-create-message">
+              <h4>Adicionar usuário</h4>
             </div>
-          )}
 
-          {isResult?.message && (
-            <div className="modal-create-content-feedback">
-              {isResult.icon}
-
-              <span>{isResult?.message}</span>
-
-              <div className="modal-create-form-button">
-                <Button title="Fechar" onClick={handleCloser} isCancel />
-                <Button title="Adicionar novo" onClick={handleRefresh} />
-              </div>
+            <div className="modal-create-content-form">
+              <form onSubmit={handleSubmit}>
+                <Label title="Email" htmlFor="email" />
+                <Input
+                  name="email"
+                  id="email"
+                  type="text"
+                  placeholder="email@email.com"
+                  onChange={(e) => {
+                    setIsEmail(e.target.value);
+                    handleInputErrosClean(e);
+                  }}
+                  required
+                  onInvalid={handleInputErros}
+                />
+                <div className="modal-create-form-button">
+                  <Button title="Cancelar" onClick={handleCloser} isCancel />
+                  <Button title="Confirmar" type="submit" isConfirm />
+                </div>
+              </form>
             </div>
-          )}
+          </div>
         </div>
       </div>
     );
