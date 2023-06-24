@@ -45,7 +45,7 @@ export function CreateEnvironmentModal() {
         ToastMessage({ message: 'Ambiente criado', type: Case.SUCCESS });
       })
       .catch(() => {
-        ToastMessage({ message: 'Preencha os campos', type: Case.ERROR });
+        ToastMessage({ message: 'Preencha todos os campos', type: Case.ERROR });
       });
     form?.reset();
     cleanData();
