@@ -21,17 +21,15 @@ export function CreateUserModal() {
     e.preventDefault();
     setIsLoading(true);
     await createUser(isEmail)
-      .then((res) => {
+      .then(() => {
         handleCloser();
-        if (res.status === 201) {
-          setIsNeedRefresh(true);
-          ToastMessage({ message: 'Email cadastrado', type: Case.SUCCESS });
-          return;
-        }
-        ToastMessage({ message: 'Email já existe', type: Case.WARNING });
+        setIsNeedRefresh(true);
+        ToastMessage({ message: 'Email cadastrado', type: Case.SUCCESS });
+        return;
       })
-      .catch(() => {
-        ToastMessage({ message: 'Email deve ser válido', type: Case.ERROR });
+      .catch((e) => {
+        if (e.response.status === 409) ToastMessage({ message: 'Email já existe', type: Case.WARNING });
+        if (e.response.status === 400) ToastMessage({ message: 'Email deve ser válido', type: Case.ERROR });
       });
 
     setIsLoading(false);
