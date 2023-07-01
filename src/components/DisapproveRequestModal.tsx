@@ -1,10 +1,26 @@
+import { FormEvent } from 'react';
 import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
+import { Case, IDisapproveRequest } from '../interfaces';
+import { ToastMessage } from './ToastNotifications';
 import '../styles/disapprove-request-modal.scss';
 
-export function DisapproveRequestModal() {
-  const { isOpenDisapproveRequestModal, setIsOpenDisapproveRequestModal } = getContext();
+export function DisapproveRequestModal({ index }: IDisapproveRequest) {
+  const { isOpenDisapproveRequestModal, setIsOpenDisapproveRequestModal, setIsNeedRefresh } = getContext();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // await disapproveRequest()
+    //   .then(() => {
+    //     handleCloser();
+    //     setIsNeedRefresh(true);
+    //     ToastMessage({ message: 'Reserva desaprovada', type: Case.SUCCESS });
+    //     return;
+    //   })
+    //   .catch(() => {});
+  };
 
   const handleCloser = () => {
     setIsOpenDisapproveRequestModal(false);
@@ -23,9 +39,11 @@ export function DisapproveRequestModal() {
           <div className="modal-disapprove-content">
             <div className="modal-disapprove-message">
               <h4>
-                Tem certeza que deseja recusar:
-                <br />
-                <strong>name</strong>?
+                Tem certeza que deseja{' '}
+                <span>
+                  <strong>recusar</strong>
+                </span>{' '}
+                a reserva número: <strong>#{index}</strong>?
               </h4>
             </div>
 

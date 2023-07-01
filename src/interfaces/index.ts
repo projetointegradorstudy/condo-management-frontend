@@ -111,6 +111,17 @@ export interface ICreateRequest {
 export interface ICancelRequest {
   id: string;
   name: string;
+  index: number;
+}
+export interface IApproveRequest {
+  id: string;
+  name: string;
+  index: number;
+}
+export interface IDisapproveRequest {
+  id: string;
+  name: string;
+  index: number;
 }
 
 export const createUserMessages: { [key: string]: string } = {

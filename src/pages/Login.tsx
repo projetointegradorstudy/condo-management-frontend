@@ -34,8 +34,8 @@ export function Login() {
         </div>
         <div className="page-login-image">
           <img src={cityImage} />
-          <strong>Lorem Ipsum</strong>
-          <p>Lorem ipsum dolor sit amet, consectetur</p>
+          <strong>Controle de condomínio</strong>
+          <p>Faça reserva dos ambientes </p>
         </div>
       </aside>
       <main>
@@ -57,14 +57,14 @@ export function Login() {
                 setUsername(e.target.value);
                 handleInputErrosClean(e);
               }}
-              required
-              onInvalid={handleInputErros}
+              message="teste teste test"
             />
             <Label title="Password" htmlFor="senha" />
             <InputPassword
               name="senha"
               id="senha"
               maxLength={30}
+              minLength={10}
               placeholder="Insira a sua senha"
               onChange={(e) => {
                 setPassword(e.target.value);

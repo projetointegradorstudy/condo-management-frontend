@@ -36,7 +36,7 @@ export function NavbarMobile() {
     },
     {
       path: '/requests',
-      name: 'Solicitações',
+      name: 'Reservas',
       icon: <ListChecks size={18} />,
     },
   ];
@@ -49,7 +49,7 @@ export function NavbarMobile() {
     },
     {
       path: '/my-requests',
-      name: 'Minhas solicitações',
+      name: 'Minhas reservas',
       icon: <ListBullets size={18} />,
     },
     {

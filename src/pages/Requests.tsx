@@ -34,7 +34,7 @@ export function Requests() {
           <NavbarMobile />
 
           <div className="content-requests">
-            <h1>Solicitações</h1>
+            <h1>Reservas</h1>
 
             <div className="content-requests-list">
               <RequestTable data={requests} />
