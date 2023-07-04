@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Input } from '../components/Input';
 import { InputPassword } from '../components/InputPassword';
@@ -15,7 +15,7 @@ export function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const { signin, handleInputErros, handleInputErrosClean, setIsOpenConfirmSignoutModal } = getContext();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     await signin({ email, password });
@@ -57,7 +57,7 @@ export function Login() {
                 setUsername(e.target.value);
                 handleInputErrosClean(e);
               }}
-              message="teste teste test"
+              // message="teste teste test"
             />
             <Label title="Password" htmlFor="senha" />
             <InputPassword
