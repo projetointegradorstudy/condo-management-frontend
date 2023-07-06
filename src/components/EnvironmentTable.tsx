@@ -1,4 +1,4 @@
-import { PencilSimpleLine, Trash } from 'phosphor-react';
+import { DotsThreeCircleVertical, XCircle } from 'phosphor-react';
 import { getContext } from '../utils/context-import';
 import { IDataElementProps, IDeleteModal, IEditEnvironment, IEnvironment } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
@@ -56,7 +56,9 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                   </td>
                   <td>
                     <div className="content-buttons">
-                      <button
+                      <DotsThreeCircleVertical
+                        className="icon-edit"
+                        weight="fill"
                         onClick={() => {
                           setIsPosition({ id: environment.id, name: environment.name });
                           setIsEditPosition({
@@ -69,17 +71,16 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                           });
                           setIsOpenEditModal(true);
                         }}
-                      >
-                        <PencilSimpleLine />
-                      </button>
-                      <button
+                      />
+
+                      <XCircle
+                        className="icon-close"
+                        weight="fill"
                         onClick={() => {
                           setIsPosition({ id: environment.id, name: environment.name });
                           setIsOpenDeletModal(true);
                         }}
-                      >
-                        <Trash />
-                      </button>
+                      />
                     </div>
                   </td>
                 </tr>

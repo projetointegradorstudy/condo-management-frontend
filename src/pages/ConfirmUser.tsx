@@ -7,10 +7,11 @@ import { CheckCircle, Spinner, XCircle } from 'phosphor-react';
 import navigatorA479 from '../assets/undraw_navigator_a479.svg';
 import { Footer } from '../components/Footer';
 import { useLocation } from 'react-router';
-import { Form, IResultRequest, createPasswordMessages } from '../interfaces';
+import { Case, Form, IResultRequest, createPasswordMessages } from '../interfaces';
 import { createUserPassword } from '../services/api';
 import '../styles/confirm-user.scss';
 import { CountDown } from '../components/CountDown';
+import { ToastMessage, ToastNotifications } from '../components/ToastNotifications';
 
 export function ConfirmUser() {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +45,8 @@ export function ConfirmUser() {
         }, 4000);
       })
       .catch((e) => {
-        setIsResult({ message: createPasswordMessages[e.response.data.message], icon: <XCircle color="#f34542" /> });
+        if (e.response.status === 400)
+          ToastMessage({ message: 'A senha deve ser maior que 10 caracteres', type: Case.ERROR });
       });
     setIsLoading(false);
   };
@@ -122,6 +124,7 @@ export function ConfirmUser() {
           </div>
         )}
         <Footer />
+        <ToastNotifications />
       </main>
     </div>
   );

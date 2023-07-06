@@ -1,4 +1,4 @@
-import { PencilSimpleLine, Trash } from 'phosphor-react';
+import { DotsThreeCircleVertical, XCircle } from 'phosphor-react';
 import avatarDefault from '../assets/avatar-default.png';
 import { getContext } from '../utils/context-import';
 import { IDataElementProps, IDeleteModal, IEditUser, IUser, Roles } from '../interfaces';
@@ -56,7 +56,9 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                   </td>
                   <td>
                     <div className="content-buttons">
-                      <button
+                      <DotsThreeCircleVertical
+                        className="icon-edit"
+                        weight="fill"
                         onClick={() => {
                           setIsPosition({ id: user.id, name: user.email });
                           setIsEditPosition({
@@ -69,17 +71,16 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                           });
                           setIsOpenEditModal(true);
                         }}
-                      >
-                        <PencilSimpleLine />
-                      </button>
-                      <button
+                      />
+
+                      <XCircle
+                        className="icon-close"
+                        weight="fill"
                         onClick={() => {
                           setIsPosition({ id: user.id, name: user.email });
                           setIsOpenDeletModal(true);
                         }}
-                      >
-                        <Trash />
-                      </button>
+                      />
                     </div>
                   </td>
                 </tr>

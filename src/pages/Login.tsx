@@ -58,6 +58,8 @@ export function Login() {
                 handleInputErrosClean(e);
               }}
               // message="teste teste test"
+              required
+              onInvalid={handleInputErros}
             />
             <Label title="Password" htmlFor="senha" />
             <InputPassword

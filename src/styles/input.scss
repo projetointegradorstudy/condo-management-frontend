@@ -37,9 +37,14 @@ input {
   &.input-message {
     margin-bottom: 0px;
   }
+
+  // &:invalid + div.content-input-message {
+  //   display: block;
+  // }
 }
 
 div.content-input-message {
+  // display: none;
   margin: 6px 0px 20px;
 
   span {
