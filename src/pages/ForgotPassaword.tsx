@@ -1,27 +1,36 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Label } from '../components/Label';
 import { Spinner } from '../components/Spinner';
-import { getContext } from '../utils/context-import';
 import { CheckCircle, XCircle } from 'phosphor-react';
 import buildingReXfcm from '../assets/undraw_building_re_xfcm.svg';
 import { Footer } from '../components/Footer';
-import '../styles/forgot-password.scss';
 import { forgotUserPassword } from '../services/api';
+import { getRegex } from '../utils/regex';
 import { IResultRequest, resetUserPasswordMessages } from '../interfaces';
+import '../styles/forgot-password.scss';
 
 export function ForgotPassaword() {
+  const [hasError, setHasError] = useState({ email: false });
+  const [formData, setFormData] = useState({ email: '' });
+  const [errorMessage, setErrorMessage] = useState({ email: '' });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
-  const [isEmail, setIsEmail] = useState<string>('');
-  const { handleInputErros, handleInputErrosClean } = getContext();
+
+  const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const field = e.target;
+    setErrorMessage({ ...errorMessage, [field.name]: '' });
+    setHasError({ ...hasError, [field.name]: false });
+    setFormData({ ...formData, [field.name]: field.value });
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (checkFields()) return;
     setIsLoading(true);
-    await forgotUserPassword(isEmail)
+    await forgotUserPassword(formData.email)
       .then((res) => {
         setIsResult({ message: resetUserPasswordMessages[res.data.message], icon: <CheckCircle color="#38ba7c" /> });
       })
@@ -30,6 +39,29 @@ export function ForgotPassaword() {
       });
 
     setIsLoading(false);
+  };
+
+  const checkFields = (): boolean => {
+    let hasTempError = false;
+    const tempMessage = {};
+    const tempError = {};
+    const errors = {
+      email: !formData.email
+        ? 'Campo obrigatório'
+        : !getRegex.email.test(formData.email)
+        ? 'Email deve ser válido'
+        : null,
+    };
+    for (const field in errors) {
+      if (errors[field]) {
+        tempMessage[field] = errors[field];
+        tempError[field] = true;
+        hasTempError = true;
+      }
+    }
+    setErrorMessage({ ...errorMessage, ...tempMessage });
+    setHasError({ ...hasError, ...tempError });
+    return hasTempError;
   };
 
   useEffect(() => {}, [isResult, isLoading]);
@@ -63,16 +95,13 @@ export function ForgotPassaword() {
             <form onSubmit={handleSubmit}>
               <Label title="Email" htmlFor="email" />
               <Input
+                className={hasError.email ? 'field-error' : ''}
                 name="email"
                 id="email"
                 type="text"
                 placeholder="Insira o seu email"
-                onChange={(e) => {
-                  handleInputErrosClean(e);
-                  setIsEmail(e.target.value);
-                }}
-                required
-                onInvalid={handleInputErros}
+                onChange={handleFieldChange}
+                message={hasError.email ? errorMessage.email : undefined}
               />
 
               <div className="page-forgot-password-footer">

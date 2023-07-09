@@ -144,10 +144,6 @@ export const deleteMessages: { [key: string]: string } = {
   'Environment deleted successfully': 'Ambiente apagado com sucesso.',
 };
 
-export const createPasswordMessages: { [key: string]: string } = {
-  'Invalid token': 'Token expirado.',
-};
-
 export const editUserMessages: { [key: string]: string } = {
   OK: 'Usuário atualizado com sucesso.',
 };

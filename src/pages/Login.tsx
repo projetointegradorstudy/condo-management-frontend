@@ -26,8 +26,8 @@ export function Login() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
     if (checkFields()) return;
+    setIsLoading(true);
     await signin({ email: formData.email, password: formData.password });
 
     setIsLoading(false);
@@ -91,7 +91,7 @@ export function Login() {
               name="email"
               id="email"
               type="text"
-              placeholder="Insira um email"
+              placeholder="Insira o seu email"
               onChange={handleFieldChange}
               message={hasError.email ? errorMessage.email : undefined}
             />
