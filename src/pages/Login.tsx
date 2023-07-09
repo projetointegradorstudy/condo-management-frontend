@@ -6,13 +6,9 @@ import { Label } from '../components/Label';
 import { Button } from '../components/Button';
 import cityImage from '../assets/city_life_gnpr_color.svg';
 import { getContext } from '../utils/context-import';
+import { getRegex } from '../utils/regex';
 import { Footer } from '../components/Footer';
 import '../styles/login.scss';
-
-const regex = {
-  email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-  password: /^((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).{10,}$/,
-};
 
 export function Login() {
   const [hasError, setHasError] = useState({ email: false, password: false });
@@ -43,11 +39,15 @@ export function Login() {
     const tempMessage = {};
     const tempError = {};
     const errors = {
-      email: !formData.email ? 'Campo Obrigatório' : !regex.email.test(formData.email) ? 'Email deve ser válido' : null,
+      email: !formData.email
+        ? 'Campo obrigatório'
+        : !getRegex.email.test(formData.email)
+        ? 'Email deve ser válido'
+        : null,
       password: !formData.password
-        ? 'Campo Obrigatório'
-        : !regex.password.test(formData.password)
-        ? 'Password deve possuir pelo menos 10 caracteres entre estes: (A-Z, a-z, 0-9, !-@-$-*)'
+        ? 'Campo obrigatório'
+        : !getRegex.password.test(formData.password)
+        ? 'Senha deve possuir pelo menos 10 caracteres entre estes: (A-Z, a-z, 0-9, !-@-$-*)'
         : null,
     };
     for (const field in errors) {
@@ -95,7 +95,7 @@ export function Login() {
               onChange={handleFieldChange}
               message={hasError.email ? errorMessage.email : undefined}
             />
-            <Label title="Password" htmlFor="password" />
+            <Label title="Senha" htmlFor="password" />
             <InputPassword
               className={hasError.password ? 'field-error' : ''}
               name="password"
