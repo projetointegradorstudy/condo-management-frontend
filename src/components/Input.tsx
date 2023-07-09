@@ -8,7 +8,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export function Input({ message, ...props }: InputProps) {
   return (
     <>
-      <input {...props} className={message ? 'input-message' : ''} />
+      <div style={{ marginBottom: message ? '0px' : '20px' }}>
+        <input {...props} />
+      </div>
       <div className={message ? 'content-input-message' : ''}>
         <span>{message}</span>
       </div>

@@ -2,9 +2,11 @@ import { InputHTMLAttributes, useState } from 'react';
 import { Eye, EyeSlash } from 'phosphor-react';
 import '../styles/input-password.scss';
 
-type InputPasswordProps = InputHTMLAttributes<HTMLInputElement>;
+interface InputPasswordProps extends InputHTMLAttributes<HTMLInputElement> {
+  message?: string;
+}
 
-export function InputPassword({ ...props }: InputPasswordProps) {
+export function InputPassword({ message, ...props }: InputPasswordProps) {
   const [passwordType, setPasswordType] = useState('password');
   const [passwordIcon, setPasswordIcon] = useState(<Eye className="icons" />);
 
@@ -19,9 +21,14 @@ export function InputPassword({ ...props }: InputPasswordProps) {
   };
 
   return (
-    <div className="input-content">
-      <input className="input-password" {...props} type={passwordType} />
-      <span onClick={handleToogle}>{passwordIcon}</span>
-    </div>
+    <>
+      <div className="input-content" style={{ marginBottom: message ? '0px' : '20px' }}>
+        <input className="input-password" {...props} type={passwordType} />
+        <span onClick={handleToogle}>{passwordIcon}</span>
+      </div>
+      <div className={message ? 'content-input-message' : ''}>
+        <span>{message}</span>
+      </div>
+    </>
   );
 }

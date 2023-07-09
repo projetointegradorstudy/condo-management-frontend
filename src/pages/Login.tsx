@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Input } from '../components/Input';
 import { InputPassword } from '../components/InputPassword';
@@ -9,19 +9,57 @@ import { getContext } from '../utils/context-import';
 import { Footer } from '../components/Footer';
 import '../styles/login.scss';
 
+const regex = {
+  email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+  password: /^((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).{10,}$/,
+};
+
 export function Login() {
-  const [email, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [hasError, setHasError] = useState({ email: false, password: false });
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [errorMessage, setErrorMessage] = useState({ email: '', password: '' });
   const [isLoading, setIsLoading] = useState(false);
-  const { signin, handleInputErros, handleInputErrosClean, setIsOpenConfirmSignoutModal } = getContext();
+  const { signin, setIsOpenConfirmSignoutModal } = getContext();
+
+  const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const field = e.target;
+    setErrorMessage({ ...errorMessage, [field.name]: '' });
+    setHasError({ ...hasError, [field.name]: false });
+    setFormData({ ...formData, [field.name]: field.value });
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    await signin({ email, password });
+    if (checkFields()) return;
+    await signin({ email: formData.email, password: formData.password });
 
     setIsLoading(false);
     setIsOpenConfirmSignoutModal(false);
+  };
+
+  const checkFields = (): boolean => {
+    let hasTempError = false;
+    const tempMessage = {};
+    const tempError = {};
+    const errors = {
+      email: !formData.email ? 'Campo Obrigatório' : !regex.email.test(formData.email) ? 'Email deve ser válido' : null,
+      password: !formData.password
+        ? 'Campo Obrigatório'
+        : !regex.password.test(formData.password)
+        ? 'Password deve possuir pelo menos 10 caracteres entre estes: (A-Z, a-z, 0-9, !-@-$-*)'
+        : null,
+    };
+    for (const field in errors) {
+      if (errors[field]) {
+        tempMessage[field] = errors[field];
+        tempError[field] = true;
+        hasTempError = true;
+      }
+    }
+    setErrorMessage({ ...errorMessage, ...tempMessage });
+    setHasError({ ...hasError, ...tempError });
+    return hasTempError;
   };
 
   return (
@@ -49,31 +87,22 @@ export function Login() {
           <form onSubmit={handleSubmit}>
             <Label title="Email" htmlFor="email" />
             <Input
+              className={hasError.email ? 'field-error' : ''}
               name="email"
               id="email"
               type="text"
-              placeholder="Insira o seu email"
-              onChange={(e) => {
-                setUsername(e.target.value);
-                handleInputErrosClean(e);
-              }}
-              // message="teste teste test"
-              required
-              onInvalid={handleInputErros}
+              placeholder="Insira um email"
+              onChange={handleFieldChange}
+              message={hasError.email ? errorMessage.email : undefined}
             />
-            <Label title="Password" htmlFor="senha" />
+            <Label title="Password" htmlFor="password" />
             <InputPassword
-              name="senha"
-              id="senha"
-              maxLength={30}
-              minLength={10}
+              className={hasError.password ? 'field-error' : ''}
+              name="password"
+              id="password"
               placeholder="Insira a sua senha"
-              onChange={(e) => {
-                setPassword(e.target.value);
-                handleInputErrosClean(e);
-              }}
-              required
-              onInvalid={handleInputErros}
+              onChange={handleFieldChange}
+              message={hasError.password ? errorMessage.password : undefined}
               autoComplete="on"
             />
             <div className="page-login-footer">

@@ -99,6 +99,8 @@ export function GlobalProvider({ children }: Iprops) {
     input.classList.remove('field-error');
   };
 
+  const handleHasError = (e: any, setError: any) => {};
+
   return (
     <GlobalContext.Provider
       value={{

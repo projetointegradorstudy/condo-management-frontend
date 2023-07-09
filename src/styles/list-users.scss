@@ -129,30 +129,45 @@ div.page-list-users {
             align-items: center;
             justify-content: center;
             gap: 1rem;
-          
-            svg {
-              width: 28px;
-              height: 28px;
+
+            div.circle-button {
+              width: 22.75px;
+              height: 22.75px;
               cursor: pointer;
-          
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
               @include breakpoint(sm) {
-                width: 20px;
-                height: 20px;
+                width: 16.25px;
+                height: 16.25px;
               }
-          
+
               &.icon-edit {
-                color: $primary;
-          
+                background: $primary;
+
                 &:hover {
-                  color: $primary;
+                  background: $primary;
                 }
               }
-          
+
               &.icon-close {
-                color: $red;
-          
+                background: $red;
+
                 &:hover {
-                  color: $red-dark;
+                  background: $red-dark;
+                }
+              }
+            
+              svg {
+                color: $white;
+                width: 14px;
+                height: 14px;
+
+                @include breakpoint(sm) {
+                  width: 10px;
+                  height: 10px;
                 }
               }
             }
