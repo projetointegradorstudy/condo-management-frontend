@@ -1,7 +1,9 @@
 @import './theme';
 @import './variables';
 
-div {
+div.input-content {
+  width: 100%;
+  margin-top: 8px;
 
   input {
     width: 100%;

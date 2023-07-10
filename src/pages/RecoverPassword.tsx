@@ -115,6 +115,7 @@ export function RecoverPassword() {
             <form onSubmit={handleSubmit}>
               <Label title="Senha" htmlFor="password" />
               <InputPassword
+                className={hasError.password ? 'field-error' : ''}
                 name="password"
                 id="password"
                 placeholder="Insira a sua senha"
@@ -125,6 +126,7 @@ export function RecoverPassword() {
 
               <Label title="Confirme a senha" htmlFor="passwordConfirmation" />
               <InputPassword
+                className={hasError.passwordConfirmation ? 'field-error' : ''}
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 placeholder="Confirme a sua senha"

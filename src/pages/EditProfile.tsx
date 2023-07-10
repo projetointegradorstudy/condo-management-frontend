@@ -77,7 +77,7 @@ export function EditProfile() {
           <div className="content-edit-profile">
             <div className="content-edit-profile-avatar">
               <img src={previewImage || isMyselfData?.avatar || avatarDefault} />
-              <Label htmlFor="image" isUploadFile icon={<PencilSimple />} />
+              <Label htmlFor="image" isEditAvatar icon={<PencilSimple />} />
               <Input
                 title="Choose a file"
                 type="file"
@@ -88,6 +88,8 @@ export function EditProfile() {
                 onChange={(e) => {
                   handleImagePreview(e);
                 }}
+                isNotRequired
+                isUploadFile
               />
             </div>
             <div className="content-dit-profile-form">
@@ -101,6 +103,7 @@ export function EditProfile() {
                   maxLength={30}
                   placeholder={isMyselfData?.name}
                   onChange={(e) => setFormValue({ name: e.target.value })}
+                  isNotRequired
                 />
 
                 <Label title="Senha" htmlFor="password" />
@@ -121,6 +124,7 @@ export function EditProfile() {
                   autoComplete="on"
                   maxLength={30}
                   onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
+                  isNotRequired
                 />
 
                 <div className="content-edit-profile-button">

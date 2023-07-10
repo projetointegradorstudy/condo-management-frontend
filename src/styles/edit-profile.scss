@@ -71,38 +71,13 @@ div.page-edit-profile {
             height: 90px;
           }
         }
-
-        label {
-          color: $primary;
-          background-color: $primary;
-          height: 30px;
-          width: 30px;
-          border-radius: 50%;
-          position: absolute;
-          margin-right: 10px;
-
-          @include breakpoint(sm) {
-            width: 26px;
-            height: 26px;
-            margin-right: 0px;
-          }
-
-          svg {
-            color: $white;
-            height: 16px;
-            width: 16px;
-
-            @include breakpoint(sm) {
-              width: 14px;
-              height: 14px;
-            }
-          }
-        }
       }
 
       div.content-dit-profile-form {
         display: flex;
         flex-direction: column;
+        max-width: 310px;
+        width: 100%;
 
         h3 {
           font-size: 18px;
@@ -118,7 +93,7 @@ div.page-edit-profile {
         }
 
         form {
-
+          width: 100%;
         }
 
         div.content-edit-profile-button {

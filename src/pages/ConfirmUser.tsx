@@ -116,6 +116,7 @@ export function ConfirmUser() {
             <form onSubmit={handleSubmit}>
               <Label title="Senha" htmlFor="password" />
               <InputPassword
+                className={hasError.password ? 'field-error' : ''}
                 name="password"
                 id="password"
                 maxLength={30}
@@ -126,6 +127,7 @@ export function ConfirmUser() {
 
               <Label title="Confirme a senha" htmlFor="passwordConfirmation" />
               <InputPassword
+                className={hasError.passwordConfirmation ? 'field-error' : ''}
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 maxLength={30}

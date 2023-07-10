@@ -4,9 +4,10 @@ import '../styles/input-password.scss';
 
 interface InputPasswordProps extends InputHTMLAttributes<HTMLInputElement> {
   message?: string;
+  isNotRequired?: boolean;
 }
 
-export function InputPassword({ message, ...props }: InputPasswordProps) {
+export function InputPassword({ message, isNotRequired, ...props }: InputPasswordProps) {
   const [passwordType, setPasswordType] = useState('password');
   const [passwordIcon, setPasswordIcon] = useState(<Eye className="icons" />);
 
@@ -26,7 +27,8 @@ export function InputPassword({ message, ...props }: InputPasswordProps) {
         <input className="input-password" {...props} type={passwordType} />
         <span onClick={handleToogle}>{passwordIcon}</span>
       </div>
-      <div className={message ? 'content-input-message' : ''}>
+
+      <div className={message ? 'content-input-message' : ''} style={{ display: isNotRequired ? 'block' : 'none' }}>
         <span>{message}</span>
       </div>
     </>

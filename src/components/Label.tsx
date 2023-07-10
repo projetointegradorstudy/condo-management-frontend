@@ -4,12 +4,13 @@ import '../styles/label.scss';
 interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   title?: string;
   isUploadFile?: boolean;
+  isEditAvatar?: boolean;
   icon?: React.ReactNode;
 }
 
-export function Label({ title, isUploadFile, icon, ...props }: LabelProps) {
+export function Label({ title, isUploadFile, isEditAvatar, icon, ...props }: LabelProps) {
   return (
-    <label {...props} className={`label ${isUploadFile ? 'isUploadFile' : ''}`}>
+    <label {...props} className={`default ${isUploadFile ? 'isUploadFile' : ''} ${isEditAvatar ? 'edit-avatar' : ''}`}>
       {title} {icon}
     </label>
   );

@@ -1,7 +1,6 @@
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Users, X } from 'phosphor-react';
 import dayjs from 'dayjs';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -10,13 +9,17 @@ import { Case, ICreateRequest, IResultRequest, dateTimeConfig } from '../interfa
 import { Button } from './Button';
 import { Spinner } from './Spinner';
 import { Label } from './Label';
-import '../styles/request-modal.scss';
 import { ToastMessage } from './ToastNotifications';
 import { createEnvRequest } from '../services/api';
+import { Select } from './Select';
+import '../styles/request-modal.scss';
 
 export function RequestModal() {
+  const [hasError, setHasError] = useState({ date_in: false, date_out: false });
+  const [formData, setFormData] = useState({ date_in: '', date_out: '' });
+  const [errorMessage, setErrorMessage] = useState({ date_in: '', date_out: '' });
   const [isDate, setIsDate] = useState<any>();
-  const { setIsNeedRefresh, isRequestModal, setIsRequestModal, handleInputErros, handleInputErrosClean } = getContext();
+  const { setIsNeedRefresh, isRequestModal, setIsRequestModal } = getContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
   const [isFormValue, setIsFormValue] = useState<Partial<ICreateRequest>>();
@@ -30,22 +33,54 @@ export function RequestModal() {
     setIsFormValue(newFormValues);
   };
 
+  const handleFieldChange = (e: any) => {
+    const field = e.target;
+    setErrorMessage({ ...errorMessage, [field.name]: '' });
+    setHasError({ ...hasError, [field.name]: false });
+    setFormData({ ...formData, [field.name]: field.value });
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (checkFields()) return;
     const form: HTMLFormElement | null = document.querySelector('#form');
     setIsLoading(true);
     handleGenerateDateOut();
-    if (!validateDatefield()) {
-      await createEnvRequest(newFormValues)
-        .then(() => {
-          ToastMessage({ message: 'Reserva realizada', type: Case.SUCCESS });
-          setIsNeedRefresh(true);
-        })
-        .catch(() => {});
-      cleanData();
-      form?.reset();
-    }
+
+    await createEnvRequest({
+      // image,
+      date_in: formData.date_in,
+      date_out: formData.date_out,
+    })
+      .then(() => {
+        ToastMessage({ message: 'Reserva realizada', type: Case.SUCCESS });
+        setIsNeedRefresh(true);
+      })
+      .catch(() => {});
+    cleanData();
+    form?.reset();
+
     setIsLoading(false);
+  };
+
+  const checkFields = (): boolean => {
+    let hasTempError = false;
+    const tempMessage = {};
+    const tempError = {};
+    const errors = {
+      date_in: !formData.date_in ? 'Campo obrigatório' : null,
+      date_out: !formData.date_out ? 'Campo obrigatório' : null,
+    };
+    for (const field in errors) {
+      if (errors[field]) {
+        tempMessage[field] = errors[field];
+        tempError[field] = true;
+        hasTempError = true;
+      }
+    }
+    setErrorMessage({ ...errorMessage, ...tempMessage });
+    setHasError({ ...hasError, ...tempError });
+    return hasTempError;
   };
 
   const handleGenerateDateOut = () => {
@@ -54,14 +89,6 @@ export function RequestModal() {
       const dateOut = dayjs(new Date(dateIn + +newFormValues.date_out).getTime()).format('YYYY-MM-DD HH:mm');
       newFormValues.date_out = dateOut;
     }
-  };
-
-  const validateDatefield = (): boolean => {
-    if (!isDate) {
-      ToastMessage({ message: 'Preencha todos os campos', type: Case.ERROR });
-      return true;
-    }
-    return false;
   };
 
   const cleanData = () => {
@@ -122,24 +149,14 @@ export function RequestModal() {
                 />
               </LocalizationProvider>
 
-              <Label title="Duração" htmlFor="duration" />
-              <select
+              <Label title="Duração" htmlFor="date_out" />
+              <Select
+                className={hasError.date_out ? 'field-error' : ''}
                 defaultValue={''}
-                required
-                name="duration"
-                onChange={(e) => {
-                  setFormValue({ date_out: e.target.value });
-                  handleInputErrosClean(e);
-                }}
-                onInvalid={handleInputErros}
-              >
-                <option disabled value="">
-                  --
-                </option>
-                <option value="7200000">2 horas</option>
-                <option value="10800000">3 horas</option>
-                <option value="14400000">4 horas</option>
-              </select>
+                name="date_out"
+                onChange={handleFieldChange}
+                message={hasError.date_out ? errorMessage.date_out : undefined}
+              />
 
               <div className="modal-request-form-button">
                 <Button title="Cancelar" onClick={handleCloser} isCancel />
