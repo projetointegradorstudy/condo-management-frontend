@@ -8,68 +8,97 @@ import { getContext } from '../utils/context-import';
 import { Spinner } from './Spinner';
 import { Case, ICreateEnvironment, IResultRequest } from '../interfaces';
 import { ToastMessage } from '../components/ToastNotifications';
+import { TextArea } from './TextArea';
 import '../styles/create-environment-modal.scss';
 
 export function CreateEnvironmentModal() {
+  const [hasError, setHasError] = useState({ name: false, capacity: false, description: false });
+  const [formData, setFormData] = useState<Partial<ICreateEnvironment>>();
+  const [errorMessage, setErrorMessage] = useState<Partial<ICreateEnvironment>>({
+    name: '',
+    capacity: '',
+    description: '',
+  });
   const [previewImage, setPreviewImage] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
-  const {
-    isOpenCreateEnvironmentModal,
-    setIsOpenCreateEnvironmentModal,
-    handleInputErros,
-    handleInputErrosClean,
-    setIsNeedRefresh,
-  } = getContext();
-  const [isFormValue, setIsFormValue] = useState<Partial<ICreateEnvironment>>();
-  const newFormValues: Partial<ICreateEnvironment> = { ...isFormValue };
+  const { isOpenCreateEnvironmentModal, setIsOpenCreateEnvironmentModal, setIsNeedRefresh } = getContext();
 
-  const setFormValue = (prop: Partial<ICreateEnvironment>): void => {
-    for (const key in prop) {
-      newFormValues[`${key}`] = prop[key];
-      console.log(newFormValues);
-      if (!prop[key].length) delete newFormValues[`${key}`];
+  const handleFieldChange = (e: ChangeEvent<any>) => {
+    const field = e.target;
+    const file = field.files?.[0];
+    if (file) {
+      setFormData({ ...formData, image: file });
+    } else {
+      setFormData({ ...formData, [field.name]: field.value });
     }
-    setIsFormValue(newFormValues);
+    setErrorMessage({ ...errorMessage, [field.name]: '' });
+    setHasError({ ...hasError, [field.name]: false });
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form: HTMLFormElement | null = document.querySelector('#form');
+    if (checkFields()) return;
     setIsLoading(true);
-
-    await createEnvironment(newFormValues)
-      .then(() => {
-        handleCloser();
-        setIsNeedRefresh(true);
-        ToastMessage({ message: 'Ambiente criado', type: Case.SUCCESS });
-      })
-      .catch(() => {
-        ToastMessage({ message: 'Preencha todos os campos', type: Case.ERROR });
-      });
+    if (formData) {
+      await createEnvironment(formData)
+        .then(() => {
+          handleCloser();
+          setIsNeedRefresh(true);
+          ToastMessage({ message: 'Ambiente criado', type: Case.SUCCESS });
+        })
+        .catch(() => {});
+    }
     form?.reset();
     cleanData();
   };
 
-  useEffect(() => {}, [isResult, isLoading, isFormValue]);
+  const checkFields = (): boolean => {
+    let hasTempError = false;
+    const tempMessage = {};
+    const tempError = {};
+    const errors = {
+      name: !formData?.name ? 'Campo obrigatório' : null,
+      capacity: !formData?.capacity ? 'Campo obrigatório' : null,
+      description: !formData?.description ? 'Campo obrigatório' : null,
+    };
+    for (const field in errors) {
+      if (errors[field]) {
+        tempMessage[field] = errors[field];
+        tempError[field] = true;
+        hasTempError = true;
+      }
+    }
+    setErrorMessage({ ...errorMessage, ...tempMessage });
+    setHasError({ ...hasError, ...tempError });
+    return hasTempError;
+  };
+
+  useEffect(() => {}, [isResult, isLoading, formData]);
 
   const cleanData = () => {
-    setIsFormValue(undefined);
+    setFormData(undefined);
     setPreviewImage(undefined);
     setIsLoading(false);
   };
 
+  const cleanMyObject = (targetObject: any) => {
+    Object.values(targetObject).forEach((value, index) => {
+      targetObject[Object.keys(targetObject)[index]] = '';
+    });
+  };
+
   const handleCloser = () => {
+    cleanMyObject(errorMessage);
+    cleanMyObject(hasError);
     setIsOpenCreateEnvironmentModal(false);
     cleanData();
   };
 
   const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-
     if (file) {
-      setIsFormValue({ image: file });
-
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result as string);
@@ -110,8 +139,11 @@ export function CreateEnvironmentModal() {
                           accept=".png, .jpg, .jpeg"
                           hidden
                           onChange={(e) => {
+                            handleFieldChange(e);
                             handleImagePreview(e);
                           }}
+                          isNotRequired
+                          isUploadFile
                         />
                       </div>
                     </div>
@@ -129,38 +161,35 @@ export function CreateEnvironmentModal() {
                 </div>
                 <Label title="Nome" htmlFor="name" />
                 <Input
+                  className={hasError.name ? 'field-error' : ''}
                   name="name"
                   id="name"
                   type="text"
                   placeholder="Ex: Piscina"
-                  onChange={(e) => {
-                    handleInputErrosClean(e);
-                    setFormValue({ name: e.target.value });
-                  }}
-                  required
-                  onInvalid={handleInputErros}
+                  onChange={handleFieldChange}
+                  message={hasError.name ? errorMessage.name : undefined}
                 />
 
                 <Label title="Capacidade" htmlFor="capacity" />
                 <Input
+                  className={hasError.capacity ? 'field-error' : ''}
                   name="capacity"
                   id="capacity"
                   type="number"
                   placeholder="Ex: 18"
-                  onChange={(e) => {
-                    setFormValue({ capacity: e.target.value });
-                  }}
+                  onChange={handleFieldChange}
+                  message={hasError.capacity ? errorMessage.capacity : undefined}
                 />
 
                 <Label title="Descrição" htmlFor="description" />
-                <textarea
+                <TextArea
+                  className={hasError.description ? 'field-error' : ''}
                   name="description"
                   id="description"
                   placeholder="..."
                   maxLength={150}
-                  onChange={(e) => {
-                    setFormValue({ description: e.target.value });
-                  }}
+                  onChange={handleFieldChange}
+                  message={hasError.description ? errorMessage.description : undefined}
                 />
                 <div className="modal-create-environment-form-button">
                   <Button title="Cancelar" onClick={handleCloser} isCancel />

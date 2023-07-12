@@ -65,6 +65,7 @@ div.modal-disapprove-background {
 
       div.modal-disapprove-message {
         width: 100%;
+        padding: 0 30px;
     
         h4 {
           font-size: 18px;
@@ -76,6 +77,10 @@ div.modal-disapprove-background {
           @include breakpoint(sm) {
             font-size: 14px;
             line-height: 22px;
+          }
+
+          span {
+            color: $red;
           }
         }
       }

@@ -100,6 +100,8 @@ export function EditEnvironmentModal({ id, name, description, image, capacity }:
                         onChange={(e) => {
                           handleImagePreview(e);
                         }}
+                        isNotRequired
+                        isUploadFile
                       />
                     </div>
                   </div>

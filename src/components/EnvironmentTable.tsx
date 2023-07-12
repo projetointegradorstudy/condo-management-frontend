@@ -1,4 +1,4 @@
-import { PencilSimpleLine, Trash } from 'phosphor-react';
+import { PencilSimple, Trash } from 'phosphor-react';
 import { getContext } from '../utils/context-import';
 import { IDataElementProps, IDeleteModal, IEditEnvironment, IEnvironment } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
@@ -56,30 +56,33 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                   </td>
                   <td>
                     <div className="content-buttons">
-                      <button
-                        onClick={() => {
-                          setIsPosition({ id: environment.id, name: environment.name });
-                          setIsEditPosition({
-                            id: environment.id,
-                            name: environment.name,
-                            description: environment.description,
-                            status: environment.status,
-                            image: environment.image,
-                            capacity: environment.capacity,
-                          });
-                          setIsOpenEditModal(true);
-                        }}
-                      >
-                        <PencilSimpleLine />
-                      </button>
-                      <button
-                        onClick={() => {
-                          setIsPosition({ id: environment.id, name: environment.name });
-                          setIsOpenDeletModal(true);
-                        }}
-                      >
-                        <Trash />
-                      </button>
+                      <div className="circle-button icon-edit">
+                        <PencilSimple
+                          className="icon-edit"
+                          onClick={() => {
+                            setIsPosition({ id: environment.id, name: environment.name });
+                            setIsEditPosition({
+                              id: environment.id,
+                              name: environment.name,
+                              description: environment.description,
+                              status: environment.status,
+                              image: environment.image,
+                              capacity: environment.capacity,
+                            });
+                            setIsOpenEditModal(true);
+                          }}
+                        />
+                      </div>
+
+                      <div className="circle-button icon-close">
+                        <Trash
+                          className="icon-close"
+                          onClick={() => {
+                            setIsPosition({ id: environment.id, name: environment.name });
+                            setIsOpenDeletModal(true);
+                          }}
+                        />
+                      </div>
                     </div>
                   </td>
                 </tr>

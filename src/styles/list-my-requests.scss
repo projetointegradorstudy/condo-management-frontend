@@ -49,42 +49,66 @@ div.page-my-requests {
     }
 
     div.content-my-requests-list {
-      overflow-y: auto;
-      scroll-behavior: smooth;
-      height: 58vh;
+      width: 100%;
+      margin: 0 auto;
 
-      @include breakpoint(sm) {
-        overflow-x: auto;
-        margin-bottom: 30px;
+      div.content-list-scroll {
+        max-width: 1900px;
+        width: 100%;
+        margin: 0 auto;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        height: 58vh;
+
+        @include breakpoint(sm) {
+          overflow-x: auto;
+        }
+
+        &::-webkit-scrollbar {
+          width: 17px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $gray;
+          border-radius: 20px;
+          border: 5px solid #F6F8FA;
+        }
       }
 
       table {
+        position: relative;
         margin: 0 auto;
-        table-layout: auto;
+        table-layout: fixed;
 
         @include breakpoint(xxl) {
-          width: 80%;
-        }
-
-        @include breakpoint(xl) {
           width: 100%;
         }
-
+      
         @include breakpoint(sm) {
-          width: 800px;
+          width: 1200px;
         }
 
-        th {
-          font-size: 16px;
-          line-height: 24px;
-          color: $black;
-          text-align: left;
-          border-bottom: 1px solid $black;
-          padding-bottom: 10px;
+        thead {
 
-          @include breakpoint(md) {
-            font-size: 13px;
-            line-height: 15px;
+          th {
+            position: sticky;
+            top: 0;
+            background-color: #F6F8FA;
+            font-size: 16px;
+            line-height: 24px;
+            color: $black;
+            text-align: left;
+            border-bottom: 1px solid $black;
+            padding-bottom: 10px;
+
+            @include breakpoint(md) {
+              font-size: 13px;
+              line-height: 15px;
+            }
           }
         }
 

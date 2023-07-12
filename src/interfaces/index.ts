@@ -111,6 +111,17 @@ export interface ICreateRequest {
 export interface ICancelRequest {
   id: string;
   name: string;
+  index: number;
+}
+export interface IApproveRequest {
+  id: string;
+  name: string;
+  index: number;
+}
+export interface IDisapproveRequest {
+  id: string;
+  name: string;
+  index: number;
 }
 
 export const createUserMessages: { [key: string]: string } = {
@@ -131,10 +142,6 @@ export const deleteMessages: { [key: string]: string } = {
   'Not Found': 'Já excluido.',
   'Validation failed (uuid is expected)': 'ID inválido.',
   'Environment deleted successfully': 'Ambiente apagado com sucesso.',
-};
-
-export const createPasswordMessages: { [key: string]: string } = {
-  'Invalid token': 'Token expirado.',
 };
 
 export const editUserMessages: { [key: string]: string } = {

@@ -5,7 +5,7 @@ import { NavbarMobile } from '../components/NavbarMobile';
 import { Footer } from '../components/Footer';
 import { useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
-import { getCountEnvironments, getCountUsers } from '../services/api';
+import { getCountEnvironments, getCountUsers, getEnvironmentRequests } from '../services/api';
 import '../styles/menu-admin.scss';
 
 const cardItems = [
@@ -17,6 +17,10 @@ const cardItems = [
     title: 'Ambientes cadastrados',
     icon: <ListPlus size={40} />,
   },
+  {
+    title: 'Reservas',
+    icon: <ListPlus size={40} />,
+  },
 ];
 
 export function MenuAdmin() {
@@ -25,7 +29,8 @@ export function MenuAdmin() {
   const getDashboardData = async (): Promise<void> => {
     const userQty = +(await getCountUsers().then((res) => res.data)) || 0;
     const environmentQty = +(await getCountEnvironments().then((res) => res.data)) || 0;
-    setIsDashboardData([userQty, environmentQty]);
+    const environmentRequestQty = +(await getEnvironmentRequests().then((res) => res.data)) || 0;
+    setIsDashboardData([userQty, environmentQty, environmentRequestQty]);
   };
 
   useEffect(() => {

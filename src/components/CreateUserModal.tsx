@@ -3,24 +3,34 @@ import { Button } from './Button';
 import { Input } from './Input';
 import { Label } from './Label';
 import { createUser } from '../services/api';
-import { FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
 import { Spinner } from './Spinner';
 import { Case, IResultRequest } from '../interfaces';
+import { getRegex } from '../utils/regex';
 import { ToastMessage } from '../components/ToastNotifications';
 import '../styles/create-user-modal.scss';
 
 export function CreateUserModal() {
-  const [isEmail, setIsEmail] = useState('');
+  const [hasError, setHasError] = useState({ email: false });
+  const [formData, setFormData] = useState({ email: '' });
+  const [errorMessage, setErrorMessage] = useState({ email: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
-  const { isOpenCreateUserModal, setIsOpenCreateUserModal, handleInputErros, handleInputErrosClean, setIsNeedRefresh } =
-    getContext();
+  const { isOpenCreateUserModal, setIsOpenCreateUserModal, setIsNeedRefresh } = getContext();
+
+  const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const field = e.target;
+    setErrorMessage({ ...errorMessage, [field.name]: false });
+    setHasError({ ...hasError, [field.name]: false });
+    setFormData({ ...formData, [field.name]: field.value });
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (checkFields()) return;
     setIsLoading(true);
-    await createUser(isEmail)
+    await createUser(formData.email)
       .then(() => {
         handleCloser();
         setIsNeedRefresh(true);
@@ -28,16 +38,46 @@ export function CreateUserModal() {
         return;
       })
       .catch((e) => {
-        if (e.response.status === 409) ToastMessage({ message: 'Email já existe', type: Case.WARNING });
-        if (e.response.status === 400) ToastMessage({ message: 'Email deve ser válido', type: Case.ERROR });
+        if (e.response.status === 409) ToastMessage({ message: 'Email já cadastrado', type: Case.WARNING });
       });
 
     setIsLoading(false);
   };
 
+  const checkFields = (): boolean => {
+    let hasTempError = false;
+    const tempMessage = {};
+    const tempError = {};
+    const errors = {
+      email: !formData.email
+        ? 'Campo obrigatório'
+        : !getRegex.email.test(formData.email)
+        ? 'Email deve ser válido'
+        : null,
+    };
+    for (const field in errors) {
+      if (errors[field]) {
+        tempMessage[field] = errors[field];
+        tempError[field] = true;
+        hasTempError = true;
+      }
+    }
+    setErrorMessage({ ...errorMessage, ...tempMessage });
+    setHasError({ ...hasError, ...tempError });
+    return hasTempError;
+  };
+
   useEffect(() => {}, [isResult, isLoading]);
 
+  const cleanMyObject = (targetObject: any) => {
+    Object.values(targetObject).forEach((value, index) => {
+      targetObject[Object.keys(targetObject)[index]] = '';
+    });
+  };
+
   const handleCloser = () => {
+    cleanMyObject(errorMessage);
+    cleanMyObject(hasError);
     setIsOpenCreateUserModal(false);
     setIsResult(null);
     setIsLoading(false);
@@ -62,16 +102,13 @@ export function CreateUserModal() {
               <form onSubmit={handleSubmit}>
                 <Label title="Email" htmlFor="email" />
                 <Input
+                  className={hasError.email ? 'field-error' : ''}
                   name="email"
                   id="email"
                   type="text"
                   placeholder="email@email.com"
-                  onChange={(e) => {
-                    setIsEmail(e.target.value);
-                    handleInputErrosClean(e);
-                  }}
-                  required
-                  onInvalid={handleInputErros}
+                  onChange={handleFieldChange}
+                  message={hasError.email ? errorMessage.email : undefined}
                 />
                 <div className="modal-create-form-button">
                   <Button title="Cancelar" onClick={handleCloser} isCancel />

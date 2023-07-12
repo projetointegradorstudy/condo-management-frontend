@@ -2,10 +2,23 @@ import { CheckCircle, XCircle } from 'phosphor-react';
 import { ApproveRequestModal } from './ApproveRequestModal';
 import { getContext } from '../utils/context-import';
 import { DisapproveRequestModal } from './DisapproveRequestModal';
-import { IDataElementProps, IRequests } from '../interfaces';
+import { IApproveRequest, IDataElementProps, IDisapproveRequest, IRequests } from '../interfaces';
+import { useState } from 'react';
 
 export function RequestTable({ data }: IDataElementProps<IRequests[]>) {
-  const userFields = ['Ambiente', 'Solicitante', 'Email', 'Check-in', 'Check-out', 'Status', 'Data da solicitação', ''];
+  const userFields = [
+    '#',
+    'Ambiente',
+    'Solicitante',
+    'Email',
+    'Check-in',
+    'Check-out',
+    'Status',
+    'Data da solicitação',
+    '',
+  ];
+  const [isDisapprovePosition, setIsDisapprovePosition] = useState<IDisapproveRequest>({ id: '', name: '', index: 0 });
+  const [isApprovePosition, setIsApprovePosition] = useState<IApproveRequest>({ id: '', name: '', index: 0 });
   const { setIsOpenApproveRequestModal, setIsOpenDisapproveRequestModal, formatDate } = getContext();
 
   return (
@@ -14,16 +27,19 @@ export function RequestTable({ data }: IDataElementProps<IRequests[]>) {
         <thead>
           <tr>
             {userFields.map((field, index) => {
-              return <th key={index}>{field} </th>;
+              return <th key={index}>{field}</th>;
             })}
           </tr>
         </thead>
 
         <tbody>
           {data &&
-            data.map((request: IRequests) => {
+            data.map((request: IRequests, index: number) => {
               return (
                 <tr key={request.id}>
+                  <td>
+                    <h4>{(index += 1)}</h4>
+                  </td>
                   <td>
                     <h4>{request.environment.name}</h4>
                   </td>
@@ -50,12 +66,18 @@ export function RequestTable({ data }: IDataElementProps<IRequests[]>) {
                       <CheckCircle
                         className="icon-check"
                         weight="fill"
-                        onClick={() => setIsOpenApproveRequestModal(true)}
+                        onClick={() => {
+                          setIsOpenApproveRequestModal(true);
+                          setIsApprovePosition({ id: request.id, name: request.environment.name, index });
+                        }}
                       />
                       <XCircle
                         className="icon-close"
                         weight="fill"
-                        onClick={() => setIsOpenDisapproveRequestModal(true)}
+                        onClick={() => {
+                          setIsOpenDisapproveRequestModal(true);
+                          setIsDisapprovePosition({ id: request.id, name: request.environment.name, index });
+                        }}
                       />
                     </div>
                   </td>
@@ -64,8 +86,12 @@ export function RequestTable({ data }: IDataElementProps<IRequests[]>) {
             })}
         </tbody>
       </table>
-      <ApproveRequestModal />
-      <DisapproveRequestModal />
+      <ApproveRequestModal id={isApprovePosition?.id} name={isApprovePosition?.name} index={isApprovePosition?.index} />
+      <DisapproveRequestModal
+        id={isDisapprovePosition?.id}
+        name={isDisapprovePosition?.name}
+        index={isDisapprovePosition?.index}
+      />
     </>
   );
 }

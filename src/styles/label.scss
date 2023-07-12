@@ -1,12 +1,11 @@
 @import './theme';
 @import './variables';
 
-label {
+label.default {
   color: $primary;
   font-size: 14px;
   line-height: 14px;
   font-weight: 600;
-  margin-bottom: 8px;
 
   @include breakpoint(sm) {
     font-size: 13px;
@@ -32,6 +31,36 @@ label {
       width: 100px;
       height: 30px;
       font-size: 12px;
+    }
+  }
+
+  &.edit-avatar {
+    background-color: $primary;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    position: absolute;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  
+    @include breakpoint(sm) {
+      width: 26px;
+      height: 26px;
+      margin-right: 0px;
+    }
+  
+    svg {
+      color: $white;
+      height: 16px;
+      width: 16px;
+  
+      @include breakpoint(sm) {
+        width: 14px;
+        height: 14px;
+      }
     }
   }
 }

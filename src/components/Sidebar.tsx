@@ -50,7 +50,7 @@ export function Sidebar() {
     },
     {
       path: '/requests',
-      name: 'Solicitações',
+      name: 'Reservas',
       icon: <ListChecks size={isOpen ? 20 : 22} />,
     },
   ];
@@ -63,7 +63,7 @@ export function Sidebar() {
     },
     {
       path: '/my-requests',
-      name: 'Minhas solicitações',
+      name: 'Minhas reservas',
       icon: <ListBullets size={isOpen ? 20 : 22} />,
     },
     {

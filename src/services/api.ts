@@ -79,13 +79,13 @@ export async function updateEnvironment(id: string, updateEnvironmentDto: Partia
 
 /** ENV_ REQUEST CONTEXT */
 export async function getEnvironmentRequests() {
-  return api.get('/env-requests');
+  return api.get('/env-reservations');
 }
 
 export async function getEnvRequestsbyUser() {
-  return api.get('/env-requests/user');
+  return api.get('/env-reservations/user');
 }
 
 export async function createEnvRequest(createRequestDto: Partial<ICreateRequest>) {
-  return api.post('/env-requests', createRequestDto);
+  return api.post('/env-reservations', createRequestDto);
 }

@@ -1,4 +1,4 @@
-import { PencilSimpleLine, Trash } from 'phosphor-react';
+import { PencilSimple, Trash } from 'phosphor-react';
 import avatarDefault from '../assets/avatar-default.png';
 import { getContext } from '../utils/context-import';
 import { IDataElementProps, IDeleteModal, IEditUser, IUser, Roles } from '../interfaces';
@@ -56,30 +56,31 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                   </td>
                   <td>
                     <div className="content-buttons">
-                      <button
-                        onClick={() => {
-                          setIsPosition({ id: user.id, name: user.email });
-                          setIsEditPosition({
-                            id: user.id,
-                            avatar: user.avatar,
-                            password: user.password,
-                            passwordConfirmation: user.passwordConfirmation,
-                            created_at: user.created_at,
-                            role: user.role,
-                          });
-                          setIsOpenEditModal(true);
-                        }}
-                      >
-                        <PencilSimpleLine />
-                      </button>
-                      <button
-                        onClick={() => {
-                          setIsPosition({ id: user.id, name: user.email });
-                          setIsOpenDeletModal(true);
-                        }}
-                      >
-                        <Trash />
-                      </button>
+                      <div className="circle-button icon-edit">
+                        <PencilSimple
+                          onClick={() => {
+                            setIsPosition({ id: user.id, name: user.email });
+                            setIsEditPosition({
+                              id: user.id,
+                              avatar: user.avatar,
+                              password: user.password,
+                              passwordConfirmation: user.passwordConfirmation,
+                              created_at: user.created_at,
+                              role: user.role,
+                            });
+                            setIsOpenEditModal(true);
+                          }}
+                        />
+                      </div>
+
+                      <div className="circle-button icon-close">
+                        <Trash
+                          onClick={() => {
+                            setIsPosition({ id: user.id, name: user.email });
+                            setIsOpenDeletModal(true);
+                          }}
+                        />
+                      </div>
                     </div>
                   </td>
                 </tr>

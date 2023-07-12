@@ -1,11 +1,26 @@
+import { FormEvent } from 'react';
 import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
+import { Case, ICancelRequest } from '../interfaces';
+import { ToastMessage } from './ToastNotifications';
 import '../styles/cancel-request-modal.scss';
-import { ICancelRequest } from '../interfaces';
 
-export function CancelRequestModal({ id, name }: ICancelRequest) {
-  const { isOpenCancelRequestModal, setIsOpenCancelRequestModal } = getContext();
+export function CancelRequestModal({ index }: ICancelRequest) {
+  const { isOpenCancelRequestModal, setIsOpenCancelRequestModal, setIsNeedRefresh, formatDate } = getContext();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // await cancelMyRequest()
+    //   .then(() => {
+    //     handleCloser();
+    //     setIsNeedRefresh(true);
+    //     ToastMessage({ message: 'Reserva cancelada', type: Case.SUCCESS });
+    //     return;
+    //   })
+    //   .catch(() => {});
+  };
 
   const handleCloser = () => {
     setIsOpenCancelRequestModal(false);
@@ -24,9 +39,11 @@ export function CancelRequestModal({ id, name }: ICancelRequest) {
           <div className="modal-cancel-content">
             <div className="modal-cancel-message">
               <h4>
-                Tem certeza que deseja cancelar:
-                <br />
-                <strong>{name}</strong>?
+                Tem certeza que deseja{' '}
+                <span>
+                  <strong>cancelar</strong>
+                </span>{' '}
+                a reserva número: <strong>#{index}</strong>?
               </h4>
             </div>
 

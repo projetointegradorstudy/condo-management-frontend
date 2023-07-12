@@ -1,10 +1,26 @@
+import { FormEvent } from 'react';
 import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
+import { ToastMessage } from './ToastNotifications';
+import { Case, IApproveRequest } from '../interfaces';
 import '../styles/approve-request-modal.scss';
 
-export function ApproveRequestModal() {
-  const { isOpenApproveRequestModal, setIsOpenApproveRequestModal } = getContext();
+export function ApproveRequestModal({ index }: IApproveRequest) {
+  const { isOpenApproveRequestModal, setIsOpenApproveRequestModal, setIsNeedRefresh } = getContext();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // await approveRequest()
+    //   .then(() => {
+    //     handleCloser();
+    //     setIsNeedRefresh(true);
+    //     ToastMessage({ message: 'Reserva aprovada', type: Case.SUCCESS });
+    //     return;
+    //   })
+    //   .catch(() => {});
+  };
 
   const handleCloser = () => {
     setIsOpenApproveRequestModal(false);
@@ -23,9 +39,11 @@ export function ApproveRequestModal() {
           <div className="modal-approve-content">
             <div className="modal-approve-message">
               <h4>
-                Tem certeza que deseja aprovar:
-                <br />
-                <strong>name</strong>?
+                Tem certeza que deseja{' '}
+                <span>
+                  <strong>aprovar</strong>
+                </span>{' '}
+                a reserva número: <strong>#{index}</strong>?
               </h4>
             </div>
 

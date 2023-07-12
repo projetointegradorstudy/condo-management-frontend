@@ -18,7 +18,6 @@ export function MyRequests() {
       (async () => {
         await getEnvRequestsbyUser()
           .then((res) => {
-            console.log(res.data);
             setIsLoading(false);
             setMyRequests(res.data);
           })
@@ -35,10 +34,12 @@ export function MyRequests() {
           <NavbarMobile />
 
           <div className="content-my-requests">
-            <h1>Minhas solicitações</h1>
+            <h1>Minhas reservas</h1>
 
             <div className="content-my-requests-list">
-              <MyRequestTable data={myRequests} />
+              <div className="content-list-scroll">
+                <MyRequestTable data={myRequests} />
+              </div>
             </div>
           </div>
         </div>
