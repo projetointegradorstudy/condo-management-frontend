@@ -45,13 +45,15 @@ export function ListEnvironments() {
             </div>
 
             <div className="content-list">
-              {environments?.length > 0 && !isLoading ? (
-                <EnvironmentTable data={environments} />
-              ) : environments?.length === 0 && isLoading ? (
-                <Spinner />
-              ) : (
-                <WarningFeedback title="Não há registros." />
-              )}
+              <div className="content-list-scroll">
+                {environments?.length > 0 && !isLoading ? (
+                  <EnvironmentTable data={environments} />
+                ) : environments?.length === 0 && isLoading ? (
+                  <Spinner />
+                ) : (
+                  <WarningFeedback title="Não há registros." />
+                )}
+              </div>
             </div>
           </div>
         </div>

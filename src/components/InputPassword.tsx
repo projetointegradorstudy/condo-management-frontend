@@ -28,7 +28,7 @@ export function InputPassword({ message, isNotRequired, ...props }: InputPasswor
         <span onClick={handleToogle}>{passwordIcon}</span>
       </div>
 
-      <div className={message ? 'content-input-message' : ''} style={{ display: isNotRequired ? 'block' : 'none' }}>
+      <div className={message ? 'content-input-message' : ''} style={{ display: isNotRequired ? 'none' : 'block' }}>
         <span>{message}</span>
       </div>
     </>

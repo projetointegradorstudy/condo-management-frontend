@@ -37,7 +37,9 @@ export function Requests() {
             <h1>Reservas</h1>
 
             <div className="content-requests-list">
-              <RequestTable data={requests} />
+              <div className="content-list-scroll">
+                <RequestTable data={requests} />
+              </div>
             </div>
           </div>
         </div>

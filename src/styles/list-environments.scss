@@ -59,68 +59,70 @@ div.page-list-environments {
     }
 
     div.content-list {
-      overflow-y: auto;
-      scroll-behavior: smooth;
-      height: 58vh;
+      width: 80%;
+      margin: 0 auto;
 
-      @include breakpoint(sm) {
-        overflow-x: auto;
+      @include breakpoint(xxl) {
+        width: 100%;
+      }
+
+      div.content-list-scroll {
+        max-width: 1900px;
+        width: 100%;
+        margin: 0 auto;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        height: 58vh;
+
+        @include breakpoint(sm) {
+          overflow-x: auto;
+        }
+      
+        &::-webkit-scrollbar {
+          width: 17px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $gray;
+          border-radius: 20px;
+          border: 5px solid #F6F8FA;
+        }
       }
 
       table {
+        position: relative;
         margin: 0 auto;
+        table-layout: fixed;
 
         @include breakpoint(xxl) {
-          width: 80%;
-        }
-
-        @include breakpoint(xl) {
           width: 100%;
         }
 
         @include breakpoint(sm) {
-          width: 800px;
+          width: 1000px;
         }
 
-        th {
-          font-size: 16px;
-          line-height: 24px;
-          color: $black;
-          text-align: left;
-          border-bottom: 1px solid $black;
-          padding-bottom: 10px;
+        thead {
 
-          @include breakpoint(md) {
-            font-size: 13px;
-            line-height: 15px;
-          }
-
-          &:nth-child(1) {
-            width: 170px;
-          }
-
-          &:nth-child(2) {
-            width: 140px;
-          }
-
-          &:nth-child(3) {
-            width: 600px;
-          }
-                    
-          &:nth-child(4) {
-            width: 100px;
-          }
-
-          &:nth-child(5) {
-            width: 100px;
-          }
-
-          &:nth-child(6) {
-            width: 200px;
-          }
-
-          &:nth-child(7) {
-            width: 100px;
+          th {
+            position: sticky;
+            top: 0;
+            background-color: #F6F8FA;
+            font-size: 16px;
+            line-height: 24px;
+            color: $black;
+            text-align: left;
+            border-bottom: 1px solid $black;
+            padding-bottom: 10px;
+        
+            @include breakpoint(md) {
+              font-size: 13px;
+              line-height: 15px;
+            }
           }
         }
 

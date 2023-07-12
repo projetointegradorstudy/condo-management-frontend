@@ -12,35 +12,28 @@ import { TextArea } from './TextArea';
 import '../styles/create-environment-modal.scss';
 
 export function CreateEnvironmentModal() {
-  const [hasError, setHasError] = useState({ image: false, name: false, capacity: false, description: false });
-  const [formData, setFormData] = useState({ image: File, name: '', capacity: '', description: '' });
-  const [errorMessage, setErrorMessage] = useState({ image: File, name: '', capacity: '', description: '' });
+  const [hasError, setHasError] = useState({ name: false, capacity: false, description: false });
+  const [formData, setFormData] = useState<Partial<ICreateEnvironment>>();
+  const [errorMessage, setErrorMessage] = useState<Partial<ICreateEnvironment>>({
+    name: '',
+    capacity: '',
+    description: '',
+  });
   const [previewImage, setPreviewImage] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultRequest | null>(null);
-  const {
-    isOpenCreateEnvironmentModal,
-    setIsOpenCreateEnvironmentModal,
-    handleInputErros,
-    handleInputErrosClean,
-    setIsNeedRefresh,
-  } = getContext();
-  const [isFormValue, setIsFormValue] = useState<Partial<ICreateEnvironment>>();
-  const newFormValues: Partial<ICreateEnvironment> = { ...isFormValue };
+  const { isOpenCreateEnvironmentModal, setIsOpenCreateEnvironmentModal, setIsNeedRefresh } = getContext();
 
-  // const setFormValue = (prop: Partial<ICreateEnvironment>): void => {
-  //   for (const key in prop) {
-  //     newFormValues[`${key}`] = prop[key];
-  //     if (!prop[key].length) delete newFormValues[`${key}`];
-  //   }
-  //   setIsFormValue(newFormValues);
-  // };
-
-  const handleFieldChange = (e: any) => {
+  const handleFieldChange = (e: ChangeEvent<any>) => {
     const field = e.target;
+    const file = field.files?.[0];
+    if (file) {
+      setFormData({ ...formData, image: file });
+    } else {
+      setFormData({ ...formData, [field.name]: field.value });
+    }
     setErrorMessage({ ...errorMessage, [field.name]: '' });
     setHasError({ ...hasError, [field.name]: false });
-    setFormData({ ...formData, [field.name]: field.value });
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -48,21 +41,15 @@ export function CreateEnvironmentModal() {
     const form: HTMLFormElement | null = document.querySelector('#form');
     if (checkFields()) return;
     setIsLoading(true);
-
-    await createEnvironment({
-      // image,
-      name: formData.name,
-      capacity: formData.capacity,
-      description: formData.description,
-    })
-      .then(() => {
-        handleCloser();
-        setIsNeedRefresh(true);
-        ToastMessage({ message: 'Ambiente criado', type: Case.SUCCESS });
-      })
-      .catch(() => {
-        ToastMessage({ message: 'Preencha todos os campos', type: Case.ERROR });
-      });
+    if (formData) {
+      await createEnvironment(formData)
+        .then(() => {
+          handleCloser();
+          setIsNeedRefresh(true);
+          ToastMessage({ message: 'Ambiente criado', type: Case.SUCCESS });
+        })
+        .catch(() => {});
+    }
     form?.reset();
     cleanData();
   };
@@ -72,9 +59,9 @@ export function CreateEnvironmentModal() {
     const tempMessage = {};
     const tempError = {};
     const errors = {
-      name: !formData.name ? 'Campo obrigatório' : null,
-      capacity: !formData.capacity ? 'Campo obrigatório' : null,
-      description: !formData.description ? 'Campo obrigatório' : null,
+      name: !formData?.name ? 'Campo obrigatório' : null,
+      capacity: !formData?.capacity ? 'Campo obrigatório' : null,
+      description: !formData?.description ? 'Campo obrigatório' : null,
     };
     for (const field in errors) {
       if (errors[field]) {
@@ -88,25 +75,30 @@ export function CreateEnvironmentModal() {
     return hasTempError;
   };
 
-  useEffect(() => {}, [isResult, isLoading, isFormValue]);
+  useEffect(() => {}, [isResult, isLoading, formData]);
 
   const cleanData = () => {
-    setIsFormValue(undefined);
+    setFormData(undefined);
     setPreviewImage(undefined);
     setIsLoading(false);
   };
 
+  const cleanMyObject = (targetObject: any) => {
+    Object.values(targetObject).forEach((value, index) => {
+      targetObject[Object.keys(targetObject)[index]] = '';
+    });
+  };
+
   const handleCloser = () => {
+    cleanMyObject(errorMessage);
+    cleanMyObject(hasError);
     setIsOpenCreateEnvironmentModal(false);
     cleanData();
   };
 
   const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-
     if (file) {
-      setIsFormValue({ image: file });
-
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result as string);
@@ -147,7 +139,7 @@ export function CreateEnvironmentModal() {
                           accept=".png, .jpg, .jpeg"
                           hidden
                           onChange={(e) => {
-                            handleFieldChange;
+                            handleFieldChange(e);
                             handleImagePreview(e);
                           }}
                           isNotRequired

@@ -21,7 +21,7 @@ export function CreateUserModal() {
 
   const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target;
-    setErrorMessage({ ...errorMessage, [field.name]: '' });
+    setErrorMessage({ ...errorMessage, [field.name]: false });
     setHasError({ ...hasError, [field.name]: false });
     setFormData({ ...formData, [field.name]: field.value });
   };
@@ -69,7 +69,15 @@ export function CreateUserModal() {
 
   useEffect(() => {}, [isResult, isLoading]);
 
+  const cleanMyObject = (targetObject: any) => {
+    Object.values(targetObject).forEach((value, index) => {
+      targetObject[Object.keys(targetObject)[index]] = '';
+    });
+  };
+
   const handleCloser = () => {
+    cleanMyObject(errorMessage);
+    cleanMyObject(hasError);
     setIsOpenCreateUserModal(false);
     setIsResult(null);
     setIsLoading(false);
