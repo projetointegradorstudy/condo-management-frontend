@@ -60,7 +60,7 @@ div.page-requests {
         scroll-behavior: smooth;
         height: 58vh;
 
-        @include breakpoint(md) {
+        @include breakpoint(sm) {
           overflow-x: auto;
         }
 
@@ -86,10 +86,6 @@ div.page-requests {
 
         @include breakpoint(xxl) {
           width: 100%;
-        }
-
-        @include breakpoint(sm) {
-          width: 1800px;
         }
 
         thead {

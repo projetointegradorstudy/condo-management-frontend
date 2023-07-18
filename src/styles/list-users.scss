@@ -16,12 +16,10 @@ div.page-list-users {
 
     div.content-list-button {
       display: flex;
-      width: 89.3%;
       justify-content: flex-end;
-
-      @include breakpoint(xl) {
-       width: 100%;
-      }
+      max-width: 1900px;
+      width: 100%;
+      margin: 0 auto;
     }
 
     div.content-list-users {
@@ -34,6 +32,10 @@ div.page-list-users {
 
       @include breakpoint(xl) {
         margin: 60px 40px 30px;
+      }
+
+      @include breakpoint(md) {
+        max-width: 450px;
       }
     
       @include breakpoint(sm) {
@@ -59,23 +61,27 @@ div.page-list-users {
     }
 
     div.content-list {
-      width: 80%;
+      max-width: 1900px;
+      width: 100%;
       margin: 0 auto;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      height: 58vh;
 
       @include breakpoint(xxl) {
         width: 100%;
       }
 
+      @include breakpoint(md) {
+        max-width: 588px;
+      }
+
       div.content-list-scroll {
-        max-width: 1900px;
-        width: 100%;
-        margin: 0 auto;
-        overflow-y: auto;
-        scroll-behavior: smooth;
-        height: 58vh;
+        
 
         @include breakpoint(md) {
           overflow-x: auto;
+          width: 1300px;
         }
 
         &::-webkit-scrollbar {
@@ -100,6 +106,10 @@ div.page-list-users {
 
         @include breakpoint(xxl) {
           width: 100%;
+        }
+
+        @include breakpoint(md) {
+          table-layout: fixed;
         }
 
         thead {

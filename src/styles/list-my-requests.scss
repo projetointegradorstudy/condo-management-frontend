@@ -82,7 +82,6 @@ div.page-my-requests {
       table {
         position: relative;
         margin: 0 auto;
-        table-layout: fixed;
 
         @include breakpoint(xxl) {
           width: 100%;
