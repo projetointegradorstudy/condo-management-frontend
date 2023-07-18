@@ -16,12 +16,10 @@ div.page-list-environments {
 
     div.content-list-button {
       display: flex;
-      width: 89.3%;
       justify-content: flex-end;
-
-      @include breakpoint(xl) {
-        width: 100%;
-      }
+      max-width: 1900px;
+      width: 100%;
+      margin: 0 auto;
     }
 
     div.content-list-environments {
@@ -58,15 +56,13 @@ div.page-list-environments {
       }
     }
 
-    div.content-list {
-      width: 80%;
-      margin: 0 auto;
+    div.container {
 
-      @include breakpoint(xxl) {
-        width: 100%;
+      @include breakpoint(md) {
+        display: grid;
       }
 
-      div.content-list-scroll {
+      div.content-list {
         max-width: 1900px;
         width: 100%;
         margin: 0 auto;
@@ -74,145 +70,150 @@ div.page-list-environments {
         scroll-behavior: smooth;
         height: 58vh;
 
-        @include breakpoint(sm) {
-          overflow-x: auto;
-        }
-      
         &::-webkit-scrollbar {
           width: 17px;
         }
-
+      
         &::-webkit-scrollbar-track {
           background: transparent;
         }
-
+      
         &::-webkit-scrollbar-thumb {
           background-color: $gray;
           border-radius: 20px;
           border: 5px solid #F6F8FA;
         }
-      }
 
-      table {
-        position: relative;
-        margin: 0 auto;
-        table-layout: fixed;
+        div.content-list-scroll {
 
-        @include breakpoint(xxl) {
-          width: 100%;
+          @include breakpoint(md) {
+            overflow-x: auto;
+            width: 1300px;
+          }
+          
         }
 
-        @include breakpoint(sm) {
-          width: 1000px;
-        }
+        table {
+          position: relative;
+          margin: 0 auto;
+          table-layout: auto;
 
-        thead {
-
-          th {
-            position: sticky;
-            top: 0;
-            background-color: #F6F8FA;
-            font-size: 16px;
-            line-height: 24px;
-            color: $black;
-            text-align: left;
-            border-bottom: 1px solid $black;
-            padding-bottom: 10px;
+          @include breakpoint(xxl) {
+            width: 100%;
+          }
         
-            @include breakpoint(md) {
-              font-size: 13px;
-              line-height: 15px;
+          @include breakpoint(md) {
+            table-layout: fixed;
+          }
+
+          thead {
+
+            th {
+              position: sticky;
+              top: 0;
+              background-color: #F6F8FA;
+              font-size: 16px;
+              line-height: 24px;
+              color: $black;
+              text-align: left;
+              border-bottom: 1px solid $black;
+              padding-bottom: 10px;
+          
+              @include breakpoint(md) {
+                font-size: 13px;
+                line-height: 15px;
+              }
             }
           }
-        }
 
-        tbody tr:nth-child(odd) {
-          background-color: $white;
-        }
+          tbody tr:nth-child(odd) {
+            background-color: $white;
+          }
 
-        td {
-          padding: 6px 10px;
-          font-size: 14px;
-          line-height: 22px;
-          color: $black;
-
-          span.column-description {
+          td {
+            padding: 6px 10px;
             font-size: 14px;
-            line-height: 20px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        
-            @include breakpoint(md) {
+            line-height: 22px;
+            color: $black;
+
+            span.column-description {
+              font-size: 14px;
+              line-height: 20px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
               -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+          
+              @include breakpoint(md) {
+                -webkit-line-clamp: 3;
+                font-size: 12px;
+                line-height: 16px;
+              }
+            }
+
+            @include breakpoint(md) {
               font-size: 12px;
               line-height: 16px;
             }
-          }
 
-          @include breakpoint(md) {
-            font-size: 12px;
-            line-height: 16px;
-          }
+            img {
+              max-width: 200px;
+              width: 100%;
+              height: 90px;
+              border-radius: 4px;
+              object-fit: cover;
 
-          img {
-            max-width: 200px;
-            width: 100%;
-            height: 90px;
-            border-radius: 4px;
-            object-fit: cover;
-
-            @include breakpoint(md) {
-              height: 50px;
+              @include breakpoint(md) {
+                height: 50px;
+              }
             }
-          }
 
-          div.content-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-
-            div.circle-button {
-              width: 22.75px;
-              height: 22.75px;
-              cursor: pointer;
-              border-radius: 50%;
+            div.content-buttons {
               display: flex;
               align-items: center;
               justify-content: center;
+              gap: 1rem;
 
-              @include breakpoint(sm) {
-                width: 16.25px;
-                height: 16.25px;
-              }
-
-              &.icon-edit {
-                background: $primary;
-
-                &:hover {
-                  background: $primary;
-                }
-              }
-
-              &.icon-close {
-                background: $red;
-
-                &:hover {
-                  background: $red-dark;
-                }
-              }
-
-              svg {
-                color: $white;
-                width: 14px;
-                height: 14px;
+              div.circle-button {
+                width: 22.75px;
+                height: 22.75px;
+                cursor: pointer;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 @include breakpoint(sm) {
-                  width: 10px;
-                  height: 10px;
+                  width: 16.25px;
+                  height: 16.25px;
+                }
+
+                &.icon-edit {
+                  background: $primary;
+
+                  &:hover {
+                    background: $primary;
+                  }
+                }
+
+                &.icon-close {
+                  background: $red;
+
+                  &:hover {
+                    background: $red-dark;
+                  }
+                }
+
+                svg {
+                  color: $white;
+                  width: 14px;
+                  height: 14px;
+
+                  @include breakpoint(sm) {
+                    width: 10px;
+                    height: 10px;
+                  }
                 }
               }
             }

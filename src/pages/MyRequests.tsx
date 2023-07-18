@@ -36,9 +36,11 @@ export function MyRequests() {
           <div className="content-my-requests">
             <h1>Minhas reservas</h1>
 
-            <div className="content-my-requests-list">
-              <div className="content-list-scroll">
-                <MyRequestTable data={myRequests} />
+            <div className="container">
+              <div className="content-my-requests-list">
+                <div className="content-list-scroll">
+                  <MyRequestTable data={myRequests} />
+                </div>
               </div>
             </div>
           </div>

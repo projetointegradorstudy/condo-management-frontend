@@ -33,10 +33,6 @@ div.page-list-users {
       @include breakpoint(xl) {
         margin: 60px 40px 30px;
       }
-
-      @include breakpoint(md) {
-        max-width: 450px;
-      }
     
       @include breakpoint(sm) {
         margin: 60px 30px 30px;
@@ -60,149 +56,147 @@ div.page-list-users {
       }
     }
 
-    div.content-list {
-      max-width: 1900px;
-      width: 100%;
-      margin: 0 auto;
-      overflow-y: auto;
-      scroll-behavior: smooth;
-      height: 58vh;
-
-      @include breakpoint(xxl) {
-        width: 100%;
-      }
+    div.container {
 
       @include breakpoint(md) {
-        max-width: 588px;
+        display: grid;
       }
 
-      div.content-list-scroll {
-        
-
-        @include breakpoint(md) {
-          overflow-x: auto;
-          width: 1300px;
-        }
+      div.content-list {
+        max-width: 1900px;
+        width: 100%;
+        margin: 0 auto;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        height: 58vh;
 
         &::-webkit-scrollbar {
           width: 17px;
         }
-
+      
         &::-webkit-scrollbar-track {
           background: transparent;
         }
-
+      
         &::-webkit-scrollbar-thumb {
           background-color: $gray;
           border-radius: 20px;
           border: 5px solid #F6F8FA;
         }
-      }
-      
-      table {
-        position: relative;
-        margin: 0 auto;
-        table-layout: auto;
 
-        @include breakpoint(xxl) {
-          width: 100%;
-        }
-
-        @include breakpoint(md) {
-          table-layout: fixed;
-        }
-
-        thead {
-
-          th {
-            position: sticky;
-            top: 0;
-            background-color: #F6F8FA;
-            font-size: 16px;
-            line-height: 24px;
-            color: $black;
-            text-align: left;
-            border-bottom: 1px solid $black;
-            padding-bottom: 10px;
-
-            @include breakpoint(md) {
-              font-size: 13px;
-              line-height: 15px;
-            }
+        div.content-list-scroll {
+          
+          @include breakpoint(md) {
+            overflow-x: auto;
+            width: 1300px;
           }
         }
+        
+        table {
+          position: relative;
+          margin: 0 auto;
+          table-layout: auto;
 
-        tbody tr:nth-child(odd) {
-          background-color: $white;
-        }
-
-        td {
-          padding: 6px 10px;
-          font-size: 14px;
-          line-height: 24px;
-          color: $black;
+          @include breakpoint(xxl) {
+            width: 100%;
+          }
 
           @include breakpoint(md) {
-            font-size: 12px;
-            line-height: 16px;
+            table-layout: fixed;
           }
 
-          img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
+          thead {
 
-            @include breakpoint(md) {
-              width: 25px;
-              height: 25px;
+            th {
+              position: sticky;
+              top: 0;
+              background-color: #F6F8FA;
+              font-size: 16px;
+              line-height: 24px;
+              color: $black;
+              text-align: left;
+              border-bottom: 1px solid $black;
+              padding-bottom: 10px;
+
+              @include breakpoint(md) {
+                font-size: 13px;
+                line-height: 15px;
+              }
             }
           }
 
-          div.content-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
+          tbody tr:nth-child(odd) {
+            background-color: $white;
+          }
 
-            div.circle-button {
-              width: 22.75px;
-              height: 22.75px;
-              cursor: pointer;
+          td {
+            padding: 6px 10px;
+            font-size: 14px;
+            line-height: 24px;
+            color: $black;
+
+            @include breakpoint(md) {
+              font-size: 12px;
+              line-height: 16px;
+            }
+
+            img {
+              width: 40px;
+              height: 40px;
               border-radius: 50%;
+              object-fit: cover;
+
+              @include breakpoint(md) {
+                width: 25px;
+                height: 25px;
+              }
+            }
+
+            div.content-buttons {
               display: flex;
               align-items: center;
               justify-content: center;
+              gap: 1rem;
 
-              @include breakpoint(sm) {
-                width: 16.25px;
-                height: 16.25px;
-              }
-
-              &.icon-edit {
-                background: $primary;
-
-                &:hover {
-                  background: $primary;
-                }
-              }
-
-              &.icon-close {
-                background: $red;
-
-                &:hover {
-                  background: $red-dark;
-                }
-              }
-            
-              svg {
-                color: $white;
-                width: 14px;
-                height: 14px;
+              div.circle-button {
+                width: 22.75px;
+                height: 22.75px;
+                cursor: pointer;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 @include breakpoint(sm) {
-                  width: 10px;
-                  height: 10px;
+                  width: 16.25px;
+                  height: 16.25px;
+                }
+
+                &.icon-edit {
+                  background: $primary;
+
+                  &:hover {
+                    background: $primary;
+                  }
+                }
+
+                &.icon-close {
+                  background: $red;
+
+                  &:hover {
+                    background: $red-dark;
+                  }
+                }
+              
+                svg {
+                  color: $white;
+                  width: 14px;
+                  height: 14px;
+
+                  @include breakpoint(sm) {
+                    width: 10px;
+                    height: 10px;
+                  }
                 }
               }
             }

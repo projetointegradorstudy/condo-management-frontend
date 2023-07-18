@@ -48,11 +48,12 @@ div.page-my-requests {
       }
     }
 
-    div.content-my-requests-list {
-      width: 100%;
-      margin: 0 auto;
+    div.container {
+      @include breakpoint(md) {
+        display: grid;
+      }
 
-      div.content-list-scroll {
+      div.content-my-requests-list {
         max-width: 1900px;
         width: 100%;
         margin: 0 auto;
@@ -60,107 +61,111 @@ div.page-my-requests {
         scroll-behavior: smooth;
         height: 58vh;
 
-        @include breakpoint(sm) {
-          overflow-x: auto;
-        }
-
         &::-webkit-scrollbar {
           width: 17px;
         }
-
+      
         &::-webkit-scrollbar-track {
           background: transparent;
         }
-
+      
         &::-webkit-scrollbar-thumb {
           background-color: $gray;
           border-radius: 20px;
           border: 5px solid #F6F8FA;
         }
-      }
 
-      table {
-        position: relative;
-        margin: 0 auto;
-
-        @include breakpoint(xxl) {
-          width: 100%;
-        }
-      
-        @include breakpoint(sm) {
-          width: 1200px;
-        }
-
-        thead {
-
-          th {
-            position: sticky;
-            top: 0;
-            background-color: #F6F8FA;
-            font-size: 16px;
-            line-height: 24px;
-            color: $black;
-            text-align: left;
-            border-bottom: 1px solid $black;
-            padding-bottom: 10px;
-
-            @include breakpoint(md) {
-              font-size: 13px;
-              line-height: 15px;
-            }
-          }
-        }
-
-        tbody tr:nth-child(odd) {
-          background-color: $white;
-        }
-
-        td {
-          padding: 6px 10px;
-          font-size: 14px;
-          line-height: 24px;
-          color: $black;
+        div.content-list-scroll {
 
           @include breakpoint(md) {
-            font-size: 12px;
-            line-height: 16px;
+            overflow-x: auto;
+            width: 1200px;
+          }
+        }
+
+        table {
+          position: relative;
+          margin: 0 auto;
+
+          @include breakpoint(xxl) {
+            width: 100%;
+          }
+        
+          @include breakpoint(md) {
+            table-layout: fixed;
           }
 
-          img {
-            max-width: 200px;
-            width: 100%;
-            height: 50px;
-            border-radius: 4px;
-            object-fit: cover;
-          
-            @include breakpoint(md) {
-              height: 50px;
+          thead {
+
+            th {
+              position: sticky;
+              top: 0;
+              background-color: #F6F8FA;
+              font-size: 16px;
+              line-height: 24px;
+              color: $black;
+              text-align: left;
+              border-bottom: 1px solid $black;
+              padding-bottom: 10px;
+
+              @include breakpoint(md) {
+                font-size: 13px;
+                line-height: 15px;
+              }
             }
           }
 
-          div.content-buttons-my-requests {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
+          tbody tr:nth-child(odd) {
+            background-color: $white;
+          }
 
-            svg {
-              width: 28px;
-              height: 28px;
-              cursor: pointer;
+          td {
+            padding: 6px 10px;
+            font-size: 14px;
+            line-height: 24px;
+            color: $black;
 
-              @include breakpoint(sm) {
-                width: 20px;
-                height: 20px;
+            @include breakpoint(md) {
+              font-size: 12px;
+              line-height: 16px;
+            }
+
+            img {
+              max-width: 200px;
+              width: 100%;
+              height: 50px;
+              border-radius: 4px;
+              object-fit: cover;
+            
+              @include breakpoint(md) {
+                height: 50px;
               }
+            }
 
-              &.icon-close {
-                color: $red;
+            div.content-buttons-my-requests {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 1rem;
 
-                &:hover {
-                  color: $red-dark;
+              svg {
+                width: 28px;
+                height: 28px;
+                cursor: pointer;
+
+                @include breakpoint(sm) {
+                  width: 20px;
+                  height: 20px;
                 }
-              }  
+
+                &.icon-close {
+                  color: $red;
+
+                  &:hover {
+                    color: $red-dark;
+                  }
+                }  
+              }
             }
           }
         }
