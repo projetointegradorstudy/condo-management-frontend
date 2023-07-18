@@ -69,7 +69,7 @@ export function ConfirmUser() {
         : null,
       passwordConfirmation: !formData.passwordConfirmation
         ? 'Campo obrigatório'
-        : !getRegex.passwordConfirmation.test(formData.passwordConfirmation)
+        : !getRegex.password.test(formData.passwordConfirmation)
         ? 'Senha deve possuir pelo menos 10 caracteres entre estes: (A-Z, a-z, 0-9, !-@-$-*)'
         : null,
     };
