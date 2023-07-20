@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   IAuthProps,
   ICreateEnvironment,
-  ICreateRequest,
+  ICreateReservation,
   IEditEnvironment,
   IEditUser,
   IUpdateReservationDto,
@@ -94,15 +94,15 @@ export async function updateEnvironment(id: string, updateEnvironmentDto: Partia
 }
 
 /** ENV_ REQUEST CONTEXT */
-export async function getEnvironmentRequests() {
+export async function getEnvironmentReservations() {
   return api.get('/env-reservations');
 }
 
-export async function getEnvRequestsbyUser() {
+export async function getEnvReservationsByUser() {
   return api.get('/env-reservations/user');
 }
 
-export async function createEnvRequest(createRequestDto: Partial<ICreateRequest>) {
+export async function createEnvReservation(createRequestDto: Partial<ICreateReservation>) {
   return api.post('/env-reservations', createRequestDto);
 }
 

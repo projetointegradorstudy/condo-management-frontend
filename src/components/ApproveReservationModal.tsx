@@ -2,12 +2,12 @@ import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
 import { ToastMessage } from './ToastNotifications';
-import { Case, IApproveRequest, ReservationStatus } from '../interfaces';
+import { Case, IApproveReservation, ReservationStatus } from '../interfaces';
 import { updateEnvReservation } from '../services/api';
-import '../styles/approve-request-modal.scss';
+import '../styles/approve-reservation-modal.scss';
 
-export function ApproveRequestModal({ id, index }: IApproveRequest) {
-  const { isOpenApproveRequestModal, setIsOpenApproveRequestModal, setIsNeedRefresh } = getContext();
+export function ApproveReservationModal({ id, index }: IApproveReservation) {
+  const { isOpenApproveReservationModal, setIsOpenApproveReservationModal, setIsNeedRefresh } = getContext();
 
   const handleClick = async () => {
     await updateEnvReservation(id, { status: ReservationStatus.APPROVED })
@@ -21,10 +21,10 @@ export function ApproveRequestModal({ id, index }: IApproveRequest) {
   };
 
   const handleCloser = () => {
-    setIsOpenApproveRequestModal(false);
+    setIsOpenApproveReservationModal(false);
   };
 
-  if (isOpenApproveRequestModal) {
+  if (isOpenApproveReservationModal) {
     return (
       <div className="modal-approve-background">
         <div className="modal-approve">

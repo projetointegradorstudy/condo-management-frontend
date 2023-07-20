@@ -4,7 +4,7 @@ import { useJwt } from 'react-jwt';
 import { api, auth, getMyself } from '../services/api';
 import { GlobalContext } from './GlobalContext';
 import useStorage from '../utils/useStorage';
-import { IAuthProps, IModalRequests, IResult, IUser, Iprops } from '../interfaces/index';
+import { IAuthProps, IModalReservations, IResult, IUser, Iprops } from '../interfaces/index';
 
 export function GlobalProvider({ children }: Iprops) {
   const [token, setToken, removeToken] = useStorage('token');
@@ -17,10 +17,10 @@ export function GlobalProvider({ children }: Iprops) {
   const [isOpenCreateUserModal, setIsOpenCreateUserModal] = useState<boolean>(false);
   const [isOpenCreateEnvironmentModal, setIsOpenCreateEnvironmentModal] = useState<boolean>(false);
   const [isOpenConfirmSignoutModal, setIsOpenConfirmSignoutModal] = useState<boolean>(false);
-  const [isRequestModal, setIsRequestModal] = useState<IModalRequests>();
-  const [isOpenApproveRequestModal, setIsOpenApproveRequestModal] = useState<boolean>(false);
-  const [isOpenDisapproveRequestModal, setIsOpenDisapproveRequestModal] = useState<boolean>(false);
-  const [isOpenCancelRequestModal, setIsOpenCancelRequestModal] = useState<boolean>(false);
+  const [isReservationModal, setIsReservationModal] = useState<IModalReservations>();
+  const [isOpenApproveReservationModal, setIsOpenApproveReservationModal] = useState<boolean>(false);
+  const [isOpenDisapproveReservationModal, setIsOpenDisapproveReservationModal] = useState<boolean>(false);
+  const [isOpenCancelReservationModal, setIsOpenCancelReservationModal] = useState<boolean>(false);
   const [isMyselfData, setIsMyselfData] = useState<IUser | null>(null);
   const [isRemainingSeconds, setIsRemaingSeconds] = useState<number>();
   const { decodedToken } = useJwt(token);
@@ -99,8 +99,6 @@ export function GlobalProvider({ children }: Iprops) {
     input.classList.remove('field-error');
   };
 
-  const handleHasError = (e: any, setError: any) => {};
-
   return (
     <GlobalContext.Provider
       value={{
@@ -124,14 +122,14 @@ export function GlobalProvider({ children }: Iprops) {
         setIsOpenCreateEnvironmentModal,
         isOpenConfirmSignoutModal,
         setIsOpenConfirmSignoutModal,
-        isRequestModal,
-        setIsRequestModal,
-        isOpenApproveRequestModal,
-        setIsOpenApproveRequestModal,
-        isOpenDisapproveRequestModal,
-        setIsOpenDisapproveRequestModal,
-        isOpenCancelRequestModal,
-        setIsOpenCancelRequestModal,
+        isReservationModal,
+        setIsReservationModal,
+        isOpenApproveReservationModal,
+        setIsOpenApproveReservationModal,
+        isOpenDisapproveReservationModal,
+        setIsOpenDisapproveReservationModal,
+        isOpenCancelReservationModal,
+        setIsOpenCancelReservationModal,
         isMyselfData,
         setIsMyselfData,
         isRemainingSeconds,

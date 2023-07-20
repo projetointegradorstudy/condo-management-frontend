@@ -7,7 +7,7 @@ import { CheckCircle, Spinner, XCircle } from 'phosphor-react';
 import forSale from '../assets/undraw_cabin_hkfr.svg';
 import { Footer } from '../components/Footer';
 import { useLocation } from 'react-router';
-import { IResultRequest } from '../interfaces';
+import { IResultReservation } from '../interfaces';
 import { resetPassword } from '../services/api';
 import { CountDown } from '../components/CountDown';
 import { getRegex } from '../utils/regex';
@@ -18,7 +18,7 @@ export function RecoverPassword() {
   const [formData, setFormData] = useState({ password: '', passwordConfirmation: '' });
   const [errorMessage, setErrorMessage] = useState({ password: '', passwordConfirmation: '' });
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const { setToken, setIsAuthenticated, isRemainingSeconds, setIsRemaingSeconds } = getContext();
   const location = useLocation();
 

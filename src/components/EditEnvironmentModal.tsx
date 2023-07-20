@@ -3,7 +3,7 @@ import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { Case, IEditEnvironment, IResultRequest } from '../interfaces';
+import { Case, IEditEnvironment, IResultReservation } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { updateEnvironment } from '../services/api';
@@ -15,7 +15,7 @@ export function EditEnvironmentModal({ id, name, description, image, capacity }:
   const [previewImage, setPreviewImage] = useState<string>();
   const { isOpenEditModal, setIsOpenEditModal, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const [isFormValue, setIsFormValue] = useState<Partial<IEditEnvironment>>();
   const newFormValues: Partial<IEditEnvironment> = { ...isFormValue };
 

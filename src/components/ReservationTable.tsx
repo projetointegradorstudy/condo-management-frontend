@@ -1,11 +1,11 @@
 import { CheckCircle, XCircle } from 'phosphor-react';
-import { ApproveRequestModal } from './ApproveRequestModal';
+import { ApproveReservationModal } from './ApproveReservationModal';
 import { getContext } from '../utils/context-import';
-import { DisapproveRequestModal } from './DisapproveRequestModal';
-import { IApproveRequest, IDataElementProps, IDisapproveRequest, IRequests } from '../interfaces';
+import { DisapproveReservationModal } from './DisapproveReservationModal';
+import { IApproveReservation, IDataElementProps, IDisapproveReservation, IReservations } from '../interfaces';
 import { useState } from 'react';
 
-export function RequestTable({ data }: IDataElementProps<IRequests[]>) {
+export function ReservationTable({ data }: IDataElementProps<IReservations[]>) {
   const userFields = [
     '#',
     'Ambiente',
@@ -17,9 +17,13 @@ export function RequestTable({ data }: IDataElementProps<IRequests[]>) {
     'Data da solicitação',
     '',
   ];
-  const [isDisapprovePosition, setIsDisapprovePosition] = useState<IDisapproveRequest>({ id: '', name: '', index: 0 });
-  const [isApprovePosition, setIsApprovePosition] = useState<IApproveRequest>({ id: '', name: '', index: 0 });
-  const { setIsOpenApproveRequestModal, setIsOpenDisapproveRequestModal, formatDate } = getContext();
+  const [isDisapprovePosition, setIsDisapprovePosition] = useState<IDisapproveReservation>({
+    id: '',
+    name: '',
+    index: 0,
+  });
+  const [isApprovePosition, setIsApprovePosition] = useState<IApproveReservation>({ id: '', name: '', index: 0 });
+  const { setIsOpenApproveReservationModal, setIsOpenDisapproveReservationModal, formatDate } = getContext();
 
   return (
     <>
@@ -34,7 +38,7 @@ export function RequestTable({ data }: IDataElementProps<IRequests[]>) {
 
         <tbody>
           {data &&
-            data.map((request: IRequests, index: number) => {
+            data.map((request: IReservations, index: number) => {
               return (
                 <tr key={request.id}>
                   <td>
@@ -67,7 +71,7 @@ export function RequestTable({ data }: IDataElementProps<IRequests[]>) {
                         className="icon-check"
                         weight="fill"
                         onClick={() => {
-                          setIsOpenApproveRequestModal(true);
+                          setIsOpenApproveReservationModal(true);
                           setIsApprovePosition({ id: request.id, name: request.environment.name, index });
                         }}
                       />
@@ -75,7 +79,7 @@ export function RequestTable({ data }: IDataElementProps<IRequests[]>) {
                         className="icon-close"
                         weight="fill"
                         onClick={() => {
-                          setIsOpenDisapproveRequestModal(true);
+                          setIsOpenDisapproveReservationModal(true);
                           setIsDisapprovePosition({ id: request.id, name: request.environment.name, index });
                         }}
                       />
@@ -86,8 +90,12 @@ export function RequestTable({ data }: IDataElementProps<IRequests[]>) {
             })}
         </tbody>
       </table>
-      <ApproveRequestModal id={isApprovePosition?.id} name={isApprovePosition?.name} index={isApprovePosition?.index} />
-      <DisapproveRequestModal
+      <ApproveReservationModal
+        id={isApprovePosition?.id}
+        name={isApprovePosition?.name}
+        index={isApprovePosition?.index}
+      />
+      <DisapproveReservationModal
         id={isDisapprovePosition?.id}
         name={isDisapprovePosition?.name}
         index={isDisapprovePosition?.index}

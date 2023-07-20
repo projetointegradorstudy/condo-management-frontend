@@ -7,7 +7,7 @@ import { CheckCircle, Spinner, XCircle } from 'phosphor-react';
 import navigatorA479 from '../assets/undraw_navigator_a479.svg';
 import { Footer } from '../components/Footer';
 import { useLocation } from 'react-router';
-import { IResultRequest } from '../interfaces';
+import { IResultReservation } from '../interfaces';
 import { createUserPassword } from '../services/api';
 import { CountDown } from '../components/CountDown';
 import { ToastNotifications } from '../components/ToastNotifications';
@@ -19,7 +19,7 @@ export function ConfirmUser() {
   const [formData, setFormData] = useState({ password: '', passwordConfirmation: '' });
   const [errorMessage, setErrorMessage] = useState({ password: '', passwordConfirmation: '' });
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const { setToken, setIsAuthenticated, isRemainingSeconds, setIsRemaingSeconds } = getContext();
   const location = useLocation();
 

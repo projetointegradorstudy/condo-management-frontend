@@ -1,13 +1,13 @@
 import { XCircle } from 'phosphor-react';
 import { getContext } from '../utils/context-import';
-import { CancelRequestModal } from './CancelRequestModal';
-import { ICancelRequest, IDataElementProps, IRequests } from '../interfaces';
+import { CancelReservationModal } from './CancelReservationModal';
+import { ICancelReservation, IDataElementProps, IReservations } from '../interfaces';
 import { useState } from 'react';
 
-export function MyRequestTable({ data }: IDataElementProps<IRequests[]>) {
+export function MyReservationTable({ data }: IDataElementProps<IReservations[]>) {
   const userFields = ['#', 'Ambiente', 'Check-in', 'Check-out', 'Status', 'Data da solicitação', ''];
-  const [isPosition, setIsPosition] = useState<ICancelRequest>({ id: '', name: '', index: 0 });
-  const { setIsOpenCancelRequestModal, formatDate } = getContext();
+  const [isPosition, setIsPosition] = useState<ICancelReservation>({ id: '', name: '', index: 0 });
+  const { setIsOpenCancelReservationModal, formatDate } = getContext();
 
   return (
     <>
@@ -22,26 +22,26 @@ export function MyRequestTable({ data }: IDataElementProps<IRequests[]>) {
 
         <tbody>
           {data &&
-            data.map((my_request: IRequests, index: number) => {
+            data.map((my_reservation: IReservations, index: number) => {
               return (
-                <tr key={my_request.id}>
+                <tr key={my_reservation.id}>
                   <td>
                     <h4>{(index += 1)}</h4>
                   </td>
                   <td>
-                    <h4>{my_request.environment.name}</h4>
+                    <h4>{my_reservation.environment.name}</h4>
                   </td>
                   <td>
-                    <p>{formatDate(my_request.date_in)}</p>
+                    <p>{formatDate(my_reservation.date_in)}</p>
                   </td>
                   <td>
-                    <p>{formatDate(my_request.date_out)}</p>
+                    <p>{formatDate(my_reservation.date_out)}</p>
                   </td>
                   <td>
-                    <p>{my_request.status}</p>
+                    <p>{my_reservation.status}</p>
                   </td>
                   <td>
-                    <p>{formatDate(my_request.created_at)}</p>
+                    <p>{formatDate(my_reservation.created_at)}</p>
                   </td>
                   <td>
                     <div className="content-buttons-my-requests">
@@ -49,8 +49,8 @@ export function MyRequestTable({ data }: IDataElementProps<IRequests[]>) {
                         className="icon-close"
                         weight="fill"
                         onClick={() => {
-                          setIsOpenCancelRequestModal(true);
-                          setIsPosition({ id: my_request.id, name: my_request.environment.name, index });
+                          setIsOpenCancelReservationModal(true);
+                          setIsPosition({ id: my_reservation.id, name: my_reservation.environment.name, index });
                         }}
                       />
                     </div>
@@ -60,7 +60,7 @@ export function MyRequestTable({ data }: IDataElementProps<IRequests[]>) {
             })}
         </tbody>
       </table>
-      <CancelRequestModal id={isPosition?.id} name={isPosition?.name} index={isPosition?.index} />
+      <CancelReservationModal id={isPosition?.id} name={isPosition?.name} index={isPosition?.index} />
     </>
   );
 }

@@ -9,7 +9,7 @@ import buildingReXfcm from '../assets/undraw_building_re_xfcm.svg';
 import { Footer } from '../components/Footer';
 import { forgotUserPassword } from '../services/api';
 import { getRegex } from '../utils/regex';
-import { IResultRequest, resetUserPasswordMessages } from '../interfaces';
+import { IResultReservation, resetUserPasswordMessages } from '../interfaces';
 import '../styles/forgot-password.scss';
 
 export function ForgotPassaword() {
@@ -17,7 +17,7 @@ export function ForgotPassaword() {
   const [formData, setFormData] = useState({ email: '' });
   const [errorMessage, setErrorMessage] = useState({ email: '' });
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
 
   const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target;

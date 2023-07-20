@@ -1,25 +1,25 @@
 import { Footer } from '../components/Footer';
-import { MyRequestTable } from '../components/MyRequestTable';
+import { MyReservationTable } from '../components/MyReservationTable';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Sidebar } from '../components/Sidebar';
-import { IRequests } from '../interfaces';
+import { IReservations } from '../interfaces';
 import { useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
-import { getEnvRequestsbyUser } from '../services/api';
-import '../styles/list-my-requests.scss';
+import { getEnvReservationsByUser } from '../services/api';
+import '../styles/list-my-reservations.scss';
 
-export function MyRequests() {
-  const [myRequests, setMyRequests] = useState<IRequests[]>([]);
+export function MyReservations() {
+  const [myReservations, setMyReservations] = useState<IReservations[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { isNeedRefresh, setIsNeedRefresh } = getContext();
 
   useEffect(() => {
     if (isLoading || isNeedRefresh)
       (async () => {
-        await getEnvRequestsbyUser()
+        await getEnvReservationsByUser()
           .then((res) => {
             setIsLoading(false);
-            setMyRequests(res.data);
+            setMyReservations(res.data);
           })
           .catch(() => {});
       })();
@@ -39,7 +39,7 @@ export function MyRequests() {
             <div className="container">
               <div className="content-my-requests-list">
                 <div className="content-list-scroll">
-                  <MyRequestTable data={myRequests} />
+                  <MyReservationTable data={myReservations} />
                 </div>
               </div>
             </div>

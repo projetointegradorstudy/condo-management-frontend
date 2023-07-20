@@ -2,21 +2,21 @@ import { FormEvent, useState } from 'react';
 import { Users, X } from 'phosphor-react';
 import dayjs from 'dayjs';
 import { getContext } from '../utils/context-import';
-import { Case, ICreateRequest } from '../interfaces';
+import { Case, ICreateReservation } from '../interfaces';
 import { Button } from './Button';
 import { Spinner } from './Spinner';
 import { Label } from './Label';
 import { ToastMessage } from './ToastNotifications';
-import { createEnvRequest } from '../services/api';
+import { createEnvReservation } from '../services/api';
 import { Select } from './Select';
 import { DateTimePicker } from './DateTimePicker';
-import '../styles/request-modal.scss';
+import '../styles/reservation-modal.scss';
 
-export function RequestModal() {
+export function ReservationModal() {
   const [hasError, setHasError] = useState({ date_in: false, date_out: false });
-  const { setIsNeedRefresh, isRequestModal, setIsRequestModal } = getContext();
-  const [formData, setFormData] = useState<Partial<ICreateRequest>>();
-  const [errorMessage, setErrorMessage] = useState<Partial<ICreateRequest>>({
+  const { setIsNeedRefresh, isReservationModal, setIsReservationModal } = getContext();
+  const [formData, setFormData] = useState<Partial<ICreateReservation>>();
+  const [errorMessage, setErrorMessage] = useState<Partial<ICreateReservation>>({
     date_in: '',
     date_out: '',
   });
@@ -42,7 +42,7 @@ export function RequestModal() {
     setIsLoading(true);
     handleGenerateDateOut();
     if (formData) {
-      await createEnvRequest({ ...formData, environment_id: isRequestModal?.data.id })
+      await createEnvReservation({ ...formData, environment_id: isReservationModal?.data.id })
         .then(() => {
           ToastMessage({ message: 'Reserva realizada', type: Case.SUCCESS });
           setIsNeedRefresh(true);
@@ -91,12 +91,12 @@ export function RequestModal() {
   const handleCloser = () => {
     cleanMyObject(errorMessage);
     cleanMyObject(hasError);
-    setIsRequestModal(undefined);
+    setIsReservationModal(undefined);
     setFormData(undefined);
     setIsLoading(false);
   };
 
-  if (isRequestModal?.isOpen) {
+  if (isReservationModal?.isOpen) {
     return (
       <div className="modal-request-background">
         <div className="modal-request">
@@ -108,16 +108,16 @@ export function RequestModal() {
           {isLoading && <Spinner />}
           <div className="modal-request-content">
             <div className="modal-request-info">
-              <h4>{isRequestModal.data.name}</h4>
+              <h4>{isReservationModal.data.name}</h4>
               <div className="modal-request-info-capacity" title="Quantidade de pessoas">
                 <Users size={20} />
-                <strong>{isRequestModal.data.capacity}</strong>
+                <strong>{isReservationModal.data.capacity}</strong>
               </div>
             </div>
 
             <div className="modal-request-image">
-              <img src={isRequestModal.data.image} alt="image" />
-              <span>{isRequestModal.data.description}</span>
+              <img src={isReservationModal.data.image} alt="image" />
+              <span>{isReservationModal.data.description}</span>
             </div>
             <form onSubmit={handleSubmit} id="form">
               <Label title="Data e hora" htmlFor="date_in" />

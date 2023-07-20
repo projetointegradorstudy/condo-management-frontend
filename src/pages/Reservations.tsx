@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react';
 import { Footer } from '../components/Footer';
 import { NavbarMobile } from '../components/NavbarMobile';
-import { RequestTable } from '../components/RequestTable';
+import { ReservationTable } from '../components/ReservationTable';
 import { Sidebar } from '../components/Sidebar';
-import { IRequests } from '../interfaces';
+import { IReservations } from '../interfaces';
 import { getContext } from '../utils/context-import';
-import { getEnvironmentRequests } from '../services/api';
-import '../styles/list-requests.scss';
+import { getEnvironmentReservations } from '../services/api';
+import '../styles/list-reservations.scss';
 
-export function Requests() {
-  const [requests, setRequests] = useState<IRequests[]>([]);
+export function Reservations() {
+  const [requests, setReservations] = useState<IReservations[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { isNeedRefresh, setIsNeedRefresh } = getContext();
 
   useEffect(() => {
     if (isLoading || isNeedRefresh)
       (async () => {
-        await getEnvironmentRequests()
+        await getEnvironmentReservations()
           .then((res) => {
             setIsLoading(false);
-            setRequests(res.data);
+            setReservations(res.data);
           })
           .catch(() => {});
       })();
@@ -39,7 +39,7 @@ export function Requests() {
             <div className="container">
               <div className="content-requests-list">
                 <div className="content-list-scroll">
-                  <RequestTable data={requests} />
+                  <ReservationTable data={requests} />
                 </div>
               </div>
             </div>

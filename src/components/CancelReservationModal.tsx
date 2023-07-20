@@ -1,30 +1,30 @@
 import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { Case, ICancelRequest, ReservationStatus } from '../interfaces';
+import { Case, ICancelReservation, ReservationStatus } from '../interfaces';
 import { ToastMessage } from './ToastNotifications';
 import { updateEnvReservation } from '../services/api';
-import '../styles/cancel-request-modal.scss';
+import '../styles/cancel-reservation-modal.scss';
 
-export function CancelRequestModal({ id, index }: ICancelRequest) {
-  const { isOpenCancelRequestModal, setIsOpenCancelRequestModal, setIsNeedRefresh } = getContext();
+export function CancelReservationModal({ id, index }: ICancelReservation) {
+  const { isOpenCancelReservationModal, setIsOpenCancelReservationModal, setIsNeedRefresh } = getContext();
 
   const handleClick = async () => {
     await updateEnvReservation(id, { status: ReservationStatus.CANCELLED })
       .then(() => {
         handleCloser();
-        setIsNeedRefresh(true);
         ToastMessage({ message: 'Reserva cancelada', type: Case.SUCCESS });
+        setIsNeedRefresh(true);
         return;
       })
       .catch(() => {});
   };
 
   const handleCloser = () => {
-    setIsOpenCancelRequestModal(false);
+    setIsOpenCancelReservationModal(false);
   };
 
-  if (isOpenCancelRequestModal) {
+  if (isOpenCancelReservationModal) {
     return (
       <div className="modal-cancel-background">
         <div className="modal-cancel">

@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { X } from 'phosphor-react';
-import { Case, IEditUser, IResultRequest, Roles } from '../interfaces';
+import { Case, IEditUser, IResultReservation, Roles } from '../interfaces';
 import { adminUpdateUser } from '../services/api';
 import { getContext } from '../utils/context-import';
 import { Label } from './Label';
@@ -15,7 +15,7 @@ import '../styles/edit-user-modal.scss';
 export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
   const { isOpenEditModal, setIsOpenEditModal, formatDate, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const [isRoleField, setIsRoleField] = useState<Partial<IEditUser>>({
     role,
   });
