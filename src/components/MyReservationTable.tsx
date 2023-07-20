@@ -44,16 +44,20 @@ export function MyReservationTable({ data }: IDataElementProps<IReservations[]>)
                     <p>{formatDate(my_reservation.created_at)}</p>
                   </td>
                   <td>
-                    <div className="content-buttons-my-requests">
-                      <XCircle
-                        className="icon-close"
-                        weight="fill"
-                        onClick={() => {
-                          setIsOpenCancelReservationModal(true);
-                          setIsPosition({ id: my_reservation.id, name: my_reservation.environment.name, index });
-                        }}
-                      />
-                    </div>
+                    {my_reservation.status != 'pending' ? (
+                      <></>
+                    ) : (
+                      <div className="content-buttons-my-requests">
+                        <XCircle
+                          className="icon-close"
+                          weight="fill"
+                          onClick={() => {
+                            setIsOpenCancelReservationModal(true);
+                            setIsPosition({ id: my_reservation.id, name: my_reservation.environment.name, index });
+                          }}
+                        />
+                      </div>
+                    )}
                   </td>
                 </tr>
               );

@@ -66,24 +66,28 @@ export function ReservationTable({ data }: IDataElementProps<IReservations[]>) {
                     <p>{formatDate(request.created_at)}</p>
                   </td>
                   <td>
-                    <div className="content-buttons-requests">
-                      <CheckCircle
-                        className="icon-check"
-                        weight="fill"
-                        onClick={() => {
-                          setIsOpenApproveReservationModal(true);
-                          setIsApprovePosition({ id: request.id, name: request.environment.name, index });
-                        }}
-                      />
-                      <XCircle
-                        className="icon-close"
-                        weight="fill"
-                        onClick={() => {
-                          setIsOpenDisapproveReservationModal(true);
-                          setIsDisapprovePosition({ id: request.id, name: request.environment.name, index });
-                        }}
-                      />
-                    </div>
+                    {request.status === 'pending' ? (
+                      <div className="content-buttons-requests">
+                        <CheckCircle
+                          className="icon-check"
+                          weight="fill"
+                          onClick={() => {
+                            setIsOpenApproveReservationModal(true);
+                            setIsApprovePosition({ id: request.id, name: request.environment.name, index });
+                          }}
+                        />
+                        <XCircle
+                          className="icon-close"
+                          weight="fill"
+                          onClick={() => {
+                            setIsOpenDisapproveReservationModal(true);
+                            setIsDisapprovePosition({ id: request.id, name: request.environment.name, index });
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </td>
                 </tr>
               );

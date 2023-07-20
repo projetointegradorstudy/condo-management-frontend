@@ -71,7 +71,7 @@ export function EditProfile() {
         <NavbarMobile />
         <div className="container-edit-profile">
           <div className="content-edit-profile-title">
-            <h2>Editar perfil</h2>
+            <h1>Editar perfil</h1>
           </div>
 
           <div className="content-edit-profile">
