@@ -101,6 +101,61 @@ div.page-edit-profile {
           justify-content: flex-end;
         }
       }
+
+      div.image-upload-edit-user-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: $black;
+        border-radius: 50%;
+
+        img.preview {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 50%;
+          opacity: 0.4;
+
+          @include breakpoint(sm) {
+            width: 90px;
+            height: 90px;
+          }
+        }
+
+        div.button-upload-edit-user-preview {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+
+          svg {
+            width: 24px;
+            height: 24px;
+            color: $white;
+
+            @include breakpoint(sm) {
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          button.trash {
+            background-color: transparent;
+            font-size: 14px;
+            height: 24px;
+            border: 0;
+            color: $white;
+            font-weight: 600;
+            cursor: pointer;
+
+            @include breakpoint(sm) {
+              font-size: 11px;
+            }
+          }
+        }
+      }
     }
 
     div.edit-user-feedback {

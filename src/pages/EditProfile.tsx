@@ -4,7 +4,7 @@ import { Label } from '../components/Label';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Sidebar } from '../components/Sidebar';
 import { getContext } from '../utils/context-import';
-import { PencilSimple } from 'phosphor-react';
+import { PencilSimple, Trash } from 'phosphor-react';
 import { InputPassword } from '../components/InputPassword';
 import { Button } from '../components/Button';
 import { ChangeEvent, FormEvent, useState } from 'react';
@@ -75,23 +75,36 @@ export function EditProfile() {
           </div>
 
           <div className="content-edit-profile">
-            <div className="content-edit-profile-avatar">
-              <img src={previewImage || isMyselfData?.avatar || avatarDefault} />
-              <Label htmlFor="image" isEditAvatar icon={<PencilSimple />} />
-              <Input
-                title="Choose a file"
-                type="file"
-                name="image"
-                id="image"
-                accept=".png, .jpg"
-                hidden
-                onChange={(e) => {
-                  handleImagePreview(e);
-                }}
-                isNotRequired
-                isUploadFile
-              />
-            </div>
+            {!previewImage ? (
+              <div className="content-edit-profile-avatar">
+                <img src={previewImage || isMyselfData?.avatar || avatarDefault} />
+                <Label htmlFor="image" isEditAvatar icon={<PencilSimple />} />
+                <Input
+                  title="Choose a file"
+                  type="file"
+                  name="image"
+                  id="image"
+                  accept=".png, .jpg"
+                  hidden
+                  onChange={(e) => {
+                    handleImagePreview(e);
+                  }}
+                  isNotRequired
+                  isUploadFile
+                />
+              </div>
+            ) : (
+              <div className="image-upload-edit-user-preview">
+                <img className="preview" src={previewImage} alt="Preview" />
+                <div className="button-upload-edit-user-preview">
+                  <Trash />
+                  <button className="trash" onClick={() => setPreviewImage(undefined)}>
+                    Excluir foto
+                  </button>
+                </div>
+              </div>
+            )}
+
             <div className="content-dit-profile-form">
               <h3>Suas informações</h3>
               <form onSubmit={handleSubmit} id="form">

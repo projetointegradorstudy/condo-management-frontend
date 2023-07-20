@@ -9,8 +9,8 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { updateEnvironment } from '../services/api';
 import { Spinner } from './Spinner';
 import { ToastMessage } from '../components/ToastNotifications';
-import '../styles/edit-environment-modal.scss';
 import { TextArea } from './TextArea';
+import '../styles/edit-environment-modal.scss';
 
 export function EditEnvironmentModal({ id, name, description, image, capacity }: IEditEnvironment) {
   const [previewImage, setPreviewImage] = useState<string>();
