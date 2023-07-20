@@ -124,7 +124,6 @@ export function EditProfile() {
                   id="password"
                   placeholder="********"
                   autoComplete="on"
-                  maxLength={30}
                   onChange={(e) => setFormValue({ password: e.target.value })}
                 ></InputPassword>
 
@@ -134,7 +133,6 @@ export function EditProfile() {
                   id="password-confirmation"
                   placeholder="********"
                   autoComplete="on"
-                  maxLength={30}
                   onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
                   isNotRequired
                 />

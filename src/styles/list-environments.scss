@@ -177,6 +177,25 @@ div.page-list-environments {
               }
             }
 
+            p {
+
+              &.status-available {
+                color: $green;
+              }
+
+              &.status-locked {
+                color: $gray;
+              }
+
+              &.status-pending {
+                color: $orange;
+              }
+
+              &.status-disabled {
+                color: $red;
+              }
+            }
+
             div.content-buttons {
               display: flex;
               align-items: center;

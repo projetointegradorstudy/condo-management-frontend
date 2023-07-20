@@ -138,6 +138,25 @@ div.page-requests {
                 height: 50px;
               }
             }
+
+            p {
+
+              &.status-approved {
+                color: $green;
+              }
+
+              &.status-pending {
+                color: $orange;
+              }
+
+              &.status-not-approved {
+                color: $red;
+              }
+
+              &.status-cancelled {
+                color: $red;
+              }
+            }
     
             div.content-buttons-requests {
               display: flex;

@@ -52,7 +52,19 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                     <p>{environment.capacity}</p>
                   </td>
                   <td>
-                    <p>{environment.status}</p>
+                    <p
+                      className={
+                        environment.status === 'available'
+                          ? 'status-available'
+                          : environment.status === 'locked'
+                          ? 'status-locked'
+                          : environment.status === 'pending'
+                          ? 'status-pending'
+                          : 'status-disabled'
+                      }
+                    >
+                      {environment.status}
+                    </p>
                   </td>
                   <td>
                     <p>{formatDate(environment.created_at)}</p>

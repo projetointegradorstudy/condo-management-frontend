@@ -90,7 +90,7 @@ export function AppRoutes() {
             }
           />
           <Route
-            path="/my-requests"
+            path="/my-reservations"
             element={
               <IsLoggedIn>
                 <MyReservations />
@@ -122,7 +122,7 @@ export function AppRoutes() {
             }
           />
           <Route
-            path="/requests"
+            path="/reservations"
             element={
               <IsAdmin>
                 <Reservations />

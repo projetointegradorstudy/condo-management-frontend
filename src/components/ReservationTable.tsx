@@ -38,42 +38,54 @@ export function ReservationTable({ data }: IDataElementProps<IReservations[]>) {
 
         <tbody>
           {data &&
-            data.map((request: IReservations, index: number) => {
+            data.map((reservations: IReservations, index: number) => {
               return (
-                <tr key={request.id}>
+                <tr key={reservations.id}>
                   <td>
                     <h4>{(index += 1)}</h4>
                   </td>
                   <td>
-                    <h4>{request.environment.name}</h4>
+                    <h4>{reservations.environment.name}</h4>
                   </td>
                   <td>
-                    <p>{request.user.name}</p>
+                    <p>{reservations.user.name}</p>
                   </td>
                   <td>
-                    <p>{request.user.email}</p>
+                    <p>{reservations.user.email}</p>
                   </td>
                   <td>
-                    <p>{formatDate(request.date_in)}</p>
+                    <p>{formatDate(reservations.date_in)}</p>
                   </td>
                   <td>
-                    <p>{formatDate(request.date_out)}</p>
+                    <p>{formatDate(reservations.date_out)}</p>
                   </td>
                   <td>
-                    <p>{request.status}</p>
+                    <p
+                      className={
+                        reservations.status === 'approved'
+                          ? 'status-approved'
+                          : reservations.status === 'pending'
+                          ? 'status-pending'
+                          : reservations.status === 'not_approved'
+                          ? 'status-not-approved'
+                          : 'status-cancelled'
+                      }
+                    >
+                      {reservations.status}
+                    </p>
                   </td>
                   <td>
-                    <p>{formatDate(request.created_at)}</p>
+                    <p>{formatDate(reservations.created_at)}</p>
                   </td>
                   <td>
-                    {request.status === 'pending' ? (
+                    {reservations.status === 'pending' ? (
                       <div className="content-buttons-requests">
                         <CheckCircle
                           className="icon-check"
                           weight="fill"
                           onClick={() => {
                             setIsOpenApproveReservationModal(true);
-                            setIsApprovePosition({ id: request.id, name: request.environment.name, index });
+                            setIsApprovePosition({ id: reservations.id, name: reservations.environment.name, index });
                           }}
                         />
                         <XCircle
@@ -81,7 +93,11 @@ export function ReservationTable({ data }: IDataElementProps<IReservations[]>) {
                           weight="fill"
                           onClick={() => {
                             setIsOpenDisapproveReservationModal(true);
-                            setIsDisapprovePosition({ id: request.id, name: request.environment.name, index });
+                            setIsDisapprovePosition({
+                              id: reservations.id,
+                              name: reservations.environment.name,
+                              index,
+                            });
                           }}
                         />
                       </div>

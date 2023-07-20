@@ -6,9 +6,9 @@ import {
   CaretRight,
   CaretLeft,
   Users,
-  ListDashes,
   PencilSimpleLine,
   ListBullets,
+  ListPlus,
 } from 'phosphor-react';
 import LogoLg from '../assets/logo_lg.svg';
 import { NavLink } from 'react-router-dom';
@@ -46,10 +46,10 @@ export function Sidebar() {
     {
       path: '/list-environments',
       name: 'Lista de ambientes',
-      icon: <ListDashes size={isOpen ? 20 : 22} />,
+      icon: <ListPlus size={isOpen ? 20 : 22} />,
     },
     {
-      path: '/requests',
+      path: '/reservations',
       name: 'Reservas',
       icon: <ListChecks size={isOpen ? 20 : 22} />,
     },
@@ -62,7 +62,7 @@ export function Sidebar() {
       icon: <House size={isOpen ? 20 : 22} />,
     },
     {
-      path: '/my-requests',
+      path: '/my-reservations',
       name: 'Minhas reservas',
       icon: <ListBullets size={isOpen ? 20 : 22} />,
     },

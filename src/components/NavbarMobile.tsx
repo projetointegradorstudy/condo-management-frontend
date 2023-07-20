@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { House, List, ListChecks, SignOut, X, ListDashes, Users, PencilSimpleLine, ListBullets } from 'phosphor-react';
+import { House, List, ListChecks, SignOut, X, Users, PencilSimpleLine, ListBullets, ListPlus } from 'phosphor-react';
 import { getContext } from '../utils/context-import';
 import avatarDefault from '../assets/avatar-default.png';
 import { ConfirmSignoutModal } from './ConfirmSignoutModal';
@@ -32,7 +32,7 @@ export function NavbarMobile() {
     {
       path: '/list-environments',
       name: 'Lista de ambientes',
-      icon: <ListDashes size={18} />,
+      icon: <ListPlus size={18} />,
     },
     {
       path: '/requests',

@@ -10,6 +10,7 @@ import { ToastMessage } from './ToastNotifications';
 import { createEnvReservation } from '../services/api';
 import { Select } from './Select';
 import { DateTimePicker } from './DateTimePicker';
+import imageDefault from '../assets/image-default.png';
 import '../styles/reservation-modal.scss';
 
 export function ReservationModal() {
@@ -118,7 +119,7 @@ export function ReservationModal() {
             </div>
 
             <div className="modal-request-image">
-              <img src={isReservationModal.data.image} alt="image" />
+              <img src={isReservationModal.data.image ? isReservationModal.data.image : imageDefault} alt="image" />
               <span>{isReservationModal.data.description}</span>
             </div>
             <form onSubmit={handleSubmit} id="form">

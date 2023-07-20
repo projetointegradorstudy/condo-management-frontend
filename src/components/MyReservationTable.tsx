@@ -38,7 +38,19 @@ export function MyReservationTable({ data }: IDataElementProps<IReservations[]>)
                     <p>{formatDate(my_reservation.date_out)}</p>
                   </td>
                   <td>
-                    <p>{my_reservation.status}</p>
+                    <p
+                      className={
+                        my_reservation.status === 'approved'
+                          ? 'status-approved'
+                          : my_reservation.status === 'pending'
+                          ? 'status-pending'
+                          : my_reservation.status === 'not_approved'
+                          ? 'status-not-approved'
+                          : 'status-cancelled'
+                      }
+                    >
+                      {my_reservation.status}
+                    </p>
                   </td>
                   <td>
                     <p>{formatDate(my_reservation.created_at)}</p>
