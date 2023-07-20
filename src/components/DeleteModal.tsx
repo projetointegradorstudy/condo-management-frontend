@@ -71,7 +71,7 @@ export function DeleteModal({ id, name, source }: IDeleteModal) {
             <div className="modal-delete-content">
               <div className="modal-delete-message">
                 <h4>
-                  Tem certeza que deseja excluir:
+                  Tem certeza que deseja <strong>excluir</strong>:
                   <br />
                   <strong> {name}</strong>?
                 </h4>

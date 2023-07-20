@@ -47,7 +47,9 @@ export function ReservationModal() {
           ToastMessage({ message: 'Reserva realizada', type: Case.SUCCESS });
           setIsNeedRefresh(true);
         })
-        .catch(() => {});
+        .catch((e) => {
+          if (e.response.status === 409) ToastMessage({ message: 'Ambiente indisponível', type: Case.ERROR });
+        });
       handleCloser();
       form?.reset();
     }

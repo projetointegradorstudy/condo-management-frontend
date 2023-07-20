@@ -12,8 +12,8 @@ export function CancelReservationModal({ id, index }: ICancelReservation) {
   const handleClick = async () => {
     await updateEnvReservation(id, { status: ReservationStatus.CANCELLED })
       .then(() => {
-        handleCloser();
         ToastMessage({ message: 'Reserva cancelada', type: Case.SUCCESS });
+        handleCloser();
         setIsNeedRefresh(true);
         return;
       })

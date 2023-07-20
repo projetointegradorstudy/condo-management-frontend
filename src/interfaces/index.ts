@@ -6,7 +6,7 @@ export enum Roles {
   ADMIN = 'admin',
 }
 
-export enum Status {
+export enum EnvironmentStatus {
   AVAILABLE = 'available',
   LOCKED = 'locked',
   PENDING = 'pending',

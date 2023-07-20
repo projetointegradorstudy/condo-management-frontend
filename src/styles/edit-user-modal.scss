@@ -107,6 +107,7 @@ div.modal-edit-user-background {
           line-height: 16px;
           cursor: pointer;
           appearance: none;
+          margin-top: 8px;
 
           @include breakpoint(sm) {
             font-size: 14px;

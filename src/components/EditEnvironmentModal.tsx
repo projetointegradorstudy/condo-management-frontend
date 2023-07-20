@@ -10,6 +10,7 @@ import { updateEnvironment } from '../services/api';
 import { Spinner } from './Spinner';
 import { ToastMessage } from '../components/ToastNotifications';
 import '../styles/edit-environment-modal.scss';
+import { TextArea } from './TextArea';
 
 export function EditEnvironmentModal({ id, name, description, image, capacity }: IEditEnvironment) {
   const [previewImage, setPreviewImage] = useState<string>();
@@ -136,13 +137,13 @@ export function EditEnvironmentModal({ id, name, description, image, capacity }:
               />
 
               <Label title="Descrição" htmlFor="description" />
-              <textarea
+              <TextArea
                 name="description"
                 id="description"
                 placeholder={description}
                 maxLength={150}
                 onChange={(e) => setFormValue({ description: e.target.value })}
-              ></textarea>
+              />
 
               <div className="modal-form-button-environment">
                 <Button title="Cancelar" onClick={handleCloser} isCancel />

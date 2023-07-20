@@ -44,7 +44,6 @@ export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
       .catch(() => {});
     form?.reset();
     cleanData();
-    setIsLoading(false);
   };
 
   const handleCloser = () => {
@@ -91,7 +90,7 @@ export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
                 onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
               />
 
-              <Label title="Registrado" htmlFor="register" />
+              <Label title="Data de registro" htmlFor="register" />
               <Input name="register" id="register" type="text" disabled placeholder={formatDate(created_at)} />
 
               <Label title="Regra" htmlFor="role" />
