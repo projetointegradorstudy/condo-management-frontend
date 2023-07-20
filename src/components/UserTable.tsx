@@ -49,7 +49,7 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                     <p>{user.email}</p>
                   </td>
                   <td>
-                    <p>{user.role}</p>
+                    <p>{user.role === 'admin' ? <strong>{user.role}</strong> : <>{user.role}</>}</p>
                   </td>
                   <td>
                     <p>{user.is_active ? 'sim' : 'não'}</p>

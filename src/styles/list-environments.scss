@@ -100,11 +100,7 @@ div.page-list-environments {
 
           @include breakpoint(xxl) {
             width: 100%;
-          }
-        
-          @include breakpoint(md) {
-            table-layout: fixed;
-          }
+          }  
 
           thead {
 
@@ -135,6 +131,18 @@ div.page-list-environments {
             font-size: 14px;
             line-height: 22px;
             color: $black;
+
+            @include breakpoint(xxl) {
+              &:nth-child(4) {
+                width: 40%;
+              }
+            }
+
+            @include breakpoint(xl) {
+              &:nth-child(4) {
+                width: 30%;
+              }
+            }
 
             span.column-description {
               font-size: 14px;

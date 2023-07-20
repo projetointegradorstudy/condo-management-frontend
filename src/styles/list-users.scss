@@ -101,10 +101,6 @@ div.page-list-users {
             width: 100%;
           }
 
-          @include breakpoint(md) {
-            table-layout: fixed;
-          }
-
           thead {
 
             th {

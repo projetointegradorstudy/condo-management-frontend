@@ -90,10 +90,6 @@ div.page-my-requests {
           @include breakpoint(xxl) {
             width: 100%;
           }
-        
-          @include breakpoint(md) {
-            table-layout: fixed;
-          }
 
           thead {
 
