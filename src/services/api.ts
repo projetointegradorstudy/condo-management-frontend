@@ -1,6 +1,14 @@
 import axios from 'axios';
 
-import { IAuthProps, ICreateEnvironment, ICreateRequest, IEditEnvironment, IEditUser } from '../interfaces/index';
+import {
+  IAuthProps,
+  ICreateEnvironment,
+  ICreateRequest,
+  IEditEnvironment,
+  IEditUser,
+  IUpdateReservationDto,
+  ReservationStatus,
+} from '../interfaces/index';
 
 export const api = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}` });
 
@@ -15,6 +23,14 @@ export async function getCountUsers() {
 
 export async function getCountEnvironments() {
   return api.get('/environments/count');
+}
+
+export async function getCountReservations() {
+  return api.get('/env-reservations/count');
+}
+
+export async function getCountReservationsPending(status?: ReservationStatus) {
+  return api.get(`/env-reservations/count${!status ? '' : `?status=${status}`}`);
 }
 
 /** USER CONTEXT */
@@ -88,4 +104,8 @@ export async function getEnvRequestsbyUser() {
 
 export async function createEnvRequest(createRequestDto: Partial<ICreateRequest>) {
   return api.post('/env-reservations', createRequestDto);
+}
+
+export async function updateEnvReservation(id: string, updateReservationDto: IUpdateReservationDto) {
+  return api.patch(`/env-reservations/${id}`, updateReservationDto);
 }

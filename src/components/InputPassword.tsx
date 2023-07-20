@@ -9,7 +9,7 @@ interface InputPasswordProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export function InputPassword({ message, isNotRequired, ...props }: InputPasswordProps) {
   const [passwordType, setPasswordType] = useState('password');
-  const [passwordIcon, setPasswordIcon] = useState(<Eye className="icons" />);
+  const [passwordIcon, setPasswordIcon] = useState(<EyeSlash className="icons" />);
 
   const handleToogle = () => {
     if (passwordType === 'password') {

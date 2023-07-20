@@ -119,7 +119,6 @@ export function ConfirmUser() {
                 className={hasError.password ? 'field-error' : ''}
                 name="password"
                 id="password"
-                maxLength={30}
                 placeholder="Insira a sua senha"
                 onChange={handleFieldChange}
                 message={hasError.password ? errorMessage.password : undefined}
@@ -130,7 +129,6 @@ export function ConfirmUser() {
                 className={hasError.passwordConfirmation ? 'field-error' : ''}
                 name="passwordConfirmation"
                 id="passwordConfirmation"
-                maxLength={30}
                 placeholder="Confirme a sua senha"
                 onChange={handleFieldChange}
                 message={hasError.passwordConfirmation ? errorMessage.passwordConfirmation : undefined}

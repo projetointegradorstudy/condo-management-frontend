@@ -187,7 +187,6 @@ export function CreateEnvironmentModal() {
                   name="description"
                   id="description"
                   placeholder="..."
-                  maxLength={150}
                   onChange={handleFieldChange}
                   message={hasError.description ? errorMessage.description : undefined}
                 />

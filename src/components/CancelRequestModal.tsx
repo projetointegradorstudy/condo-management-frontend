@@ -1,25 +1,23 @@
-import { FormEvent } from 'react';
 import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { Case, ICancelRequest } from '../interfaces';
+import { Case, ICancelRequest, ReservationStatus } from '../interfaces';
 import { ToastMessage } from './ToastNotifications';
+import { updateEnvReservation } from '../services/api';
 import '../styles/cancel-request-modal.scss';
 
-export function CancelRequestModal({ index }: ICancelRequest) {
-  const { isOpenCancelRequestModal, setIsOpenCancelRequestModal, setIsNeedRefresh, formatDate } = getContext();
+export function CancelRequestModal({ id, index }: ICancelRequest) {
+  const { isOpenCancelRequestModal, setIsOpenCancelRequestModal, setIsNeedRefresh } = getContext();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // await cancelMyRequest()
-    //   .then(() => {
-    //     handleCloser();
-    //     setIsNeedRefresh(true);
-    //     ToastMessage({ message: 'Reserva cancelada', type: Case.SUCCESS });
-    //     return;
-    //   })
-    //   .catch(() => {});
+  const handleClick = async () => {
+    await updateEnvReservation(id, { status: ReservationStatus.CANCELLED })
+      .then(() => {
+        handleCloser();
+        setIsNeedRefresh(true);
+        ToastMessage({ message: 'Reserva cancelada', type: Case.SUCCESS });
+        return;
+      })
+      .catch(() => {});
   };
 
   const handleCloser = () => {
@@ -49,7 +47,7 @@ export function CancelRequestModal({ index }: ICancelRequest) {
 
             <div className="modal-cancel-content-form">
               <Button title="Cancelar" isCancel onClick={handleCloser} />
-              <Button title="Confirmar" isConfirm />
+              <Button title="Confirmar" isConfirm onClick={handleClick} />
             </div>
           </div>
         </div>

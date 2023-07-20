@@ -13,6 +13,13 @@ export enum Status {
   DISABLED = 'disabled',
 }
 
+export enum ReservationStatus {
+  APPROVED = 'approved',
+  PENDING = 'pending',
+  NOT_APPROVED = 'not_approved',
+  CANCELLED = 'cancelled',
+}
+
 export const dateTimeConfig = {
   'en-US': { format: 'MM/DD/YYYY HH:mm', locale: enUS.components.MuiLocalizationProvider.defaultProps.localeText },
   'pt-BR': { format: 'DD/MM/YYYY HH:mm', locale: ptBR.components.MuiLocalizationProvider.defaultProps.localeText },
@@ -21,6 +28,7 @@ export const dateTimeConfig = {
 export interface IDashboardData {
   userQty: number;
   environmentQty: number;
+  envReservationsQty: number;
 }
 
 export interface IAuthProps {
@@ -209,4 +217,8 @@ export interface IToastNotification {
   type: Case;
   customClass?: string;
   message: string;
+}
+
+export interface IUpdateReservationDto {
+  status: ReservationStatus;
 }

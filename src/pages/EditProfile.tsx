@@ -100,7 +100,6 @@ export function EditProfile() {
                   name="name"
                   id="name"
                   type="text"
-                  maxLength={30}
                   placeholder={isMyselfData?.name}
                   onChange={(e) => setFormValue({ name: e.target.value })}
                   isNotRequired

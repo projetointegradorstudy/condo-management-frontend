@@ -119,7 +119,6 @@ export function RecoverPassword() {
                 name="password"
                 id="password"
                 placeholder="Insira a sua senha"
-                maxLength={30}
                 onChange={handleFieldChange}
                 message={hasError.password ? errorMessage.password : undefined}
               />
@@ -130,7 +129,6 @@ export function RecoverPassword() {
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 placeholder="Confirme a sua senha"
-                maxLength={30}
                 onChange={handleFieldChange}
                 message={hasError.passwordConfirmation ? errorMessage.passwordConfirmation : undefined}
               />

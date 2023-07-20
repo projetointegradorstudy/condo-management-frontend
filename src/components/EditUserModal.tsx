@@ -1,7 +1,6 @@
 import { FormEvent, useState } from 'react';
-import { CheckCircle, X } from 'phosphor-react';
-import Select from 'react-select';
-import { Case, IEditUser, IResultRequest, Roles, editUserMessages } from '../interfaces';
+import { X } from 'phosphor-react';
+import { Case, IEditUser, IResultRequest, Roles } from '../interfaces';
 import { adminUpdateUser } from '../services/api';
 import { getContext } from '../utils/context-import';
 import { Label } from './Label';
@@ -80,7 +79,6 @@ export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
                 id="password"
                 placeholder="********"
                 autoComplete="on"
-                maxLength={30}
                 onChange={(e) => setFormValue({ password: e.target.value })}
               ></InputPassword>
 
@@ -90,7 +88,6 @@ export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
                 id="password-confirmation"
                 placeholder="********"
                 autoComplete="on"
-                maxLength={30}
                 onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
               />
 
