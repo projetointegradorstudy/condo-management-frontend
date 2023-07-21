@@ -6,16 +6,16 @@ jobs:
   ESLINT:
     runs-on: ubuntu-latest
     steps:
-      - name: Checking repository
+      - name: 📂 Checking repository
         uses: actions/checkout@v3
 
-      - name: Installing Node 18v
+      - name: 🔧 Installing Node v18
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Installing the dependencies from package.json
+      - name: 📦 Installing the dependencies from package.json
         run: npm i
 
-      - name: Running eslint to code verify
+      - name: 🧐 Running eslint to code verify
         run: npm run lint:fix
