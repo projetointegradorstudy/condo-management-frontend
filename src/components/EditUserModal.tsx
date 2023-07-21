@@ -94,7 +94,6 @@ export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
               <Input name="register" id="register" type="text" disabled placeholder={formatDate(created_at)} />
 
               <Label title="Regra" htmlFor="role" />
-
               <select
                 value={isRoleField.role}
                 name="role"

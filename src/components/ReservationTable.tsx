@@ -76,7 +76,7 @@ export function ReservationTable({ data }: IDataElementProps<IReservations[]>) {
                   <td>
                     <div className="content-buttons-requests">
                       <CheckCircle
-                        className={reservations.status != 'pending' ? 'disabled' : 'icon-chekck'}
+                        className={reservations.status != 'pending' ? 'disabled' : 'icon-check'}
                         weight="fill"
                         onClick={
                           reservations.status === 'pending'

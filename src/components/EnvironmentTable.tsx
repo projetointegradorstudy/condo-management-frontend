@@ -1,6 +1,6 @@
 import { PencilSimple, Trash } from 'phosphor-react';
 import { getContext } from '../utils/context-import';
-import { IDataElementProps, IDeleteModal, IEditEnvironment, IEnvironment } from '../interfaces';
+import { IDataElementProps, IDeleteModal, IEditEnvironment, IEnvironment, handleStatus } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
 import { DeleteModal } from './DeleteModal';
 import { EditEnvironmentModal } from './EditEnvironmentModal';
@@ -52,18 +52,8 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                     <p>{environment.capacity}</p>
                   </td>
                   <td>
-                    <p
-                      className={
-                        environment.status === 'available'
-                          ? 'status-available'
-                          : environment.status === 'locked'
-                          ? 'status-locked'
-                          : environment.status === 'pending'
-                          ? 'status-pending'
-                          : 'status-disabled'
-                      }
-                    >
-                      {environment.status}
+                    <p className={handleStatus[environment.status].customClass}>
+                      {handleStatus[environment.status].value}
                     </p>
                   </td>
                   <td>

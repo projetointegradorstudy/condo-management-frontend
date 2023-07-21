@@ -74,36 +74,33 @@ export function EditProfile() {
           </div>
 
           <div className="content-edit-profile">
-            {!previewImage ? (
-              <div className="content-edit-profile-avatar">
-                <img src={previewImage || isMyselfData?.avatar || avatarDefault} />
-                <Label htmlFor="image" isEditAvatar icon={<PencilSimple />} />
-                <Input
-                  title="Choose a file"
-                  type="file"
-                  name="image"
-                  id="image"
-                  accept=".png, .jpg, .jpeg"
-                  hidden
-                  onChange={(e) => {
-                    handleFieldChange(e);
-                    handleImagePreview(e);
-                  }}
-                  isNotRequired
-                  isUploadFile
-                />
-              </div>
-            ) : (
+            <div className="content-edit-profile-avatar">
               <div className="image-upload-edit-user-preview">
-                <img className="preview" src={previewImage} alt="Preview" />
+                <img className="preview" src={previewImage || isMyselfData?.avatar || avatarDefault} alt="Preview" />
                 <div className="button-upload-edit-user-preview">
                   <Trash />
-                  <button className="trash" onClick={() => setPreviewImage(undefined)}>
+                  <button className="trash" onClick={() => setPreviewImage(avatarDefault)}>
                     Excluir foto
                   </button>
                 </div>
               </div>
-            )}
+
+              <Label htmlFor="image" isEditAvatar icon={<PencilSimple />} />
+              <Input
+                title="Choose a file"
+                type="file"
+                name="image"
+                id="image"
+                accept=".png, .jpg, .jpeg"
+                hidden
+                onChange={(e) => {
+                  handleFieldChange(e);
+                  handleImagePreview(e);
+                }}
+                isNotRequired
+                isUploadFile
+              />
+            </div>
 
             <div className="content-dit-profile-form">
               <h3>Suas informações</h3>
@@ -142,7 +139,7 @@ export function EditProfile() {
                     title="Confirmar"
                     type="submit"
                     isConfirm
-                    disabled={!isFormValue?.name && !isFormValue?.password}
+                    disabled={!isFormValue?.avatar && !isFormValue?.name && !isFormValue?.password}
                   />
                 </div>
               </form>

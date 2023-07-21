@@ -183,11 +183,7 @@ div.page-list-environments {
                 color: $green-dark;
               }
 
-              &.status-locked {
-                color: $gray;
-              }
-
-              &.status-pending {
+              &.status-maintenance {
                 color: $orange;
               }
 

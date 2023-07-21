@@ -3,7 +3,7 @@ import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { Case, IEditEnvironment, IResultReservation } from '../interfaces';
+import { Case, EnvironmentStatus, IEditEnvironment, IResultReservation } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { updateEnvironment } from '../services/api';
@@ -12,13 +12,16 @@ import { ToastMessage } from '../components/ToastNotifications';
 import { TextArea } from './TextArea';
 import '../styles/edit-environment-modal.scss';
 
-export function EditEnvironmentModal({ id, name, description, image, capacity }: IEditEnvironment) {
+export function EditEnvironmentModal({ id, name, description, image, capacity, status }: IEditEnvironment) {
   const [previewImage, setPreviewImage] = useState<string>();
   const { isOpenEditModal, setIsOpenEditModal, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const [isFormValue, setIsFormValue] = useState<Partial<IEditEnvironment>>();
   const newFormValues: Partial<IEditEnvironment> = { ...isFormValue };
+  const [isStatusField, setIsStatusField] = useState<Partial<IEditEnvironment>>({
+    status,
+  });
 
   const setFormValue = (prop: Partial<IEditEnvironment>): void => {
     for (const key in prop) {
@@ -135,6 +138,22 @@ export function EditEnvironmentModal({ id, name, description, image, capacity }:
                 placeholder={capacity}
                 onChange={(e) => setFormValue({ capacity: e.target.value })}
               />
+
+              <Label title="Status" htmlFor="status" />
+              <select
+                value={isStatusField.status}
+                name="status"
+                onChange={(e) => {
+                  setIsStatusField({ status: EnvironmentStatus[e.target.value.toLocaleUpperCase()] });
+                  setFormValue({ status: EnvironmentStatus[e.target.value.toLocaleUpperCase()] });
+                }}
+              >
+                {Object.values(EnvironmentStatus).map((status, index) => (
+                  <option key={index} value={status}>
+                    {status.slice(0, 1).toUpperCase() + status.slice(1)}
+                  </option>
+                ))}
+              </select>
 
               <Label title="Descrição" htmlFor="description" />
               <TextArea
