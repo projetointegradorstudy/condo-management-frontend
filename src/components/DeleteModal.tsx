@@ -6,7 +6,7 @@ import { deleteUser, deleteEnvironment } from '../services/api';
 import { useEffect, useState } from 'react';
 import { Spinner } from './Spinner';
 import { ToastMessage } from '../components/ToastNotifications';
-import '../styles/delete-user-modal.scss';
+import '../styles/delete-modal.scss';
 
 export function DeleteModal({ id, name, source }: IDeleteModal) {
   const [isLoading, setIsLoading] = useState(false);

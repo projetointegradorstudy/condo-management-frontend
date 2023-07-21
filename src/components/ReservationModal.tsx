@@ -45,14 +45,14 @@ export function ReservationModal() {
     if (formData) {
       await createEnvReservation({ ...formData, environment_id: isReservationModal?.data.id })
         .then(() => {
-          ToastMessage({ message: 'Reserva realizada', type: Case.SUCCESS });
+          handleCloser();
+          form?.reset();
           setIsNeedRefresh(true);
+          ToastMessage({ message: 'Reserva realizada', type: Case.SUCCESS });
         })
         .catch((e) => {
           if (e.response.status === 409) ToastMessage({ message: 'Ambiente indisponível', type: Case.ERROR });
         });
-      handleCloser();
-      form?.reset();
     }
     setIsLoading(false);
   };

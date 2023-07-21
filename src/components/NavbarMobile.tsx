@@ -35,7 +35,7 @@ export function NavbarMobile() {
       icon: <ListPlus size={18} />,
     },
     {
-      path: '/requests',
+      path: '/reservations',
       name: 'Reservas',
       icon: <ListChecks size={18} />,
     },
@@ -48,7 +48,7 @@ export function NavbarMobile() {
       icon: <House size={18} />,
     },
     {
-      path: '/my-requests',
+      path: '/my-reservationss',
       name: 'Minhas reservas',
       icon: <ListBullets size={18} />,
     },

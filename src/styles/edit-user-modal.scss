@@ -19,7 +19,7 @@ div.modal-edit-user-background {
     justify-content: center;
     align-items: center;
     width: 370px;
-    height: 560px;
+    height: auto;
     border-radius: 10px;
     background-color: $white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -27,7 +27,6 @@ div.modal-edit-user-background {
 
     @include breakpoint(sm) {
       width: 100%;
-      height: 520px;
       padding: 20px 24px;
       margin: 0 20px;
     }
