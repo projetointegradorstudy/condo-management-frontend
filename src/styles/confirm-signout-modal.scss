@@ -75,6 +75,7 @@ div.modal-confirm-signout-background {
           @include breakpoint(sm) {
             font-size: 14px;
             line-height: 22px;
+            padding: 0 30px;
           }
         }
       }

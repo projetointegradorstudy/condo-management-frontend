@@ -18,28 +18,30 @@ export function EditProfile() {
   const [previewImage, setPreviewImage] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const [isFormValue, setIsFormValue] = useState<Partial<IEditUser>>();
-  const newFormValues: Partial<IEditUser> = { ...isFormValue };
   const { isMyselfData, setIsNeedRefresh } = getContext();
 
-  const setFormValue = (prop: Partial<IEditUser>): void => {
-    for (const key in prop) {
-      newFormValues[`${key}`] = prop[key];
-      if (!prop[key]) delete newFormValues[`${key}`];
+  const handleFieldChange = (e: ChangeEvent<any>) => {
+    const field = e.target;
+    const file = field.files?.[0];
+    if (file) {
+      setIsFormValue({ ...isFormValue, avatar: file });
+    } else {
+      setIsFormValue({ ...isFormValue, [field.name]: field.value });
     }
-    setIsFormValue(newFormValues);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form: HTMLFormElement | null = document.querySelector('#form');
     setIsLoading(true);
-
-    await updateUser(newFormValues)
-      .then(() => {
-        ToastMessage({ message: 'Alterações salvas', type: Case.SUCCESS });
-        setIsNeedRefresh(true);
-      })
-      .catch(() => {});
+    if (isFormValue) {
+      await updateUser(isFormValue)
+        .then(() => {
+          ToastMessage({ message: 'Alterações salvas', type: Case.SUCCESS });
+          setIsNeedRefresh(true);
+        })
+        .catch(() => {});
+    }
     form?.reset();
     cleanData();
   };
@@ -52,10 +54,7 @@ export function EditProfile() {
 
   const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-
     if (file) {
-      setFormValue({ avatar: file });
-
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result as string);
@@ -84,9 +83,10 @@ export function EditProfile() {
                   type="file"
                   name="image"
                   id="image"
-                  accept=".png, .jpg"
+                  accept=".png, .jpg, .jpeg"
                   hidden
                   onChange={(e) => {
+                    handleFieldChange(e);
                     handleImagePreview(e);
                   }}
                   isNotRequired
@@ -114,7 +114,7 @@ export function EditProfile() {
                   id="name"
                   type="text"
                   placeholder={isMyselfData?.name}
-                  onChange={(e) => setFormValue({ name: e.target.value })}
+                  onChange={handleFieldChange}
                   isNotRequired
                 />
 
@@ -124,7 +124,7 @@ export function EditProfile() {
                   id="password"
                   placeholder="********"
                   autoComplete="on"
-                  onChange={(e) => setFormValue({ password: e.target.value })}
+                  onChange={handleFieldChange}
                 ></InputPassword>
 
                 <Label title="Confirmar senha" htmlFor="password-confirmation" />
@@ -133,12 +133,17 @@ export function EditProfile() {
                   id="password-confirmation"
                   placeholder="********"
                   autoComplete="on"
-                  onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
+                  onChange={handleFieldChange}
                   isNotRequired
                 />
 
                 <div className="content-edit-profile-button">
-                  <Button title="Confirmar" type="submit" isConfirm />
+                  <Button
+                    title="Confirmar"
+                    type="submit"
+                    isConfirm
+                    disabled={!isFormValue?.name && !isFormValue?.password}
+                  />
                 </div>
               </form>
             </div>

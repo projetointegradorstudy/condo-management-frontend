@@ -10,39 +10,35 @@ export function CardEnvironment({ data }: IDataElementProps<IEnvironment>) {
 
   return (
     <>
-      {data.status === 'available' ? (
-        <div className="card-environment">
-          <div className="card-content">
-            <div className="card-image">
-              <img src={data?.image ? data.image : imageDefault} alt="No image" />
-            </div>
-            <div className="card-title">
-              <h3>{data.name}</h3>
-            </div>
-            <div className="card-description">
-              <span>{data.description}</span>
+      <div className="card-environment">
+        <div className="card-content">
+          <div className="card-image">
+            <img src={data?.image ? data.image : imageDefault} alt="No image" />
+          </div>
+          <div className="card-title">
+            <h3>{data.name}</h3>
+          </div>
+          <div className="card-description">
+            <span>{data.description}</span>
+          </div>
+
+          <div className="card-footer">
+            <div className="card-info" title="Quantidade de pessoas">
+              <Users size={20} />
+              <strong>{data.capacity}</strong>
             </div>
 
-            <div className="card-footer">
-              <div className="card-info" title="Quantidade de pessoas">
-                <Users size={20} />
-                <strong>{data.capacity}</strong>
-              </div>
-
-              <div className="card-button">
-                <Button
-                  title="Reservar"
-                  onClick={() => {
-                    setIsReservationModal({ isOpen: true, data });
-                  }}
-                />
-              </div>
+            <div className="card-button">
+              <Button
+                title="Reservar"
+                onClick={() => {
+                  setIsReservationModal({ isOpen: true, data });
+                }}
+              />
             </div>
           </div>
         </div>
-      ) : (
-        ''
-      )}
+      </div>
     </>
   );
 }

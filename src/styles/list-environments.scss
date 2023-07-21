@@ -180,7 +180,7 @@ div.page-list-environments {
             p {
 
               &.status-available {
-                color: $green;
+                color: $green-dark;
               }
 
               &.status-locked {
@@ -192,7 +192,7 @@ div.page-list-environments {
               }
 
               &.status-disabled {
-                color: $red;
+                color: $red-dark;
               }
             }
 

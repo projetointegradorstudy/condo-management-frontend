@@ -1,7 +1,7 @@
 import { XCircle } from 'phosphor-react';
 import { getContext } from '../utils/context-import';
 import { CancelReservationModal } from './CancelReservationModal';
-import { ICancelReservation, IDataElementProps, IReservations } from '../interfaces';
+import { ICancelReservation, IDataElementProps, IReservations, handleStatus } from '../interfaces';
 import { useState } from 'react';
 
 export function MyReservationTable({ data }: IDataElementProps<IReservations[]>) {
@@ -38,38 +38,28 @@ export function MyReservationTable({ data }: IDataElementProps<IReservations[]>)
                     <p>{formatDate(my_reservation.date_out)}</p>
                   </td>
                   <td>
-                    <p
-                      className={
-                        my_reservation.status === 'approved'
-                          ? 'status-approved'
-                          : my_reservation.status === 'pending'
-                          ? 'status-pending'
-                          : my_reservation.status === 'not_approved'
-                          ? 'status-not-approved'
-                          : 'status-cancelled'
-                      }
-                    >
-                      {my_reservation.status}
+                    <p className={handleStatus[my_reservation.status].customClass}>
+                      {handleStatus[my_reservation.status].value}
                     </p>
                   </td>
                   <td>
                     <p>{formatDate(my_reservation.created_at)}</p>
                   </td>
                   <td>
-                    {my_reservation.status != 'pending' ? (
-                      <></>
-                    ) : (
-                      <div className="content-buttons-my-requests">
-                        <XCircle
-                          className="icon-close"
-                          weight="fill"
-                          onClick={() => {
-                            setIsOpenCancelReservationModal(true);
-                            setIsPosition({ id: my_reservation.id, name: my_reservation.environment.name, index });
-                          }}
-                        />
-                      </div>
-                    )}
+                    <div className="content-buttons-my-requests">
+                      <XCircle
+                        className={my_reservation.status != 'pending' ? 'disabled' : 'icon-close'}
+                        weight="fill"
+                        onClick={
+                          my_reservation.status === 'pending'
+                            ? () => {
+                                setIsOpenCancelReservationModal(true);
+                                setIsPosition({ id: my_reservation.id, name: my_reservation.environment.name, index });
+                              }
+                            : undefined
+                        }
+                      />
+                    </div>
                   </td>
                 </tr>
               );

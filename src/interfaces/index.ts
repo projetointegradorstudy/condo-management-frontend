@@ -8,8 +8,7 @@ export enum Roles {
 
 export enum EnvironmentStatus {
   AVAILABLE = 'available',
-  LOCKED = 'locked',
-  PENDING = 'pending',
+  MAINTENANCE = 'maintenance',
   DISABLED = 'disabled',
 }
 
@@ -132,6 +131,16 @@ export interface IDisapproveReservation {
   index: number;
 }
 
+export const handleStatus: { [key: string]: { value: string; customClass: string } } = {
+  approved: { value: 'Aprovado', customClass: 'status-approved' },
+  pending: { value: 'Pendente', customClass: 'status-pending' },
+  not_approved: { value: 'Não aprovado', customClass: 'status-not-approved' },
+  cancelled: { value: 'Cancelado', customClass: 'status-cancelled' },
+  available: { value: 'Disponível', customClass: 'status-available' },
+  maintenance: { value: 'Em manutenção', customClass: 'status-maintenance' },
+  disabled: { value: 'Desativado', customClass: 'status-disabled' },
+};
+
 export const createUserMessages: { [key: string]: string } = {
   'User created successfully': 'Email cadastrado com sucesso.',
   'This email exist on our databases, an email with confirmate instructions will be sent':
@@ -171,25 +180,6 @@ export const createEnvironmentMessages: { [key: string]: string } = {
 export interface IResultReservation {
   message: string;
   icon: ReactElement;
-}
-
-export class Form {
-  private formValues: Partial<IEditUser> = {};
-
-  get(): Partial<IEditUser> {
-    return this.formValues;
-  }
-
-  set(prop: Partial<IEditUser>): void {
-    const newFormValues: Partial<IEditUser> = { ...this.formValues };
-    for (const key in prop) {
-      newFormValues[key] = prop[key];
-      if (!prop[key].length) {
-        delete newFormValues[key];
-      }
-    }
-    this.formValues = newFormValues;
-  }
 }
 
 export interface IResult {

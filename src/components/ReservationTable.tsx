@@ -2,7 +2,13 @@ import { CheckCircle, XCircle } from 'phosphor-react';
 import { ApproveReservationModal } from './ApproveReservationModal';
 import { getContext } from '../utils/context-import';
 import { DisapproveReservationModal } from './DisapproveReservationModal';
-import { IApproveReservation, IDataElementProps, IDisapproveReservation, IReservations } from '../interfaces';
+import {
+  IApproveReservation,
+  IDataElementProps,
+  IDisapproveReservation,
+  IReservations,
+  handleStatus,
+} from '../interfaces';
 import { useState } from 'react';
 
 export function ReservationTable({ data }: IDataElementProps<IReservations[]>) {
@@ -60,50 +66,48 @@ export function ReservationTable({ data }: IDataElementProps<IReservations[]>) {
                     <p>{formatDate(reservations.date_out)}</p>
                   </td>
                   <td>
-                    <p
-                      className={
-                        reservations.status === 'approved'
-                          ? 'status-approved'
-                          : reservations.status === 'pending'
-                          ? 'status-pending'
-                          : reservations.status === 'not_approved'
-                          ? 'status-not-approved'
-                          : 'status-cancelled'
-                      }
-                    >
-                      {reservations.status}
+                    <p className={handleStatus[reservations.status].customClass}>
+                      {handleStatus[reservations.status].value}
                     </p>
                   </td>
                   <td>
                     <p>{formatDate(reservations.created_at)}</p>
                   </td>
                   <td>
-                    {reservations.status === 'pending' ? (
-                      <div className="content-buttons-requests">
-                        <CheckCircle
-                          className="icon-check"
-                          weight="fill"
-                          onClick={() => {
-                            setIsOpenApproveReservationModal(true);
-                            setIsApprovePosition({ id: reservations.id, name: reservations.environment.name, index });
-                          }}
-                        />
-                        <XCircle
-                          className="icon-close"
-                          weight="fill"
-                          onClick={() => {
-                            setIsOpenDisapproveReservationModal(true);
-                            setIsDisapprovePosition({
-                              id: reservations.id,
-                              name: reservations.environment.name,
-                              index,
-                            });
-                          }}
-                        />
-                      </div>
-                    ) : (
-                      <></>
-                    )}
+                    <div className="content-buttons-requests">
+                      <CheckCircle
+                        className={reservations.status != 'pending' ? 'disabled' : 'icon-chekck'}
+                        weight="fill"
+                        onClick={
+                          reservations.status === 'pending'
+                            ? () => {
+                                setIsOpenApproveReservationModal(true);
+                                setIsApprovePosition({
+                                  id: reservations.id,
+                                  name: reservations.environment.name,
+                                  index,
+                                });
+                              }
+                            : undefined
+                        }
+                      />
+                      <XCircle
+                        className={reservations.status != 'pending' ? 'disabled' : 'icon-close'}
+                        weight="fill"
+                        onClick={
+                          reservations.status === 'pending'
+                            ? () => {
+                                setIsOpenDisapproveReservationModal(true);
+                                setIsDisapprovePosition({
+                                  id: reservations.id,
+                                  name: reservations.environment.name,
+                                  index,
+                                });
+                              }
+                            : undefined
+                        }
+                      />
+                    </div>
                   </td>
                 </tr>
               );

@@ -22,6 +22,7 @@ export function ReservationModal() {
     date_out: '',
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [tempTime, setTempTime] = useState<string>();
 
   const handleFieldChange = (e: any) => {
     const field = e.target;
@@ -51,7 +52,7 @@ export function ReservationModal() {
           ToastMessage({ message: 'Reserva realizada', type: Case.SUCCESS });
         })
         .catch((e) => {
-          if (e.response.status === 409) ToastMessage({ message: 'Ambiente indisponível', type: Case.ERROR });
+          if (e.response.status === 409) ToastMessage({ message: 'Data e hora indisponível', type: Case.ERROR });
         });
     }
     setIsLoading(false);
@@ -63,7 +64,7 @@ export function ReservationModal() {
     const tempError = {};
     const errors = {
       date_in: !formData?.date_in ? 'Campo obrigatório' : null,
-      date_out: !formData?.date_out ? 'Campo obrigatório' : null,
+      date_out: !tempTime ? 'Campo obrigatório' : null,
     };
     for (const field in errors) {
       if (errors[field]) {
@@ -78,9 +79,9 @@ export function ReservationModal() {
   };
 
   const handleGenerateDateOut = () => {
-    if (formData?.date_in && formData?.date_out) {
+    if (formData?.date_in && tempTime) {
       const dateIn = new Date(formData?.date_in).getTime();
-      const dateOut = dayjs(new Date(dateIn + +formData?.date_out).getTime()).format('YYYY-MM-DD HH:mm');
+      const dateOut = dayjs(new Date(dateIn + +tempTime).getTime()).format('YYYY-MM-DD HH:mm');
       formData.date_out = dateOut;
     }
   };
@@ -137,7 +138,9 @@ export function ReservationModal() {
                 className={hasError.date_out ? 'field-error' : ''}
                 defaultValue={''}
                 name="date_out"
-                onChange={handleFieldChange}
+                onChange={(e) => {
+                  setTempTime(e.target.value);
+                }}
                 message={hasError.date_out ? errorMessage.date_out : undefined}
               ></Select>
 

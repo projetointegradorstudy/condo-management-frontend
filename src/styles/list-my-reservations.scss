@@ -141,7 +141,7 @@ div.page-my-requests {
             p {
 
               &.status-approved {
-                color: $green;
+                color: $green-dark;
               }
             
               &.status-pending {
@@ -149,7 +149,7 @@ div.page-my-requests {
               }
             
               &.status-not-approved {
-                color: $red;
+                color: $red-dark;
               }
             
               &.status-cancelled {
@@ -179,7 +179,12 @@ div.page-my-requests {
                   &:hover {
                     color: $red-dark;
                   }
-                }  
+                } 
+                
+                &.disabled {
+                  color: $gray;
+                  cursor: auto;
+                }
               }
             }
           }
