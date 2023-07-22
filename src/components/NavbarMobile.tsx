@@ -48,7 +48,7 @@ export function NavbarMobile() {
       icon: <House size={18} />,
     },
     {
-      path: '/my-reservationss',
+      path: '/my-reservations',
       name: 'Minhas reservas',
       icon: <ListBullets size={18} />,
     },

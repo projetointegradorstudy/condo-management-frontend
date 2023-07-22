@@ -3,7 +3,7 @@ import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { Case, EnvironmentStatus, IEditEnvironment, IResultReservation } from '../interfaces';
+import { Case, EnvironmentStatus, IEditEnvironment, IResultReservation, handleStatus } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { updateEnvironment } from '../services/api';
@@ -111,8 +111,8 @@ export function EditEnvironmentModal({ id, name, description, image, capacity, s
                   <div className="image-upload-edit-environment-preview">
                     <img className="preview" src={previewImage} alt="Preview" />
                     <div className="button-upload-edit-environment-preview">
-                      <Trash />
                       <button className="trash" onClick={() => setPreviewImage(undefined)}>
+                        <Trash />
                         Excluir foto
                       </button>
                     </div>
@@ -129,7 +129,7 @@ export function EditEnvironmentModal({ id, name, description, image, capacity, s
               <select value={isFormValue?.status || status} name="status" onChange={handleFieldChange}>
                 {Object.values(EnvironmentStatus).map((optStatus, index) => (
                   <option key={index} value={optStatus}>
-                    {optStatus.slice(0, 1).toUpperCase() + optStatus.slice(1)}
+                    {handleStatus[optStatus].value}
                   </option>
                 ))}
               </select>

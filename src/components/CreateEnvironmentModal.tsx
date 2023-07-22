@@ -151,8 +151,8 @@ export function CreateEnvironmentModal() {
                     <div className="image-upload-register-environment-preview">
                       <img src={previewImage} alt="Preview" />
                       <div className="button-upload-register-environment-preview">
-                        <Trash />
                         <button className="trash" onClick={() => setPreviewImage(undefined)}>
+                          <Trash />
                           Excluir foto
                         </button>
                       </div>

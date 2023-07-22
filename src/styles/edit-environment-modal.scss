@@ -219,21 +219,14 @@ div.modal-edit-background-environment  {
             align-items: center;
             position: absolute;
 
-            svg {
-              width: 24px;
-              height: 24px;
-              color: $white;
-
-              @include breakpoint(sm) {
-                width: 20px;
-                height: 20px;
-              }
-            }
-
             button.trash {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
               background-color: transparent;
               font-size: 14px;
-              height: 24px;
+              height: auto;
               border: 0;
               color: $white;
               font-weight: 600;
@@ -241,6 +234,18 @@ div.modal-edit-background-environment  {
 
               @include breakpoint(sm) {
                 font-size: 12px;
+              }
+
+              svg {
+                margin-bottom: 6px;
+                width: 24px;
+                height: 24px;
+                color: $white;
+
+                @include breakpoint(sm) {
+                  width: 20px;
+                  height: 20px;
+                }
               }
             }
           }
