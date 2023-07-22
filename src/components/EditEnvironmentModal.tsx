@@ -18,9 +18,6 @@ export function EditEnvironmentModal({ id, name, description, image, capacity, s
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const [isFormValue, setIsFormValue] = useState<Partial<IEditEnvironment>>();
-  const [isStatusField, setIsStatusField] = useState<Partial<IEditEnvironment>>({
-    status,
-  });
 
   const handleFieldChange = (e: ChangeEvent<any>) => {
     const field = e.target;
@@ -129,10 +126,10 @@ export function EditEnvironmentModal({ id, name, description, image, capacity, s
               <Input name="capacity" id="capacity" type="text" placeholder={capacity} onChange={handleFieldChange} />
 
               <Label title="Status" htmlFor="status" />
-              <select value={isStatusField.status} name="status" onChange={handleFieldChange}>
-                {Object.values(EnvironmentStatus).map((status, index) => (
-                  <option key={index} value={status}>
-                    {status.slice(0, 1).toUpperCase() + status.slice(1)}
+              <select value={isFormValue?.status || status} name="status" onChange={handleFieldChange}>
+                {Object.values(EnvironmentStatus).map((optStatus, index) => (
+                  <option key={index} value={optStatus}>
+                    {optStatus.slice(0, 1).toUpperCase() + optStatus.slice(1)}
                   </option>
                 ))}
               </select>

@@ -15,16 +15,18 @@ import { ToastMessage, ToastNotifications } from '../components/ToastNotificatio
 import '../styles/edit-profile.scss';
 
 export function EditProfile() {
-  const [previewImage, setPreviewImage] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const [isFormValue, setIsFormValue] = useState<Partial<IEditUser>>();
   const { isMyselfData, setIsNeedRefresh } = getContext();
+  const [previewImage, setPreviewImage] = useState<string | undefined>(isMyselfData?.avatar);
+  const [isChanged, setIsChanged] = useState<boolean>(false);
 
   const handleFieldChange = (e: ChangeEvent<any>) => {
     const field = e.target;
     const file = field.files?.[0];
     if (file) {
       setIsFormValue({ ...isFormValue, avatar: file });
+      setIsChanged(true);
     } else {
       setIsFormValue({ ...isFormValue, [field.name]: field.value });
     }
@@ -47,8 +49,8 @@ export function EditProfile() {
   };
 
   const cleanData = () => {
+    setIsChanged(false);
     setIsFormValue(undefined);
-    setPreviewImage(undefined);
     setIsLoading(false);
   };
 
@@ -61,6 +63,10 @@ export function EditProfile() {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const isChangedData = (): boolean => {
+    return !isFormValue?.name && !isFormValue?.password && !isChanged;
   };
 
   return (
@@ -76,12 +82,22 @@ export function EditProfile() {
           <div className="content-edit-profile">
             <div className="content-edit-profile-avatar">
               <div className="image-upload-edit-user-preview">
-                <img className="preview" src={previewImage || isMyselfData?.avatar || avatarDefault} alt="Preview" />
+                <img className="preview" src={previewImage?.length ? previewImage : avatarDefault} alt="Preview" />
+
                 <div className="button-upload-edit-user-preview">
-                  <Trash />
-                  <button className="trash" onClick={() => setPreviewImage(avatarDefault)}>
-                    Excluir foto
-                  </button>
+                  <div className="content-button" style={{ display: previewImage?.length ? 'block' : 'none' }}>
+                    <button
+                      className="trash"
+                      onClick={() => {
+                        setIsFormValue({ avatar: '' });
+                        setIsChanged(true);
+                        setPreviewImage(undefined);
+                      }}
+                    >
+                      <Trash />
+                      Excluir foto
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -135,12 +151,7 @@ export function EditProfile() {
                 />
 
                 <div className="content-edit-profile-button">
-                  <Button
-                    title="Confirmar"
-                    type="submit"
-                    isConfirm
-                    disabled={!isFormValue?.avatar && !isFormValue?.name && !isFormValue?.password}
-                  />
+                  <Button title="Confirmar" type="submit" isConfirm disabled={isChangedData()} />
                 </div>
               </form>
             </div>

@@ -7,6 +7,7 @@ import { IReservations } from '../interfaces';
 import { getContext } from '../utils/context-import';
 import { getEnvironmentReservations } from '../services/api';
 import '../styles/list-reservations.scss';
+import { ToastNotifications } from '../components/ToastNotifications';
 
 export function Reservations() {
   const [requests, setReservations] = useState<IReservations[]>([]);
@@ -46,6 +47,7 @@ export function Reservations() {
           </div>
         </div>
       </div>
+      <ToastNotifications />
       <Footer isFull />
     </>
   );

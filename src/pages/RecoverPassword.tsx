@@ -33,6 +33,10 @@ export function RecoverPassword() {
     setFormData({ ...formData, [field.name]: field.value });
   };
 
+  useEffect(() => {
+    if (formData.password === formData.passwordConfirmation) clearAllErrors();
+  }, [formData.password, formData.passwordConfirmation]);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (checkFields()) return;
@@ -56,6 +60,11 @@ export function RecoverPassword() {
     setIsLoading(false);
   };
 
+  const clearAllErrors = () => {
+    setErrorMessage({ password: '', passwordConfirmation: '' });
+    setHasError({ password: false, passwordConfirmation: false });
+  };
+
   const checkFields = (): boolean => {
     let hasTempError = false;
     const tempMessage = {};
@@ -65,11 +74,13 @@ export function RecoverPassword() {
         ? 'Campo obrigatório'
         : !getRegex.password.test(formData.password)
         ? 'Senha deve possuir pelo menos 10 caracteres entre estes: (A-Z, a-z, 0-9, !-@-$-*)'
+        : formData.password !== formData.passwordConfirmation
+        ? 'Senhas devem ser iguais'
         : null,
       passwordConfirmation: !formData.passwordConfirmation
         ? 'Campo obrigatório'
-        : !getRegex.password.test(formData.passwordConfirmation)
-        ? 'Senha deve possuir pelo menos 10 caracteres entre estes: (A-Z, a-z, 0-9, !-@-$-*)'
+        : formData.password !== formData.passwordConfirmation
+        ? 'Senhas devem ser iguais'
         : null,
     };
     for (const field in errors) {

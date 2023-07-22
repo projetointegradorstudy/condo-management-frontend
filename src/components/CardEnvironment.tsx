@@ -1,4 +1,4 @@
-import { Barricade, Gear, Users } from 'phosphor-react';
+import { Gear, Users } from 'phosphor-react';
 import { Button } from './Button';
 import { IDataElementProps, IEnvironment } from '../interfaces';
 import imageDefault from '../assets/image-default.png';

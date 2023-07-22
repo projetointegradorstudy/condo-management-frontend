@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
 import { getEnvReservationsByUser } from '../services/api';
 import '../styles/list-my-reservations.scss';
+import { ToastNotifications } from '../components/ToastNotifications';
 
 export function MyReservations() {
   const [myReservations, setMyReservations] = useState<IReservations[]>([]);
@@ -46,6 +47,7 @@ export function MyReservations() {
           </div>
         </div>
       </div>
+      <ToastNotifications />
       <Footer isFull />
     </>
   );

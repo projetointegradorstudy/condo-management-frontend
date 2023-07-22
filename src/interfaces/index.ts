@@ -95,7 +95,7 @@ export interface IEditEnvironment {
   id: string;
   name: string;
   description: string;
-  status: string;
+  status?: string;
   image: string | File;
   capacity: string;
 }

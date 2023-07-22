@@ -136,28 +136,40 @@ div.page-edit-profile {
           align-items: center;
           position: absolute;
 
-          svg {
-            width: 24px;
-            height: 24px;
-            color: $white;
+          div.content-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
 
-            @include breakpoint(sm) {
-              width: 20px;
-              height: 20px;
-            }
-          }
+            button.trash {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              background-color: transparent;
+              font-size: 14px;
+              height: auto;
+              border: 0;
+              color: $white;
+              font-weight: 600;
+              cursor: pointer;
+          
+              @include breakpoint(sm) {
+                font-size: 11px;
+              }
 
-          button.trash {
-            background-color: transparent;
-            font-size: 14px;
-            height: 24px;
-            border: 0;
-            color: $white;
-            font-weight: 600;
-            cursor: pointer;
+              svg {
+                margin-bottom: 6px;
+                width: 24px;
+                height: 24px;
+                color: $white;
 
-            @include breakpoint(sm) {
-              font-size: 11px;
+                @include breakpoint(sm) {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
             }
           }
         }

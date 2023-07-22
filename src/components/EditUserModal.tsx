@@ -96,10 +96,10 @@ export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
               <Input name="register" id="register" type="text" disabled placeholder={formatDate(created_at)} />
 
               <Label title="Regra" htmlFor="role" />
-              <select value={isRoleField.role} name="role" onChange={handleFieldChange}>
-                {Object.values(Roles).map((role, index) => (
-                  <option key={index} value={role}>
-                    {role.slice(0, 1).toUpperCase() + role.slice(1)}
+              <select value={isFormValue?.role || role} name="role" onChange={handleFieldChange}>
+                {Object.values(Roles).map((optRole, index) => (
+                  <option key={index} value={optRole}>
+                    {optRole.slice(0, 1).toUpperCase() + optRole.slice(1)}
                   </option>
                 ))}
               </select>
