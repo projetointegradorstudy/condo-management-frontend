@@ -1,5 +1,5 @@
-import '../styles/spinner.scss';
 import spinnerImg from '../assets/loading-gif.gif';
+import '../styles/spinner.scss';
 
 export function Spinner() {
   return (

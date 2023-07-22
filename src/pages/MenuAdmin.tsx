@@ -1,16 +1,22 @@
-import { Users, ListPlus } from 'phosphor-react';
+import { Users, ListPlus, WarningCircle, List } from 'phosphor-react';
 import { Lead } from '../components/Lead';
 import { Sidebar } from '../components/Sidebar';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Footer } from '../components/Footer';
 import { useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
-import { getCountEnvironments, getCountUsers, getEnvironmentRequests } from '../services/api';
+import {
+  getCountEnvironments,
+  getCountReservations,
+  getCountReservationsPending,
+  getCountUsers,
+} from '../services/api';
 import '../styles/menu-admin.scss';
+import { ReservationStatus } from '../interfaces';
 
 const cardItems = [
   {
-    title: 'Pessoas cadastradas',
+    title: 'Usuários cadastrados',
     icon: <Users size={40} />,
   },
   {
@@ -18,8 +24,12 @@ const cardItems = [
     icon: <ListPlus size={40} />,
   },
   {
-    title: 'Reservas',
-    icon: <ListPlus size={40} />,
+    title: 'Reservas cadastradas',
+    icon: <List size={40} />,
+  },
+  {
+    title: 'Reservas pendentes',
+    icon: <WarningCircle size={40} />,
   },
 ];
 
@@ -29,8 +39,10 @@ export function MenuAdmin() {
   const getDashboardData = async (): Promise<void> => {
     const userQty = +(await getCountUsers().then((res) => res.data)) || 0;
     const environmentQty = +(await getCountEnvironments().then((res) => res.data)) || 0;
-    const environmentRequestQty = +(await getEnvironmentRequests().then((res) => res.data)) || 0;
-    setIsDashboardData([userQty, environmentQty, environmentRequestQty]);
+    const envReservationsQty = +(await getCountReservations().then((res) => res.data)) || 0;
+    const envReservationsPendingQty =
+      +(await getCountReservationsPending(ReservationStatus.PENDING).then((res) => res.data)) || 0;
+    setIsDashboardData([userQty, environmentQty, envReservationsQty, envReservationsPendingQty]);
   };
 
   useEffect(() => {
@@ -53,7 +65,7 @@ export function MenuAdmin() {
               </h1>
             </div>
             <div className="content-main">
-              <h2>Overview</h2>
+              <h2>Visão geral</h2>
               <div className="content-lead">
                 {cardItems.map((cardItem, index) => (
                   <div className="card" key={cardItem.title}>

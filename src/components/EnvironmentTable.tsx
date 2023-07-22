@@ -1,6 +1,6 @@
 import { PencilSimple, Trash } from 'phosphor-react';
 import { getContext } from '../utils/context-import';
-import { IDataElementProps, IDeleteModal, IEditEnvironment, IEnvironment } from '../interfaces';
+import { IDataElementProps, IDeleteModal, IEditEnvironment, IEnvironment, handleStatus } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
 import { DeleteModal } from './DeleteModal';
 import { EditEnvironmentModal } from './EditEnvironmentModal';
@@ -17,7 +17,7 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
     image: File[1],
     capacity: '',
   });
-  const environmentFields = ['Imagem', 'Nome', 'Descrição', 'Capacidade', 'Status', 'Data de registro', ''];
+  const environmentFields = ['#', 'Imagem', 'Nome', 'Descrição', 'Capacidade', 'Status', 'Data de registro', ''];
   const { setIsOpenEditModal, setIsOpenDeletModal, formatDate } = getContext();
 
   return (
@@ -33,9 +33,12 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
 
         <tbody>
           {data &&
-            data.map((environment: IEnvironment) => {
+            data.map((environment: IEnvironment, index: number) => {
               return (
                 <tr key={environment.id}>
+                  <td>
+                    <h4>{(index += 1)}</h4>
+                  </td>
                   <td>
                     <img src={environment?.image ? environment.image : imageDefault} alt="No image" />
                   </td>
@@ -49,7 +52,9 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                     <p>{environment.capacity}</p>
                   </td>
                   <td>
-                    <p>{environment.status}</p>
+                    <p className={handleStatus[environment.status].customClass}>
+                      <b>{handleStatus[environment.status].value}</b>
+                    </p>
                   </td>
                   <td>
                     <p>{formatDate(environment.created_at)}</p>

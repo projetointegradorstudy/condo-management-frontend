@@ -29,15 +29,21 @@ div.page-edit-profile {
     div.content-edit-profile-title {
       margin-bottom: 40px;
 
-      h2 {
-        font-size: 22px;
-        line-height: 26px;
+      h1 {
+        font-size: 32px;
+        line-height: 38px;
+        font-weight: 600;
         color: $black;
-        margin-bottom: 20px;
+        margin-bottom: 60px;
+    
+        @include breakpoint(md) {
+          font-size: 24px;
+          line-height: 30px;
+        }
     
         @include breakpoint(sm) {
-          font-size: 18px;
-          line-height: 24px;
+          font-size: 20px;
+          line-height: 26px;
         }
       }
     }
@@ -99,6 +105,73 @@ div.page-edit-profile {
         div.content-edit-profile-button {
           display: flex;
           justify-content: flex-end;
+        }
+      }
+
+      div.image-upload-edit-user-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: $black;
+        border-radius: 50%;
+
+        img.preview {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 50%;
+          opacity: 0.4;
+
+          @include breakpoint(sm) {
+            width: 100px;
+            height: 100px;
+          }
+        }
+
+        div.button-upload-edit-user-preview {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+
+          div.content-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            button.trash {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              background-color: transparent;
+              font-size: 14px;
+              height: auto;
+              border: 0;
+              color: $white;
+              font-weight: 600;
+              cursor: pointer;
+          
+              @include breakpoint(sm) {
+                font-size: 11px;
+              }
+
+              svg {
+                margin-bottom: 6px;
+                width: 24px;
+                height: 24px;
+                color: $white;
+
+                @include breakpoint(sm) {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+            }
+          }
         }
       }
     }

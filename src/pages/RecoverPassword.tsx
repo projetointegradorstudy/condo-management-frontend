@@ -7,7 +7,7 @@ import { CheckCircle, Spinner, XCircle } from 'phosphor-react';
 import forSale from '../assets/undraw_cabin_hkfr.svg';
 import { Footer } from '../components/Footer';
 import { useLocation } from 'react-router';
-import { IResultRequest } from '../interfaces';
+import { IResultReservation } from '../interfaces';
 import { resetPassword } from '../services/api';
 import { CountDown } from '../components/CountDown';
 import { getRegex } from '../utils/regex';
@@ -18,7 +18,7 @@ export function RecoverPassword() {
   const [formData, setFormData] = useState({ password: '', passwordConfirmation: '' });
   const [errorMessage, setErrorMessage] = useState({ password: '', passwordConfirmation: '' });
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const { setToken, setIsAuthenticated, isRemainingSeconds, setIsRemaingSeconds } = getContext();
   const location = useLocation();
 
@@ -32,6 +32,10 @@ export function RecoverPassword() {
     setHasError({ ...hasError, [field.name]: false });
     setFormData({ ...formData, [field.name]: field.value });
   };
+
+  useEffect(() => {
+    if (formData.password === formData.passwordConfirmation) clearAllErrors();
+  }, [formData.password, formData.passwordConfirmation]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,6 +60,11 @@ export function RecoverPassword() {
     setIsLoading(false);
   };
 
+  const clearAllErrors = () => {
+    setErrorMessage({ password: '', passwordConfirmation: '' });
+    setHasError({ password: false, passwordConfirmation: false });
+  };
+
   const checkFields = (): boolean => {
     let hasTempError = false;
     const tempMessage = {};
@@ -65,11 +74,13 @@ export function RecoverPassword() {
         ? 'Campo obrigatório'
         : !getRegex.password.test(formData.password)
         ? 'Senha deve possuir pelo menos 10 caracteres entre estes: (A-Z, a-z, 0-9, !-@-$-*)'
+        : formData.password !== formData.passwordConfirmation
+        ? 'Senhas devem ser iguais'
         : null,
       passwordConfirmation: !formData.passwordConfirmation
         ? 'Campo obrigatório'
-        : !getRegex.passwordConfirmation.test(formData.passwordConfirmation)
-        ? 'Senha deve possuir pelo menos 10 caracteres entre estes: (A-Z, a-z, 0-9, !-@-$-*)'
+        : formData.password !== formData.passwordConfirmation
+        ? 'Senhas devem ser iguais'
         : null,
     };
     for (const field in errors) {
@@ -119,7 +130,6 @@ export function RecoverPassword() {
                 name="password"
                 id="password"
                 placeholder="Insira a sua senha"
-                maxLength={30}
                 onChange={handleFieldChange}
                 message={hasError.password ? errorMessage.password : undefined}
               />
@@ -130,7 +140,6 @@ export function RecoverPassword() {
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 placeholder="Confirme a sua senha"
-                maxLength={30}
                 onChange={handleFieldChange}
                 message={hasError.passwordConfirmation ? errorMessage.passwordConfirmation : undefined}
               />

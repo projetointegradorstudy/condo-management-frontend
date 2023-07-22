@@ -1,32 +1,30 @@
-import { FormEvent } from 'react';
 import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { Case, ICancelRequest } from '../interfaces';
+import { Case, ICancelReservation, ReservationStatus } from '../interfaces';
 import { ToastMessage } from './ToastNotifications';
-import '../styles/cancel-request-modal.scss';
+import { updateEnvReservation } from '../services/api';
+import '../styles/cancel-reservation-modal.scss';
 
-export function CancelRequestModal({ index }: ICancelRequest) {
-  const { isOpenCancelRequestModal, setIsOpenCancelRequestModal, setIsNeedRefresh, formatDate } = getContext();
+export function CancelReservationModal({ id, index }: ICancelReservation) {
+  const { isOpenCancelReservationModal, setIsOpenCancelReservationModal, setIsNeedRefresh } = getContext();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // await cancelMyRequest()
-    //   .then(() => {
-    //     handleCloser();
-    //     setIsNeedRefresh(true);
-    //     ToastMessage({ message: 'Reserva cancelada', type: Case.SUCCESS });
-    //     return;
-    //   })
-    //   .catch(() => {});
+  const handleClick = async () => {
+    await updateEnvReservation(id, { status: ReservationStatus.CANCELLED })
+      .then(() => {
+        ToastMessage({ message: 'Reserva cancelada', type: Case.SUCCESS });
+        handleCloser();
+        setIsNeedRefresh(true);
+        return;
+      })
+      .catch(() => {});
   };
 
   const handleCloser = () => {
-    setIsOpenCancelRequestModal(false);
+    setIsOpenCancelReservationModal(false);
   };
 
-  if (isOpenCancelRequestModal) {
+  if (isOpenCancelReservationModal) {
     return (
       <div className="modal-cancel-background">
         <div className="modal-cancel">
@@ -49,7 +47,7 @@ export function CancelRequestModal({ index }: ICancelRequest) {
 
             <div className="modal-cancel-content-form">
               <Button title="Cancelar" isCancel onClick={handleCloser} />
-              <Button title="Confirmar" isConfirm />
+              <Button title="Confirmar" isConfirm onClick={handleClick} />
             </div>
           </div>
         </div>

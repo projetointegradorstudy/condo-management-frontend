@@ -72,8 +72,11 @@ export function Login() {
         </div>
         <div className="page-login-image">
           <img src={cityImage} />
-          <strong>Controle de condomínio</strong>
-          <p>Faça reserva dos ambientes </p>
+          <strong>Reservas inteligentes para seu condomínio!</strong>
+          <p>
+            Realize reservas com apenas alguns cliques,
+            <br /> economizando tempo e esforço.
+          </p>
         </div>
       </aside>
       <main>

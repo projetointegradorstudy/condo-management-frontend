@@ -8,7 +8,7 @@ import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
 import { Footer } from '../components/Footer';
 import { getContext } from '../utils/context-import';
-import { RequestModal } from '../components/RequestModal';
+import { ReservationModal } from '../components/ReservationModal';
 import { ToastNotifications } from '../components/ToastNotifications';
 import '../styles/menu-user.scss';
 
@@ -64,7 +64,7 @@ export function MenuUser() {
         </div>
       </div>
       <Footer isFull />
-      <RequestModal />
+      <ReservationModal />
       <ToastNotifications />
     </>
   );

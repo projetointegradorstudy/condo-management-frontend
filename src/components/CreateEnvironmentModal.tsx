@@ -6,7 +6,7 @@ import { Label } from './Label';
 import { createEnvironment } from '../services/api';
 import { getContext } from '../utils/context-import';
 import { Spinner } from './Spinner';
-import { Case, ICreateEnvironment, IResultRequest } from '../interfaces';
+import { Case, ICreateEnvironment, IResultReservation } from '../interfaces';
 import { ToastMessage } from '../components/ToastNotifications';
 import { TextArea } from './TextArea';
 import '../styles/create-environment-modal.scss';
@@ -21,7 +21,7 @@ export function CreateEnvironmentModal() {
   });
   const [previewImage, setPreviewImage] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const { isOpenCreateEnvironmentModal, setIsOpenCreateEnvironmentModal, setIsNeedRefresh } = getContext();
 
   const handleFieldChange = (e: ChangeEvent<any>) => {
@@ -151,8 +151,8 @@ export function CreateEnvironmentModal() {
                     <div className="image-upload-register-environment-preview">
                       <img src={previewImage} alt="Preview" />
                       <div className="button-upload-register-environment-preview">
-                        <Trash />
                         <button className="trash" onClick={() => setPreviewImage(undefined)}>
+                          <Trash />
                           Excluir foto
                         </button>
                       </div>
@@ -187,7 +187,6 @@ export function CreateEnvironmentModal() {
                   name="description"
                   id="description"
                   placeholder="..."
-                  maxLength={150}
                   onChange={handleFieldChange}
                   message={hasError.description ? errorMessage.description : undefined}
                 />

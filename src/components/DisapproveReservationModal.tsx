@@ -1,32 +1,30 @@
-import { FormEvent } from 'react';
 import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { Case, IDisapproveRequest } from '../interfaces';
+import { Case, IDisapproveReservation, ReservationStatus } from '../interfaces';
 import { ToastMessage } from './ToastNotifications';
-import '../styles/disapprove-request-modal.scss';
+import { updateEnvReservation } from '../services/api';
+import '../styles/disapprove-reservation-modal.scss';
 
-export function DisapproveRequestModal({ index }: IDisapproveRequest) {
-  const { isOpenDisapproveRequestModal, setIsOpenDisapproveRequestModal, setIsNeedRefresh } = getContext();
+export function DisapproveReservationModal({ id, index }: IDisapproveReservation) {
+  const { isOpenDisapproveReservationModal, setIsOpenDisapproveReservationModal, setIsNeedRefresh } = getContext();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // await disapproveRequest()
-    //   .then(() => {
-    //     handleCloser();
-    //     setIsNeedRefresh(true);
-    //     ToastMessage({ message: 'Reserva desaprovada', type: Case.SUCCESS });
-    //     return;
-    //   })
-    //   .catch(() => {});
+  const handleClick = async () => {
+    await updateEnvReservation(id, { status: ReservationStatus.NOT_APPROVED })
+      .then(() => {
+        handleCloser();
+        setIsNeedRefresh(true);
+        ToastMessage({ message: 'Reserva recusada', type: Case.SUCCESS });
+        return;
+      })
+      .catch(() => {});
   };
 
   const handleCloser = () => {
-    setIsOpenDisapproveRequestModal(false);
+    setIsOpenDisapproveReservationModal(false);
   };
 
-  if (isOpenDisapproveRequestModal) {
+  if (isOpenDisapproveReservationModal) {
     return (
       <div className="modal-disapprove-background">
         <div className="modal-disapprove">
@@ -49,7 +47,7 @@ export function DisapproveRequestModal({ index }: IDisapproveRequest) {
 
             <div className="modal-disapprove-content-form">
               <Button title="Cancelar" isCancel onClick={handleCloser} />
-              <Button title="Confirmar" isConfirm />
+              <Button title="Confirmar" isConfirm onClick={handleClick} />
             </div>
           </div>
         </div>

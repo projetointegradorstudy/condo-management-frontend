@@ -17,7 +17,7 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
     created_at: '',
     role: Roles.USER,
   });
-  const userFields = ['Avatar', 'Nome', 'Email', 'Tipo', 'Ativo', 'Data de registro', ''];
+  const userFields = ['#', 'Avatar', 'Nome', 'Email', 'Tipo', 'Ativo', 'Data de registro', ''];
   const { setIsOpenEditModal, setIsOpenDeletModal, formatDate } = getContext();
 
   return (
@@ -33,9 +33,12 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
 
         <tbody>
           {data &&
-            data.map((user: IUser) => {
+            data.map((user: IUser, index: number) => {
               return (
                 <tr key={user.id}>
+                  <td>
+                    <h4>{(index += 1)}</h4>
+                  </td>
                   <td>
                     <img src={user?.avatar ? user.avatar : avatarDefault} alt="avatar" />
                   </td>
@@ -46,7 +49,7 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                     <p>{user.email}</p>
                   </td>
                   <td>
-                    <p>{user.role}</p>
+                    <p>{user.role === 'admin' ? <strong>{user.role}</strong> : <>{user.role}</>}</p>
                   </td>
                   <td>
                     <p>{user.is_active ? 'sim' : 'não'}</p>

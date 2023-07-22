@@ -1,16 +1,16 @@
 import { X } from 'phosphor-react';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { Case, IDeleteModal, IResultRequest } from '../interfaces';
+import { Case, IDeleteModal, IResultReservation } from '../interfaces';
 import { deleteUser, deleteEnvironment } from '../services/api';
 import { useEffect, useState } from 'react';
 import { Spinner } from './Spinner';
 import { ToastMessage } from '../components/ToastNotifications';
-import '../styles/delete-user-modal.scss';
+import '../styles/delete-modal.scss';
 
 export function DeleteModal({ id, name, source }: IDeleteModal) {
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const { isOpenDeleteModal, setIsOpenDeletModal, setIsNeedRefresh } = getContext();
 
   const handleDeleteUser = async () => {
@@ -71,7 +71,7 @@ export function DeleteModal({ id, name, source }: IDeleteModal) {
             <div className="modal-delete-content">
               <div className="modal-delete-message">
                 <h4>
-                  Tem certeza que deseja excluir:
+                  Tem certeza que deseja <strong>excluir</strong>:
                   <br />
                   <strong> {name}</strong>?
                 </h4>

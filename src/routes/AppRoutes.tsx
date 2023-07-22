@@ -11,8 +11,8 @@ import { RecoverPassword } from '../pages/RecoverPassword';
 import { Iprops } from '../interfaces';
 import { getContext } from '../utils/context-import';
 import { EditProfile } from '../pages/EditProfile';
-import { Requests } from '../pages/Requests';
-import { MyRequests } from '../pages/MyRequests';
+import { Reservations } from '../pages/Reservations';
+import { MyReservations } from '../pages/MyReservations';
 
 export function AppRoutes() {
   const IsLoggedOut = ({ children }: Iprops) => {
@@ -90,10 +90,10 @@ export function AppRoutes() {
             }
           />
           <Route
-            path="/my-requests"
+            path="/my-reservations"
             element={
               <IsLoggedIn>
-                <MyRequests />
+                <MyReservations />
               </IsLoggedIn>
             }
           />
@@ -122,10 +122,10 @@ export function AppRoutes() {
             }
           />
           <Route
-            path="/requests"
+            path="/reservations"
             element={
               <IsAdmin>
-                <Requests />
+                <Reservations />
               </IsAdmin>
             }
           />

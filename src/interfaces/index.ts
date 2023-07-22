@@ -6,11 +6,17 @@ export enum Roles {
   ADMIN = 'admin',
 }
 
-export enum Status {
+export enum EnvironmentStatus {
   AVAILABLE = 'available',
-  LOCKED = 'locked',
-  PENDING = 'pending',
+  MAINTENANCE = 'maintenance',
   DISABLED = 'disabled',
+}
+
+export enum ReservationStatus {
+  APPROVED = 'approved',
+  PENDING = 'pending',
+  NOT_APPROVED = 'not_approved',
+  CANCELLED = 'cancelled',
 }
 
 export const dateTimeConfig = {
@@ -21,6 +27,7 @@ export const dateTimeConfig = {
 export interface IDashboardData {
   userQty: number;
   environmentQty: number;
+  envReservationsQty: number;
 }
 
 export interface IAuthProps {
@@ -32,7 +39,7 @@ export interface IDataElementProps<T> {
   data: T;
 }
 
-export interface IModalRequests {
+export interface IModalReservations {
   isOpen: boolean;
   data: any;
 }
@@ -88,12 +95,12 @@ export interface IEditEnvironment {
   id: string;
   name: string;
   description: string;
-  status: string;
+  status?: string;
   image: string | File;
   capacity: string;
 }
 
-export interface IRequests {
+export interface IReservations {
   id: string;
   environment: IEnvironment;
   user: IUser;
@@ -102,27 +109,37 @@ export interface IRequests {
   status: string;
   created_at: string;
 }
-export interface ICreateRequest {
+export interface ICreateReservation {
   environment_id: string;
   date_in: string;
   date_out: string;
 }
 
-export interface ICancelRequest {
+export interface ICancelReservation {
   id: string;
   name: string;
   index: number;
 }
-export interface IApproveRequest {
+export interface IApproveReservation {
   id: string;
   name: string;
   index: number;
 }
-export interface IDisapproveRequest {
+export interface IDisapproveReservation {
   id: string;
   name: string;
   index: number;
 }
+
+export const handleStatus: { [key: string]: { value: string; customClass: string } } = {
+  approved: { value: 'Aprovado', customClass: 'status-approved' },
+  pending: { value: 'Pendente', customClass: 'status-pending' },
+  not_approved: { value: 'Não aprovado', customClass: 'status-not-approved' },
+  cancelled: { value: 'Cancelado', customClass: 'status-cancelled' },
+  available: { value: 'Disponível', customClass: 'status-available' },
+  maintenance: { value: 'Em manutenção', customClass: 'status-maintenance' },
+  disabled: { value: 'Desativado', customClass: 'status-disabled' },
+};
 
 export const createUserMessages: { [key: string]: string } = {
   'User created successfully': 'Email cadastrado com sucesso.',
@@ -160,28 +177,9 @@ export const createEnvironmentMessages: { [key: string]: string } = {
   Created: 'Ambiente criado com sucesso.',
 };
 
-export interface IResultRequest {
+export interface IResultReservation {
   message: string;
   icon: ReactElement;
-}
-
-export class Form {
-  private formValues: Partial<IEditUser> = {};
-
-  get(): Partial<IEditUser> {
-    return this.formValues;
-  }
-
-  set(prop: Partial<IEditUser>): void {
-    const newFormValues: Partial<IEditUser> = { ...this.formValues };
-    for (const key in prop) {
-      newFormValues[key] = prop[key];
-      if (!prop[key].length) {
-        delete newFormValues[key];
-      }
-    }
-    this.formValues = newFormValues;
-  }
 }
 
 export interface IResult {
@@ -209,4 +207,8 @@ export interface IToastNotification {
   type: Case;
   customClass?: string;
   message: string;
+}
+
+export interface IUpdateReservationDto {
+  status: ReservationStatus;
 }

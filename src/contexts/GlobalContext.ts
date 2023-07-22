@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
-import { IAuthProps, IModalRequests, IResult, IStorageState, IUser } from '../interfaces/index';
+import { IAuthProps, IModalReservations, IResult, IStorageState, IUser } from '../interfaces/index';
 
 export interface GlobalContextProps {
   token: IStorageState<string>;
@@ -22,14 +22,14 @@ export interface GlobalContextProps {
   setIsOpenCreateEnvironmentModal: Dispatch<SetStateAction<boolean>>;
   isOpenConfirmSignoutModal: boolean;
   setIsOpenConfirmSignoutModal: Dispatch<SetStateAction<boolean>>;
-  isRequestModal: IModalRequests | undefined;
-  setIsRequestModal: Dispatch<SetStateAction<IModalRequests | undefined>>;
-  isOpenApproveRequestModal: boolean;
-  setIsOpenApproveRequestModal: Dispatch<SetStateAction<boolean>>;
-  isOpenDisapproveRequestModal: boolean;
-  setIsOpenDisapproveRequestModal: Dispatch<SetStateAction<boolean>>;
-  isOpenCancelRequestModal: boolean;
-  setIsOpenCancelRequestModal: Dispatch<SetStateAction<boolean>>;
+  isReservationModal: IModalReservations | undefined;
+  setIsReservationModal: Dispatch<SetStateAction<IModalReservations | undefined>>;
+  isOpenApproveReservationModal: boolean;
+  setIsOpenApproveReservationModal: Dispatch<SetStateAction<boolean>>;
+  isOpenDisapproveReservationModal: boolean;
+  setIsOpenDisapproveReservationModal: Dispatch<SetStateAction<boolean>>;
+  isOpenCancelReservationModal: boolean;
+  setIsOpenCancelReservationModal: Dispatch<SetStateAction<boolean>>;
   isMyselfData: IUser | null;
   setIsMyselfData: Dispatch<SetStateAction<IUser | null>>;
   isRemainingSeconds: number | undefined;

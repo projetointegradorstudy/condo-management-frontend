@@ -44,15 +44,17 @@ export function ListEnvironments() {
               <Button title="Adicionar" onClick={() => setIsOpenCreateEnvironmentModal(true)} />
             </div>
 
-            <div className="content-list">
-              <div className="content-list-scroll">
-                {environments?.length > 0 && !isLoading ? (
-                  <EnvironmentTable data={environments} />
-                ) : environments?.length === 0 && isLoading ? (
-                  <Spinner />
-                ) : (
-                  <WarningFeedback title="Não há registros." />
-                )}
+            <div className="container">
+              <div className="content-list">
+                <div className="content-list-scroll">
+                  {environments?.length && !isLoading ? (
+                    <EnvironmentTable data={environments} />
+                  ) : !environments?.length && isLoading ? (
+                    <Spinner />
+                  ) : (
+                    <WarningFeedback title="Não há registros." />
+                  )}
+                </div>
               </div>
             </div>
           </div>

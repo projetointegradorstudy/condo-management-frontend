@@ -3,42 +3,45 @@ import { Label } from './Label';
 import { Input } from './Input';
 import { Button } from './Button';
 import { getContext } from '../utils/context-import';
-import { Case, IEditEnvironment, IResultRequest } from '../interfaces';
+import { Case, EnvironmentStatus, IEditEnvironment, IResultReservation, handleStatus } from '../interfaces';
 import imageDefault from '../assets/image-default.png';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { updateEnvironment } from '../services/api';
 import { Spinner } from './Spinner';
 import { ToastMessage } from '../components/ToastNotifications';
+import { TextArea } from './TextArea';
 import '../styles/edit-environment-modal.scss';
 
-export function EditEnvironmentModal({ id, name, description, image, capacity }: IEditEnvironment) {
+export function EditEnvironmentModal({ id, name, description, image, capacity, status }: IEditEnvironment) {
   const [previewImage, setPreviewImage] = useState<string>();
   const { isOpenEditModal, setIsOpenEditModal, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const [isFormValue, setIsFormValue] = useState<Partial<IEditEnvironment>>();
-  const newFormValues: Partial<IEditEnvironment> = { ...isFormValue };
 
-  const setFormValue = (prop: Partial<IEditEnvironment>): void => {
-    for (const key in prop) {
-      newFormValues[`${key}`] = prop[key];
-      if (!prop[key]) delete newFormValues[`${key}`];
+  const handleFieldChange = (e: ChangeEvent<any>) => {
+    const field = e.target;
+    const file = field.files?.[0];
+    if (file) {
+      setIsFormValue({ ...isFormValue, image: file });
+    } else {
+      setIsFormValue({ ...isFormValue, [field.name]: field.value });
     }
-    setIsFormValue(newFormValues);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form: HTMLFormElement | null = document.querySelector('#form');
     setIsLoading(true);
-
-    await updateEnvironment(id, newFormValues)
-      .then(() => {
-        handleCloser();
-        setIsNeedRefresh(true);
-        ToastMessage({ message: 'Ambiente atualizado', type: Case.SUCCESS });
-      })
-      .catch(() => {});
+    if (isFormValue) {
+      await updateEnvironment(id, isFormValue)
+        .then(() => {
+          handleCloser();
+          setIsNeedRefresh(true);
+          ToastMessage({ message: 'Ambiente atualizado', type: Case.SUCCESS });
+        })
+        .catch(() => {});
+    }
     form?.reset();
     cleanData();
   };
@@ -61,8 +64,6 @@ export function EditEnvironmentModal({ id, name, description, image, capacity }:
     const file = e.target.files?.[0];
 
     if (file) {
-      setFormValue({ image: file });
-
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result as string);
@@ -98,6 +99,7 @@ export function EditEnvironmentModal({ id, name, description, image, capacity }:
                         accept=".png, .jpg, .jpeg"
                         hidden
                         onChange={(e) => {
+                          handleFieldChange(e);
                           handleImagePreview(e);
                         }}
                         isNotRequired
@@ -109,40 +111,37 @@ export function EditEnvironmentModal({ id, name, description, image, capacity }:
                   <div className="image-upload-edit-environment-preview">
                     <img className="preview" src={previewImage} alt="Preview" />
                     <div className="button-upload-edit-environment-preview">
-                      <Trash />
                       <button className="trash" onClick={() => setPreviewImage(undefined)}>
+                        <Trash />
                         Excluir foto
                       </button>
                     </div>
                   </div>
                 )}
               </div>
-              <Label title="Nome" htmlFor="nome" />
-              <Input
-                name="nome"
-                id="nome"
-                type="text"
-                placeholder={name}
-                onChange={(e) => setFormValue({ name: e.target.value })}
-              />
+              <Label title="Nome" htmlFor="name" />
+              <Input name="name" id="name" type="text" placeholder={name} onChange={handleFieldChange} />
 
               <Label title="Capacidade" htmlFor="capacity" />
-              <Input
-                name="capacity"
-                id="capacity"
-                type="text"
-                placeholder={capacity}
-                onChange={(e) => setFormValue({ capacity: e.target.value })}
-              />
+              <Input name="capacity" id="capacity" type="text" placeholder={capacity} onChange={handleFieldChange} />
+
+              <Label title="Status" htmlFor="status" />
+              <select value={isFormValue?.status || status} name="status" onChange={handleFieldChange}>
+                {Object.values(EnvironmentStatus).map((optStatus, index) => (
+                  <option key={index} value={optStatus}>
+                    {handleStatus[optStatus].value}
+                  </option>
+                ))}
+              </select>
 
               <Label title="Descrição" htmlFor="description" />
-              <textarea
+              <TextArea
                 name="description"
                 id="description"
                 placeholder={description}
                 maxLength={150}
-                onChange={(e) => setFormValue({ description: e.target.value })}
-              ></textarea>
+                onChange={handleFieldChange}
+              />
 
               <div className="modal-form-button-environment">
                 <Button title="Cancelar" onClick={handleCloser} isCancel />

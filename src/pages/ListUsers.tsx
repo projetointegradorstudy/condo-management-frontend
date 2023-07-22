@@ -44,15 +44,17 @@ export function ListUsers() {
               <Button title="Adicionar" onClick={() => setIsOpenCreateUserModal(true)} />
             </div>
 
-            <div className="content-list">
-              <div className="content-list-scroll">
-                {users?.length > 0 && !isLoading ? (
-                  <UserTable data={users} />
-                ) : users?.length === 0 && isLoading ? (
-                  <Spinner />
-                ) : (
-                  <WarningFeedback title="Não há registros." />
-                )}
+            <div className="container">
+              <div className="content-list">
+                <div className="content-list-scroll">
+                  {users?.length > 0 && !isLoading ? (
+                    <UserTable data={users} />
+                  ) : users?.length === 0 && isLoading ? (
+                    <Spinner />
+                  ) : (
+                    <WarningFeedback title="Não há registros." />
+                  )}
+                </div>
               </div>
             </div>
           </div>

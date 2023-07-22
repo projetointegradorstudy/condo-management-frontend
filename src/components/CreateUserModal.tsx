@@ -6,7 +6,7 @@ import { createUser } from '../services/api';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
 import { Spinner } from './Spinner';
-import { Case, IResultRequest } from '../interfaces';
+import { Case, IResultReservation } from '../interfaces';
 import { getRegex } from '../utils/regex';
 import { ToastMessage } from '../components/ToastNotifications';
 import '../styles/create-user-modal.scss';
@@ -16,7 +16,7 @@ export function CreateUserModal() {
   const [formData, setFormData] = useState({ email: '' });
   const [errorMessage, setErrorMessage] = useState({ email: '' });
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const { isOpenCreateUserModal, setIsOpenCreateUserModal, setIsNeedRefresh } = getContext();
 
   const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {

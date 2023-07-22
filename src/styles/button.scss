@@ -38,6 +38,11 @@ button.button-primary {
       color: $white;
     }
 
+    &:disabled {
+      background-color: $gray;
+      cursor: auto;
+    }
+
     @include breakpoint(sm) {
       width: 110px;
     }

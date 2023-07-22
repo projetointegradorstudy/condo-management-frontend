@@ -1,7 +1,7 @@
 @import './theme';
 @import './variables';
 
-div.modal-cancel-background {
+div.modal-approve-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@ div.modal-cancel-background {
   align-items: center;
   z-index: 2;
 
-  div.modal-cancel {
+  div.modal-approve {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,13 +31,13 @@ div.modal-cancel-background {
       margin: 0 20px;
     }
 
-    div.modal-cancel-button-close {
+    div.modal-approve-button-close {
       display: flex;
       justify-content: flex-end;
       align-items: flex-start;
       width: 100%;
 
-      button.modal-cancel-button-default {
+      button.modal-approve-button-default {
         background-color: transparent;
         width: 22px;
         height: 22px;
@@ -55,7 +55,7 @@ div.modal-cancel-background {
       }
     }
 
-    div.modal-cancel-content {
+    div.modal-approve-content {
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -63,7 +63,7 @@ div.modal-cancel-background {
       height: 230px;
       width: 100%;
 
-      div.modal-cancel-message {
+      div.modal-approve-message {
         width: 100%;
     
         h4 {
@@ -76,15 +76,12 @@ div.modal-cancel-background {
           @include breakpoint(sm) {
             font-size: 14px;
             line-height: 22px;
-          }
-
-          span {
-            color: $red;
+            padding: 0 30px;
           }
         }
       }
 
-      div.modal-cancel-content-form {
+      div.modal-approve-content-form {
         display: flex;
         justify-content: space-evenly;
         width: 100%;

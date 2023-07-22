@@ -1,7 +1,6 @@
-import { FormEvent, useState } from 'react';
-import { CheckCircle, X } from 'phosphor-react';
-import Select from 'react-select';
-import { Case, IEditUser, IResultRequest, Roles, editUserMessages } from '../interfaces';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { X } from 'phosphor-react';
+import { Case, IEditUser, IResultReservation, Roles } from '../interfaces';
 import { adminUpdateUser } from '../services/api';
 import { getContext } from '../utils/context-import';
 import { Label } from './Label';
@@ -16,36 +15,34 @@ import '../styles/edit-user-modal.scss';
 export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
   const { isOpenEditModal, setIsOpenEditModal, formatDate, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(false);
-  const [isResult, setIsResult] = useState<IResultRequest | null>(null);
-  const [isRoleField, setIsRoleField] = useState<Partial<IEditUser>>({
-    role,
-  });
+  const [isResult, setIsResult] = useState<IResultReservation | null>(null);
   const [isFormValue, setIsFormValue] = useState<Partial<IEditUser>>();
-  const newFormValues: Partial<IEditUser> = { ...isFormValue };
 
-  const setFormValue = (prop: Partial<IEditUser>): void => {
-    for (const key in prop) {
-      newFormValues[`${key}`] = prop[key];
-      if (!prop[key].length) delete newFormValues[`${key}`];
+  const handleFieldChange = (e: ChangeEvent<any>) => {
+    const field = e.target;
+    const file = field.files?.[0];
+    if (file) {
+      setIsFormValue({ ...isFormValue, avatar: file });
+    } else {
+      setIsFormValue({ ...isFormValue, [field.name]: field.value });
     }
-    setIsFormValue(newFormValues);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form: HTMLFormElement | null = document.querySelector('#form');
     setIsLoading(true);
-
-    await adminUpdateUser(id, newFormValues)
-      .then(() => {
-        handleCloser();
-        setIsNeedRefresh(true);
-        ToastMessage({ message: 'Atualizado com sucesso', type: Case.SUCCESS });
-      })
-      .catch(() => {});
+    if (isFormValue) {
+      await adminUpdateUser(id, isFormValue)
+        .then(() => {
+          handleCloser();
+          setIsNeedRefresh(true);
+          ToastMessage({ message: 'Atualizado com sucesso', type: Case.SUCCESS });
+        })
+        .catch(() => {});
+    }
     form?.reset();
     cleanData();
-    setIsLoading(false);
   };
 
   const handleCloser = () => {
@@ -80,8 +77,7 @@ export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
                 id="password"
                 placeholder="********"
                 autoComplete="on"
-                maxLength={30}
-                onChange={(e) => setFormValue({ password: e.target.value })}
+                onChange={handleFieldChange}
               ></InputPassword>
 
               <Label title="Confirmar senha" htmlFor="password-confirmation" />
@@ -90,26 +86,17 @@ export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
                 id="password-confirmation"
                 placeholder="********"
                 autoComplete="on"
-                maxLength={30}
-                onChange={(e) => setFormValue({ passwordConfirmation: e.target.value })}
+                onChange={handleFieldChange}
               />
 
-              <Label title="Registrado" htmlFor="register" />
+              <Label title="Data de registro" htmlFor="register" />
               <Input name="register" id="register" type="text" disabled placeholder={formatDate(created_at)} />
 
               <Label title="Regra" htmlFor="role" />
-
-              <select
-                value={isRoleField.role}
-                name="role"
-                onChange={(e) => {
-                  setIsRoleField({ role: Roles[e.target.value.toLocaleUpperCase()] });
-                  setFormValue({ role: Roles[e.target.value.toLocaleUpperCase()] });
-                }}
-              >
-                {Object.values(Roles).map((role, index) => (
-                  <option key={index} value={role}>
-                    {role.slice(0, 1).toUpperCase() + role.slice(1)}
+              <select value={isFormValue?.role || role} name="role" onChange={handleFieldChange}>
+                {Object.values(Roles).map((optRole, index) => (
+                  <option key={index} value={optRole}>
+                    {optRole.slice(0, 1).toUpperCase() + optRole.slice(1)}
                   </option>
                 ))}
               </select>

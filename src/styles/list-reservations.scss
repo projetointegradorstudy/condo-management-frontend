@@ -1,39 +1,30 @@
 @import './theme';
 @import './variables';
 
-div.page-list-users {
+div.page-requests {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: $gray-lightest;
 
-  div.container-list-users {
+  div.container-requests {
     display: flex;
-    
+
     @include breakpoint(sm) {
       flex-direction: column;
     }
 
-    div.content-list-button {
-      display: flex;
-      justify-content: flex-end;
-      max-width: 1900px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    div.content-list-users {
+    div.content-requests {
       display: flex;
       flex-direction: column;
       flex: 1;
       justify-content: flex-start;
-      gap: 3rem;
       margin: 100px 76px 30px;
 
       @include breakpoint(xl) {
         margin: 60px 40px 30px;
       }
-    
+
       @include breakpoint(sm) {
         margin: 60px 30px 30px;
       }
@@ -43,12 +34,13 @@ div.page-list-users {
         line-height: 38px;
         font-weight: 600;
         color: $black;
+        margin-bottom: 60px;
 
         @include breakpoint(md) {
           font-size: 24px;
           line-height: 30px;
         }
-      
+
         @include breakpoint(sm) {
           font-size: 20px;
           line-height: 26px;
@@ -57,12 +49,11 @@ div.page-list-users {
     }
 
     div.container {
-
       @include breakpoint(md) {
         display: grid;
       }
 
-      div.content-list {
+      div.content-requests-list {
         max-width: 1900px;
         width: 100%;
         margin: 0 auto;
@@ -83,26 +74,26 @@ div.page-list-users {
           border-radius: 20px;
           border: 5px solid #F6F8FA;
         }
-
+    
         div.content-list-scroll {
-          
+    
           @include breakpoint(md) {
             overflow-x: auto;
-            width: 1300px;
+            width: 1600px;
           }
         }
-        
+    
         table {
           position: relative;
           margin: 0 auto;
           table-layout: auto;
-
+    
           @include breakpoint(xxl) {
             width: 100%;
           }
-
+    
           thead {
-
+    
             th {
               position: sticky;
               top: 0;
@@ -113,86 +104,107 @@ div.page-list-users {
               text-align: left;
               border-bottom: 1px solid $black;
               padding-bottom: 10px;
-
+    
               @include breakpoint(md) {
                 font-size: 13px;
                 line-height: 15px;
               }
             }
           }
-
+    
           tbody tr:nth-child(odd) {
             background-color: $white;
           }
-
+    
           td {
             padding: 6px 10px;
             font-size: 14px;
             line-height: 24px;
             color: $black;
-
+    
             @include breakpoint(md) {
               font-size: 12px;
               line-height: 16px;
             }
-
+    
             img {
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
+              max-width: 200px;
+              width: 100%;
+              height: 50px;
+              border-radius: 4px;
               object-fit: cover;
-
+    
               @include breakpoint(md) {
-                width: 25px;
-                height: 25px;
+                height: 50px;
               }
             }
 
-            div.content-buttons {
+            p {
+
+              &.status-approved {
+                color: $green-dark;
+              }
+
+              &.status-pending {
+                color: $orange;
+              }
+
+              &.status-not-approved {
+                color: $red-dark;
+              }
+
+              &.status-cancelled {
+                color: $red;
+              }
+            }
+    
+            div.content-buttons-requests {
               display: flex;
               align-items: center;
               justify-content: center;
               gap: 1rem;
-
-              div.circle-button {
-                width: 22.75px;
-                height: 22.75px;
+    
+              svg {
+                width: 28px;
+                height: 28px;
                 cursor: pointer;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
+    
                 @include breakpoint(sm) {
-                  width: 16.25px;
-                  height: 16.25px;
+                  width: 20px;
+                  height: 20px;
                 }
-
-                &.icon-edit {
-                  background: $primary;
-
+    
+                &.icon-check {
+                  color: $green;
+    
                   &:hover {
-                    background: $primary;
+                    color: $green-dark;
                   }
                 }
-
+    
                 &.icon-close {
-                  background: $red;
-
+                  color: $red;
+    
                   &:hover {
-                    background: $red-dark;
+                    color: $red-dark;
                   }
                 }
-              
-                svg {
-                  color: $white;
-                  width: 14px;
-                  height: 14px;
 
-                  @include breakpoint(sm) {
-                    width: 10px;
-                    height: 10px;
-                  }
+                &.disabled {
+                  color: $gray;
+                  cursor: auto;
+                }
+              }
+    
+              button.button-cancel {
+                width: 100px;
+                height: 34px;
+                background-color: $red;
+                color: $white;
+    
+                @include breakpoint(sm) {
+                  width: 80px;
+                  height: 30px;
                 }
               }
             }
