@@ -53,7 +53,7 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                   </td>
                   <td>
                     <p className={handleStatus[environment.status].customClass}>
-                      {handleStatus[environment.status].value}
+                      <b>{handleStatus[environment.status].value}</b>
                     </p>
                   </td>
                   <td>

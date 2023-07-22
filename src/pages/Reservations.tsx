@@ -6,11 +6,13 @@ import { Sidebar } from '../components/Sidebar';
 import { IReservations } from '../interfaces';
 import { getContext } from '../utils/context-import';
 import { getEnvironmentReservations } from '../services/api';
-import '../styles/list-reservations.scss';
 import { ToastNotifications } from '../components/ToastNotifications';
+import '../styles/list-reservations.scss';
+import { Spinner } from '../components/Spinner';
+import { WarningFeedback } from '../components/WarningFeedback';
 
 export function Reservations() {
-  const [requests, setReservations] = useState<IReservations[]>([]);
+  const [reservation, setReservations] = useState<IReservations[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { isNeedRefresh, setIsNeedRefresh } = getContext();
 
@@ -40,7 +42,13 @@ export function Reservations() {
             <div className="container">
               <div className="content-requests-list">
                 <div className="content-list-scroll">
-                  <ReservationTable data={requests} />
+                  {reservation?.length && !isLoading ? (
+                    <ReservationTable data={reservation} />
+                  ) : !reservation?.length && isLoading ? (
+                    <Spinner />
+                  ) : (
+                    <WarningFeedback title="Não há registros." />
+                  )}
                 </div>
               </div>
             </div>

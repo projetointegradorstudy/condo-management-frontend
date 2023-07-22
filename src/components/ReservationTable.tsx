@@ -67,7 +67,7 @@ export function ReservationTable({ data }: IDataElementProps<IReservations[]>) {
                   </td>
                   <td>
                     <p className={handleStatus[reservations.status].customClass}>
-                      {handleStatus[reservations.status].value}
+                      <b>{handleStatus[reservations.status].value}</b>
                     </p>
                   </td>
                   <td>

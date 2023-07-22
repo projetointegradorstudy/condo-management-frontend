@@ -16,9 +16,6 @@ export function EditUserModal({ id, avatar, created_at, role }: IEditUser) {
   const { isOpenEditModal, setIsOpenEditModal, formatDate, setIsNeedRefresh } = getContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isResult, setIsResult] = useState<IResultReservation | null>(null);
-  const [isRoleField, setIsRoleField] = useState<Partial<IEditUser>>({
-    role,
-  });
   const [isFormValue, setIsFormValue] = useState<Partial<IEditUser>>();
 
   const handleFieldChange = (e: ChangeEvent<any>) => {

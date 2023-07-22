@@ -8,6 +8,8 @@ import { getContext } from '../utils/context-import';
 import { getEnvReservationsByUser } from '../services/api';
 import '../styles/list-my-reservations.scss';
 import { ToastNotifications } from '../components/ToastNotifications';
+import { Spinner } from '../components/Spinner';
+import { WarningFeedback } from '../components/WarningFeedback';
 
 export function MyReservations() {
   const [myReservations, setMyReservations] = useState<IReservations[]>([]);
@@ -40,7 +42,13 @@ export function MyReservations() {
             <div className="container">
               <div className="content-my-requests-list">
                 <div className="content-list-scroll">
-                  <MyReservationTable data={myReservations} />
+                  {myReservations?.length && !isLoading ? (
+                    <MyReservationTable data={myReservations} />
+                  ) : !myReservations?.length && isLoading ? (
+                    <Spinner />
+                  ) : (
+                    <WarningFeedback title="Não há registros." />
+                  )}
                 </div>
               </div>
             </div>

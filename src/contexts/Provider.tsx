@@ -72,7 +72,7 @@ export function GlobalProvider({ children }: Iprops) {
       .then((res) => {
         setIsMyselfData(res.data);
       })
-      .catch((e) => {});
+      .catch();
   }
 
   function formatDate(date: string): string {

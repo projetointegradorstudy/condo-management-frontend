@@ -119,8 +119,8 @@ export function EditEnvironmentModal({ id, name, description, image, capacity, s
                   </div>
                 )}
               </div>
-              <Label title="Nome" htmlFor="nome" />
-              <Input name="nome" id="nome" type="text" placeholder={name} onChange={handleFieldChange} />
+              <Label title="Nome" htmlFor="name" />
+              <Input name="name" id="name" type="text" placeholder={name} onChange={handleFieldChange} />
 
               <Label title="Capacidade" htmlFor="capacity" />
               <Input name="capacity" id="capacity" type="text" placeholder={capacity} onChange={handleFieldChange} />

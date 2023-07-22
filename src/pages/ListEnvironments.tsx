@@ -47,9 +47,9 @@ export function ListEnvironments() {
             <div className="container">
               <div className="content-list">
                 <div className="content-list-scroll">
-                  {environments?.length > 0 && !isLoading ? (
+                  {environments?.length && !isLoading ? (
                     <EnvironmentTable data={environments} />
-                  ) : environments?.length === 0 && isLoading ? (
+                  ) : !environments?.length && isLoading ? (
                     <Spinner />
                   ) : (
                     <WarningFeedback title="Não há registros." />
