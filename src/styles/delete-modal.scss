@@ -11,7 +11,7 @@ div.modal-delete-background {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 1000;
 
   div.modal-delete {
     display: flex;
@@ -76,7 +76,7 @@ div.modal-delete-background {
           @include breakpoint(sm) {
             font-size: 14px;
             line-height: 22px;
-            padding: 0 30px;
+            padding: 0 20px;
           }
         }
       }
