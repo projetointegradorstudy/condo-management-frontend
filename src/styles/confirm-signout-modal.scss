@@ -45,6 +45,7 @@ div.modal-confirm-signout-background {
 
         svg {
           color: $black;
+          cursor: pointer;
 
           @include breakpoint(sm) {
             width: 18px;
