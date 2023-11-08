@@ -71,6 +71,11 @@ div.page-confirm-user {
       strong {
         font-size: 22px;
         line-height: 22px;
+
+        @include breakpoint(xl) {
+          font-size: 18px;
+          line-height: 18px;
+        }
       }
 
       p {
@@ -78,6 +83,11 @@ div.page-confirm-user {
         line-height: 20px;
         margin-top: 10px;
         color: $white;
+
+        @include breakpoint(xl) {
+          font-size: 14px;
+          line-height: 18px;
+        }
       }
     }
   }
