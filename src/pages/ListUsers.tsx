@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Sidebar } from '../components/Sidebar';
-import { NavbarMobile } from '../components/NavbarMobile';
 import { getUsers } from '../services/api';
 import { IUser } from '../interfaces';
 import { Spinner } from '../components/Spinner';
@@ -8,7 +6,6 @@ import { WarningFeedback } from '../components/WarningFeedback';
 import { UserTable } from '../components/UserTable';
 import { Button } from '../components/Button';
 import { getContext } from '../utils/context-import';
-import { Footer } from '../components/Footer';
 import { ToastNotifications } from '../components/ToastNotifications';
 import '../styles/list-users.scss';
 
@@ -34,9 +31,6 @@ export function ListUsers() {
     <>
       <div className="page-list-users">
         <div className="container-list-users">
-          <Sidebar />
-          <NavbarMobile />
-
           <div className="content-list-users">
             <h1>Lista de usuários</h1>
 
@@ -61,7 +55,6 @@ export function ListUsers() {
         </div>
       </div>
       <ToastNotifications />
-      <Footer isFull />
     </>
   );
 }

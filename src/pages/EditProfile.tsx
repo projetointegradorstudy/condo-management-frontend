@@ -1,8 +1,5 @@
-import { Footer } from '../components/Footer';
 import { Input } from '../components/Input';
 import { Label } from '../components/Label';
-import { NavbarMobile } from '../components/NavbarMobile';
-import { Sidebar } from '../components/Sidebar';
 import { getContext } from '../utils/context-import';
 import { PencilSimple, Trash } from 'phosphor-react';
 import { InputPassword } from '../components/InputPassword';
@@ -72,8 +69,6 @@ export function EditProfile() {
   return (
     <>
       <div className="page-edit-profile">
-        <Sidebar />
-        <NavbarMobile />
         <div className="container-edit-profile">
           <div className="content-edit-profile-title">
             <h1>Editar perfil</h1>
@@ -159,7 +154,6 @@ export function EditProfile() {
         </div>
       </div>
       <ToastNotifications />
-      <Footer isFull />
     </>
   );
 }

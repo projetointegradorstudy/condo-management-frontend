@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Footer } from '../components/Footer';
-import { NavbarMobile } from '../components/NavbarMobile';
 import { ReservationTable } from '../components/ReservationTable';
-import { Sidebar } from '../components/Sidebar';
 import { IReservations } from '../interfaces';
 import { getContext } from '../utils/context-import';
 import { getEnvironmentReservations } from '../services/api';
 import { ToastNotifications } from '../components/ToastNotifications';
-import '../styles/list-reservations.scss';
 import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
+import '../styles/list-reservations.scss';
 
 export function Reservations() {
   const [reservation, setReservations] = useState<IReservations[]>([]);
@@ -33,9 +30,6 @@ export function Reservations() {
     <>
       <div className="page-requests">
         <div className="container-requests">
-          <Sidebar />
-          <NavbarMobile />
-
           <div className="content-requests">
             <h1>Reservas</h1>
 
@@ -56,7 +50,6 @@ export function Reservations() {
         </div>
       </div>
       <ToastNotifications />
-      <Footer isFull />
     </>
   );
 }

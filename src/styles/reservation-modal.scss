@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.modal-request-background {
   position: fixed;
@@ -32,6 +33,11 @@ div.modal-request-background {
       margin: 0 20px;
     }
 
+    @include dark {
+      background-color: $gray-dark-light;
+      box-shadow: none;
+    }
+
     div.modal-request-button-close {
       display: flex;
       justify-content: flex-end;
@@ -51,6 +57,10 @@ div.modal-request-background {
           @include breakpoint(sm) {
             width: 18px;
             height: 18px;
+          }
+
+          @include dark {
+            color: $gray-lightest;
           }
         }
       }
@@ -77,12 +87,20 @@ div.modal-request-background {
           font-size: 16px;
           line-height: 24px;
           color: $black;
+
+          @include dark {
+            color: $gray-lightest;
+          }
         }
 
         div.modal-request-info-capacity {
           display: flex;
           gap: 0.5rem;
           align-items: center;
+
+          @include dark {
+            color: $gray-lightest;
+          }
         }
       }
 
@@ -107,7 +125,11 @@ div.modal-request-background {
           line-height: 18px;
           margin-bottom: 20px;
           text-align: justify;
-          letter-spacing: -0.5px;          
+          letter-spacing: -0.5px;
+          
+          @include dark {
+            color: $gray-lightest;
+          }
         }
       }
 
@@ -121,7 +143,6 @@ div.modal-request-background {
           position: relative;
       
           input {
-            /* Styles for the input element */
             border: 1px solid #ccc;
             padding: 8px;
           }
@@ -140,7 +161,6 @@ div.modal-request-background {
           }
       
           input:invalid+.bubble-notification {
-            /* Styles to show the bubble notification when input is invalid */
             display: block;
           }
         }

@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.modal-edit-user-background {
   position: fixed;
@@ -31,6 +32,11 @@ div.modal-edit-user-background {
       margin: 0 20px;
     }
 
+    @include dark {
+      background-color: $gray-dark-light;
+      box-shadow: none;
+    }
+
     div.modal-edit-user-button-close {
       display: flex;
       justify-content: flex-end;
@@ -50,6 +56,10 @@ div.modal-edit-user-background {
           @include breakpoint(sm) {
             width: 18px;
             height: 18px;
+          }
+
+          @include dark {
+            color: $gray-lightest;
           }
         }
       }
@@ -112,6 +122,12 @@ div.modal-edit-user-background {
             font-size: 14px;
             height: 36px;
             padding: 6px 16px;
+          }
+
+          @include dark {
+            background-color: $gray-dark;
+            border: 1px solid $gray-dark-light;
+            color: #AFB8C1;
           }
 
           &::-ms-expand {
@@ -179,6 +195,10 @@ div.modal-edit-user-background {
           @include breakpoint(sm) {
             width: 18px;
             height: 18px;
+          }
+
+          @include dark {
+            color: $green;
           }
         }
       }

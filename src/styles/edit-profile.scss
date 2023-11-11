@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.page-edit-profile {
   display: flex;
@@ -44,6 +45,11 @@ div.page-edit-profile {
         @include breakpoint(sm) {
           font-size: 20px;
           line-height: 26px;
+          padding-top: 30px;
+        }
+
+        @include dark {
+          color: $gray-lightest;
         }
       }
     }
@@ -95,6 +101,10 @@ div.page-edit-profile {
             font-size: 14px;
             line-height: 24px;
             display: none;
+          }
+
+          @include dark {
+            color: $gray-lightest;
           }
         }
 

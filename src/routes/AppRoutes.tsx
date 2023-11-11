@@ -13,6 +13,7 @@ import { getContext } from '../utils/context-import';
 import { EditProfile } from '../pages/EditProfile';
 import { Reservations } from '../pages/Reservations';
 import { MyReservations } from '../pages/MyReservations';
+import { Layout } from '../components/Layout';
 
 export function AppRoutes() {
   const IsLoggedOut = ({ children }: Iprops) => {
@@ -77,7 +78,9 @@ export function AppRoutes() {
             path="/menu-user"
             element={
               <IsLoggedIn>
-                <MenuUser />
+                <Layout>
+                  <MenuUser />
+                </Layout>
               </IsLoggedIn>
             }
           />
@@ -85,7 +88,9 @@ export function AppRoutes() {
             path="/edit-profile"
             element={
               <IsLoggedIn>
-                <EditProfile />
+                <Layout>
+                  <EditProfile />
+                </Layout>
               </IsLoggedIn>
             }
           />
@@ -93,7 +98,9 @@ export function AppRoutes() {
             path="/my-reservations"
             element={
               <IsLoggedIn>
-                <MyReservations />
+                <Layout>
+                  <MyReservations />
+                </Layout>
               </IsLoggedIn>
             }
           />
@@ -101,7 +108,9 @@ export function AppRoutes() {
             path="/dashboard-admin"
             element={
               <IsAdmin>
-                <MenuAdmin />
+                <Layout>
+                  <MenuAdmin />
+                </Layout>
               </IsAdmin>
             }
           />
@@ -109,7 +118,9 @@ export function AppRoutes() {
             path="/list-users"
             element={
               <IsAdmin>
-                <ListUsers />
+                <Layout>
+                  <ListUsers />
+                </Layout>
               </IsAdmin>
             }
           />
@@ -117,7 +128,9 @@ export function AppRoutes() {
             path="/list-environments"
             element={
               <IsAdmin>
-                <ListEnvironments />
+                <Layout>
+                  <ListEnvironments />
+                </Layout>
               </IsAdmin>
             }
           />
@@ -125,7 +138,9 @@ export function AppRoutes() {
             path="/reservations"
             element={
               <IsAdmin>
-                <Reservations />
+                <Layout>
+                  <Reservations />
+                </Layout>
               </IsAdmin>
             }
           />

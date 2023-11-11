@@ -12,6 +12,7 @@ import { resetPassword } from '../services/api';
 import { CountDown } from '../components/CountDown';
 import { getRegex } from '../utils/regex';
 import '../styles/recover-password.scss';
+import { ToggleButton } from '../components/ToggleButton';
 
 export function RecoverPassword() {
   const [hasError, setHasError] = useState({ password: false, passwordConfirmation: false });
@@ -98,69 +99,72 @@ export function RecoverPassword() {
   useEffect(() => {}, [isLoading, isResult]);
 
   return (
-    <div className="page-recover-password">
-      <aside>
-        <div className="page-recover-password-title">
-          <h1>
-            <span>Condo</span>Management
-          </h1>
-        </div>
-        <div className="page-recover-password-image">
-          <img src={forSale} />
-        </div>
-        <div className="page-recover-password-description">
-          <strong>Alteração de senha</strong>
-          <p>Para alterar, basta inserir a senha que deseja e confirmar.</p>
-        </div>
-      </aside>
-      <main>
-        <div className="page-recover-password-logo">
-          <h1>
-            <span>Condo</span>Management
-          </h1>
-        </div>
-        {isLoading && <Spinner />}
-        {!isResult && (
-          <div className="page-recover-password-form">
-            <h4>Insira sua nova senha:</h4>
-            <form onSubmit={handleSubmit}>
-              <Label title="Senha" htmlFor="password" />
-              <InputPassword
-                className={hasError.password ? 'field-error' : ''}
-                name="password"
-                id="password"
-                placeholder="Insira a sua senha"
-                onChange={handleFieldChange}
-                message={hasError.password ? errorMessage.password : undefined}
-              />
-
-              <Label title="Confirme a senha" htmlFor="passwordConfirmation" />
-              <InputPassword
-                className={hasError.passwordConfirmation ? 'field-error' : ''}
-                name="passwordConfirmation"
-                id="passwordConfirmation"
-                placeholder="Confirme a sua senha"
-                onChange={handleFieldChange}
-                message={hasError.passwordConfirmation ? errorMessage.passwordConfirmation : undefined}
-              />
-
-              <div className="page-recover-password-footer">
-                <Button isFull title="Alterar senha" type="submit" />
-              </div>
-            </form>
+    <>
+      <ToggleButton />
+      <div className="page-recover-password">
+        <aside>
+          <div className="page-recover-password-title">
+            <h1>
+              <span>Condo</span>Management
+            </h1>
           </div>
-        )}
-
-        {isResult && (
-          <div className="page-recover-password-feedback">
-            {isResult.icon}
-
-            <span>{isResult.message}</span>
-            {isRemainingSeconds && <CountDown />}
+          <div className="page-recover-password-image">
+            <img src={forSale} />
           </div>
-        )}
-        <Footer />
-      </main>
-    </div>
+          <div className="page-recover-password-description">
+            <strong>Alteração de senha</strong>
+            <p>Para alterar, basta inserir a senha que deseja e confirmar.</p>
+          </div>
+        </aside>
+        <main>
+          <div className="page-recover-password-logo">
+            <h1>
+              <span>Condo</span>Management
+            </h1>
+          </div>
+          {isLoading && <Spinner />}
+          {!isResult && (
+            <div className="page-recover-password-form">
+              <h4>Insira sua nova senha:</h4>
+              <form onSubmit={handleSubmit}>
+                <Label title="Senha" htmlFor="password" />
+                <InputPassword
+                  className={hasError.password ? 'field-error' : ''}
+                  name="password"
+                  id="password"
+                  placeholder="Insira a sua senha"
+                  onChange={handleFieldChange}
+                  message={hasError.password ? errorMessage.password : undefined}
+                />
+
+                <Label title="Confirme a senha" htmlFor="passwordConfirmation" />
+                <InputPassword
+                  className={hasError.passwordConfirmation ? 'field-error' : ''}
+                  name="passwordConfirmation"
+                  id="passwordConfirmation"
+                  placeholder="Confirme a sua senha"
+                  onChange={handleFieldChange}
+                  message={hasError.passwordConfirmation ? errorMessage.passwordConfirmation : undefined}
+                />
+
+                <div className="page-recover-password-footer">
+                  <Button isFull title="Alterar senha" type="submit" />
+                </div>
+              </form>
+            </div>
+          )}
+
+          {isResult && (
+            <div className="page-recover-password-feedback">
+              {isResult.icon}
+
+              <span>{isResult.message}</span>
+              {isRemainingSeconds && <CountDown />}
+            </div>
+          )}
+          <Footer />
+        </main>
+      </div>
+    </>
   );
 }

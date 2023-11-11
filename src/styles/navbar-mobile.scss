@@ -21,7 +21,7 @@ div.navbar-mobile {
     background-color: $primary;
     padding: 0 20px;
     z-index: 999;
-    position: relative;
+    position: fixed;
 
     button {
       width: 30px;

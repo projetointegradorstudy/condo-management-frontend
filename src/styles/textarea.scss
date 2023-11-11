@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.textarea-content {
   height: 100px;
@@ -16,6 +17,11 @@ div.textarea-content {
     font-size: 16px;
     line-height: 16px;
     resize: none;
+
+    @include dark {
+      background-color: $gray-dark;
+      color: $gray-lightest;
+    }
 
     @include breakpoint(lg) {
       width: 100%;

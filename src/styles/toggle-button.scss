@@ -1,0 +1,40 @@
+@import './theme';
+@import './variables';
+
+div.theme-color-mode {
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 30px;
+  height: 80px;
+  background-color: transparent;
+  z-index: 1000;
+  position: absolute;
+  right: 0;
+
+  @include breakpoint(sm) {
+    display: none;
+  }
+
+  button.toggle {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+
+    svg {
+      width: 40px;
+      height: 40px;
+
+      &.light {
+        color: $gray-lightest;
+      }
+
+      &.dark {
+        color: $primary;
+      }
+    }
+  }
+}

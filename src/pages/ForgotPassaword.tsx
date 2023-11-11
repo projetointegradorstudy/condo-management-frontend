@@ -11,6 +11,7 @@ import { forgotUserPassword } from '../services/api';
 import { getRegex } from '../utils/regex';
 import { IResultReservation, resetUserPasswordMessages } from '../interfaces';
 import '../styles/forgot-password.scss';
+import { ToggleButton } from '../components/ToggleButton';
 
 export function ForgotPassaword() {
   const [hasError, setHasError] = useState({ email: false });
@@ -67,64 +68,67 @@ export function ForgotPassaword() {
   useEffect(() => {}, [isResult, isLoading]);
 
   return (
-    <div className="page-forgot-password">
-      <aside>
-        <div className="page-forgot-password-title">
-          <h1>
-            <span>Condo</span>Management
-          </h1>
-        </div>
-        <div className="page-forgot-password-image">
-          <img src={buildingReXfcm} />
-        </div>
-        <div className="page-forgot-password-description">
-          <strong>Esqueceu sua senha?</strong>
-          <p>Para recuperá-la, informe seu endereço de email.</p>
-        </div>
-      </aside>
-      <main>
-        <div className="page-forgot-password-logo">
-          <h1>
-            <span>Condo</span>Management
-          </h1>
-        </div>
-        {isLoading && <Spinner />}
-        {!isResult && (
-          <div className="page-forgot-password-form">
-            <h4>Recuperação de senha</h4>
-            <form onSubmit={handleSubmit}>
-              <Label title="Email" htmlFor="email" />
-              <Input
-                className={hasError.email ? 'field-error' : ''}
-                name="email"
-                id="email"
-                type="text"
-                placeholder="Insira o seu email"
-                onChange={handleFieldChange}
-                message={hasError.email ? errorMessage.email : undefined}
-              />
+    <>
+      <ToggleButton />
+      <div className="page-forgot-password">
+        <aside>
+          <div className="page-forgot-password-title">
+            <h1>
+              <span>Condo</span>Management
+            </h1>
+          </div>
+          <div className="page-forgot-password-image">
+            <img src={buildingReXfcm} />
+          </div>
+          <div className="page-forgot-password-description">
+            <strong>Esqueceu sua senha?</strong>
+            <p>Para recuperá-la, informe seu endereço de email.</p>
+          </div>
+        </aside>
+        <main>
+          <div className="page-forgot-password-logo">
+            <h1>
+              <span>Condo</span>Management
+            </h1>
+          </div>
+          {isLoading && <Spinner />}
+          {!isResult && (
+            <div className="page-forgot-password-form">
+              <h4>Recuperação de senha</h4>
+              <form onSubmit={handleSubmit}>
+                <Label title="Email" htmlFor="email" />
+                <Input
+                  className={hasError.email ? 'field-error' : ''}
+                  name="email"
+                  id="email"
+                  type="text"
+                  placeholder="Insira o seu email"
+                  onChange={handleFieldChange}
+                  message={hasError.email ? errorMessage.email : undefined}
+                />
 
-              <div className="page-forgot-password-footer">
-                <Button isFull title="Recuperar senha" type="submit" />
+                <div className="page-forgot-password-footer">
+                  <Button isFull title="Recuperar senha" type="submit" />
+                </div>
+              </form>
+
+              <div className="page-forgot-password-footer-login">
+                <span>ou</span>
+                <NavLink to="/">Entrar</NavLink>
               </div>
-            </form>
-
-            <div className="page-forgot-password-footer-login">
-              <span>ou</span>
-              <NavLink to="/">Entrar</NavLink>
             </div>
-          </div>
-        )}
+          )}
 
-        {isResult && (
-          <div className="page-forgot-password-feedback">
-            {isResult?.icon}
+          {isResult && (
+            <div className="page-forgot-password-feedback">
+              {isResult?.icon}
 
-            <span>{isResult.message}</span>
-          </div>
-        )}
-        <Footer />
-      </main>
-    </div>
+              <span>{isResult.message}</span>
+            </div>
+          )}
+          <Footer />
+        </main>
+      </div>
+    </>
   );
 }

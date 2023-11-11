@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.datetime-picker-content {
   width: 100%;
@@ -32,6 +33,12 @@ div.datetime-picker-content {
         font-size: 14px;
         height: 24px;
         padding: 6px 16px;
+      }
+
+      @include dark {
+        background-color: $gray-dark;
+        border: 1px solid $gray-dark-light;
+        color: #AFB8C1;
       }
     }
 

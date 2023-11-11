@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.content-warning {
   display: flex;
@@ -24,6 +25,10 @@ div.content-warning {
       width: 40px;
       height: 40px;
     }
+
+    @include dark {
+      color: $gray-lightest;
+    }
   }
 
   span {
@@ -40,6 +45,10 @@ div.content-warning {
     @include breakpoint(sm) {
       font-size: 16px;
       line-height: 16px;
+    }
+
+    @include dark {
+      color: $gray-lightest;
     }
   }
 }

@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.modal-create-background {
   position: fixed;
@@ -32,6 +33,11 @@ div.modal-create-background {
       margin: 0 20px;
     }
 
+    @include dark {
+      background-color: $gray-dark-light;
+      box-shadow: none;
+    }
+
     div.modal-create-button-close {
       display: flex;
       justify-content: flex-end;
@@ -51,6 +57,10 @@ div.modal-create-background {
           @include breakpoint(sm) {
             width: 18px;
             height: 18px;
+          }
+
+          @include dark {
+            color: $gray-lightest;
           }
         }
       }
@@ -78,6 +88,10 @@ div.modal-create-background {
           @include breakpoint(sm) {
             font-size: 16px;
             line-height: 22px;
+          }
+
+          @include dark {
+            color: $gray-lightest;
           }
         }
       }
@@ -118,6 +132,10 @@ div.modal-create-background {
       @include breakpoint(sm) {
         width: 40px;
         height: 40px
+      }
+
+      @include dark {
+        color: $gray-lightest;
       }
     }
 

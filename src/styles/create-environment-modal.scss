@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.modal-create-environment-background {
   position: fixed;
@@ -31,6 +32,11 @@ div.modal-create-environment-background {
       margin: 0 20px;
     }
 
+    @include dark {
+      background-color: $gray-dark-light;
+      box-shadow: none;
+    }
+
     div.modal-create-environment-button-close {
       display: flex;
       justify-content: flex-end;
@@ -50,6 +56,10 @@ div.modal-create-environment-background {
           @include breakpoint(sm) {
             width: 18px;
             height: 18px;
+          }
+
+          @include dark {
+            color: $gray-lightest;
           }
         }
       }
@@ -77,6 +87,10 @@ div.modal-create-environment-background {
           @include breakpoint(sm) {
             font-size: 16px;
             line-height: 22px;
+          }
+
+          @include dark {
+            color: $gray-lightest;
           }
         }
       }
@@ -133,9 +147,18 @@ div.modal-create-environment-background {
             @include breakpoint(sm) {
               height: 80px;
             }
+
+            @include dark {
+              background-color: $gray-dark;
+              border: 1px dashed $gray-lightest;
+            }
   
             label {
               color: $primary;
+
+              @include dark {
+                color: $gray-lightest;
+              }
             }
   
             svg {
@@ -146,6 +169,10 @@ div.modal-create-environment-background {
               @include breakpoint(sm) {
                 width: 20px;
                 height: 20px;
+              }
+
+              @include dark {
+                color: $gray-lightest;
               }
             }
             
