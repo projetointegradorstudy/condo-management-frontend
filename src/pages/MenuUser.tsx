@@ -1,12 +1,9 @@
-import { Sidebar } from '../components/Sidebar';
-import { NavbarMobile } from '../components/NavbarMobile';
 import { CardEnvironment } from '../components/CardEnvironment';
 import { IEnvironment } from '../interfaces';
 import { useEffect, useState } from 'react';
 import { getEnvironments } from '../services/api';
 import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
-import { Footer } from '../components/Footer';
 import { getContext } from '../utils/context-import';
 import { ReservationModal } from '../components/ReservationModal';
 import { ToastNotifications } from '../components/ToastNotifications';
@@ -36,8 +33,6 @@ export function MenuUser() {
   return (
     <>
       <div className="page-menu-user">
-        <Sidebar />
-        <NavbarMobile />
         <div className="container-menu-user">
           <div className="content-welcome-user">
             <h1>
@@ -63,7 +58,7 @@ export function MenuUser() {
           )}
         </div>
       </div>
-      <Footer isFull />
+
       <ReservationModal />
       <ToastNotifications />
     </>

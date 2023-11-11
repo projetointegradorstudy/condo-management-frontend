@@ -12,6 +12,7 @@ import { createUserPassword } from '../services/api';
 import { CountDown } from '../components/CountDown';
 import { ToastNotifications } from '../components/ToastNotifications';
 import { getRegex } from '../utils/regex';
+import { ToggleButton } from '../components/ToggleButton';
 import '../styles/confirm-user.scss';
 
 export function ConfirmUser() {
@@ -99,70 +100,73 @@ export function ConfirmUser() {
   useEffect(() => {}, [isLoading, isResult]);
 
   return (
-    <div className="page-confirm-user">
-      <aside>
-        <div className="page-confirm-user-title">
-          <h1>
-            <span>Condo</span>Management
-          </h1>
-        </div>
-        <div className="page-confirm-user-image">
-          <img src={navigatorA479} />
-        </div>
-        <div className="page-confirm-user-description">
-          <strong>Cadastro de senha</strong>
-          <p>Para cadastrar, basta inserir a senha que deseja e confirmar.</p>
-        </div>
-      </aside>
-      <main>
-        <div className="page-confirm-user-logo">
-          <h1>
-            <span>Condo</span>Management
-          </h1>
-        </div>
-        {isLoading && <Spinner />}
-        {!isResult && (
-          <div className="page-confirm-user-form">
-            <h4>Cadastre sua senha</h4>
-            <form onSubmit={handleSubmit}>
-              <Label title="Senha" htmlFor="password" />
-              <InputPassword
-                className={hasError.password ? 'field-error' : ''}
-                name="password"
-                id="password"
-                placeholder="Insira a sua senha"
-                onChange={handleFieldChange}
-                message={hasError.password ? errorMessage.password : undefined}
-              />
-
-              <Label title="Confirme a senha" htmlFor="passwordConfirmation" />
-              <InputPassword
-                className={hasError.passwordConfirmation ? 'field-error' : ''}
-                name="passwordConfirmation"
-                id="passwordConfirmation"
-                placeholder="Confirme a sua senha"
-                onChange={handleFieldChange}
-                message={hasError.passwordConfirmation ? errorMessage.passwordConfirmation : undefined}
-              />
-
-              <div className="page-confirm-user-footer">
-                <Button isFull title="Cadastrar senha" type="submit" />
-              </div>
-            </form>
+    <>
+      <ToggleButton />
+      <div className="page-confirm-user">
+        <aside>
+          <div className="page-confirm-user-title">
+            <h1>
+              <span>Condo</span>Management
+            </h1>
           </div>
-        )}
-
-        {isResult && (
-          <div className="page-confirm-user-feedback">
-            {isResult.icon}
-
-            <span>{isResult.message}</span>
-            {isRemainingSeconds && <CountDown />}
+          <div className="page-confirm-user-image">
+            <img src={navigatorA479} />
           </div>
-        )}
-        <Footer />
-        <ToastNotifications />
-      </main>
-    </div>
+          <div className="page-confirm-user-description">
+            <strong>Cadastro de senha</strong>
+            <p>Para cadastrar, basta inserir a senha que deseja e confirmar.</p>
+          </div>
+        </aside>
+        <main>
+          <div className="page-confirm-user-logo">
+            <h1>
+              <span>Condo</span>Management
+            </h1>
+          </div>
+          {isLoading && <Spinner />}
+          {!isResult && (
+            <div className="page-confirm-user-form">
+              <h4>Cadastre sua senha</h4>
+              <form onSubmit={handleSubmit}>
+                <Label title="Senha" htmlFor="password" />
+                <InputPassword
+                  className={hasError.password ? 'field-error' : ''}
+                  name="password"
+                  id="password"
+                  placeholder="Insira a sua senha"
+                  onChange={handleFieldChange}
+                  message={hasError.password ? errorMessage.password : undefined}
+                />
+
+                <Label title="Confirme a senha" htmlFor="passwordConfirmation" />
+                <InputPassword
+                  className={hasError.passwordConfirmation ? 'field-error' : ''}
+                  name="passwordConfirmation"
+                  id="passwordConfirmation"
+                  placeholder="Confirme a sua senha"
+                  onChange={handleFieldChange}
+                  message={hasError.passwordConfirmation ? errorMessage.passwordConfirmation : undefined}
+                />
+
+                <div className="page-confirm-user-footer">
+                  <Button isFull title="Cadastrar senha" type="submit" />
+                </div>
+              </form>
+            </div>
+          )}
+
+          {isResult && (
+            <div className="page-confirm-user-feedback">
+              {isResult.icon}
+
+              <span>{isResult.message}</span>
+              {isRemainingSeconds && <CountDown />}
+            </div>
+          )}
+          <Footer />
+          <ToastNotifications />
+        </main>
+      </div>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 footer {
   display: flex;
@@ -11,7 +12,7 @@ footer {
  
   &.full {
     width: 100%;
-    background-color: $gray-lightest;
+    background-color: transparent;
   }
 
   span {
@@ -19,6 +20,10 @@ footer {
     line-height: 11px;
     color: $black;
     text-align: center;
+
+    @include dark {
+      color: $white;
+    }
 
     @include breakpoint(sm) {
       font-size: 9px;

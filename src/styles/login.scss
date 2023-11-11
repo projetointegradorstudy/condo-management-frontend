@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.page-login {
   display: flex;
@@ -98,7 +99,6 @@ div.page-login {
     justify-content: center;
     flex-direction: column;
     flex: 9;
-    background: $white;
     background-image: url('../assets//wave-vertical.png');
     background-position: left;
     background-size: contain;
@@ -109,6 +109,14 @@ div.page-login {
       background-image: none;
     }
 
+    @include dark {
+      background-image: url('../assets//wave-vertical-darkmode.png');
+
+      @include breakpoint(md) {
+        background-image: none;
+      }
+    }
+    
     div.page-login-logo {
       background-image: url('../assets//wave-horizontal.png');
       background-position: bottom;
@@ -125,6 +133,10 @@ div.page-login {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+      }
+
+      @include dark {
+        background-image: url('../assets//wave-horizontal-darkmode.png');
       }
 
       h1 {
@@ -171,6 +183,10 @@ div.page-login {
           font-size: 18px;
           line-height: 18px;
         }
+
+        @include dark {
+          color: $white;
+        }
       }
 
       form {
@@ -193,6 +209,10 @@ div.page-login {
             @include breakpoint(sm) {
               font-size: 12px;
               line-height: 12px;
+            }
+
+            @include dark {
+              color: $white;
             }
           }
         }

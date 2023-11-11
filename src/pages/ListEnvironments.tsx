@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
-import { NavbarMobile } from '../components/NavbarMobile';
-import { Sidebar } from '../components/Sidebar';
 import { Spinner } from '../components/Spinner';
 import { WarningFeedback } from '../components/WarningFeedback';
 import { IEnvironment } from '../interfaces';
 import { EnvironmentTable } from '../components/EnvironmentTable';
 import { getEnvironments } from '../services/api';
-import { Footer } from '../components/Footer';
 import { Button } from '../components/Button';
 import { getContext } from '../utils/context-import';
 import { ToastNotifications } from '../components/ToastNotifications';
@@ -34,9 +31,6 @@ export function ListEnvironments() {
     <>
       <div className="page-list-environments">
         <div className="container-list-environments">
-          <Sidebar />
-          <NavbarMobile />
-
           <div className="content-list-environments">
             <h1>Lista de ambientes</h1>
 
@@ -61,7 +55,6 @@ export function ListEnvironments() {
         </div>
       </div>
       <ToastNotifications />
-      <Footer isFull />
     </>
   );
 }

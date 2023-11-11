@@ -8,6 +8,7 @@ import cityImage from '../assets/city_life_gnpr_color.svg';
 import { getContext } from '../utils/context-import';
 import { getRegex } from '../utils/regex';
 import { Footer } from '../components/Footer';
+import { ToggleButton } from '../components/ToggleButton';
 import '../styles/login.scss';
 
 export function Login() {
@@ -63,59 +64,62 @@ export function Login() {
   };
 
   return (
-    <div className="page-login">
-      <aside>
-        <div className="page-login-title">
-          <h1>
-            <span>Condo</span>Management
-          </h1>
-        </div>
-        <div className="page-login-image">
-          <img src={cityImage} />
-          <strong>Reservas inteligentes para seu condomínio!</strong>
-          <p>
-            Realize reservas com apenas alguns cliques,
-            <br /> economizando tempo e esforço.
-          </p>
-        </div>
-      </aside>
-      <main>
-        <div className="page-login-logo">
-          <h1>
-            <span>Condo</span>Management
-          </h1>
-        </div>
-        <div className="page-login-content">
-          <h4>Sign in</h4>
-          <form onSubmit={handleSubmit}>
-            <Label title="Email" htmlFor="email" />
-            <Input
-              className={hasError.email ? 'field-error' : ''}
-              name="email"
-              id="email"
-              type="text"
-              placeholder="Insira o seu email"
-              onChange={handleFieldChange}
-              message={hasError.email ? errorMessage.email : undefined}
-            />
-            <Label title="Senha" htmlFor="password" />
-            <InputPassword
-              className={hasError.password ? 'field-error' : ''}
-              name="password"
-              id="password"
-              placeholder="Insira a sua senha"
-              onChange={handleFieldChange}
-              message={hasError.password ? errorMessage.password : undefined}
-              autoComplete="on"
-            />
-            <div className="page-login-footer">
-              <NavLink to="/forgot-password">Esqueceu sua senha?</NavLink>
-              <Button isFull title="Sign in" type="submit" />
-            </div>
-          </form>
-        </div>
-        <Footer />
-      </main>
-    </div>
+    <>
+      <ToggleButton />
+      <div className="page-login">
+        <aside>
+          <div className="page-login-title">
+            <h1>
+              <span>Condo</span>Management
+            </h1>
+          </div>
+          <div className="page-login-image">
+            <img src={cityImage} />
+            <strong>Reservas inteligentes para seu condomínio!</strong>
+            <p>
+              Realize reservas com apenas alguns cliques,
+              <br /> economizando tempo e esforço.
+            </p>
+          </div>
+        </aside>
+        <main>
+          <div className="page-login-logo">
+            <h1>
+              <span>Condo</span>Management
+            </h1>
+          </div>
+          <div className="page-login-content">
+            <h4>Sign in</h4>
+            <form onSubmit={handleSubmit}>
+              <Label title="Email" htmlFor="email" />
+              <Input
+                className={hasError.email ? 'field-error' : ''}
+                name="email"
+                id="email"
+                type="text"
+                placeholder="Insira o seu email"
+                onChange={handleFieldChange}
+                message={hasError.email ? errorMessage.email : undefined}
+              />
+              <Label title="Senha" htmlFor="password" />
+              <InputPassword
+                className={hasError.password ? 'field-error' : ''}
+                name="password"
+                id="password"
+                placeholder="Insira a sua senha"
+                onChange={handleFieldChange}
+                message={hasError.password ? errorMessage.password : undefined}
+                autoComplete="on"
+              />
+              <div className="page-login-footer">
+                <NavLink to="/forgot-password">Esqueceu sua senha?</NavLink>
+                <Button isFull title="Sign in" type="submit" />
+              </div>
+            </form>
+          </div>
+          <Footer />
+        </main>
+      </div>
+    </>
   );
 }

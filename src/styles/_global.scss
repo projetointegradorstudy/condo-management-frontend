@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 * {
   padding: 0;
@@ -11,6 +12,11 @@ body {
   font-family:'Roboto', sans-serif;
   background-color: $gray-lightest;
   overflow-y: hidden;
+  transition: background-color 0.5s ease-out;
+
+  @include dark {
+    background-color: $gray-dark;
+  }
 
   @include breakpoint(sm) {
     overflow-y: scroll;

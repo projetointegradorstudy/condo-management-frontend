@@ -1,13 +1,23 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.card {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
   padding: 12px 20px;
 
+  @include dark {
+    background-color: $gray-dark-light;
+    transition: background-color 0.5s ease-out;
+  }
+
   div.card-icon {
     display: flex;
+    
+    @include dark {
+      color: $gray-lightest;
+    }
   }
 
   div.card-lead {
@@ -31,6 +41,10 @@ div.card {
         font-size: 12px;
         line-height: 18px;
       }
+
+      @include dark {
+        color: $gray-lightest;
+      }
     }
 
     h3 {
@@ -42,6 +56,10 @@ div.card {
       @include breakpoint(sm) {
         font-size: 24px;
         line-height: 24px;
+      }
+
+      @include dark {
+        color: $gray-lightest;
       }
     }
   }

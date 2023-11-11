@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.card-environment {
   display: flex;
@@ -19,6 +20,13 @@ div.card-environment {
     height: 370px;
   }
 
+  @include dark {
+    background-color: $gray-dark-light;
+    transition: background-color 0.5s ease-out;
+    box-shadow: none;
+    color: $gray-lightest;
+  }
+
   &.card-environment-maintenance {
     box-shadow: none;
 
@@ -31,6 +39,10 @@ div.card-environment {
       height: 100%;
       background-color: rgba(200, 200, 200, 0.8);
       border-radius: 5px;
+
+      @include dark {
+        background-color: rgba(8, 8, 8, 0.801);
+      }
     }
 
     position: relative;
@@ -52,6 +64,10 @@ div.card-environment {
           width: 30px;
         }
 
+        @include dark {
+          color: $gray-lightest;
+        }
+
         @keyframes spin {
           from {
             transform: rotate(0deg);
@@ -70,6 +86,10 @@ div.card-environment {
 
         @include breakpoint(sm) {
           font-size: 14px;
+        }
+
+        @include dark {
+          color: $gray-lightest;
         }
       }
     }
@@ -146,6 +166,10 @@ div.card-environment {
 
         svg {
           color: $black;
+
+          @include dark {
+            color: $gray-lightest;
+          }
         }
 
         strong {

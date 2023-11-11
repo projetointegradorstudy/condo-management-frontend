@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.page-confirm-user {
   display: flex;
@@ -104,6 +105,10 @@ div.page-confirm-user {
     background-size: contain;
     background-repeat: no-repeat;
 
+    @include dark {
+      background-color: $gray-dark;
+    }
+
     @include breakpoint(md) {
       justify-content: flex-start;
       background-image: none;
@@ -139,6 +144,10 @@ div.page-confirm-user {
           font-size: 30px;
           line-height: 30px;
         }
+        
+        @include dark {
+          color: $gray-lightest;
+        }
 
         span {
           font-weight: 400;
@@ -155,6 +164,11 @@ div.page-confirm-user {
       flex-direction: column;
       padding: 0 30px;
 
+      @include dark {
+        background-color: $gray-dark-light;
+        padding: 0 30px 40px;
+      }
+
       h4 {
         color: $primary;
         font-size: 28px;
@@ -170,6 +184,10 @@ div.page-confirm-user {
         @include breakpoint(sm) {
           font-size: 18px;
           line-height: 18px;
+        }
+
+        @include dark {
+          color: $gray-lightest;
         }
       }
 

@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.modal-cancel-background {
   position: fixed;
@@ -31,6 +32,11 @@ div.modal-cancel-background {
       margin: 0 20px;
     }
 
+    @include dark {
+      background-color: $gray-dark-light;
+      box-shadow: none;
+    }
+
     div.modal-cancel-button-close {
       display: flex;
       justify-content: flex-end;
@@ -50,6 +56,10 @@ div.modal-cancel-background {
           @include breakpoint(sm) {
             width: 18px;
             height: 18px;
+          }
+
+          @include dark {
+            color: $gray-lightest;
           }
         }
       }
@@ -77,6 +87,10 @@ div.modal-cancel-background {
             font-size: 14px;
             line-height: 22px;
             padding: 0 20px;
+          }
+
+          @include dark {
+            color: $gray-lightest;
           }
         }
       }

@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.select-content {
   width: 100%;
@@ -22,6 +23,12 @@ div.select-content {
       font-size: 14px;
       height: 36px;
       padding: 6px 16px;
+    }
+
+    @include dark {
+      background-color: $gray-dark;
+      border: 1px solid $gray-dark-light;
+      color: #AFB8C1;
     }
 
     &::-ms-expand {
