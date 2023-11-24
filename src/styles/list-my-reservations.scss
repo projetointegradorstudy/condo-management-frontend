@@ -69,7 +69,7 @@ div.page-my-requests {
         overflow-y: auto;
         scroll-behavior: smooth;
         height: 58vh;
-
+        
         &::-webkit-scrollbar {
           width: 17px;
         }
@@ -223,6 +223,19 @@ div.page-my-requests {
               }
             }
           }
+        }
+      }
+
+      div.content-my-requests-list-reset {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 58vh;
+        width: 100%;
+      
+        @include breakpoint(sm) {
+          width: 100%;
+          overflow-y: hidden;
         }
       }
 
