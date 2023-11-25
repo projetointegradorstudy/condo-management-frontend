@@ -76,7 +76,7 @@ export function NavbarMobile() {
                 {navItems.map((navItem) => (
                   <li key={navItem.name}>
                     <>{navItem.icon}</>
-                    <NavLink to={navItem.path}>
+                    <NavLink to={navItem.path} onClick={() => setIsOpen(!isOpen)}>
                       <span>{navItem.name}</span>
                     </NavLink>
                   </li>

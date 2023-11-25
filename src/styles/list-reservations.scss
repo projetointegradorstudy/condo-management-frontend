@@ -241,6 +241,19 @@ div.page-requests {
           }
         }
       }
+
+      div.content-requests-list-reset {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 58vh;
+        width: 100%;
+
+        @include breakpoint(sm) {
+          width: 100%;
+          overflow-y: hidden;
+        }
+      }
     }
   }
 }

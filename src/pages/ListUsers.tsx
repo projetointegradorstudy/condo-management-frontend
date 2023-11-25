@@ -39,7 +39,7 @@ export function ListUsers() {
             </div>
 
             <div className="container">
-              <div className="content-list">
+              <div className={users?.length > 0 ? 'content-list' : 'content-list-reset'}>
                 <div className="content-list-scroll">
                   {users?.length > 0 && !isLoading ? (
                     <UserTable data={users} />

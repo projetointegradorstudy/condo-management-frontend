@@ -34,7 +34,7 @@ export function Reservations() {
             <h1>Reservas</h1>
 
             <div className="container">
-              <div className="content-requests-list">
+              <div className={reservation?.length > 0 ? 'content-requests-list' : 'content-requests-list-reset'}>
                 <div className="content-list-scroll">
                   {reservation?.length && !isLoading ? (
                     <ReservationTable data={reservation} />

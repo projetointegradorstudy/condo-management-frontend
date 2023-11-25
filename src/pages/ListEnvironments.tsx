@@ -39,7 +39,7 @@ export function ListEnvironments() {
             </div>
 
             <div className="container">
-              <div className="content-list">
+              <div className={environments?.length > 0 ? 'content-list' : 'content-list-reset'}>
                 <div className="content-list-scroll">
                   {environments?.length && !isLoading ? (
                     <EnvironmentTable data={environments} />

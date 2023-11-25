@@ -34,7 +34,9 @@ export function MyReservations() {
             <h1>Minhas reservas</h1>
 
             <div className="container">
-              <div className="content-my-requests-list">
+              <div
+                className={myReservations?.length > 0 ? 'content-my-requests-list' : 'content-my-requests-list-reset'}
+              >
                 <div className="content-list-scroll">
                   {myReservations?.length && !isLoading ? (
                     <MyReservationTable data={myReservations} />
