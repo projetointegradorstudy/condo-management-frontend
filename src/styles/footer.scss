@@ -12,7 +12,11 @@ footer {
  
   &.full {
     width: 100%;
-    background-color: transparent;
+    background-color: $gray-lightest;
+
+    @include dark {
+      background-color: $gray-dark;
+    }
   }
 
   span {
