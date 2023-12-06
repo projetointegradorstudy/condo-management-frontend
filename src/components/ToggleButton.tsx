@@ -24,6 +24,7 @@ export function ToggleButton() {
       setIsDarkMode(htmlElement.classList.contains('dark'));
     }
   }, []);
+
   return (
     <div className="theme-color-mode">
       <button className="toggle" onClick={handleTheme}>
@@ -33,6 +34,7 @@ export function ToggleButton() {
           <ToggleLeft className="dark" size={40} weight="fill" />
         )}
       </button>
+      <span className={isDarkMode ? 'light' : 'dark'}>{isDarkMode ? 'Dark' : 'Light'} Mode</span>
     </div>
   );
 }
