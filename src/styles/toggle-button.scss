@@ -2,7 +2,7 @@
 @import './variables';
 
 div.theme-color-mode {
-  width: 50px;
+  width: 120px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -12,6 +12,7 @@ div.theme-color-mode {
   z-index: 1000;
   position: absolute;
   right: 0;
+  flex-direction: column;
 
   @include breakpoint(sm) {
     display: none;
@@ -35,6 +36,18 @@ div.theme-color-mode {
       &.dark {
         color: $primary;
       }
+    }
+  }
+  span {
+    font-size: 10px;
+    line-height: 10px;
+
+    &.light {
+      color: $gray-lightest;
+    }
+
+    &.dark {
+      color: $primary;
     }
   }
 }
