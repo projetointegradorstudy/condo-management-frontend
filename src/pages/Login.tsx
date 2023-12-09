@@ -8,7 +8,6 @@ import cityImage from '../assets/city_life_gnpr_color.svg';
 import { getContext } from '../utils/context-import';
 import { getRegex } from '../utils/regex';
 import { Footer } from '../components/Footer';
-import { ToggleButton } from '../components/ToggleButton';
 import '../styles/login.scss';
 
 export function Login() {
@@ -65,7 +64,6 @@ export function Login() {
 
   return (
     <>
-      <ToggleButton />
       <div className="page-login">
         <aside>
           <div className="page-login-title">

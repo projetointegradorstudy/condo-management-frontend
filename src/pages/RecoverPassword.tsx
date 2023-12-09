@@ -12,7 +12,6 @@ import { resetPassword } from '../services/api';
 import { CountDown } from '../components/CountDown';
 import { getRegex } from '../utils/regex';
 import '../styles/recover-password.scss';
-import { ToggleButton } from '../components/ToggleButton';
 
 export function RecoverPassword() {
   const [hasError, setHasError] = useState({ password: false, passwordConfirmation: false });
@@ -100,7 +99,6 @@ export function RecoverPassword() {
 
   return (
     <>
-      <ToggleButton />
       <div className="page-recover-password">
         <aside>
           <div className="page-recover-password-title">

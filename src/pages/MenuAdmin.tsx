@@ -2,13 +2,10 @@ import { Users, ListPlus, WarningCircle, List } from 'phosphor-react';
 import { Lead } from '../components/Lead';
 import { useEffect, useState } from 'react';
 import { getContext } from '../utils/context-import';
-import {
-  getCountEnvironments,
-  getCountReservations,
-  getCountReservationsPending,
-  getCountUsers,
-} from '../services/api';
+import { getCountEnvironments, getCountReservationsByStatus, getCountUsers } from '../services/api';
 import { ReservationStatus } from '../interfaces';
+import { ChartDoughnut } from '../components/ChartDoughnut';
+import { ChartBar } from '../components/ChartBar';
 import '../styles/menu-admin.scss';
 
 const cardItems = [
@@ -32,13 +29,13 @@ const cardItems = [
 
 export function MenuAdmin() {
   const { isMyselfData, getUserData } = getContext();
-  const [isDashboardData, setIsDashboardData] = useState<number[] | null>(null);
+  const [isDashboardData, setIsDashboardData] = useState<number[]>([0, 0, 0, 0]);
   const getDashboardData = async (): Promise<void> => {
     const userQty = +(await getCountUsers().then((res) => res.data)) || 0;
     const environmentQty = +(await getCountEnvironments().then((res) => res.data)) || 0;
-    const envReservationsQty = +(await getCountReservations().then((res) => res.data)) || 0;
+    const envReservationsQty = +(await getCountReservationsByStatus().then((res) => res.data)) || 0;
     const envReservationsPendingQty =
-      +(await getCountReservationsPending(ReservationStatus.PENDING).then((res) => res.data)) || 0;
+      +(await getCountReservationsByStatus(ReservationStatus.PENDING).then((res) => res.data)) || 0;
     setIsDashboardData([userQty, environmentQty, envReservationsQty, envReservationsPendingQty]);
   };
 
@@ -69,8 +66,9 @@ export function MenuAdmin() {
               ))}
             </div>
           </div>
-          <div className="content-main">
-            <h2>Overview</h2>
+          <div className="content-main-second">
+            <ChartDoughnut usersQty={isDashboardData[0]} environmentsQty={isDashboardData[1]} />
+            <ChartBar />
           </div>
         </div>
       </div>
