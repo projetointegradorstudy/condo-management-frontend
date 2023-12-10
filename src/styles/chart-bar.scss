@@ -2,16 +2,16 @@
 @import './variables';
 @import './mixins';
 
-div.chart-content-line {
+div.chart-content-bar {
   width: 652px;
-   margin-bottom: 40px;
+  margin-bottom: 40px;
 
   @include breakpoint(md) {
     width: 500px;
   }
 
   @include breakpoint(sm) {
-    width: 250px;
+    width: 100%;
   }
 
   h1 {
@@ -26,9 +26,18 @@ div.chart-content-line {
       line-height: 22px;
       padding-top: 30px;
     }
-  
+
     @include dark {
       color: $gray-lightest;
+    }
+  }
+
+  div.chart-bar {
+    @include breakpoint(sm) {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

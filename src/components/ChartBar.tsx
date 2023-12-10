@@ -2,13 +2,40 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as Chartjs, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
 import { getCountReservationsByStatus } from '../services/api';
 import { ReservationStatus } from '../interfaces';
-import '../styles/chart-line.scss';
-import { useEffect, useState } from 'react';
+import '../styles/chart-bar.scss';
+import { useEffect, useRef, useState } from 'react';
 
 Chartjs.register(Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 
 export function ChartBar() {
+  const options = {
+    plugins: {
+      legend: {
+        labels: {
+          color: '#616161',
+        },
+      },
+    },
+  };
+
+  const optionsMobile = {
+    ...options,
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: {
+          boxWidth: 10,
+          boxHeight: 10,
+          font: {
+            size: 10,
+          },
+        },
+      },
+    },
+  };
+  const chartDiv = useRef<HTMLDivElement | null>(null);
   const [isChartData, setIsChartData] = useState<number[]>([0, 0, 0, 0]);
+  const [chartOptions, setChartOptions] = useState<any>(options);
   const getChartData = async (): Promise<void> => {
     const envReservationsApprovedQty =
       +(await getCountReservationsByStatus(ReservationStatus.APPROVED).then((res) => res.data)) || 0;
@@ -31,19 +58,21 @@ export function ChartBar() {
     getChartData();
   }, []);
 
-  const options = {
-    // responsive: true,
-    // maintainAspectRatio: true,
-    plugins: {
-      legend: {
-        position: 'top' as const,
-        display: true,
-        labels: {
-          color: '#616161',
-        },
-      },
-    },
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      if (chartDiv.current) {
+        window.innerWidth < 680 ? setChartOptions(optionsMobile) : setChartOptions(options);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [chartDiv]);
 
   const data = {
     labels: [''],
@@ -72,10 +101,11 @@ export function ChartBar() {
   };
 
   return (
-    <div className="chart-content-line">
+    <div className="chart-content-bar">
       <h1>Reservas</h1>
-
-      <Bar data={data} options={options} />
+      <div className="chart-bar" ref={chartDiv}>
+        <Bar data={data} options={chartOptions} />
+      </div>
     </div>
   );
 }

@@ -10,7 +10,7 @@ div.chart-content-doughnut {
   }
 
   @include breakpoint(sm) {
-    width: 250px;
+    width: 100%;
   }
 
   h1 {
@@ -30,5 +30,13 @@ div.chart-content-doughnut {
       color: $gray-lightest;
     }
   }
-  
+
+  div.chart-doughnut {
+    @include breakpoint(sm) {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

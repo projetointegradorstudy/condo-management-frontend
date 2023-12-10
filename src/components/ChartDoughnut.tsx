@@ -11,8 +11,7 @@ interface IData {
 
 export function ChartDoughnut({ usersQty, environmentsQty }: IData) {
   const options = {
-    // responsive: true,
-    // maintainAspectRatio: true,
+    responsive: true,
     plugins: {
       legend: {
         display: true,
@@ -39,8 +38,9 @@ export function ChartDoughnut({ usersQty, environmentsQty }: IData) {
   return (
     <div className="chart-content-doughnut">
       <h1>Cadastros</h1>
-
-      <Doughnut data={data} datasetIdKey="id" options={options} className="dough" />
+      <div className="chart-doughnut">
+        <Doughnut data={data} datasetIdKey="id" options={options} className="dough" />
+      </div>
     </div>
   );
 }

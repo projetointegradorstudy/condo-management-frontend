@@ -17,7 +17,7 @@ div.page-menu-admin {
     flex: 1;
     justify-content: flex-start;
     margin: 100px 76px 30px;
-  
+
     @include breakpoint(xxl) {
       gap: 4rem;
     }
@@ -29,11 +29,10 @@ div.page-menu-admin {
 
     @include breakpoint(sm) {
       margin: 60px 30px 30px;
-      gap: 5rem;
+      gap: 2rem;
     }
 
     div.content-welcome {
-
       h1 {
         font-size: 32px;
         line-height: 38px;
@@ -78,11 +77,15 @@ div.page-menu-admin {
         flex-wrap: wrap;
         gap: 2rem;
 
+        @include breakpoint(sm) {
+          justify-content: center;
+        }
+
         div.card {
           display: flex;
           align-items: center;
           gap: 1rem;
-          
+
           svg {
             width: 28px;
           }
@@ -97,7 +100,10 @@ div.page-menu-admin {
       @include breakpoint(md) {
         flex-direction: column;
       }
+
+      @include breakpoint(sm) {
+        gap: 0;
+      }
     }
   }
-  
 }
