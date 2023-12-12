@@ -7,25 +7,32 @@ div.page-menu-admin {
   height: 100vh;
   width: 100%;
 
+  @include breakpoint(xl) {
+    overflow-y: scroll;
+  }
+
   div.content-menu-admin {
     display: flex;
     flex-direction: column;
     flex: 1;
     justify-content: flex-start;
     margin: 100px 76px 30px;
-    gap: 4rem;
+
+    @include breakpoint(xxl) {
+      gap: 4rem;
+    }
 
     @include breakpoint(xl) {
       margin: 60px 40px 30px;
+      gap: 2rem;
     }
 
     @include breakpoint(sm) {
       margin: 60px 30px 30px;
-      gap: 5rem;
+      gap: 2rem;
     }
 
     div.content-welcome {
-
       h1 {
         font-size: 32px;
         line-height: 38px;
@@ -70,17 +77,33 @@ div.page-menu-admin {
         flex-wrap: wrap;
         gap: 2rem;
 
+        @include breakpoint(sm) {
+          justify-content: center;
+        }
+
         div.card {
           display: flex;
           align-items: center;
           gap: 1rem;
-          
+
           svg {
             width: 28px;
           }
         }
       }
     }
+
+    div.content-main-second {
+      display: flex;
+      gap: 4rem;
+
+      @include breakpoint(md) {
+        flex-direction: column;
+      }
+
+      @include breakpoint(sm) {
+        gap: 0;
+      }
+    }
   }
-  
 }

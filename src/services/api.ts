@@ -25,11 +25,7 @@ export async function getCountEnvironments() {
   return api.get('/environments/count');
 }
 
-export async function getCountReservations() {
-  return api.get('/env-reservations/count');
-}
-
-export async function getCountReservationsPending(status?: ReservationStatus) {
+export async function getCountReservationsByStatus(status?: ReservationStatus) {
   return api.get(`/env-reservations/count${!status ? '' : `?status=${status}`}`);
 }
 

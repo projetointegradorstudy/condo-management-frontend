@@ -1,0 +1,63 @@
+@import './theme';
+@import './variables';
+@import './mixins';
+
+div.chart-content-doughnut {
+  width: 300px;
+  
+
+  @include breakpoint(md) {
+    width: 280px;
+  }
+
+  @include breakpoint(sm) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 600;
+    color: #202020;
+    padding-bottom: 10px;
+
+    @include breakpoint(sm) {
+      font-size: 16px;
+      line-height: 22px;
+      padding-top: 30px;
+    }
+
+    @include dark {
+      color: $gray-lightest;
+    }
+  }
+  div.title-chart {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  div.chart-doughnut {
+    position: relative;
+    height: 33vh;
+    width: 35vw;
+  
+    @include breakpoint(md) {
+      height: 36vh;
+      width: 36vw;
+    }
+  
+    @include breakpoint(sm) {
+      height: 28vh;
+      width: 66vw;
+    }
+
+    @include breakpoint(xs) {
+      height: 26vh;
+      width: 71vw;
+    }
+  }
+}

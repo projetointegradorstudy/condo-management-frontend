@@ -11,7 +11,6 @@ import { forgotUserPassword } from '../services/api';
 import { getRegex } from '../utils/regex';
 import { IResultReservation, resetUserPasswordMessages } from '../interfaces';
 import '../styles/forgot-password.scss';
-import { ToggleButton } from '../components/ToggleButton';
 
 export function ForgotPassaword() {
   const [hasError, setHasError] = useState({ email: false });
@@ -69,7 +68,6 @@ export function ForgotPassaword() {
 
   return (
     <>
-      <ToggleButton />
       <div className="page-forgot-password">
         <aside>
           <div className="page-forgot-password-title">

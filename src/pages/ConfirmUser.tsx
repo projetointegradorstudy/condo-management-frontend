@@ -12,7 +12,6 @@ import { createUserPassword } from '../services/api';
 import { CountDown } from '../components/CountDown';
 import { ToastNotifications } from '../components/ToastNotifications';
 import { getRegex } from '../utils/regex';
-import { ToggleButton } from '../components/ToggleButton';
 import '../styles/confirm-user.scss';
 
 export function ConfirmUser() {
@@ -101,7 +100,6 @@ export function ConfirmUser() {
 
   return (
     <>
-      <ToggleButton />
       <div className="page-confirm-user">
         <aside>
           <div className="page-confirm-user-title">
