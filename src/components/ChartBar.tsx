@@ -9,9 +9,24 @@ Chartjs.register(Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title)
 
 export function ChartBar() {
   const options = {
+    responsive: true,
     plugins: {
       legend: {
         labels: {
+          color: '#616161',
+        },
+      },
+    },
+    scales: {
+      y: {
+        grid: {
+          display: true,
+          color: '#616161',
+        },
+      },
+      x: {
+        grid: {
+          display: true,
           color: '#616161',
         },
       },
@@ -20,7 +35,6 @@ export function ChartBar() {
 
   const optionsMobile = {
     ...options,
-    responsive: true,
     plugins: {
       legend: {
         labels: {
@@ -102,7 +116,10 @@ export function ChartBar() {
 
   return (
     <div className="chart-content-bar">
-      <h1>Reservas</h1>
+      <div className="title-chart">
+        <h1>Reservas</h1>
+      </div>
+
       <div className="chart-bar" ref={chartDiv}>
         <Bar data={data} options={chartOptions} />
       </div>

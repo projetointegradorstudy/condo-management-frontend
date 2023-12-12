@@ -4,6 +4,7 @@
 
 div.chart-content-doughnut {
   width: 300px;
+  
 
   @include breakpoint(md) {
     width: 280px;
@@ -11,6 +12,9 @@ div.chart-content-doughnut {
 
   @include breakpoint(sm) {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   h1 {
@@ -30,13 +34,30 @@ div.chart-content-doughnut {
       color: $gray-lightest;
     }
   }
+  div.title-chart {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+  }
 
   div.chart-doughnut {
+    position: relative;
+    height: 33vh;
+    width: 35vw;
+  
+    @include breakpoint(md) {
+      height: 36vh;
+      width: 36vw;
+    }
+  
     @include breakpoint(sm) {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
+      height: 28vh;
+      width: 66vw;
+    }
+
+    @include breakpoint(xs) {
+      height: 26vh;
+      width: 71vw;
     }
   }
 }

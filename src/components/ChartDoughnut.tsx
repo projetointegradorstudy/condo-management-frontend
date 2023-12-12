@@ -37,7 +37,10 @@ export function ChartDoughnut({ usersQty, environmentsQty }: IData) {
 
   return (
     <div className="chart-content-doughnut">
-      <h1>Cadastros</h1>
+      <div className="title-chart">
+        <h1>Cadastros</h1>
+      </div>
+
       <div className="chart-doughnut">
         <Doughnut data={data} datasetIdKey="id" options={options} className="dough" />
       </div>

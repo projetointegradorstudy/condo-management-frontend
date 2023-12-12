@@ -24,7 +24,7 @@ export function InputPassword({ message, isNotRequired, ...props }: InputPasswor
   return (
     <>
       <div className="input-content" style={{ marginBottom: message ? '0px' : '20px' }}>
-        <input className="input-password" {...props} type={passwordType} />
+        <input className="input-password" {...props} type={passwordType} autoComplete="garbge" />
         <span onClick={handleToogle}>{passwordIcon}</span>
       </div>
 

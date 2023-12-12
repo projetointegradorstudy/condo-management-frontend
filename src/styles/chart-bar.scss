@@ -12,6 +12,9 @@ div.chart-content-bar {
 
   @include breakpoint(sm) {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   h1 {
@@ -32,12 +35,25 @@ div.chart-content-bar {
     }
   }
 
+  div.title-chart {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+  }
+
   div.chart-bar {
+    position: relative;
+    height: 35vh;
+    width: 35vw;
+
+    @include breakpoint(md) {
+      height: 50vh;
+      width: 50vw;
+    }
+
     @include breakpoint(sm) {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
+      height: 20vh;
+      width: 80vw;
     }
   }
 }
