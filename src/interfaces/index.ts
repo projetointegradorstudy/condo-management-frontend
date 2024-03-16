@@ -30,6 +30,10 @@ export interface IDashboardData {
   envReservationsQty: number;
 }
 
+export interface IGoogleOAuth {
+  token: string;
+}
+
 export interface IAuthProps {
   email: string;
   password: string;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
-import { api, auth, getMyself } from '../services/api';
+import { api, auth, getMyself, googleOauth } from '../services/api';
 import { GlobalContext } from './GlobalContext';
 import useStorage from '../utils/useStorage';
-import { IAuthProps, IModalReservations, IResult, IUser, Iprops } from '../interfaces/index';
+import { IAuthProps, IGoogleOAuth, IModalReservations, IResult, IUser, Iprops } from '../interfaces/index';
 
 export function GlobalProvider({ children }: Iprops) {
   const [token, setToken, removeToken] = useStorage('token');
@@ -43,6 +43,20 @@ export function GlobalProvider({ children }: Iprops) {
       navigate('/menu-user');
     }
   }, [decodedToken]);
+
+  async function signinOauth(credential: IGoogleOAuth): Promise<IResult> {
+    const result = await googleOauth(credential)
+      .then((res) => {
+        setToken(res.data?.access_token);
+        setIsAuthenticated(true);
+        api.defaults.headers.Authorization = `Bearer ${res.data.access_token}`;
+        return { result: true, message: 'Login succeed' };
+      })
+      .catch((e) => {
+        return { result: false, message: e.response?.data.message };
+      });
+    return result;
+  }
 
   async function signin(credentials: IAuthProps): Promise<IResult> {
     const result = await auth(credentials)
@@ -134,6 +148,7 @@ export function GlobalProvider({ children }: Iprops) {
         setIsMyselfData,
         isRemainingSeconds,
         setIsRemaingSeconds,
+        signinOauth,
         signin,
         signout,
         getUserData,

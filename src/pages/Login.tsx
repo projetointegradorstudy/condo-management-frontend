@@ -4,18 +4,22 @@ import { Input } from '../components/Input';
 import { InputPassword } from '../components/InputPassword';
 import { Label } from '../components/Label';
 import { Button } from '../components/Button';
+import { GoogleOAuthProvider, GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import cityImage from '../assets/city_life_gnpr_color.svg';
 import { getContext } from '../utils/context-import';
 import { getRegex } from '../utils/regex';
 import { Footer } from '../components/Footer';
 import '../styles/login.scss';
+import { ToastMessage, ToastNotifications } from '../components/ToastNotifications';
+import { Case } from '../interfaces';
+import { Spinner } from '../components/Spinner';
 
 export function Login() {
   const [hasError, setHasError] = useState({ email: false, password: false });
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errorMessage, setErrorMessage] = useState({ email: '', password: '' });
   const [isLoading, setIsLoading] = useState(false);
-  const { signin, setIsOpenConfirmSignoutModal } = getContext();
+  const { signinOauth, signin, setIsOpenConfirmSignoutModal } = getContext();
 
   const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target;
@@ -28,10 +32,21 @@ export function Login() {
     e.preventDefault();
     if (checkFields()) return;
     setIsLoading(true);
-    await signin({ email: formData.email, password: formData.password });
+    const data = await signin({ email: formData.email, password: formData.password });
+
+    if (!data.result) ToastMessage({ message: 'Credenciais inválidas', type: Case.ERROR });
 
     setIsLoading(false);
     setIsOpenConfirmSignoutModal(false);
+  };
+
+  const handleGoogleOauth = async (credentialResponse: CredentialResponse) => {
+    setIsLoading(true);
+    if (!credentialResponse.credential) return;
+    const data = await signinOauth({ token: credentialResponse.credential });
+
+    if (!data.result) ToastMessage({ message: 'Credenciais inválidas', type: Case.ERROR });
+    setIsLoading(false);
   };
 
   const checkFields = (): boolean => {
@@ -70,6 +85,7 @@ export function Login() {
             <h1>
               <span>Condo</span>Management
             </h1>
+            {isLoading && <Spinner />}
           </div>
           <div className="page-login-image">
             <img src={cityImage} />
@@ -114,10 +130,23 @@ export function Login() {
                 <Button isFull title="Sign in" type="submit" />
               </div>
             </form>
+            <div>
+              <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}>
+                <GoogleLogin
+                  onSuccess={async (credentialResponse) => {
+                    handleGoogleOauth(credentialResponse);
+                  }}
+                  onError={() => {
+                    console.error('Login Failed');
+                  }}
+                />
+              </GoogleOAuthProvider>
+            </div>
           </div>
           <Footer />
         </main>
       </div>
+      <ToastNotifications />
     </>
   );
 }
