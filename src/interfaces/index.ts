@@ -34,6 +34,11 @@ export interface IGoogleOAuth {
   token: string;
 }
 
+export interface IFacebookOAuth {
+  email: string;
+  accessToken: string;
+}
+
 export interface IAuthProps {
   email: string;
   password: string;

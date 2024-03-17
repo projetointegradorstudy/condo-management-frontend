@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
-import { api, auth, getMyself, googleOauth } from '../services/api';
+import { api, auth, facebookOauth, getMyself, googleOauth } from '../services/api';
 import { GlobalContext } from './GlobalContext';
 import useStorage from '../utils/useStorage';
-import { IAuthProps, IGoogleOAuth, IModalReservations, IResult, IUser, Iprops } from '../interfaces/index';
+import {
+  IAuthProps,
+  IFacebookOAuth,
+  IGoogleOAuth,
+  IModalReservations,
+  IResult,
+  IUser,
+  Iprops,
+} from '../interfaces/index';
 
 export function GlobalProvider({ children }: Iprops) {
   const [token, setToken, removeToken] = useStorage('token');
@@ -44,7 +52,21 @@ export function GlobalProvider({ children }: Iprops) {
     }
   }, [decodedToken]);
 
-  async function signinOauth(credential: IGoogleOAuth): Promise<IResult> {
+  async function signinFacebookOauth(credential: IFacebookOAuth): Promise<IResult> {
+    const result = await facebookOauth(credential)
+      .then((res) => {
+        setToken(res.data?.access_token);
+        setIsAuthenticated(true);
+        api.defaults.headers.Authorization = `Bearer ${res.data.access_token}`;
+        return { result: true, message: 'Login succeed' };
+      })
+      .catch((e) => {
+        return { result: false, message: e.response?.data.message };
+      });
+    return result;
+  }
+
+  async function signinGoogleOauth(credential: IGoogleOAuth): Promise<IResult> {
     const result = await googleOauth(credential)
       .then((res) => {
         setToken(res.data?.access_token);
@@ -78,6 +100,7 @@ export function GlobalProvider({ children }: Iprops) {
     removeIsAuthenticated();
     setIsAdmin(false);
     setIsUser(false);
+    setIsOpenConfirmSignoutModal(false);
     navigate('/');
   }
 
@@ -148,7 +171,8 @@ export function GlobalProvider({ children }: Iprops) {
         setIsMyselfData,
         isRemainingSeconds,
         setIsRemaingSeconds,
-        signinOauth,
+        signinFacebookOauth,
+        signinGoogleOauth,
         signin,
         signout,
         getUserData,
