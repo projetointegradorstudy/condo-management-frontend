@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
-import { api, auth, facebookOauth, getMyself, googleOauth } from '../services/api';
+import { api, auth, facebookOauth, getMyself, googleOauth, microsoftOauth } from '../services/api';
 import { GlobalContext } from './GlobalContext';
 import useStorage from '../utils/useStorage';
 import {
   IAuthProps,
   IFacebookOAuth,
   IGoogleOAuth,
+  IMicrosoftOAuth,
   IModalReservations,
   IResult,
   IUser,
@@ -68,6 +69,20 @@ export function GlobalProvider({ children }: Iprops) {
 
   async function signinGoogleOauth(credential: IGoogleOAuth): Promise<IResult> {
     const result = await googleOauth(credential)
+      .then((res) => {
+        setToken(res.data?.access_token);
+        setIsAuthenticated(true);
+        api.defaults.headers.Authorization = `Bearer ${res.data.access_token}`;
+        return { result: true, message: 'Login succeed' };
+      })
+      .catch((e) => {
+        return { result: false, message: e.response?.data.message };
+      });
+    return result;
+  }
+
+  async function signinMicrosoftOauth(credential: IMicrosoftOAuth): Promise<IResult> {
+    const result = await microsoftOauth(credential)
       .then((res) => {
         setToken(res.data?.access_token);
         setIsAuthenticated(true);
@@ -173,6 +188,7 @@ export function GlobalProvider({ children }: Iprops) {
         setIsRemaingSeconds,
         signinFacebookOauth,
         signinGoogleOauth,
+        signinMicrosoftOauth,
         signin,
         signout,
         getUserData,

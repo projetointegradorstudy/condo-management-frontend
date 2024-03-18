@@ -31,7 +31,13 @@ export interface IDashboardData {
 }
 
 export interface IGoogleOAuth {
-  token: string;
+  email: string;
+  accessToken: string;
+}
+
+export interface IMicrosoftOAuth {
+  email: string;
+  accessToken: string;
 }
 
 export interface IFacebookOAuth {

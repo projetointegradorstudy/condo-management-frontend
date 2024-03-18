@@ -8,6 +8,7 @@ import {
   IEditUser,
   IFacebookOAuth,
   IGoogleOAuth,
+  IMicrosoftOAuth,
   IUpdateReservationDto,
   ReservationStatus,
 } from '../interfaces/index';
@@ -24,6 +25,10 @@ export async function facebookOauth(credential: IFacebookOAuth) {
 
 export async function googleOauth(credential: IGoogleOAuth) {
   return api.post('/auth/google', credential);
+}
+
+export async function microsoftOauth(credential: IMicrosoftOAuth) {
+  return api.post('/auth/microsoft', credential);
 }
 
 /** DASHBOARD-DATA */

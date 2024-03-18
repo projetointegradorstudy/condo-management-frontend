@@ -3,6 +3,7 @@ import {
   IAuthProps,
   IFacebookOAuth,
   IGoogleOAuth,
+  IMicrosoftOAuth,
   IModalReservations,
   IResult,
   IStorageState,
@@ -44,6 +45,7 @@ export interface GlobalContextProps {
   setIsRemaingSeconds: Dispatch<SetStateAction<number | undefined>>;
   signinFacebookOauth: (credential: IFacebookOAuth) => Promise<IResult>;
   signinGoogleOauth: (credential: IGoogleOAuth) => Promise<IResult>;
+  signinMicrosoftOauth: (credential: IMicrosoftOAuth) => Promise<IResult>;
   signin: (credential: IAuthProps) => Promise<IResult>;
   signout: () => void;
   getUserData: () => void;
