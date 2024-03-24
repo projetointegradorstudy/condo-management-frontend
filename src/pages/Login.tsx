@@ -152,7 +152,7 @@ export function Login() {
               </div>
             </form>
             <div className="divider-wrapper">
-              <span>or</span>
+              <span>ou</span>
             </div>
             <div className="oauth-content">
               <LoginSocialGoogle
