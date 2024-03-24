@@ -151,8 +151,12 @@ export function Login() {
                 <Button isFull title="Sign in" type="submit" />
               </div>
             </form>
-            <div>
+            <div className="divider-wrapper">
+              <span>or</span>
+            </div>
+            <div className="oauth-content">
               <LoginSocialGoogle
+                className="button-container"
                 typeResponse="idToken"
                 client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
                 onResolve={({ provider, data }: IResolveParams) => {
@@ -165,6 +169,7 @@ export function Login() {
                 <GoogleLoginButton />
               </LoginSocialGoogle>
               <LoginSocialFacebook
+                className="button-container"
                 fieldsProfile="email"
                 appId={process.env.REACT_APP_FB_APP_ID as string}
                 onResolve={({ provider, data }: IResolveParams) => {
@@ -177,6 +182,7 @@ export function Login() {
                 <FacebookLoginButton />
               </LoginSocialFacebook>
               <LoginSocialMicrosoft
+                className="button-container"
                 scope="user.read"
                 prompt="select_account"
                 tenant="consumers"
