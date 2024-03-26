@@ -6,6 +6,9 @@ import {
   ICreateReservation,
   IEditEnvironment,
   IEditUser,
+  IFacebookOAuth,
+  IGoogleOAuth,
+  IMicrosoftOAuth,
   IUpdateReservationDto,
   ReservationStatus,
 } from '../interfaces/index';
@@ -14,6 +17,18 @@ export const api = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}` }
 
 export async function auth(authprops: IAuthProps) {
   return api.post('/auth', authprops);
+}
+
+export async function facebookOauth(credential: IFacebookOAuth) {
+  return api.post('/auth/facebook', credential);
+}
+
+export async function googleOauth(credential: IGoogleOAuth) {
+  return api.post('/auth/google', credential);
+}
+
+export async function microsoftOauth(credential: IMicrosoftOAuth) {
+  return api.post('/auth/microsoft', credential);
 }
 
 /** DASHBOARD-DATA */

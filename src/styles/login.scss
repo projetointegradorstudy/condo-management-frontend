@@ -116,7 +116,7 @@ div.page-login {
         background-image: none;
       }
     }
-    
+
     div.page-login-logo {
       background-image: url('../assets//wave-horizontal.png');
       background-position: bottom;
@@ -155,6 +155,43 @@ div.page-login {
         span {
           font-weight: 400;
         }
+      }
+    }
+
+    div.divider-wrapper::before {
+      content: '';
+      border-bottom: 1px solid #c2c8d0;
+      flex: 1 0 auto;
+      height: 0.5em;
+      margin: 0;
+    }
+
+    div.divider-wrapper::after {
+      content: '';
+      border-bottom: 1px solid #c2c8d0;
+      flex: 1 0 auto;
+      height: 0.5em;
+      margin: 0;
+    }
+
+    div.divider-wrapper {
+      display: flex;
+      flex-direction: row;
+      text-transform: uppercase;
+      border: none;
+      font-size: 12px;
+      font-weight: 400;
+      margin: 0 0 15px 0;
+      padding: 15px 0 0;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      span {
+        text-align: center;
+        flex: 0.2 0 auto;
+        margin: 0;
+        height: 12px;
       }
     }
 
@@ -213,6 +250,35 @@ div.page-login {
 
             @include dark {
               color: $white;
+            }
+          }
+        }
+      }
+
+      div.oauth-content {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        gap: 10px;
+
+        div.button-container {
+          display: flex;
+          height: 40px;
+          width: 100%;
+
+          button {
+            display: flex;
+            width: 100% !important;
+            height: 40px !important;
+            margin: 0 !important;
+            font-size: 14px !important;
+            line-height: 14px !important;
+            font-weight: 600 !important;
+
+            div {
+              text-align: center !important;
             }
           }
         }

@@ -9,13 +9,20 @@ import { getContext } from '../utils/context-import';
 import { getRegex } from '../utils/regex';
 import { Footer } from '../components/Footer';
 import '../styles/login.scss';
+import { ToastMessage, ToastNotifications } from '../components/ToastNotifications';
+import { Case, IFacebookOAuth, IGoogleOAuth, IMicrosoftOAuth } from '../interfaces';
+import { Spinner } from '../components/Spinner';
+import { LoginSocialGoogle, LoginSocialFacebook, LoginSocialMicrosoft, IResolveParams } from 'reactjs-social-login';
+import { FacebookLoginButton, GoogleLoginButton, MicrosoftLoginButton } from 'react-social-login-buttons';
 
 export function Login() {
   const [hasError, setHasError] = useState({ email: false, password: false });
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errorMessage, setErrorMessage] = useState({ email: '', password: '' });
   const [isLoading, setIsLoading] = useState(false);
-  const { signin, setIsOpenConfirmSignoutModal } = getContext();
+  const { signinFacebookOauth, signinGoogleOauth, signinMicrosoftOauth, signin, setIsOpenConfirmSignoutModal } =
+    getContext();
+  const redirectUri = window.location.href;
 
   const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target;
@@ -28,10 +35,39 @@ export function Login() {
     e.preventDefault();
     if (checkFields()) return;
     setIsLoading(true);
-    await signin({ email: formData.email, password: formData.password });
+    const data = await signin({ email: formData.email, password: formData.password });
+
+    if (!data.result) ToastMessage({ message: 'Credenciais inválidas', type: Case.ERROR });
 
     setIsLoading(false);
     setIsOpenConfirmSignoutModal(false);
+  };
+
+  const handleFacebookOauth = async (credentialResponse: IFacebookOAuth) => {
+    setIsLoading(true);
+    if (!credentialResponse.email) return;
+    const data = await signinFacebookOauth(credentialResponse);
+
+    if (!data.result) ToastMessage({ message: 'Credenciais inválidas', type: Case.ERROR });
+    setIsLoading(false);
+  };
+
+  const handleGoogleOauth = async (credentialResponse: IGoogleOAuth) => {
+    setIsLoading(true);
+    if (!credentialResponse.email) return;
+    const data = await signinGoogleOauth(credentialResponse);
+
+    if (!data.result) ToastMessage({ message: 'Credenciais inválidas', type: Case.ERROR });
+    setIsLoading(false);
+  };
+
+  const handleMicrosoftOauth = async (credentialResponse: IMicrosoftOAuth) => {
+    setIsLoading(true);
+    if (!credentialResponse.accessToken) return;
+    const data = await signinMicrosoftOauth(credentialResponse);
+
+    if (!data.result) ToastMessage({ message: 'Credenciais inválidas', type: Case.ERROR });
+    setIsLoading(false);
   };
 
   const checkFields = (): boolean => {
@@ -70,6 +106,7 @@ export function Login() {
             <h1>
               <span>Condo</span>Management
             </h1>
+            {isLoading && <Spinner />}
           </div>
           <div className="page-login-image">
             <img src={cityImage} />
@@ -114,10 +151,58 @@ export function Login() {
                 <Button isFull title="Sign in" type="submit" />
               </div>
             </form>
+            <div className="divider-wrapper">
+              <span>ou</span>
+            </div>
+            <div className="oauth-content">
+              <LoginSocialGoogle
+                className="button-container"
+                typeResponse="idToken"
+                client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
+                onResolve={({ provider, data }: IResolveParams) => {
+                  if (data) handleGoogleOauth({ email: data.email, accessToken: data.credential });
+                }}
+                onReject={(err) => {
+                  console.error(err);
+                }}
+              >
+                <GoogleLoginButton />
+              </LoginSocialGoogle>
+              <LoginSocialFacebook
+                className="button-container"
+                fieldsProfile="email"
+                appId={process.env.REACT_APP_FB_APP_ID as string}
+                onResolve={({ provider, data }: IResolveParams) => {
+                  if (data) handleFacebookOauth({ email: data.email, accessToken: data.accessToken });
+                }}
+                onReject={(err) => {
+                  console.error(err);
+                }}
+              >
+                <FacebookLoginButton />
+              </LoginSocialFacebook>
+              <LoginSocialMicrosoft
+                className="button-container"
+                scope="user.read"
+                prompt="select_account"
+                tenant="consumers"
+                client_id={process.env.REACT_APP_MS_CLIENT_ID as string}
+                redirect_uri={redirectUri}
+                onResolve={({ provider, data }: IResolveParams) => {
+                  if (data) handleMicrosoftOauth({ email: data.mail, accessToken: data.access_token });
+                }}
+                onReject={(err) => {
+                  console.error(err);
+                }}
+              >
+                <MicrosoftLoginButton />
+              </LoginSocialMicrosoft>
+            </div>
           </div>
           <Footer />
         </main>
       </div>
+      <ToastNotifications />
     </>
   );
 }

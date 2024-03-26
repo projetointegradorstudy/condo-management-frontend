@@ -1,5 +1,14 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
-import { IAuthProps, IModalReservations, IResult, IStorageState, IUser } from '../interfaces/index';
+import {
+  IAuthProps,
+  IFacebookOAuth,
+  IGoogleOAuth,
+  IMicrosoftOAuth,
+  IModalReservations,
+  IResult,
+  IStorageState,
+  IUser,
+} from '../interfaces/index';
 
 export interface GlobalContextProps {
   token: IStorageState<string>;
@@ -34,7 +43,10 @@ export interface GlobalContextProps {
   setIsMyselfData: Dispatch<SetStateAction<IUser | null>>;
   isRemainingSeconds: number | undefined;
   setIsRemaingSeconds: Dispatch<SetStateAction<number | undefined>>;
-  signin: (credentials: IAuthProps) => Promise<IResult>;
+  signinFacebookOauth: (credential: IFacebookOAuth) => Promise<IResult>;
+  signinGoogleOauth: (credential: IGoogleOAuth) => Promise<IResult>;
+  signinMicrosoftOauth: (credential: IMicrosoftOAuth) => Promise<IResult>;
+  signin: (credential: IAuthProps) => Promise<IResult>;
   signout: () => void;
   getUserData: () => void;
   formatDate: (date: string) => string;
