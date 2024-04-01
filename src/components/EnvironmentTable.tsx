@@ -40,7 +40,10 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                     <h4>{(index += 1)}</h4>
                   </td>
                   <td>
-                    <img src={environment?.image ? environment.image : imageDefault} alt="No image" />
+                    <img
+                      src={environment?.image ? environment.image : imageDefault}
+                      alt={`Espaço ${environment?.image ? environment.name : 'sem imagem'}`}
+                    />
                   </td>
                   <td>
                     <h4>{environment.name}</h4>
@@ -64,6 +67,7 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                       <div className="circle-button icon-edit">
                         <PencilSimple
                           className="icon-edit"
+                          alt="Ícone editar"
                           onClick={() => {
                             setIsPosition({ id: environment.id, name: environment.name });
                             setIsEditPosition({
@@ -82,6 +86,7 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                       <div className="circle-button icon-close">
                         <Trash
                           className="icon-close"
+                          alt="Ícone excluir"
                           onClick={() => {
                             setIsPosition({ id: environment.id, name: environment.name });
                             setIsOpenDeletModal(true);

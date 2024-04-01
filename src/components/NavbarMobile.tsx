@@ -22,22 +22,22 @@ export function NavbarMobile() {
     {
       path: '/dashboard-admin',
       name: 'Página inicial',
-      icon: <House size={18} />,
+      icon: <House size={18} alt="Ícone página inicial" />,
     },
     {
       path: '/list-users',
       name: 'Lista de usuários',
-      icon: <Users size={18} />,
+      icon: <Users size={18} alt="Ícone lista de usuários" />,
     },
     {
       path: '/list-environments',
       name: 'Lista de ambientes',
-      icon: <ListPlus size={18} />,
+      icon: <ListPlus size={18} alt="Ícone lista de ambientes" />,
     },
     {
       path: '/reservations',
       name: 'Reservas',
-      icon: <ListChecks size={18} />,
+      icon: <ListChecks size={18} alt="Ícone reservas" />,
     },
   ];
 
@@ -45,17 +45,17 @@ export function NavbarMobile() {
     {
       path: '/menu-user',
       name: 'Ambientes',
-      icon: <House size={18} />,
+      icon: <House size={18} alt="Ícone página inicial" />,
     },
     {
       path: '/my-reservations',
       name: 'Minhas reservas',
-      icon: <ListBullets size={18} />,
+      icon: <ListBullets size={18} alt="Ícone minhas reservas" />,
     },
     {
       path: '/edit-profile',
       name: 'Editar perfil',
-      icon: <PencilSimpleLine size={18} />,
+      icon: <PencilSimpleLine size={18} alt="Ícone editar perfil" />,
     },
   ];
 
@@ -69,7 +69,7 @@ export function NavbarMobile() {
           <div>
             <ul style={{ transform: isOpen ? 'translateY(100%)' : 'translateY(0)' }}>
               <div className="profile">
-                <img src={isMyselfData?.avatar || avatarDefault} alt="avatar" />
+                <img src={isMyselfData?.avatar || avatarDefault} alt="Sua foto de perfil" />
                 <strong>{isMyselfData?.name || isMyselfData?.email}</strong>
               </div>
               <div className="navbar-items">
@@ -84,7 +84,7 @@ export function NavbarMobile() {
               </div>
               <div className="sidebar-list-logout" style={{ width: isAdmin ? '156px' : '140px' }}>
                 <button className="sidebar-button-logout" onClick={() => setIsOpenConfirmSignoutModal(true)}>
-                  <SignOut size={16} />
+                  <SignOut size={16} alt="Ícone sair" />
                   <span>Sair</span>
                 </button>
               </div>

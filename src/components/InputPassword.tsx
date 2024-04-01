@@ -14,10 +14,10 @@ export function InputPassword({ message, isNotRequired, ...props }: InputPasswor
   const handleToogle = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
-      setPasswordIcon(<Eye className="icons" />);
+      setPasswordIcon(<Eye alt="Olho aberto" className="icons" />);
     } else {
       setPasswordType('password');
-      setPasswordIcon(<EyeSlash className="icons" />);
+      setPasswordIcon(<EyeSlash alt="Olho fechado" className="icons" />);
     }
   };
 

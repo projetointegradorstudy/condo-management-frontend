@@ -77,7 +77,11 @@ export function EditProfile() {
           <div className="content-edit-profile">
             <div className="content-edit-profile-avatar">
               <div className="image-upload-edit-user-preview">
-                <img className="preview" src={previewImage?.length ? previewImage : avatarDefault} alt="Preview" />
+                <img
+                  className="preview"
+                  src={previewImage?.length ? previewImage : avatarDefault}
+                  alt="Sua foto de perfil"
+                />
 
                 <div className="button-upload-edit-user-preview">
                   <div className="content-button" style={{ display: previewImage?.length ? 'block' : 'none' }}>

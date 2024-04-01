@@ -40,7 +40,10 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                     <h4>{(index += 1)}</h4>
                   </td>
                   <td>
-                    <img src={user?.avatar ? user.avatar : avatarDefault} alt="avatar" />
+                    <img
+                      src={user?.avatar ? user.avatar : avatarDefault}
+                      alt={`Foto de perfil da(o) ${user.name || user.email}`}
+                    />
                   </td>
                   <td>
                     <h4>{user.name}</h4>
