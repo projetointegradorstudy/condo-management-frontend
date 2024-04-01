@@ -76,7 +76,7 @@ export function ForgotPassaword() {
             </h1>
           </div>
           <div className="page-forgot-password-image">
-            <img src={buildingReXfcm} />
+            <img src={buildingReXfcm} alt="Prédio com árvores ao redor" />
           </div>
           <div className="page-forgot-password-description">
             <strong>Esqueceu sua senha?</strong>

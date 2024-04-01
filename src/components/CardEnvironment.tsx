@@ -20,7 +20,7 @@ export function CardEnvironment({ data }: IDataElementProps<IEnvironment>) {
       </div>
       <div className="card-content">
         <div className="card-image">
-          <img src={data?.image ? data.image : imageDefault} alt="No image" />
+          <img src={data?.image ? data.image : imageDefault} alt={`Espaço ${data.name}`} />
         </div>
         <div className="card-title">
           <h3>{data.name}</h3>
@@ -31,7 +31,7 @@ export function CardEnvironment({ data }: IDataElementProps<IEnvironment>) {
 
         <div className="card-footer">
           <div className="card-info" title="Quantidade de pessoas">
-            <Users size={20} />
+            <Users size={20} alt="Ícone de capacidade" />
             <b>{data.capacity}</b>
           </div>
 

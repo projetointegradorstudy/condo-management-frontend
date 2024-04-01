@@ -107,7 +107,7 @@ export function RecoverPassword() {
             </h1>
           </div>
           <div className="page-recover-password-image">
-            <img src={forSale} />
+            <img src={forSale} alt="Casinha com uma árvore enorme do lado" />
           </div>
           <div className="page-recover-password-description">
             <strong>Alteração de senha</strong>

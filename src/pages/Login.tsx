@@ -8,12 +8,12 @@ import cityImage from '../assets/city_life_gnpr_color.svg';
 import { getContext } from '../utils/context-import';
 import { getRegex } from '../utils/regex';
 import { Footer } from '../components/Footer';
-import '../styles/login.scss';
 import { ToastMessage, ToastNotifications } from '../components/ToastNotifications';
 import { Case, IFacebookOAuth, IGoogleOAuth, IMicrosoftOAuth } from '../interfaces';
 import { Spinner } from '../components/Spinner';
 import { LoginSocialGoogle, LoginSocialFacebook, LoginSocialMicrosoft, IResolveParams } from 'reactjs-social-login';
 import { FacebookLoginButton, GoogleLoginButton, MicrosoftLoginButton } from 'react-social-login-buttons';
+import '../styles/login.scss';
 
 export function Login() {
   const [hasError, setHasError] = useState({ email: false, password: false });
@@ -103,15 +103,17 @@ export function Login() {
       <div className="page-login">
         <aside>
           <div className="page-login-title">
-            <h1>
+            <h1 title="Condo Management">
               <span>Condo</span>Management
             </h1>
             {isLoading && <Spinner />}
           </div>
           <div className="page-login-image">
-            <img src={cityImage} />
-            <strong>Reservas inteligentes para seu condomínio!</strong>
-            <p>
+            <img src={cityImage} alt="Dois prédios e uma rua com cinco pessoas" />
+            <strong title="Reservas inteligentes para seu condomínio!">
+              Reservas inteligentes para seu condomínio!
+            </strong>
+            <p title="Realize reservas com apenas alguns cliques, economizando tempo e esforço.">
               Realize reservas com apenas alguns cliques,
               <br /> economizando tempo e esforço.
             </p>
@@ -119,7 +121,7 @@ export function Login() {
         </aside>
         <main>
           <div className="page-login-logo">
-            <h1>
+            <h1 title="Condo Management">
               <span>Condo</span>Management
             </h1>
           </div>
@@ -159,7 +161,7 @@ export function Login() {
                 className="button-container"
                 typeResponse="idToken"
                 client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
-                onResolve={({ provider, data }: IResolveParams) => {
+                onResolve={({ data }: IResolveParams) => {
                   if (data) handleGoogleOauth({ email: data.email, accessToken: data.credential });
                 }}
                 onReject={(err) => {
@@ -172,7 +174,7 @@ export function Login() {
                 className="button-container"
                 fieldsProfile="email"
                 appId={process.env.REACT_APP_FB_APP_ID as string}
-                onResolve={({ provider, data }: IResolveParams) => {
+                onResolve={({ data }: IResolveParams) => {
                   if (data) handleFacebookOauth({ email: data.email, accessToken: data.accessToken });
                 }}
                 onReject={(err) => {
@@ -188,7 +190,7 @@ export function Login() {
                 tenant="consumers"
                 client_id={process.env.REACT_APP_MS_CLIENT_ID as string}
                 redirect_uri={redirectUri}
-                onResolve={({ provider, data }: IResolveParams) => {
+                onResolve={({ data }: IResolveParams) => {
                   if (data) handleMicrosoftOauth({ email: data.mail, accessToken: data.access_token });
                 }}
                 onReject={(err) => {

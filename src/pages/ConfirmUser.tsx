@@ -108,7 +108,7 @@ export function ConfirmUser() {
             </h1>
           </div>
           <div className="page-confirm-user-image">
-            <img src={navigatorA479} />
+            <img src={navigatorA479} alt="Carro seguindo uma estrada com curvas" />
           </div>
           <div className="page-confirm-user-description">
             <strong>Cadastro de senha</strong>

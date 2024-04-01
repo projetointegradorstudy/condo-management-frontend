@@ -11,19 +11,19 @@ import '../styles/menu-admin.scss';
 const cardItems = [
   {
     title: 'Usuários cadastrados',
-    icon: <Users size={40} />,
+    icon: <Users size={40} alt="Ícone usuários cadastrados" />,
   },
   {
     title: 'Ambientes cadastrados',
-    icon: <ListPlus size={40} />,
+    icon: <ListPlus size={40} alt="Ícone ambientes cadastrados" />,
   },
   {
     title: 'Reservas cadastradas',
-    icon: <List size={40} />,
+    icon: <List size={40} alt="Ícone reservas cadastradas" />,
   },
   {
     title: 'Reservas pendentes',
-    icon: <WarningCircle size={40} />,
+    icon: <WarningCircle size={40} alt="Ícone reservas pendentes" />,
   },
 ];
 

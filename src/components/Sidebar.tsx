@@ -36,22 +36,22 @@ export function Sidebar() {
     {
       path: '/dashboard-admin',
       name: 'Página inicial',
-      icon: <House size={isOpen ? 20 : 22} />,
+      icon: <House size={isOpen ? 20 : 22} alt="Ícone página inicial" />,
     },
     {
       path: '/list-users',
       name: 'Lista de usuários',
-      icon: <Users size={isOpen ? 20 : 22} />,
+      icon: <Users size={isOpen ? 20 : 22} alt="Ícone lista de usuários" />,
     },
     {
       path: '/list-environments',
       name: 'Lista de ambientes',
-      icon: <ListPlus size={isOpen ? 20 : 22} />,
+      icon: <ListPlus size={isOpen ? 20 : 22} alt="Ícone lista de ambientes" />,
     },
     {
       path: '/reservations',
       name: 'Reservas',
-      icon: <ListChecks size={isOpen ? 20 : 22} />,
+      icon: <ListChecks size={isOpen ? 20 : 22} alt="Ícone reservas" />,
     },
   ];
 
@@ -59,17 +59,17 @@ export function Sidebar() {
     {
       path: '/menu-user',
       name: 'Ambientes',
-      icon: <House size={isOpen ? 20 : 22} />,
+      icon: <House size={isOpen ? 20 : 22} alt="Ícone página inicial" />,
     },
     {
       path: '/my-reservations',
       name: 'Minhas reservas',
-      icon: <ListBullets size={isOpen ? 20 : 22} />,
+      icon: <ListBullets size={isOpen ? 20 : 22} alt="Ícone minhas reservas" />,
     },
     {
       path: '/edit-profile',
       name: 'Editar perfil',
-      icon: <PencilSimpleLine size={isOpen ? 18 : 20} />,
+      icon: <PencilSimpleLine size={isOpen ? 18 : 20} alt="Ícone editar perfil" />,
     },
   ];
 
@@ -90,7 +90,7 @@ export function Sidebar() {
         <div className="profile" style={{ margin: isOpen ? '30px 30px 4px' : '0px 10px 10px' }}>
           <img
             src={isMyselfData?.avatar || avatarDefault}
-            alt="avatar"
+            alt="Sua foto de perfil"
             style={{ width: isOpen ? '60px' : '40px', height: isOpen ? '60px' : '40px' }}
           />
           {isOpen && <strong>{isMyselfData?.name || isMyselfData?.email}</strong>}
@@ -120,7 +120,7 @@ export function Sidebar() {
                 onClick={() => setIsOpenConfirmSignoutModal(true)}
                 style={{ justifyContent: isOpen ? '' : 'center' }}
               >
-                <SignOut size={isOpen ? 18 : 20} />
+                <SignOut size={isOpen ? 18 : 20} alt="Ícone sair" />
                 <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
               </button>
             </div>
