@@ -105,7 +105,7 @@ div.page-confirm-user {
     background-size: contain;
     background-repeat: no-repeat;
 
-    @include dark {
+    @include dark-contrast {
       background-color: $gray-dark;
     }
 
@@ -145,7 +145,7 @@ div.page-confirm-user {
           line-height: 30px;
         }
         
-        @include dark {
+        @include dark-contrast {
           color: $gray-lightest;
         }
 
@@ -164,7 +164,7 @@ div.page-confirm-user {
       flex-direction: column;
       padding: 0 30px;
 
-      @include dark {
+      @include dark-contrast {
         background-color: $gray-dark-light;
         padding: 0 30px 40px;
       }
@@ -186,7 +186,7 @@ div.page-confirm-user {
           line-height: 18px;
         }
 
-        @include dark {
+        @include dark-contrast {
           color: $gray-lightest;
         }
       }

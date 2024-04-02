@@ -12,7 +12,7 @@ div.modal-edit-background-environment  {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 21474835;
   
   div.modal-edit-environment {
     display: flex;
@@ -31,7 +31,7 @@ div.modal-edit-background-environment  {
       margin: 0 20px;
     }
 
-    @include dark {
+    @include dark-contrast {
       background-color: $gray-dark-light;
       box-shadow: none;
     }
@@ -57,7 +57,7 @@ div.modal-edit-background-environment  {
             height: 18px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }
@@ -96,7 +96,7 @@ div.modal-edit-background-environment  {
             padding: 6px 16px;
           }
 
-          @include dark {
+          @include dark-contrast {
             background-color: $gray-dark;
             border: 1px solid $gray-dark-light;
             color: #AFB8C1;
@@ -151,7 +151,7 @@ div.modal-edit-background-environment  {
             line-height: 13px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }

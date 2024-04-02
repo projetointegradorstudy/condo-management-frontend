@@ -1,9 +1,8 @@
-import React, { ReactNode } from 'react';
-import { Sidebar } from '../components/Sidebar';
+import { ReactNode } from 'react';
+import { Navbar } from './Navbar';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Footer } from '../components/Footer';
 import { ToggleButton } from '../components/ToggleButton';
-
 import '../styles/layout.scss';
 
 interface LayoutProps {
@@ -16,10 +15,9 @@ export function Layout({ children }: LayoutProps) {
       <ToggleButton />
       <div className="container-page">
         <div className="container-navbar">
-          <Sidebar />
+          <Navbar />
           <NavbarMobile />
         </div>
-
         {children}
       </div>
       <Footer isFull />

@@ -109,7 +109,7 @@ div.page-login {
       background-image: none;
     }
 
-    @include dark {
+    @include dark-contrast {
       background-image: url('../assets//wave-vertical-darkmode.png');
 
       @include breakpoint(md) {
@@ -135,7 +135,7 @@ div.page-login {
         flex-direction: column;
       }
 
-      @include dark {
+      @include dark-contrast {
         background-image: url('../assets//wave-horizontal-darkmode.png');
       }
 
@@ -221,7 +221,7 @@ div.page-login {
           line-height: 18px;
         }
 
-        @include dark {
+        @include dark-contrast {
           color: $white;
         }
       }
@@ -248,7 +248,7 @@ div.page-login {
               line-height: 12px;
             }
 
-            @include dark {
+            @include dark-contrast {
               color: $white;
             }
           }

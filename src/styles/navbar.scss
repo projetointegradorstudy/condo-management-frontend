@@ -1,7 +1,7 @@
 @import './theme';
 @import './variables';
 
-aside.desktop {
+nav.primary-menu {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -28,13 +28,15 @@ aside.desktop {
     width: 100%;
     padding: 0px 16px;
     
-    div.toggle-button {
+    button.arrow-button {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 26px;
       height: 26px;
       cursor: pointer;
+      background: transparent;
+      border: 0   ;
 
       svg {
         color: $white;
@@ -106,15 +108,16 @@ aside.desktop {
     }
   }
 
-  div.middle-sidebar {
+  div.middle-navbar {
     display: flex;
     width: 100%;
     overflow-y: hidden;
     overflow-x: hidden;
     position: relative;
     justify-content: center;
+    padding: 4px 6px;
     
-    ul.sidebar-list {
+    ul.navbar-list {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -141,18 +144,23 @@ aside.desktop {
           font-weight: 400;
           font-size: 16px;
           text-decoration: none;
-          
+
           span {
             transition: all 0.3s cubic-bezier(0.64, 0.2, 1, 0.03);
           }
         }
       }
 
-      div.sidebar-list-logout {
+      div.navbar-list-logout {
         display: flex;
         width: 100%;
 
-        button.sidebar-button-logout {
+        &:hover {
+            border-left: 3px solid #ffffff;
+            background-color: rgba(181, 194, 193, 0.178);
+          }
+
+        button.navbar-button-logout {
           display: flex;
           width: 100%;
           align-items: center;
@@ -160,7 +168,7 @@ aside.desktop {
           gap: 0.8rem;
           height: auto;
           border: 0;
-          cursor: pointer;
+          cursor: pointer;  
 
           svg {
             color: $white;

@@ -22,6 +22,7 @@ export function GlobalProvider({ children }: Iprops) {
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [isUser, setIsUser] = useState<boolean>(false);
   const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false);
+  const [isOpenAccessibilityModal, setIsOpenAccessibilityModal] = useState<boolean>(false);
   const [isOpenDeleteModal, setIsOpenDeletModal] = useState<boolean>(false);
   const [isOpenCreateUserModal, setIsOpenCreateUserModal] = useState<boolean>(false);
   const [isOpenCreateEnvironmentModal, setIsOpenCreateEnvironmentModal] = useState<boolean>(false);
@@ -166,6 +167,8 @@ export function GlobalProvider({ children }: Iprops) {
         setIsUser,
         isOpenEditModal,
         setIsOpenEditModal,
+        isOpenAccessibilityModal,
+        setIsOpenAccessibilityModal,
         isOpenDeleteModal,
         setIsOpenDeletModal,
         isOpenCreateUserModal,

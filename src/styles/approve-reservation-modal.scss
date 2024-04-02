@@ -32,7 +32,7 @@ div.modal-approve-background {
       margin: 0 20px;
     }
 
-    @include dark {
+    @include dark-contrast {
       background-color: $gray-dark-light;
       box-shadow: none;
     }
@@ -58,7 +58,7 @@ div.modal-approve-background {
             height: 18px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }
@@ -89,7 +89,7 @@ div.modal-approve-background {
             padding: 0 20px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }

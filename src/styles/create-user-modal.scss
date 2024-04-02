@@ -12,7 +12,7 @@ div.modal-create-background {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 21474835;
 
   div.modal-create {
     display: flex;
@@ -33,7 +33,7 @@ div.modal-create-background {
       margin: 0 20px;
     }
 
-    @include dark {
+    @include dark-contrast {
       background-color: $gray-dark-light;
       box-shadow: none;
     }
@@ -59,7 +59,7 @@ div.modal-create-background {
             height: 18px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }
@@ -90,7 +90,7 @@ div.modal-create-background {
             line-height: 22px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }
@@ -134,7 +134,7 @@ div.modal-create-background {
         height: 40px
       }
 
-      @include dark {
+      @include dark-contrast {
         color: $gray-lightest;
       }
     }

@@ -1,15 +1,20 @@
-$white:           #ffffff !default;
-$black:           #202020 !default;
-$blue:            #081226 !default;
-$gray:            #C8C8C8 !default;
-$gray-lightest:   #F6F8FA !default;
-$gray-dark:       #121214!default;
-$gray-dark-light: #202024 !default;
+// Default theme
+$white:           #ffffff   !default;
+$black:           #202020   !default;
+$blue:            #081226   !default;
+$gray:            #C8C8C8   !default;
+$gray-lightest:   #F6F8FA   !default;
+$gray-dark:       #121214   !default;
+$gray-dark-light: #202024   !default;
+$green:           #38ba7c   !default;
+$green-dark:      #23aa69   !default;
+$red:             #f34542   !default;
+$red-dark:        #e02f2c   !default;
+$orange:          #ffc107   !default;
+$navy:            #316181   !default;
 
-$green:           #38ba7c !default;
-$green-dark:      #23aa69 !default;
-$red:             #f34542 !default;
-$red-dark:        #e02f2c !default;
-$orange:          #ffc107 !default;
+$primary:           $blue     !default;
 
-$primary:           $blue   !default;
+// Contrast theme
+$ct-gray-dark:    #212121   !default;
+$ct-yellow:       #fbd24fff !default;

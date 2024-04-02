@@ -15,15 +15,14 @@ import { NavLink } from 'react-router-dom';
 import { getContext } from '../utils/context-import';
 import avatarDefault from '../assets/avatar-default.png';
 import { ConfirmSignoutModal } from './ConfirmSignoutModal';
-import '../styles/sidebar.scss';
+import '../styles/navbar.scss';
 
-export function Sidebar() {
-  const { isAdmin, setIsOpenConfirmSignoutModal } = getContext();
+export function Navbar() {
+  const { isAdmin, setIsOpenConfirmSignoutModal, isMyselfData, isNeedRefresh, setIsNeedRefresh, getUserData } =
+    getContext();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-
-  const { isMyselfData, isNeedRefresh, setIsNeedRefresh, getUserData } = getContext();
 
   useEffect(() => {
     if (isNeedRefresh) {
@@ -77,16 +76,15 @@ export function Sidebar() {
 
   return (
     <>
-      <aside style={{ maxWidth: isOpen ? '250px' : '100px' }} className="desktop">
+      <nav role="navigation" style={{ maxWidth: isOpen ? '250px' : '100px' }} className="primary-menu">
         <div className="content-button" style={{ justifyContent: isOpen ? 'flex-end' : 'center' }}>
-          <div className="toggle-button">
-            {!isOpen ? <CaretRight size={22} onClick={toggle} /> : <CaretLeft size={22} onClick={toggle} />}
-          </div>
+          <button className="arrow-button" onClick={toggle}>
+            {!isOpen ? <CaretRight size={22} /> : <CaretLeft size={22} />}
+          </button>
         </div>
         <div className="logo">
           <img src={LogoLg} alt="Logo Condo Management" style={{ width: isOpen ? '130px' : '78px' }} />
         </div>
-
         <div className="profile" style={{ margin: isOpen ? '30px 30px 4px' : '0px 10px 10px' }}>
           <img
             src={isMyselfData?.avatar || avatarDefault}
@@ -95,30 +93,27 @@ export function Sidebar() {
           />
           {isOpen && <strong>{isMyselfData?.name || isMyselfData?.email}</strong>}
         </div>
-
-        <div className="middle-sidebar" style={{ alignItems: isOpen ? '' : 'center' }}>
-          <ul className="sidebar-list">
+        <div className="middle-navbar" style={{ alignItems: isOpen ? '' : 'center' }}>
+          <ul role="menubar" className="navbar-list">
             {navItems.map((navItem) => (
-              <li key={navItem.name} style={{ padding: isOpen ? '10px 1px 10px 18px' : '10px' }}>
+              <li role="none" key={navItem.name}>
                 <NavLink
+                  role="menuitem"
                   to={navItem.path}
-                  style={{ justifyContent: isOpen ? '' : 'center' }}
+                  style={{ justifyContent: isOpen ? '' : 'center', padding: isOpen ? '10px 1px 10px 18px' : '10px' }}
                   title={`${isOpen ? '' : navItem.name}`}
+                  tabIndex={0}
                 >
                   {navItem.icon}
                   <span style={{ display: !isOpen ? 'none' : 'block' }}>{navItem.name}</span>
                 </NavLink>
               </li>
             ))}
-            <div
-              className="sidebar-list-logout"
-              style={{ padding: isOpen ? '10px 1px 10px 20px' : '10px' }}
-              title={`${isOpen ? '' : 'Sair'}`}
-            >
+            <div className="navbar-list-logout" title={`${isOpen ? '' : 'Sair'}`}>
               <button
-                className="sidebar-button-logout"
+                className="navbar-button-logout"
                 onClick={() => setIsOpenConfirmSignoutModal(true)}
-                style={{ justifyContent: isOpen ? '' : 'center' }}
+                style={{ justifyContent: isOpen ? '' : 'center', padding: isOpen ? '10px 1px 10px 20px' : '10px' }}
               >
                 <SignOut size={isOpen ? 18 : 20} alt="Ícone sair" />
                 <span style={{ display: !isOpen ? 'none' : 'block' }}>Sair</span>
@@ -126,7 +121,7 @@ export function Sidebar() {
             </div>
           </ul>
         </div>
-      </aside>
+      </nav>
       <ConfirmSignoutModal />
     </>
   );

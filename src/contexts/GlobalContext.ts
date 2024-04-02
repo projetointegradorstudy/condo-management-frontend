@@ -23,6 +23,8 @@ export interface GlobalContextProps {
   setIsUser: Dispatch<SetStateAction<boolean>>;
   isOpenEditModal: boolean;
   setIsOpenEditModal: Dispatch<SetStateAction<boolean>>;
+  isOpenAccessibilityModal: boolean;
+  setIsOpenAccessibilityModal: Dispatch<SetStateAction<boolean>>;
   isOpenDeleteModal: boolean;
   setIsOpenDeletModal: Dispatch<SetStateAction<boolean>>;
   isOpenCreateUserModal: boolean;

@@ -24,7 +24,7 @@ div.input-content {
       padding: 6px 16px;
     }
 
-    @include dark {
+    @include dark-contrast {
       background-color: $gray-dark;
       transition: background-color 0.5s ease-out;
       border: 1px solid $gray-dark-light;

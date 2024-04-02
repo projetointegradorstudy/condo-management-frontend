@@ -12,7 +12,7 @@ div.modal-confirm-signout-background {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 21474835;
 
   div.modal-confirm-signout {
     display: flex;
@@ -32,7 +32,7 @@ div.modal-confirm-signout-background {
       margin: 0 20px;
     }
 
-    @include dark {
+    @include dark-contrast {
       background-color: $gray-dark-light;
       box-shadow: none;
     }
@@ -58,7 +58,7 @@ div.modal-confirm-signout-background {
             height: 18px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }
@@ -89,7 +89,7 @@ div.modal-confirm-signout-background {
             padding: 0 30px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }

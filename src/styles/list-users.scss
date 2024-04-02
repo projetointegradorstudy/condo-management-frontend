@@ -9,7 +9,7 @@ div.page-list-users {
   background-color: $gray-lightest;
   transition: background-color 0.5s ease-out;
 
-  @include dark {
+  @include dark-contrast {
     background-color: $gray-dark;
     transition: background-color 0.5s ease-out;
   }
@@ -58,7 +58,7 @@ div.page-list-users {
           padding-top: 30px;
         }
 
-        @include dark {
+        @include dark-contrast {
           color: $gray-lightest;
         }
       }
@@ -91,7 +91,7 @@ div.page-list-users {
           border-radius: 20px;
           border: 5px solid #F6F8FA;
 
-          @include dark {
+          @include dark-contrast {
             background-color: $gray-dark-light;
             border: 5px solid $gray-dark;
           }
@@ -133,7 +133,7 @@ div.page-list-users {
                 line-height: 15px;
               }
 
-              @include dark {
+              @include dark-contrast {
                 background-color: $gray-dark;
                 transition: background-color 0.5s ease-out;
                 color: $gray-lightest;
@@ -145,7 +145,7 @@ div.page-list-users {
             background-color: $white;
             transition: background-color 0.5s ease-out;
 
-            @include dark {
+            @include dark-contrast {
               background-color: $gray-dark-light;
               transition: background-color 0.5s ease-out;
             }
@@ -162,7 +162,7 @@ div.page-list-users {
               line-height: 16px;
             }
 
-            @include dark {
+            @include dark-contrast {
               color: $gray-lightest;
             }
 
