@@ -9,7 +9,7 @@ div.page-list-environments {
   background-color: $gray-lightest;
   transition: background-color 0.5s ease-out;
 
-  @include dark {
+  @include dark-contrast {
     background-color: $gray-dark;
     transition: background-color 0.5s ease-out;
   }
@@ -58,7 +58,7 @@ div.page-list-environments {
           padding-top: 30px;
         }
 
-        @include dark {
+        @include dark-contrast {
           color: $gray-lightest;
         }
       }
@@ -91,7 +91,7 @@ div.page-list-environments {
           border-radius: 20px;
           border: 5px solid #F6F8FA;
 
-          @include dark {
+          @include dark-contrast {
             background-color: $gray-dark-light;
             border: 5px solid $gray-dark;
           }
@@ -134,7 +134,7 @@ div.page-list-environments {
                 line-height: 15px;
               }
 
-              @include dark {
+              @include dark-contrast {
                 background-color: $gray-dark;
                 transition: background-color 0.5s ease-out;
                 color: $gray-lightest;
@@ -146,7 +146,7 @@ div.page-list-environments {
             background-color: $white;
             transition: background-color 0.5s ease-out;
 
-            @include dark {
+            @include dark-contrast {
               background-color: $gray-dark-light;
               transition: background-color 0.5s ease-out;
             }
@@ -170,7 +170,7 @@ div.page-list-environments {
               }
             }
 
-            @include dark {
+            @include dark-contrast {
               color: $gray-lightest;
             }
 

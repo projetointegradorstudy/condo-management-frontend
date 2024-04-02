@@ -18,7 +18,7 @@ div.textarea-content {
     line-height: 16px;
     resize: none;
 
-    @include dark {
+    @include dark-contrast {
       background-color: $gray-dark;
       color: $gray-lightest;
     }

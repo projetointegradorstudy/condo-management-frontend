@@ -12,7 +12,7 @@ div.navbar-mobile {
     display: block;
   }
 
-  nav {
+  nav.primary-menu-mobile {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -89,6 +89,7 @@ div.navbar-mobile {
 
         div.navbar-items {
           display: flex;
+          width: 100%;
           flex-direction: column;
           gap: 1rem;
           align-items: flex-start;
@@ -96,12 +97,14 @@ div.navbar-mobile {
 
           li {
             display: flex;
-            justify-content: center;
-            gap: 0.8rem;
+            align-items: center;
+            width: 100%;
         
             a {
+              display: flex;
               color: $white;
               text-decoration: none;
+              gap: 0.8rem;
 
               span {
                 font-size: 15px;

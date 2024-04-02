@@ -43,7 +43,7 @@ div.page-menu-user {
           padding-top: 30px;
         }
 
-        @include dark {
+        @include dark-contrast {
           color: $gray-lightest;
         }
       }
@@ -63,7 +63,7 @@ div.page-menu-user {
         line-height: 24px;
       }
 
-      @include dark {
+      @include dark-contrast {
         color: $gray-lightest;
       }
     }

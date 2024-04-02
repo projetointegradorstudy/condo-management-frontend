@@ -13,7 +13,7 @@ label.default {
     line-height: 13px;
   }
 
-  @include dark {
+  @include dark-contrast {
     color: $white;
   }
 

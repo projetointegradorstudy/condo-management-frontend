@@ -64,25 +64,33 @@ export function NavbarMobile() {
   return (
     <>
       <div className="navbar-mobile">
-        <nav>
-          <button onClick={() => setIsOpen(!isOpen)}>{!isOpen ? <List size={26} /> : <X size={24} />}</button>
+        <nav role="navigation" className="primary-menu-mobile">
+          <button tabIndex={0} onClick={() => setIsOpen(!isOpen)}>
+            {!isOpen ? <List size={26} /> : <X size={24} />}
+          </button>
           <div>
-            <ul style={{ transform: isOpen ? 'translateY(100%)' : 'translateY(0)' }}>
+            <ul role="menubar" style={{ transform: isOpen ? 'translateY(100%)' : 'translateY(0)' }}>
               <div className="profile">
                 <img src={isMyselfData?.avatar || avatarDefault} alt="Sua foto de perfil" />
                 <strong>{isMyselfData?.name || isMyselfData?.email}</strong>
               </div>
-              <div className="navbar-items">
+              <div className="navbar-items" style={{ width: isAdmin ? '180px' : '140px' }}>
                 {navItems.map((navItem) => (
-                  <li key={navItem.name}>
-                    <>{navItem.icon}</>
-                    <NavLink to={navItem.path} onClick={() => setIsOpen(!isOpen)}>
+                  <li role="none" key={navItem.name}>
+                    <NavLink
+                      role="menuitem"
+                      tabIndex={0}
+                      to={navItem.path}
+                      onClick={() => setIsOpen(!isOpen)}
+                      style={{ width: isAdmin ? '180px' : '140px' }}
+                    >
+                      {navItem.icon}
                       <span>{navItem.name}</span>
                     </NavLink>
                   </li>
                 ))}
               </div>
-              <div className="sidebar-list-logout" style={{ width: isAdmin ? '156px' : '140px' }}>
+              <div className="sidebar-list-logout" style={{ width: isAdmin ? '180px' : '140px' }}>
                 <button className="sidebar-button-logout" onClick={() => setIsOpenConfirmSignoutModal(true)}>
                   <SignOut size={16} alt="Ícone sair" />
                   <span>Sair</span>

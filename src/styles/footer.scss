@@ -14,7 +14,7 @@ footer {
     width: 100%;
     background-color: $gray-lightest;
 
-    @include dark {
+    @include dark-contrast {
       background-color: $gray-dark;
     }
   }
@@ -25,7 +25,7 @@ footer {
     color: $black;
     text-align: center;
 
-    @include dark {
+    @include dark-contrast {
       color: $white;
     }
 

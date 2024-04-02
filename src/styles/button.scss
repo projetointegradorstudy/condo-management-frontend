@@ -14,7 +14,7 @@ button.button-primary {
   cursor: pointer;
   border: 0;
 
-  @include dark {
+  @include dark-contrast  {
     border: 1px solid $gray-lightest;
   }
   
@@ -43,7 +43,7 @@ button.button-primary {
       color: $white;
     }
 
-    @include dark {
+    @include dark-contrast {
       border: 0
     }
 
@@ -68,7 +68,7 @@ button.button-primary {
       color: $white;
     }
 
-    @include dark {
+    @include dark-contrast  {
       border: 2px solid $red;
     }
 

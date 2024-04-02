@@ -30,7 +30,7 @@ div.chart-content-doughnut {
       padding-top: 30px;
     }
 
-    @include dark {
+    @include dark-contrast {
       color: $gray-lightest;
     }
   }

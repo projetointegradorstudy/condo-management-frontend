@@ -20,7 +20,7 @@ div.card-environment {
     height: 370px;
   }
 
-  @include dark {
+  @include dark-contrast {
     background-color: $gray-dark-light;
     transition: background-color 0.5s ease-out;
     box-shadow: none;
@@ -40,7 +40,7 @@ div.card-environment {
       background-color: rgba(200, 200, 200, 0.8);
       border-radius: 5px;
 
-      @include dark {
+      @include dark-contrast {
         background-color: rgba(8, 8, 8, 0.801);
       }
     }
@@ -64,7 +64,7 @@ div.card-environment {
           width: 30px;
         }
 
-        @include dark {
+        @include dark-contrast {
           color: $gray-lightest;
         }
 
@@ -88,7 +88,7 @@ div.card-environment {
           font-size: 14px;
         }
 
-        @include dark {
+        @include dark-contrast {
           color: $gray-lightest;
         }
       }
@@ -167,7 +167,7 @@ div.card-environment {
         svg {
           color: $black;
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }

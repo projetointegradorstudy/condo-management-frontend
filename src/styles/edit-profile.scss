@@ -48,7 +48,7 @@ div.page-edit-profile {
           padding-top: 30px;
         }
 
-        @include dark {
+        @include dark-contrast {
           color: $gray-lightest;
         }
       }
@@ -103,7 +103,7 @@ div.page-edit-profile {
             display: none;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }

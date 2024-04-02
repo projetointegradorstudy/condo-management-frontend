@@ -12,7 +12,7 @@ div.modal-create-environment-background {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 21474835;
 
   div.modal-create-environment {
     display: flex;
@@ -32,7 +32,7 @@ div.modal-create-environment-background {
       margin: 0 20px;
     }
 
-    @include dark {
+    @include dark-contrast {
       background-color: $gray-dark-light;
       box-shadow: none;
     }
@@ -58,7 +58,7 @@ div.modal-create-environment-background {
             height: 18px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }
@@ -89,7 +89,7 @@ div.modal-create-environment-background {
             line-height: 22px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }
@@ -148,7 +148,7 @@ div.modal-create-environment-background {
               height: 80px;
             }
 
-            @include dark {
+            @include dark-contrast {
               background-color: $gray-dark;
               border: 1px dashed $gray-lightest;
             }
@@ -156,7 +156,7 @@ div.modal-create-environment-background {
             label {
               color: $primary;
 
-              @include dark {
+              @include dark-contrast {
                 color: $gray-lightest;
               }
             }
@@ -171,7 +171,7 @@ div.modal-create-environment-background {
                 height: 20px;
               }
 
-              @include dark {
+              @include dark-contrast {
                 color: $gray-lightest;
               }
             }

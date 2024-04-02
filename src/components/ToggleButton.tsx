@@ -1,40 +1,26 @@
-import { useCallback, useEffect, useState } from 'react';
-import { ToggleLeft, ToggleRight } from 'phosphor-react';
+import { useEffect } from 'react';
+import iconAccessibility from '../assets/acessibilidadepng.png';
+import { getContext } from '../utils/context-import';
+import { MoreAccessibility } from './MoreAccessibility';
 import '../styles/toggle-button.scss';
 
 export function ToggleButton() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const handleTheme = useCallback(() => {
-    const htmlElement = document.querySelector('html');
-
-    if (htmlElement) {
-      if (isDarkMode) {
-        htmlElement.classList.remove('dark');
-      } else {
-        htmlElement.classList.add('dark');
-      }
-      setIsDarkMode(!isDarkMode);
-    }
-  }, [isDarkMode]);
+  const { setIsOpenAccessibilityModal, isNeedRefresh, setIsNeedRefresh, getUserData } = getContext();
 
   useEffect(() => {
-    const htmlElement = document.querySelector('html');
-    if (htmlElement) {
-      setIsDarkMode(htmlElement.classList.contains('dark'));
+    if (isNeedRefresh) {
+      setIsNeedRefresh(false);
     }
-  }, []);
+  }, [isNeedRefresh]);
 
   return (
-    <div className="theme-color-mode">
-      <button className="toggle" onClick={handleTheme}>
-        {isDarkMode ? (
-          <ToggleRight className="light" size={40} weight="fill" />
-        ) : (
-          <ToggleLeft className="dark" size={40} weight="fill" />
-        )}
-      </button>
-      <span className={isDarkMode ? 'light' : 'dark'}>{isDarkMode ? 'Dark' : 'Light'} Mode</span>
-    </div>
+    <>
+      <div className="theme-color-mode">
+        <button className="toggle" onClick={() => setIsOpenAccessibilityModal(true)} title="+ Acessibilidade">
+          <img src={iconAccessibility} alt="Ícone Acessibilidade" />
+        </button>
+      </div>
+      <MoreAccessibility />
+    </>
   );
 }

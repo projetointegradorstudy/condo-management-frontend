@@ -12,7 +12,7 @@ div.modal-edit-user-background {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 21474835;
   
   div.modal-edit-user {
     display: flex;
@@ -32,7 +32,7 @@ div.modal-edit-user-background {
       margin: 0 20px;
     }
 
-    @include dark {
+    @include dark-contrast {
       background-color: $gray-dark-light;
       box-shadow: none;
     }
@@ -58,7 +58,7 @@ div.modal-edit-user-background {
             height: 18px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $gray-lightest;
           }
         }
@@ -124,7 +124,7 @@ div.modal-edit-user-background {
             padding: 6px 16px;
           }
 
-          @include dark {
+          @include dark-contrast {
             background-color: $gray-dark;
             border: 1px solid $gray-dark-light;
             color: #AFB8C1;
@@ -197,7 +197,7 @@ div.modal-edit-user-background {
             height: 18px;
           }
 
-          @include dark {
+          @include dark-contrast {
             color: $green;
           }
         }

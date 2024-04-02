@@ -27,7 +27,7 @@ div.content-warning {
       height: 40px;
     }
 
-    @include dark {
+    @include dark-contrast {
       color: $gray-lightest;
     }
   }
@@ -48,7 +48,7 @@ div.content-warning {
       line-height: 16px;
     }
 
-    @include dark {
+    @include dark-contrast {
       color: $gray-lightest;
     }
   }

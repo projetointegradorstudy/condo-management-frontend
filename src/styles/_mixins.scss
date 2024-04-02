@@ -1,5 +1,18 @@
-@mixin dark {
-  html.dark & {
+@mixin dark-contrast {
+  html.dark-contrast & {
     @content;
   }
 }
+
+@mixin inverted-contrast {
+  html.inverted-contrast & {
+    @content;
+  }
+}
+
+@mixin desaturated-contrast {
+  html.desaturated-contrast & {
+    @content;
+  }
+}
+
