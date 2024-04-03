@@ -43,7 +43,7 @@ label.default {
     }
 
     @include dark-contrast {
-      color: invert($color: $white);
+      color: $dt-green;
     }
 
     @include invert-contrast {
@@ -69,6 +69,10 @@ label.default {
       margin-right: 0px;
     }
 
+    @include dark-contrast {
+      background-color: $dt-yellow;
+    }
+
     @include invert-contrast {
       background-color: invert($color: $primary);
     }
@@ -81,6 +85,10 @@ label.default {
       @include breakpoint(sm) {
         width: 14px;
         height: 14px;
+      }
+
+      @include dark-contrast {
+        color: $dt-dark;
       }
 
       @include invert-contrast {

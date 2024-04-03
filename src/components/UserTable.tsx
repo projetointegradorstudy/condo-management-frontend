@@ -64,6 +64,7 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
                     <div className="content-buttons">
                       <div className="circle-button icon-edit">
                         <PencilSimple
+                          weight="bold"
                           onClick={() => {
                             setIsPosition({ id: user.id, name: user.email });
                             setIsEditPosition({
@@ -81,6 +82,7 @@ export function UserTable({ data }: IDataElementProps<IUser[]>) {
 
                       <div className="circle-button icon-close">
                         <Trash
+                          weight="bold"
                           onClick={() => {
                             setIsPosition({ id: user.id, name: user.email });
                             setIsOpenDeletModal(true);

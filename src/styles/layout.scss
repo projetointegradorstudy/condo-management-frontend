@@ -8,8 +8,7 @@ div.page {
   flex-direction: column;
 
   div.container-page {
-    display: flex;
-    
+  
     @include breakpoint(sm) {
       flex-direction: column;
     }
@@ -18,5 +17,15 @@ div.page {
   div.container-navbar {
     display: contents;
     width: 100%;
+  }
+
+  div.content-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
   }
 }

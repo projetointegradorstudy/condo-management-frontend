@@ -7,20 +7,25 @@ import '../styles/layout.scss';
 
 interface LayoutProps {
   children: ReactNode;
+  showNavbar?: boolean;
 }
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ children, showNavbar = true }: LayoutProps) {
   return (
     <div className="page">
       <ToggleButton />
-      <div className="container-page">
-        <div className="container-navbar">
-          <Navbar />
-          <NavbarMobile />
-        </div>
+      <div className="container-page" style={{ display: showNavbar ? 'flex' : 'block' }}>
+        {showNavbar && (
+          <div className="container-navbar">
+            <Navbar />
+            <NavbarMobile />
+          </div>
+        )}
         {children}
       </div>
-      <Footer isFull />
+      <div className="content-footer" style={{ width: showNavbar ? '100%' : '55.5%' }}>
+        <Footer />
+      </div>
     </div>
   );
 }

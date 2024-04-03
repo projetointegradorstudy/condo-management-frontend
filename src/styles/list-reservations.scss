@@ -211,7 +211,7 @@ div.page-requests {
                 color: $red-dark;
                 
                 @include dark-contrast {
-                  color: $dt-red;
+                  color: $dt-coral;
                 }
 
                 @include invert-contrast {
@@ -224,7 +224,7 @@ div.page-requests {
                 color: $red;
 
                 @include dark-contrast {
-                  color: $dt-coral;
+                  color: $dt-red;
                 }
 
                 @include invert-contrast {
@@ -252,6 +252,10 @@ div.page-requests {
                 &.icon-check {
                   color: $green;
 
+                  @include dark-contrast {
+                    color: $dt-yellow;
+                  }
+
                   @include invert-contrast {
                     color: invert($color: $green);
                   }
@@ -263,6 +267,10 @@ div.page-requests {
     
                 &.icon-close {
                   color: $red;
+
+                  @include dark-contrast {
+                    color: $dt-yellow;
+                  }
 
                   @include invert-contrast {
                     color: invert($color: $red);
@@ -276,6 +284,10 @@ div.page-requests {
                 &.disabled {
                   color: $gray;
                   cursor: auto;
+
+                  @include dark-contrast {
+                    color: $gray-dark-light;
+                  }
 
                   @include invert-contrast {
                     color: invert($color: $gray);

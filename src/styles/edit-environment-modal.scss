@@ -36,7 +36,7 @@ div.modal-edit-background-environment  {
     }
 
     @include dark-contrast {
-      background-color: $gray-dark-light;
+      background-color: $gray-dark;
       box-shadow: none;
     }
 
@@ -66,7 +66,7 @@ div.modal-edit-background-environment  {
           }
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-green;
           }
 
           @include invert-contrast {
@@ -134,6 +134,10 @@ div.modal-edit-background-environment  {
             background-color: #EAEEF2;
             padding: 12px 16px;
 
+            @include dark-contrast {
+              background-color: $gray-dark;
+            }
+
             @include invert-contrast {
               background-color: invert($color: #EAEEF2);
             }
@@ -169,7 +173,7 @@ div.modal-edit-background-environment  {
           }
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-green;
           }
 
           @include invert-contrast {
@@ -220,12 +224,20 @@ div.modal-edit-background-environment  {
                 width: 20px;
                 height: 20px;
               }
+
+              @include dark-contrast {
+                color: $dt-yellow;
+              }
             }
 
             label {
               color: $white;
               z-index: 2;
               height: 24px;
+
+              @include dark-contrast {
+                color: $dt-yellow;
+              }
             }           
           }         
         }     

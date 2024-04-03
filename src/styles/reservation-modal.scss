@@ -38,7 +38,7 @@ div.modal-request-background {
     }
 
     @include dark-contrast {
-      background-color: $gray-dark-light;
+      background-color: $gray-dark;
       box-shadow: none;
     }
 
@@ -68,7 +68,7 @@ div.modal-request-background {
           }
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-green;
           }
 
           @include invert-contrast {
@@ -101,7 +101,7 @@ div.modal-request-background {
           color: $black;
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-yellow;
           }
 
           @include invert-contrast {
@@ -115,7 +115,7 @@ div.modal-request-background {
           align-items: center;
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-green;
           }
 
           @include invert-contrast {
@@ -148,7 +148,7 @@ div.modal-request-background {
           letter-spacing: -0.5px;
           
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-green;
           }
 
           @include invert-contrast {

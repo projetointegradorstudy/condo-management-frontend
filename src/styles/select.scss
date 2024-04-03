@@ -27,7 +27,7 @@ div.select-content {
 
     @include dark-contrast {
       background-color: $gray-dark;
-      border: 1px solid $gray-dark-light;
+      border: 1px solid $gray-lightest;
       color: #AFB8C1;
     }
 
@@ -58,6 +58,10 @@ div.select-content {
       line-height: 16px;
       background-color: #EAEEF2;
       padding: 12px 16px;
+
+      @include dark-contrast {
+        background-color: $gray-dark;
+      }
 
       @include invert-contrast {
         background-color: invert($color: #AFB8C1);

@@ -12,7 +12,7 @@ div.page-confirm-user {
     flex-direction: column;
     justify-content: space-between;
     flex: 6;
-    background: $primary;
+    background-color: $primary;
     color: $white;
     padding: 120px 80px;
 
@@ -22,6 +22,14 @@ div.page-confirm-user {
 
     @include breakpoint(md) {
       display: none;
+    }
+
+    @include dark-contrast {
+      background-color: $dt-blue;
+    }
+
+    @include invert-contrast {
+      background-color: invert($color: $primary);
     }
 
     div.page-confirm-user-title {
@@ -39,6 +47,10 @@ div.page-confirm-user {
         @include breakpoint(xl) {
           font-size: 30px;
           line-height: 30px;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $white);
         }
 
         span {
@@ -77,6 +89,10 @@ div.page-confirm-user {
           font-size: 18px;
           line-height: 18px;
         }
+
+        @include invert-contrast {
+          color: invert($color: $white);
+        }
       }
 
       p {
@@ -89,6 +105,10 @@ div.page-confirm-user {
           font-size: 14px;
           line-height: 18px;
         }
+
+        @include invert-contrast {
+          color: invert($color: $white);
+        }
       }
     }
   }
@@ -99,19 +119,33 @@ div.page-confirm-user {
     justify-content: center;
     flex-direction: column;
     flex: 9;
-    background: $white;
-    background-image: url('../assets//wave-vertical.png');
+    background-color: $white;
+    background-image: url('../assets/wave-vertical.png');
     background-position: left;
     background-size: contain;
     background-repeat: no-repeat;
 
-    @include dark-contrast {
-      background-color: $gray-dark;
-    }
-
     @include breakpoint(md) {
       justify-content: flex-start;
       background-image: none;
+    }
+
+    @include dark-contrast {
+      background-image: url('../assets/wave-vertical-darkmode.png');
+      background-color: $gray-dark;
+
+      @include breakpoint(md) {
+        background-image: none;
+      }
+    }
+
+    @include invert-contrast {
+      background-color: invert($color: $white);
+      background-image: url('../assets/wave-vertical-invertmode.png');
+
+      @include breakpoint(md) {
+        background-image: none;
+      }
     }
 
     div.page-confirm-user-logo {
@@ -132,6 +166,10 @@ div.page-confirm-user {
         flex-direction: column;
       }
 
+      @include dark-contrast {
+        background-image: url('../assets/wave-horizontal-darkmode.png');
+      }
+
       h1 {
         color: $white;
         font-size: 42px;
@@ -149,8 +187,16 @@ div.page-confirm-user {
           color: $gray-lightest;
         }
 
+        @include invert-contrast {
+          color: invert($color: $white);
+        }
+
         span {
           font-weight: 400;
+
+          @include invert-contrast {
+            color: invert($color: $white);
+          }
         }
       }
     }
@@ -163,11 +209,6 @@ div.page-confirm-user {
       justify-content: center;
       flex-direction: column;
       padding: 0 30px;
-
-      @include dark-contrast {
-        background-color: $gray-dark-light;
-        padding: 0 30px 40px;
-      }
 
       h4 {
         color: $primary;
@@ -187,7 +228,11 @@ div.page-confirm-user {
         }
 
         @include dark-contrast {
-          color: $gray-lightest;
+          color: $dt-yellow;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $primary);
         }
       }
 

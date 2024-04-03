@@ -15,16 +15,11 @@ button.button-primary {
   border: 0;
 
   @include dark-contrast  {
-    border: 1px solid $gray-lightest;
+    border: 1px solid $dt-green;
     background-color: transparent;
     color: $dt-green;
   }
 
-  @include invert-contrast {
-    background-color: invert($color: $primary);
-    color: invert($color: $white);
-  }
-  
   &.button-full {
     width: 100%;
   }
@@ -41,14 +36,25 @@ button.button-primary {
     line-height: 12px;
   }
 
+  @include invert-contrast {
+    background-color: invert($color: $primary);
+    color: invert($color: $white);
+  }
+  
+  &:hover {
+    @include dark-contrast {
+      background-color: $dt-green;
+      color: $dt-dark;
+    }
+  }
+
   &.button-confirm {
     background-color: $green;
     color: $white;
 
     @include dark-contrast {
-      border: 1px solid $gray-lightest!important;
-      background-color: transparent;
-      color: $dt-green;
+      background-color: $dt-green;
+      color: $dt-dark;
     }
 
     @include invert-contrast {
@@ -60,19 +66,26 @@ button.button-primary {
       background-color: $green-dark;
       color: $white;
 
+      @include dark-contrast {
+        background-color: $dt-green;
+        color: $dt-dark;
+      }
+
       @include invert-contrast {
         background-color: invert($color: $green-dark);
         color: invert($color: $white);
       }
     }
 
-    @include dark-contrast {
-      border: 0
-    }
-
     &:disabled {
       background-color: $gray;
       cursor: auto;
+
+      @include dark-contrast {
+        color: $gray-dark-light;
+        background-color: $gray-dark;
+        border: 1px solid $gray-dark-light;
+      }
     }
 
     @include breakpoint(sm) {
@@ -86,6 +99,12 @@ button.button-primary {
     border: 2px solid $red;
     transition: 0.2s;
 
+    @include dark-contrast {
+      border: 1px solid $dt-coral !important;
+      background-color: transparent;
+      color: $dt-coral;
+    }
+
     @include invert-contrast {
       border-color: invert($color: $red);
       color: invert($color: $white);
@@ -94,6 +113,11 @@ button.button-primary {
     &:hover {
       background-color: $red;
       color: $white;
+
+      @include dark-contrast {
+        background-color: $dt-coral;
+        color: $dt-dark;
+      }
 
       @include invert-contrast {
         background-color: invert($color: $red);

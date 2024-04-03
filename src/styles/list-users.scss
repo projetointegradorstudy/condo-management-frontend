@@ -225,6 +225,10 @@ div.page-list-users {
                 &.icon-edit {
                   background: $primary;
 
+                  @include dark-contrast {
+                    background: $dt-yellow;
+                  }
+
                   @include invert-contrast {
                     background: invert($color: $primary);
                   }
@@ -236,6 +240,10 @@ div.page-list-users {
 
                 &.icon-close {
                   background: $red;
+
+                  @include dark-contrast {
+                    background: $dt-yellow;
+                  }
 
                   @include invert-contrast {
                     background: invert($color: $red);
@@ -254,6 +262,10 @@ div.page-list-users {
                   @include breakpoint(sm) {
                     width: 10px;
                     height: 10px;
+                  }
+
+                  @include dark-contrast {
+                    color: $dt-dark;
                   }
 
                   @include invert-contrast {

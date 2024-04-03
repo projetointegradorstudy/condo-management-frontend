@@ -29,6 +29,7 @@ div.textarea-content {
     @include dark-contrast {
       background-color: $gray-dark;
       color: $gray-lightest;
+      border: 1px solid $gray-dark-light;
     }
 
     @include invert-contrast {

@@ -26,8 +26,7 @@ div.input-content {
 
     @include dark-contrast {
       background-color: $gray-dark;
-      transition: background-color 0.5s ease-out;
-      border: 1px solid $gray-dark-light;
+      border: 1px solid $gray-lightest;
       color: #AFB8C1;
     }
 
@@ -48,8 +47,14 @@ div.input-content {
     &.field-error {
       outline: 1px solid $red !important;
 
+      @include dark-contrast {
+        border: 0;
+        outline-color: $dt-coral!important;
+      }
+
       @include invert-contrast {
         outline-color: invert($color: $red) !important;
+        border: 0;
       }
     }
 
@@ -77,6 +82,10 @@ div.input-content {
 
       @include breakpoint(sm) {
         font-size: 10px;
+      }
+
+      @include dark-contrast {
+        color: $dt-coral;
       }
 
       @include invert-contrast {

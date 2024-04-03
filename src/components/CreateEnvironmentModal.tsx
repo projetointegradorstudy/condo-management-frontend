@@ -119,10 +119,6 @@ export function CreateEnvironmentModal() {
 
           {isLoading && <Spinner />}
           <div className="modal-create-environment-content">
-            <div className="modal-create-environment-title">
-              <h4>Adicionar ambiente</h4>
-            </div>
-
             <div className="modal-create-environment-content-form">
               <form onSubmit={handleSubmit} id="form">
                 <div className="content-upload-register-environment">
