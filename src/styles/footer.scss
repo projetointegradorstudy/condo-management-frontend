@@ -9,19 +9,6 @@ footer {
   height: 40px;
   position: fixed;
   bottom: 0;
- 
-  &.full {
-    width: 100%;
-    background-color: $gray-lightest;
-
-    @include dark-contrast {
-      background-color: $dt-dark;
-    }
-
-    @include invert-contrast {
-      background-color: invert($color: $gray-lightest);
-    }
-  }
 
   span {
     font-size: 11px;

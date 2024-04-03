@@ -23,7 +23,10 @@ export function Layout({ children, showNavbar = true }: LayoutProps) {
         )}
         {children}
       </div>
-      <div className="content-footer" style={{ width: showNavbar ? '100%' : '55.5%' }}>
+      <div
+        className={`content-footer ${showNavbar ? '' : 'bg-transparent'}`}
+        style={{ width: showNavbar ? '100%' : '55.5%' }}
+      >
         <Footer />
       </div>
     </div>

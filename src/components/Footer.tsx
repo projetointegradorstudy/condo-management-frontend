@@ -1,14 +1,10 @@
 import '../styles/footer.scss';
 
-interface footerProps {
-  isFull?: boolean;
-}
-
-export function Footer({ isFull }: footerProps) {
+export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={`${isFull ? 'full' : ''}`}>
+    <footer>
       <span>CondoManagement &copy; {currentYear}</span>
     </footer>
   );

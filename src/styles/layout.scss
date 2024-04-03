@@ -27,5 +27,22 @@ div.page {
     position: fixed;
     bottom: 0;
     right: 0;
+    background-color: $gray-lightest;
+
+    &.bg-transparent {
+      background-color: transparent!important;
+    }
+
+    @include breakpoint(md) {
+      width: 100%!important;
+    }
+
+    @include dark-contrast {
+      background-color: $dt-dark;
+    }
+
+    @include invert-contrast {
+      background-color: invert($color: $gray-lightest);
+    }
   }
 }
