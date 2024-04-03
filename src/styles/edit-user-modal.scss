@@ -37,7 +37,7 @@ div.modal-edit-user-background {
     }
 
     @include dark-contrast {
-      background-color: $gray-dark-light;
+      background-color: $gray-dark;
       box-shadow: none;
     }
 
@@ -67,7 +67,7 @@ div.modal-edit-user-background {
           }
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-green;
           }
 
           @include invert-contrast {
@@ -165,7 +165,11 @@ div.modal-edit-user-background {
             line-height: 16px;
             background-color: #EAEEF2;
             padding: 12px 16px;
-            
+
+            @include dark-contrast {
+              background-color: $gray-dark;
+            }
+
             @include invert-contrast {
               background-color: invert($color: #AFB8C1);
             }

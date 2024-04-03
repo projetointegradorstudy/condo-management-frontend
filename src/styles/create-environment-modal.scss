@@ -37,7 +37,7 @@ div.modal-create-environment-background {
     }
 
     @include dark-contrast {
-      background-color: $gray-dark-light;
+      background-color: $gray-dark;
       box-shadow: none;
     }
 
@@ -67,7 +67,7 @@ div.modal-create-environment-background {
           }
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-green;
           }
 
           @include invert-contrast {
@@ -85,31 +85,6 @@ div.modal-create-environment-background {
       gap: 1rem;
       width: 100%;
       height: auto;
-
-      div.modal-create-environment-title {
-         width: 100%;
-    
-        h4 {
-          font-size: 18px;
-          line-height: 24px;
-          color: $black;
-          text-align: center;
-          font-weight: 600;
-
-          @include breakpoint(sm) {
-            font-size: 16px;
-            line-height: 22px;
-          }
-
-          @include dark-contrast {
-            color: $gray-lightest;
-          }
-
-          @include invert-contrast {
-            color: invert($color: $black);
-          }
-        }
-      }
     }
 
     div.modal-create-environment-content-form {
@@ -170,7 +145,7 @@ div.modal-create-environment-background {
 
             @include dark-contrast {
               background-color: $gray-dark;
-              border: 1px dashed $gray-lightest;
+              border: 1px dashed $dt-green;
             }
 
             @include invert-contrast {
@@ -182,7 +157,7 @@ div.modal-create-environment-background {
               color: $primary;
 
               @include dark-contrast {
-                color: $gray-lightest;
+                color: $dt-yellow;
               }
 
               @include invert-contrast {
@@ -201,7 +176,7 @@ div.modal-create-environment-background {
               }
 
               @include dark-contrast {
-                color: $gray-lightest;
+                color: $dt-yellow;
               }
 
               @include invert-contrast {

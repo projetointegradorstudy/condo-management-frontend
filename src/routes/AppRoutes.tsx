@@ -46,7 +46,9 @@ export function AppRoutes() {
             path="/"
             element={
               <IsLoggedOut>
-                <Login />
+                <Layout showNavbar={false}>
+                  <Login />
+                </Layout>
               </IsLoggedOut>
             }
           />
@@ -54,7 +56,9 @@ export function AppRoutes() {
             path="/confirm-user"
             element={
               <IsLoggedOut>
-                <ConfirmUser />
+                <Layout showNavbar={false}>
+                  <ConfirmUser />
+                </Layout>
               </IsLoggedOut>
             }
           />
@@ -62,7 +66,9 @@ export function AppRoutes() {
             path="/recover-password"
             element={
               <IsLoggedOut>
-                <RecoverPassword />
+                <Layout showNavbar={false}>
+                  <RecoverPassword />
+                </Layout>
               </IsLoggedOut>
             }
           />
@@ -70,7 +76,9 @@ export function AppRoutes() {
             path="/forgot-password"
             element={
               <IsLoggedOut>
-                <ForgotPassaword />
+                <Layout showNavbar={false}>
+                  <ForgotPassaword />
+                </Layout>
               </IsLoggedOut>
             }
           />

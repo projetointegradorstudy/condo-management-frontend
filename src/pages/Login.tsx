@@ -7,7 +7,6 @@ import { Button } from '../components/Button';
 import cityImage from '../assets/city_life_gnpr_color.svg';
 import { getContext } from '../utils/context-import';
 import { getRegex } from '../utils/regex';
-import { Footer } from '../components/Footer';
 import { ToastMessage, ToastNotifications } from '../components/ToastNotifications';
 import { Case, IFacebookOAuth, IGoogleOAuth, IMicrosoftOAuth } from '../interfaces';
 import { Spinner } from '../components/Spinner';
@@ -168,7 +167,7 @@ export function Login() {
                   console.error(err);
                 }}
               >
-                <GoogleLoginButton />
+                <GoogleLoginButton className="login-button" />
               </LoginSocialGoogle>
               <LoginSocialFacebook
                 className="button-container"
@@ -181,7 +180,7 @@ export function Login() {
                   console.error(err);
                 }}
               >
-                <FacebookLoginButton />
+                <FacebookLoginButton className="login-button" />
               </LoginSocialFacebook>
               <LoginSocialMicrosoft
                 className="button-container"
@@ -197,11 +196,10 @@ export function Login() {
                   console.error(err);
                 }}
               >
-                <MicrosoftLoginButton />
+                <MicrosoftLoginButton className="login-button" />
               </LoginSocialMicrosoft>
             </div>
           </div>
-          <Footer />
         </main>
       </div>
       <ToastNotifications />

@@ -67,6 +67,7 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                       <div className="circle-button icon-edit">
                         <PencilSimple
                           className="icon-edit"
+                          weight="bold"
                           alt="Ícone editar"
                           onClick={() => {
                             setIsPosition({ id: environment.id, name: environment.name });
@@ -86,6 +87,7 @@ export function EnvironmentTable({ data }: IDataElementProps<IEnvironment[]>) {
                       <div className="circle-button icon-close">
                         <Trash
                           className="icon-close"
+                          weight="bold"
                           alt="Ícone excluir"
                           onClick={() => {
                             setIsPosition({ id: environment.id, name: environment.name });

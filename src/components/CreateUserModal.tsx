@@ -94,10 +94,6 @@ export function CreateUserModal() {
           </div>
           {isLoading && <Spinner />}
           <div className="modal-create-content">
-            <div className="modal-create-message">
-              <h4>Adicionar usuário</h4>
-            </div>
-
             <div className="modal-create-content-form">
               <form onSubmit={handleSubmit}>
                 <Label title="Email" htmlFor="email" />

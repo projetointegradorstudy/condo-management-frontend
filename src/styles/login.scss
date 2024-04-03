@@ -24,6 +24,14 @@ div.page-login {
       display: none;
     }
 
+    @include dark-contrast {
+      background-color: $dt-blue;
+    }
+
+    @include invert-contrast {
+      background-color: invert($color: $primary);
+    }
+
     div.page-login-title {
       display: flex;
       align-items: center;
@@ -39,6 +47,10 @@ div.page-login {
         @include breakpoint(xl) {
           font-size: 30px;
           line-height: 30px;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $white);
         }
 
         span {
@@ -77,6 +89,10 @@ div.page-login {
         font-size: 18px;
         line-height: 18px;
       }
+
+      @include invert-contrast {
+        color: invert($color: $white);
+      }
     }
 
     p {
@@ -90,6 +106,10 @@ div.page-login {
         font-size: 14px;
         line-height: 18px;
       }
+
+      @include invert-contrast {
+        color: invert($color: $white);
+      }
     }
   }
 
@@ -99,7 +119,7 @@ div.page-login {
     justify-content: center;
     flex-direction: column;
     flex: 9;
-    background-image: url('../assets//wave-vertical.png');
+    background-image: url('../assets/wave-vertical.png');
     background-position: left;
     background-size: contain;
     background-repeat: no-repeat;
@@ -110,7 +130,15 @@ div.page-login {
     }
 
     @include dark-contrast {
-      background-image: url('../assets//wave-vertical-darkmode.png');
+      background-image: url('../assets/wave-vertical-darkmode.png');
+
+      @include breakpoint(md) {
+        background-image: none;
+      }
+    }
+
+    @include invert-contrast {
+      background-image: url('../assets/wave-vertical-invertmode.png');
 
       @include breakpoint(md) {
         background-image: none;
@@ -118,7 +146,7 @@ div.page-login {
     }
 
     div.page-login-logo {
-      background-image: url('../assets//wave-horizontal.png');
+      background-image: url('../assets/wave-horizontal.png');
       background-position: bottom;
       background-size: contain;
       background-repeat: no-repeat;
@@ -136,7 +164,7 @@ div.page-login {
       }
 
       @include dark-contrast {
-        background-image: url('../assets//wave-horizontal-darkmode.png');
+        background-image: url('../assets/wave-horizontal-darkmode.png');
       }
 
       h1 {
@@ -152,8 +180,16 @@ div.page-login {
           line-height: 30px;
         }
 
+        @include invert-contrast {
+          color: invert($color: $white);
+        }
+
         span {
           font-weight: 400;
+
+          @include invert-contrast {
+            color: invert($color: $white);
+          }
         }
       }
     }
@@ -164,6 +200,10 @@ div.page-login {
       flex: 1 0 auto;
       height: 0.5em;
       margin: 0;
+
+      @include dark-contrast {
+        border-color: $dt-green;
+      }
     }
 
     div.divider-wrapper::after {
@@ -172,6 +212,10 @@ div.page-login {
       flex: 1 0 auto;
       height: 0.5em;
       margin: 0;
+
+      @include dark-contrast {
+        border-color: $dt-green;
+      }
     }
 
     div.divider-wrapper {
@@ -192,6 +236,14 @@ div.page-login {
         flex: 0.2 0 auto;
         margin: 0;
         height: 12px;
+
+        @include dark-contrast {
+          color: $dt-green;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $black);
+        }
       }
     }
 
@@ -222,7 +274,11 @@ div.page-login {
         }
 
         @include dark-contrast {
-          color: $white;
+          color: $dt-yellow;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $primary);
         }
       }
 
@@ -249,7 +305,11 @@ div.page-login {
             }
 
             @include dark-contrast {
-              color: $white;
+              color: $dt-green;
+            }
+
+            @include invert-contrast {
+              color: invert($color: $primary);
             }
           }
         }
@@ -276,6 +336,21 @@ div.page-login {
             font-size: 14px !important;
             line-height: 14px !important;
             font-weight: 600 !important;
+
+            &.login-button {
+              @include dark-contrast {
+                background: $dt-dark !important;
+                border: 1px solid $dt-yellow !important;
+                color: $dt-yellow !important;
+              }
+            }
+
+            &.login-button {
+              @include invert-contrast {
+                background: invert($color: $primary)!important;
+                color: $black!important;
+              }
+            }
 
             div {
               text-align: center !important;

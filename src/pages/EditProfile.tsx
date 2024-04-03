@@ -100,7 +100,7 @@ export function EditProfile() {
                 </div>
               </div>
 
-              <Label htmlFor="image" isEditAvatar icon={<PencilSimple />} />
+              <Label htmlFor="image" isEditAvatar icon={<PencilSimple weight="bold" />} />
               <Input
                 title="Choose a file"
                 type="file"

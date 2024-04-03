@@ -232,11 +232,15 @@ div.page-my-requests {
                 }
 
                 @include dark-contrast {
-                  color: $gray-lightest;
+                  color: $dt-dark;
                 }
 
                 &.icon-close {
                   color: $red;
+
+                  @include dark-contrast {
+                    color: $dt-yellow;
+                  }
 
                   @include invert-contrast {
                     color: invert($color: $red);
@@ -254,6 +258,10 @@ div.page-my-requests {
                 &.disabled {
                   color: $gray;
                   cursor: auto;
+
+                  @include dark-contrast {
+                    color: $gray-dark-light;
+                  }
 
                   @include invert-contrast {
                     color: invert($color: $gray);

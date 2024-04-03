@@ -28,7 +28,7 @@ div.datetime-picker-content {
 
       @include dark-contrast {
         background-color: $gray-dark;
-        border: 1px solid $gray-dark-light;
+        border: 1px solid $gray-lightest;
         color: #AFB8C1;
       }
 

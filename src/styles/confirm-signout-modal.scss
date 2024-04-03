@@ -37,7 +37,7 @@ div.modal-confirm-signout-background {
     }
 
     @include dark-contrast {
-      background-color: $gray-dark-light;
+      background-color: $gray-dark;
       box-shadow: none;
     }
 
@@ -67,7 +67,7 @@ div.modal-confirm-signout-background {
           }
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-green;
           }
 
           @include invert-contrast {
@@ -102,7 +102,7 @@ div.modal-confirm-signout-background {
           }
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-green;
           }
 
           @include invert-contrast {
