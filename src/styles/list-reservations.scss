@@ -10,9 +10,12 @@ div.page-requests {
   transition: background-color 0.5s ease-out;
 
   @include dark-contrast {
-    background-color: $gray-dark;
-    transition: background-color 0.5s ease-out;
+    background-color: $dt-dark;
   }
+
+    @include invert-contrast {
+      background-color: invert($color: $gray-lightest);
+    }
 
   div.container-requests {
     width: 100%;
@@ -51,7 +54,11 @@ div.page-requests {
         }
 
         @include dark-contrast {
-          color: $gray-lightest;
+          color: $dt-yellow;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $black);
         }
       }
     }
@@ -80,11 +87,16 @@ div.page-requests {
         &::-webkit-scrollbar-thumb {
           background-color: $gray;
           border-radius: 20px;
-          border: 5px solid #F6F8FA;
+          border: 5px solid $gray-lightest;
 
           @include dark-contrast {
             background-color: $gray-dark-light;
-            border: 5px solid $gray-dark;
+            border: 5px solid $dt-dark;
+          }
+
+          @include invert-contrast {
+            background-color: invert($color: $gray);
+            border-color: invert($color: $gray-lightest);
           }
         }
     
@@ -110,7 +122,7 @@ div.page-requests {
             th {
               position: sticky;
               top: 0;
-              background-color: #F6F8FA;
+              background-color: $gray-lightest;
               transition: background-color 0.5s ease-out;
               font-size: 16px;
               line-height: 24px;
@@ -125,9 +137,14 @@ div.page-requests {
               }
 
               @include dark-contrast {
-                background-color: $gray-dark;
-                color: $gray-lightest;
-                transition: background-color 0.5s ease-out;
+                background-color: $dt-dark;
+                color: $dt-yellow;
+              }
+
+              @include invert-contrast {
+                background-color: invert($color: $gray-lightest);
+                border-bottom-color: invert($color: $black);
+                color: invert($color: $black);
               }
             }
           }
@@ -137,8 +154,11 @@ div.page-requests {
             transition: background-color 0.5s ease-out;
 
             @include dark-contrast {
-              background-color: $gray-dark-light;
-              transition: background-color 0.5s ease-out;
+              background-color: $dt-dark;
+            }
+
+            @include invert-contrast {
+              background-color: invert($color: $white);
             }
           }
     
@@ -154,37 +174,62 @@ div.page-requests {
             }
 
             @include dark-contrast {
-              color: $gray-lightest;
+              color: $dt-green;
             }
-    
-            img {
-              max-width: 200px;
-              width: 100%;
-              height: 50px;
-              border-radius: 4px;
-              object-fit: cover;
-    
-              @include breakpoint(md) {
-                height: 50px;
-              }
+
+            @include invert-contrast {
+              color: invert($color: $black);
             }
 
             p {
 
               &.status-approved {
                 color: $green-dark;
+
+                @include dark-contrast {
+                  color: $dt-dark-green;
+                }
+
+                @include invert-contrast {
+                  color: invert($color: $green-dark);
+                }
               }
 
               &.status-pending {
                 color: $orange;
+
+                @include dark-contrast {
+                  color: $dt-gray;
+                }
+
+                @include invert-contrast {
+                  color: invert($color: $orange);
+                }
               }
 
               &.status-not-approved {
                 color: $red-dark;
+                
+                @include dark-contrast {
+                  color: $dt-red;
+                }
+
+                @include invert-contrast {
+                  color: invert($color: $red-dark);
+                }
+
               }
 
               &.status-cancelled {
                 color: $red;
+
+                @include dark-contrast {
+                  color: $dt-coral;
+                }
+
+                @include invert-contrast {
+                  color: invert($color: $red);
+                }
               }
             }
     
@@ -206,6 +251,10 @@ div.page-requests {
     
                 &.icon-check {
                   color: $green;
+
+                  @include invert-contrast {
+                    color: invert($color: $green);
+                  }
     
                   &:hover {
                     color: $green-dark;
@@ -214,6 +263,10 @@ div.page-requests {
     
                 &.icon-close {
                   color: $red;
+
+                  @include invert-contrast {
+                    color: invert($color: $red);
+                  }
     
                   &:hover {
                     color: $red-dark;
@@ -223,18 +276,10 @@ div.page-requests {
                 &.disabled {
                   color: $gray;
                   cursor: auto;
-                }
-              }
-    
-              button.button-cancel {
-                width: 100px;
-                height: 34px;
-                background-color: $red;
-                color: $white;
-    
-                @include breakpoint(sm) {
-                  width: 80px;
-                  height: 30px;
+
+                  @include invert-contrast {
+                    color: invert($color: $gray);
+                  }
                 }
               }
             }

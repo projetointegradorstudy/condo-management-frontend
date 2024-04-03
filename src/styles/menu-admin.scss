@@ -46,7 +46,11 @@ div.page-menu-admin {
         }
 
         @include dark-contrast {
-          color: $gray-lightest;
+          color: $dt-yellow;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $black);
         }
       }
     }
@@ -68,7 +72,11 @@ div.page-menu-admin {
         }
 
         @include dark-contrast {
-          color: $gray-lightest;
+          color: $dt-yellow;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $black);
         }
       }
 
@@ -87,7 +95,16 @@ div.page-menu-admin {
           gap: 1rem;
 
           svg {
+            color: $black;
             width: 28px;
+
+            @include dark-contrast {
+              color: $dt-green;
+            }
+
+            @include invert-contrast {
+              color: invert($color: $white);
+            }
           }
         }
       }

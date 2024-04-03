@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.navbar-mobile {
   width: 100%;
@@ -20,8 +21,12 @@ div.navbar-mobile {
     height: 50px;
     background-color: $primary;
     padding: 0 20px;
-    z-index: 999;
+    z-index: 1500;
     position: fixed;
+
+    @include invert-contrast {
+      background-color: invert($color: $primary);
+    }
 
     button {
       width: 30px;
@@ -32,6 +37,10 @@ div.navbar-mobile {
 
     svg {
       color: $white;
+
+      @include invert-contrast {
+        color: invert($color: $white);
+      }
     }
 
     div {
@@ -52,6 +61,10 @@ div.navbar-mobile {
         transition: transform 0.8s cubic-bezier(1, -0.01, 0.58, 1);
         z-index: -1;
         gap: 1rem;
+
+        @include invert-contrast {
+          background-color: invert($color: $primary);
+        }
 
         div.profile {
           display: flex;
@@ -74,16 +87,28 @@ div.navbar-mobile {
             color: $white;
             font-size: 12px;
             line-height: 16px;
+
+            @include invert-contrast {
+              color: invert($color: $white);
+            }
           }
 
           h4 {
             font-size: 14px;
             color: $white;
+
+            @include invert-contrast {
+              color: invert($color: $white);
+            }
           }
 
           span {
             font-size: 12px;
             color: $white;
+
+            @include invert-contrast {
+              color: invert($color: $white);
+            }
           }
         }
 
@@ -106,6 +131,10 @@ div.navbar-mobile {
               text-decoration: none;
               gap: 0.8rem;
 
+              @include invert-contrast {
+                color: invert($color: $white);
+              }
+
               span {
                 font-size: 15px;
                 line-height: 18px;
@@ -127,12 +156,16 @@ div.navbar-mobile {
             height: auto;
 
             span {
-              color: #ffffff;
+              color: $white;
               font-family: 'Roboto', sans-serif;
               font-weight: 400;
               font-size: 15px;
               line-height: 18px;
               text-decoration: none;
+
+              @include invert-contrast {
+                color: invert($color: $white);
+              }
             }
           }
         }

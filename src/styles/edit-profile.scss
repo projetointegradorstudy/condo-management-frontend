@@ -49,7 +49,11 @@ div.page-edit-profile {
         }
 
         @include dark-contrast {
-          color: $gray-lightest;
+          color: $dt-yellow;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $black);
         }
       }
     }
@@ -104,7 +108,11 @@ div.page-edit-profile {
           }
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-yellow;
+          }
+
+          @include invert-contrast {
+            color: invert($color: $primary);
           }
         }
 
@@ -169,6 +177,10 @@ div.page-edit-profile {
                 font-size: 11px;
               }
 
+              @include dark-contrast {
+                color: $dt-yellow;
+              }
+
               svg {
                 margin-bottom: 6px;
                 width: 24px;
@@ -178,6 +190,10 @@ div.page-edit-profile {
                 @include breakpoint(sm) {
                   width: 20px;
                   height: 20px;
+                }
+
+                @include dark-contrast {
+                  color: $dt-yellow;
                 }
               }
             }

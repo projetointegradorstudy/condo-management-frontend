@@ -21,14 +21,20 @@ div.card-environment {
   }
 
   @include dark-contrast {
-    background-color: $gray-dark-light;
-    transition: background-color 0.5s ease-out;
+    background-color: $dt-dark;
     box-shadow: none;
-    color: $gray-lightest;
+    color: $dt-green;
+  }
+
+  @include invert-contrast {
+    color: invert($color: $black);
+    background-color: invert($color: $gray-dark-light);
   }
 
   &.card-environment-maintenance {
     box-shadow: none;
+    position: relative;
+    z-index: 1;
 
     &::before {
       content: "";
@@ -43,11 +49,12 @@ div.card-environment {
       @include dark-contrast {
         background-color: rgba(8, 8, 8, 0.801);
       }
+
+      @include invert-contrast {
+        background-color: invert($color: rgba(200, 200, 200, 0.8));
+      }
     }
-
-    position: relative;
-    z-index: 1;
-
+    
     div.card-environment-maintenance-message {
       align-items: center;
       justify-content: center;
@@ -65,7 +72,11 @@ div.card-environment {
         }
 
         @include dark-contrast {
-          color: $gray-lightest;
+          color: $dt-green;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $primary);
         }
 
         @keyframes spin {
@@ -80,6 +91,7 @@ div.card-environment {
       }
 
       span {
+        color: $black;
         margin-top: 10px;
         font-size: 16px;
         font-weight: 600;
@@ -89,7 +101,11 @@ div.card-environment {
         }
 
         @include dark-contrast {
-          color: $gray-lightest;
+          color: $dt-green;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $black);
         }
       }
     }
@@ -124,12 +140,21 @@ div.card-environment {
       margin-bottom: 10px;
 
       h3 {
+        color: $black;
         font-size: 18px;
         line-height: 24px;
 
         @include breakpoint(sm) {
           font-size: 16px;
           line-height: 24px;
+        }
+
+        @include dark-contrast {
+          color: $dt-yellow;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $white);
         }
       }
     }
@@ -138,6 +163,7 @@ div.card-environment {
       width: 100%;
 
       span {
+        color: $black;
         font-size: 14px;
         line-height: 20px;
         overflow: hidden; 
@@ -150,6 +176,14 @@ div.card-environment {
           font-size: 12px;
           line-height: 18px;
         }
+
+        @include dark-contrast {
+          color: $dt-green;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $white);
+        }
       }
     }
 
@@ -160,20 +194,38 @@ div.card-environment {
       margin-top: 20px;
 
       div.card-info {
+        color: $black;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+
+        @include dark-contrast {
+          color: $dt-green;
+        }
 
         svg {
           color: $black;
 
           @include dark-contrast {
-            color: $gray-lightest;
+            color: $dt-green;
+          }
+
+          @include invert-contrast {
+            color: invert($color: $white);
           }
         }
 
         strong {
+          color: $black;
           font-size: 16px;
+
+          @include dark-contrast {
+            color: $dt-green;
+          }
+          
+          @include invert-contrast {
+            color: invert($color: $white);
+          }
         }
       }
     

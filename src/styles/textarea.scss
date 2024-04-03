@@ -18,26 +18,39 @@ div.textarea-content {
     line-height: 16px;
     resize: none;
 
+    @include breakpoint(lg) {
+      width: 100%;
+    }
+
+    @include breakpoint(sm) {
+      font-size: 14px;
+    }
+
     @include dark-contrast {
       background-color: $gray-dark;
       color: $gray-lightest;
     }
 
-    @include breakpoint(lg) {
-      width: 100%;
+    @include invert-contrast {
+      background-color: invert($color: #EAEEF2);
+      color: invert($color: $primary);
     }
-  
-    @include breakpoint(sm) {
-      font-size: 14px;
-    }
-  
+
     &::placeholder {
       color: #AFB8C1;
       font-size: 14px;
+
+      @include invert-contrast {
+        color: invert($color: $black);
+      }
     }
 
     &.field-error {
-      outline: 1px solid #f34542 !important;
+      outline: 1px solid $red !important;
+
+      @include invert-contrast {
+        outline-color: invert($color: $red) !important;;
+      }
     }
   }
 }
@@ -55,6 +68,10 @@ div.content-textarea-message {
 
     @include breakpoint(sm) {
       font-size: 10px;
+    }
+
+    @include invert-contrast {
+      color: invert($color: $red);
     }
   }
 }

@@ -19,16 +19,7 @@ div.datetime-picker-content {
       color: $primary;
       font-size: 16px;
       line-height: 16px;
-
-      &::placeholder {
-        color: #AFB8C1;
-        font-size: 14px;
-      }
-
-      &.field-error {
-        outline: 1px solid #f34542 !important;
-      }
-
+      
       @include breakpoint(sm) {
         font-size: 14px;
         height: 24px;
@@ -40,11 +31,38 @@ div.datetime-picker-content {
         border: 1px solid $gray-dark-light;
         color: #AFB8C1;
       }
+
+      @include invert-contrast {
+        background-color: invert($color: #EAEEF2);
+        color: invert($color: $primary);
+      }
+
+      &::placeholder {
+        color: #AFB8C1;
+        font-size: 14px;
+
+        @include invert-contrast {
+          color: invert($color: $black);
+        }
+      }
+
+      &.field-error {
+        // outline: 1px solid $red !important;
+        
+        @include invert-contrast {
+          outline-color: invert($color: $red) !important;
+        }
+      }
+
     }
 
     fieldset {
       &.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-error {
-        border-color: #f34542!important;
+        border-color: $red;
+
+        @include invert-contrast {
+          border-color: invert($color: $red) !important;
+        }
       }
     }
   }
@@ -59,6 +77,10 @@ div.datetime-picker-content {
     span {
       font-size: 12px;
       color: $red;
+
+      @include invert-contrast {
+        color: invert($color: $red) !important;
+      }
 
       @include breakpoint(sm) {
         font-size: 10px;

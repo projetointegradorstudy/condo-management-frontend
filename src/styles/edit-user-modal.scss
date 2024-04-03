@@ -13,6 +13,10 @@ div.modal-edit-user-background {
   justify-content: center;
   align-items: center;
   z-index: 21474835;
+
+  @include invert-contrast {
+    background-color: invert($color: rgba(0, 0, 0, 0.5));
+  }
   
   div.modal-edit-user {
     display: flex;
@@ -35,6 +39,10 @@ div.modal-edit-user-background {
     @include dark-contrast {
       background-color: $gray-dark-light;
       box-shadow: none;
+    }
+
+    @include invert-contrast {
+      background-color: invert($color: $white);
     }
 
     div.modal-edit-user-button-close {
@@ -60,6 +68,10 @@ div.modal-edit-user-background {
 
           @include dark-contrast {
             color: $gray-lightest;
+          }
+
+          @include invert-contrast {
+            color: invert($color: $black);
           }
         }
       }
@@ -130,6 +142,11 @@ div.modal-edit-user-background {
             color: #AFB8C1;
           }
 
+          @include invert-contrast {
+            background-color: invert($color: #EAEEF2);
+            color: invert($color: $primary);
+          }
+
           &::-ms-expand {
             display: none;
           }
@@ -137,10 +154,10 @@ div.modal-edit-user-background {
           &::placeholder {
             color: #AFB8C1;
             font-size: 14px;
-          }
 
-          &::hover {
-            background-color: #AFB8C1;
+            @include invert-contrast {
+              color: invert($color: $black);
+            }
           }
 
           option {
@@ -148,6 +165,23 @@ div.modal-edit-user-background {
             line-height: 16px;
             background-color: #EAEEF2;
             padding: 12px 16px;
+            
+            @include invert-contrast {
+              background-color: invert($color: #AFB8C1);
+            }
+
+            &::hover {
+              background-color: #AFB8C1;
+              
+
+              @include dark-contrast {
+                background-color: $gray-dark;
+              }
+
+              @include invert-contrast {
+                background-color: invert($color: #AFB8C1);
+              }
+            }
           }
         }
 

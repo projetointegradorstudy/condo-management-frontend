@@ -4,8 +4,8 @@
   }
 }
 
-@mixin inverted-contrast {
-  html.inverted-contrast & {
+@mixin invert-contrast {
+  html.invert-contrast & {
     @content;
   }
 }

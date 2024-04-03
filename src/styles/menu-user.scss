@@ -44,7 +44,11 @@ div.page-menu-user {
         }
 
         @include dark-contrast {
-          color: $gray-lightest;
+          color: $dt-yellow;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $black);
         }
       }
     }
@@ -64,7 +68,11 @@ div.page-menu-user {
       }
 
       @include dark-contrast {
-        color: $gray-lightest;
+        color: $dt-yellow;
+      }
+      
+      @include invert-contrast {
+        color: invert($color: $black);
       }
     }
   }

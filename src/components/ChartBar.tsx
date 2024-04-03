@@ -2,8 +2,8 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as Chartjs, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
 import { getCountReservationsByStatus } from '../services/api';
 import { ReservationStatus } from '../interfaces';
-import '../styles/chart-bar.scss';
 import { useEffect, useRef, useState } from 'react';
+import '../styles/chart-bar.scss';
 
 Chartjs.register(Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 

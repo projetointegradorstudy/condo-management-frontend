@@ -21,7 +21,7 @@ div.chart-content-doughnut {
     font-size: 22px;
     line-height: 26px;
     font-weight: 600;
-    color: #202020;
+    color: $black;
     padding-bottom: 10px;
 
     @include breakpoint(sm) {
@@ -31,7 +31,11 @@ div.chart-content-doughnut {
     }
 
     @include dark-contrast {
-      color: $gray-lightest;
+      color: $dt-yellow;
+    }
+
+    @include invert-contrast {
+      color: invert($color: $black);
     }
   }
   div.title-chart {
@@ -59,5 +63,11 @@ div.chart-content-doughnut {
       height: 26vh;
       width: 71vw;
     }
+
+    // canvas.dough {
+    //   @include invert-contrast {
+    //     color: invert($color: rgb(255, 99, 132));
+    //   }
+    // }
   }
 }
