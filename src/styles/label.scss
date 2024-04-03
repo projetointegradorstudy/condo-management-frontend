@@ -14,7 +14,11 @@ label.default {
   }
 
   @include dark-contrast {
-    color: $white;
+    color: $dt-green;
+  }
+
+  @include invert-contrast {
+    color: invert($color: $primary);
   }
 
   &.isUploadFile {
@@ -37,6 +41,14 @@ label.default {
       height: 30px;
       font-size: 12px;
     }
+
+    @include dark-contrast {
+      color: invert($color: $white);
+    }
+
+    @include invert-contrast {
+      color: invert($color: $white);
+    }
   }
 
   &.edit-avatar {
@@ -56,6 +68,10 @@ label.default {
       height: 26px;
       margin-right: 0px;
     }
+
+    @include invert-contrast {
+      background-color: invert($color: $primary);
+    }
   
     svg {
       color: $white;
@@ -65,6 +81,10 @@ label.default {
       @include breakpoint(sm) {
         width: 14px;
         height: 14px;
+      }
+
+      @include invert-contrast {
+        color: invert($color: $white);
       }
     }
   }

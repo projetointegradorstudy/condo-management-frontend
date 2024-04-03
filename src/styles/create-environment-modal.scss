@@ -14,6 +14,10 @@ div.modal-create-environment-background {
   align-items: center;
   z-index: 21474835;
 
+  @include invert-contrast {
+    background-color: invert($color: rgba(0, 0, 0, 0.5));
+  }
+
   div.modal-create-environment {
     display: flex;
     flex-direction: column;
@@ -35,6 +39,10 @@ div.modal-create-environment-background {
     @include dark-contrast {
       background-color: $gray-dark-light;
       box-shadow: none;
+    }
+
+    @include invert-contrast {
+      background-color: invert($color: $white);
     }
 
     div.modal-create-environment-button-close {
@@ -60,6 +68,10 @@ div.modal-create-environment-background {
 
           @include dark-contrast {
             color: $gray-lightest;
+          }
+
+          @include invert-contrast {
+            color: invert($color: $black);
           }
         }
       }
@@ -91,6 +103,10 @@ div.modal-create-environment-background {
 
           @include dark-contrast {
             color: $gray-lightest;
+          }
+
+          @include invert-contrast {
+            color: invert($color: $black);
           }
         }
       }
@@ -132,6 +148,10 @@ div.modal-create-environment-background {
               font-size: 14px;
               line-height: 14px;
             }
+
+            @include invert-contrast {
+              color: invert($color: $black);
+            }
           }
   
           div.image-upload-register-environment {
@@ -152,12 +172,21 @@ div.modal-create-environment-background {
               background-color: $gray-dark;
               border: 1px dashed $gray-lightest;
             }
+
+            @include invert-contrast {
+              background-color: invert($color: #EAEEF2);
+              border-color: invert($color: $primary) ;
+            }
   
             label {
               color: $primary;
 
               @include dark-contrast {
                 color: $gray-lightest;
+              }
+
+              @include invert-contrast {
+                color: invert($color: $primary);
               }
             }
   
@@ -173,6 +202,10 @@ div.modal-create-environment-background {
 
               @include dark-contrast {
                 color: $gray-lightest;
+              }
+
+              @include invert-contrast {
+                color: invert($color: $primary);
               }
             }
             
@@ -197,6 +230,10 @@ div.modal-create-environment-background {
             border-radius: 10px;
             margin-bottom: 14px;
             background-color: $black;
+
+            @include invert-contrast {
+              background-color: invert($color: $black);
+            }
 
             img {
               width: 100%;
@@ -236,6 +273,10 @@ div.modal-create-environment-background {
                   font-size: 12px;
                 }
 
+                @include invert-contrast {
+                  color: invert($color: $white);
+                }
+
                 svg {
                   margin-bottom: 6px;
                   width: 24px;
@@ -245,6 +286,10 @@ div.modal-create-environment-background {
                   @include breakpoint(sm) {
                     width: 20px;
                     height: 20px;
+                  }
+
+                  @include invert-contrast {
+                    color: invert($color: $white);
                   }
                 }
               }

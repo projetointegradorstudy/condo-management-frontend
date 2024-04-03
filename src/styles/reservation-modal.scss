@@ -12,7 +12,11 @@ div.modal-request-background {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 21474835;
+  z-index: 1300;
+
+  @include invert-contrast {
+    background-color: invert($color: rgba(0, 0, 0, 0.5));
+  }
   
   div.modal-request {
     display: flex;
@@ -38,6 +42,10 @@ div.modal-request-background {
       box-shadow: none;
     }
 
+    @include invert-contrast {
+      background-color: invert($color: $white);
+    }
+
     div.modal-request-button-close {
       display: flex;
       justify-content: flex-end;
@@ -61,6 +69,10 @@ div.modal-request-background {
 
           @include dark-contrast {
             color: $gray-lightest;
+          }
+
+          @include invert-contrast {
+            color: invert($color: $black);
           }
         }
       }
@@ -91,6 +103,10 @@ div.modal-request-background {
           @include dark-contrast {
             color: $gray-lightest;
           }
+
+          @include invert-contrast {
+            color: invert($color: $black);
+          }
         }
 
         div.modal-request-info-capacity {
@@ -100,6 +116,10 @@ div.modal-request-background {
 
           @include dark-contrast {
             color: $gray-lightest;
+          }
+
+          @include invert-contrast {
+            color: invert($color: $black);
           }
         }
       }
@@ -130,6 +150,10 @@ div.modal-request-background {
           @include dark-contrast {
             color: $gray-lightest;
           }
+
+          @include invert-contrast {
+            color: invert($color: $black);
+          }
         }
       }
 
@@ -145,6 +169,10 @@ div.modal-request-background {
           input {
             border: 1px solid #ccc;
             padding: 8px;
+
+            @include invert-contrast {
+              border-color: invert($color: #ccc);
+            }
           }
       
           div.bubble-notification {
@@ -157,7 +185,7 @@ div.modal-request-background {
             background-color: #ffcccc;
             color: #ff0000;
             font-size: 12px;
-            display: none;
+            display: none;     
           }
       
           input:invalid+.bubble-notification {

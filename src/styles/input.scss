@@ -31,13 +31,26 @@ div.input-content {
       color: #AFB8C1;
     }
 
+    @include invert-contrast {
+      background-color: invert($color: #EAEEF2);
+      color: invert($color: $primary);
+    }
+
     &::placeholder {
       color: #AFB8C1;
       font-size: 14px;
+
+      @include invert-contrast {
+        color: invert($color: $black);
+      }
     }
 
     &.field-error {
-      outline: 1px solid #f34542!important;
+      outline: 1px solid $red !important;
+
+      @include invert-contrast {
+        outline-color: invert($color: $red) !important;
+      }
     }
 
     &::-webkit-outer-spin-button, 
@@ -64,6 +77,10 @@ div.input-content {
 
       @include breakpoint(sm) {
         font-size: 10px;
+      }
+
+      @include invert-contrast {
+        color: invert($color: $red);
       }
     }
   }

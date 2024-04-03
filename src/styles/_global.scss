@@ -15,7 +15,17 @@ body {
   transition: background-color 0.5s ease-out;
 
   @include dark-contrast {
-    background-color: $gray-dark;
+    background-color: $dt-dark;
+  }
+
+  @include invert-contrast {
+    background-color: invert($color: $gray-lightest);
+  }
+
+  img {
+    @include invert-contrast {
+      filter: invert(1);
+    }
   }
 
   @include breakpoint(sm) {

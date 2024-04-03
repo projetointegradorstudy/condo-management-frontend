@@ -74,7 +74,7 @@ export function NavbarMobile() {
                 <img src={isMyselfData?.avatar || avatarDefault} alt="Sua foto de perfil" />
                 <strong>{isMyselfData?.name || isMyselfData?.email}</strong>
               </div>
-              <div className="navbar-items" style={{ width: isAdmin ? '180px' : '140px' }}>
+              <div className="navbar-items" style={{ width: isAdmin ? '180px' : '150px' }}>
                 {navItems.map((navItem) => (
                   <li role="none" key={navItem.name}>
                     <NavLink
@@ -82,7 +82,7 @@ export function NavbarMobile() {
                       tabIndex={0}
                       to={navItem.path}
                       onClick={() => setIsOpen(!isOpen)}
-                      style={{ width: isAdmin ? '180px' : '140px' }}
+                      style={{ width: isAdmin ? '180px' : '150px' }}
                     >
                       {navItem.icon}
                       <span>{navItem.name}</span>
@@ -90,7 +90,7 @@ export function NavbarMobile() {
                   </li>
                 ))}
               </div>
-              <div className="sidebar-list-logout" style={{ width: isAdmin ? '180px' : '140px' }}>
+              <div className="sidebar-list-logout" style={{ width: isAdmin ? '180px' : '150px' }}>
                 <button className="sidebar-button-logout" onClick={() => setIsOpenConfirmSignoutModal(true)}>
                   <SignOut size={16} alt="Ícone sair" />
                   <span>Sair</span>

@@ -21,7 +21,7 @@ div.chart-content-bar {
     font-size: 22px;
     line-height: 26px;
     font-weight: 600;
-    color: #202020;
+    color: $black;
     padding-bottom: 10px;
 
     @include breakpoint(sm) {
@@ -31,7 +31,11 @@ div.chart-content-bar {
     }
 
     @include dark-contrast {
-      color: $gray-lightest;
+      color: $dt-yellow;
+    }
+
+    @include invert-contrast {
+      color: invert($color: $black);
     }
   }
 

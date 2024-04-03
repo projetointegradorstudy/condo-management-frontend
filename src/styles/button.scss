@@ -16,6 +16,13 @@ button.button-primary {
 
   @include dark-contrast  {
     border: 1px solid $gray-lightest;
+    background-color: transparent;
+    color: $dt-green;
+  }
+
+  @include invert-contrast {
+    background-color: invert($color: $primary);
+    color: invert($color: $white);
   }
   
   &.button-full {
@@ -38,9 +45,25 @@ button.button-primary {
     background-color: $green;
     color: $white;
 
+    @include dark-contrast {
+      border: 1px solid $gray-lightest!important;
+      background-color: transparent;
+      color: $dt-green;
+    }
+
+    @include invert-contrast {
+      background-color: invert($color: $green);
+      color: invert($color: $white);
+    }
+
     &:hover {
       background-color: $green-dark;
       color: $white;
+
+      @include invert-contrast {
+        background-color: invert($color: $green-dark);
+        color: invert($color: $white);
+      }
     }
 
     @include dark-contrast {
@@ -63,9 +86,19 @@ button.button-primary {
     border: 2px solid $red;
     transition: 0.2s;
 
+    @include invert-contrast {
+      border-color: invert($color: $red);
+      color: invert($color: $white);
+    }
+
     &:hover {
       background-color: $red;
       color: $white;
+
+      @include invert-contrast {
+        background-color: invert($color: $red);
+        color: invert($color: $white);
+      }
     }
 
     @include dark-contrast  {

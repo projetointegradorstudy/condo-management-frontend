@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 div.accessibility-player {
   max-width: 380px;
@@ -14,26 +15,38 @@ div.accessibility-player {
   filter: drop-shadow(rgba(0, 0, 0, 0.36) 3px 4px 4px);
 
   div.accessibility-player-header {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      background: $navy;
-      border-radius: 4px 4px 0px 0px;
-      margin: 0px 8px;
-      padding: 8px 8px 8px 18px;
-      filter: drop-shadow(rgba(0, 0, 0, 0.36) 2px 0px 0px);
-  
-      h3 {
-        color: $white;
-      }
-  
-      button.button-close {
-        border: 0;
-        background: transparent;
-        cursor: pointer;
-        color: $white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: $navy;
+    border-radius: 4px 4px 0px 0px;
+    margin: 0px 8px;
+    padding: 8px 8px 8px 18px;
+    filter: drop-shadow(rgba(0, 0, 0, 0.36) 2px 0px 0px);
+
+    h3 {
+      color: $white;
+
+      @include invert-contrast {
+        color: invert($color: $white);
       }
     }
+
+    button.button-close {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      color: $white;
+
+      @include invert-contrast {
+        color: invert($color: $white);
+      }
+    }
+
+    @include invert-contrast {
+      background-color: invert($color: $navy);
+    }
+  }
   
   div.accessibility-player-container {
     display: flex;
@@ -44,14 +57,22 @@ div.accessibility-player {
     margin: 0px 8px 8px;
     padding: 8px;
 
+    @include invert-contrast {
+      background-color: invert($color: #d7dae1);
+    }
+
     div.accessibility-player-bg {
       display: flex;
       width: 100%;
       flex-direction: row;
       flex-wrap: wrap;
-      background: $navy;
+      background-color: $navy;
       padding: 8px;
       border-radius: 4px;
+    
+      @include invert-contrast {
+        background-color: invert($color: $navy);
+      }
 
       nav.acessibility-controls-menu {
           display: flex;
@@ -73,13 +94,21 @@ div.accessibility-player {
                 width: 170px;
                 height: 50px;
                 padding: 10px;
-                background: #3d7691;
+                background-color: #3d7691;
                 border: 0;
                 cursor: pointer;
                 border-radius: 16px;
 
+                @include invert-contrast {
+                  background-color: invert($color: #3d7691);
+                }
+
                 svg {
                   color: $white;
+
+                  @include invert-contrast {
+                    color: invert($color: $white);
+                  }
                 }
 
                 span {
@@ -87,6 +116,10 @@ div.accessibility-player {
                   color: $white;
                   padding-left: 10px;
                   font-size: 15px;
+
+                  @include invert-contrast {
+                    color: invert($color: $white);
+                  }
                 }
               }
             }

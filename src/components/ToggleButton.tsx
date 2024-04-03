@@ -5,7 +5,7 @@ import { MoreAccessibility } from './MoreAccessibility';
 import '../styles/toggle-button.scss';
 
 export function ToggleButton() {
-  const { setIsOpenAccessibilityModal, isNeedRefresh, setIsNeedRefresh, getUserData } = getContext();
+  const { setIsOpenAccessibilityModal, isNeedRefresh, setIsNeedRefresh } = getContext();
 
   useEffect(() => {
     if (isNeedRefresh) {

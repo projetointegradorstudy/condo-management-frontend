@@ -1,5 +1,6 @@
 @import './theme';
 @import './variables';
+@import './mixins';
 
 nav.primary-menu {
   display: flex;
@@ -23,6 +24,14 @@ nav.primary-menu {
     display: none;
   }
 
+  @include dark-contrast {
+    background-color: $dt-blue;
+  }
+
+  @include invert-contrast {
+    background-color: invert($color: $primary);
+  }
+
   div.content-button {
     display: flex;
     width: 100%;
@@ -40,6 +49,10 @@ nav.primary-menu {
 
       svg {
         color: $white;
+
+        @include invert-contrast {
+          color: invert($color: $white);
+        }
       }
     }
   }
@@ -63,7 +76,7 @@ nav.primary-menu {
     align-items: center;
 
     h4 {
-      color: #ffffff;
+      color: $white;
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
       font-size: 14px;
@@ -72,16 +85,24 @@ nav.primary-menu {
       @include breakpoint(xl) {
         font-size: 12px;
       }
+
+      @include invert-contrast {
+        color: invert($color: $white);
+      }
     }
 
     span {
-      color: #ffffff;
+      color: $white;
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
       font-size: 12px;
 
       @include breakpoint(xl) {
         font-size: 10px;
+      }
+
+      @include invert-contrast {
+        color: invert($color: $white);
       }
     }
 
@@ -104,6 +125,10 @@ nav.primary-menu {
       @include breakpoint(sm) {
         font-size: 12px;
         line-height: 16px;
+      }
+
+      @include invert-contrast {
+        color: invert($color: $white);
       }
     }
   }
@@ -131,19 +156,28 @@ nav.primary-menu {
         position: relative;
 
         &:hover {
-          border-left: 3px solid #ffffff;
+          border-left: 3px solid $white;
           background-color: rgba(181, 194, 193, 0.178);
+
+          @include invert-contrast {
+            background-color: invert($color: rgba(181, 194, 193, 0.178));
+            border-left-color: invert($color: $white);
+          }
         }
 
         a {
           display: flex;
           align-items: center;
           gap: 0.8rem;
-          color: #ffffff;
+          color: $white;
           font-family: 'Roboto', sans-serif;
           font-weight: 400;
           font-size: 16px;
           text-decoration: none;
+
+          @include invert-contrast {
+            color: invert($color: $white);
+          }
 
           span {
             transition: all 0.3s cubic-bezier(0.64, 0.2, 1, 0.03);
@@ -156,9 +190,14 @@ nav.primary-menu {
         width: 100%;
 
         &:hover {
-            border-left: 3px solid #ffffff;
-            background-color: rgba(181, 194, 193, 0.178);
+          border-left: 3px solid $white;
+          background-color: rgba(181, 194, 193, 0.178);
+
+          @include invert-contrast {
+            background-color: invert($color: rgba(181, 194, 193, 0.178));
+            border-left-color: invert($color: $white);
           }
+        }
 
         button.navbar-button-logout {
           display: flex;
@@ -172,14 +211,22 @@ nav.primary-menu {
 
           svg {
             color: $white;
+
+            @include invert-contrast {
+              color: invert($color: $white);
+            }
           }
 
           span {
-            color: #ffffff;
+            color: $white;
             font-family: 'Roboto', sans-serif;
             font-weight: 400;
             font-size: 16px;
             text-decoration: none;
+
+            @include invert-contrast {
+              color: invert($color: $white);
+            }
           }
         }
       } 

@@ -10,8 +10,11 @@ div.page-list-environments {
   transition: background-color 0.5s ease-out;
 
   @include dark-contrast {
-    background-color: $gray-dark;
-    transition: background-color 0.5s ease-out;
+    background-color: $dt-dark;
+  }
+
+  @include invert-contrast {
+    background-color: invert($color: $gray-lightest);
   }
 
   div.container-list-environments {
@@ -59,7 +62,11 @@ div.page-list-environments {
         }
 
         @include dark-contrast {
-          color: $gray-lightest;
+          color: $dt-yellow;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $black);
         }
       }
     }
@@ -89,11 +96,16 @@ div.page-list-environments {
         &::-webkit-scrollbar-thumb {
           background-color: $gray;
           border-radius: 20px;
-          border: 5px solid #F6F8FA;
+          border: 5px solid $gray-lightest;
 
           @include dark-contrast {
             background-color: $gray-dark-light;
-            border: 5px solid $gray-dark;
+            border: 5px solid $dt-dark;
+          }
+
+          @include invert-contrast {
+            background-color: invert($color: $gray);
+            border-color: invert($color: $gray-lightest);
           }
         }
 
@@ -103,7 +115,6 @@ div.page-list-environments {
             overflow-x: auto;
             width: 1300px;
           }
-          
         }
 
         table {
@@ -120,7 +131,7 @@ div.page-list-environments {
             th {
               position: sticky;
               top: 0;
-              background-color: #F6F8FA;
+              background-color: $gray-lightest;
               transition: background-color 0.5s ease-out;
               font-size: 16px;
               line-height: 24px;
@@ -128,6 +139,7 @@ div.page-list-environments {
               text-align: left;
               border-bottom: 1px solid $black;
               padding-bottom: 10px;
+              z-index: 1000;
           
               @include breakpoint(md) {
                 font-size: 13px;
@@ -135,9 +147,14 @@ div.page-list-environments {
               }
 
               @include dark-contrast {
-                background-color: $gray-dark;
-                transition: background-color 0.5s ease-out;
-                color: $gray-lightest;
+                background-color: $dt-dark;
+                color: $dt-yellow;
+              }
+
+              @include invert-contrast {
+                background-color: invert($color: $gray-lightest);
+                border-bottom-color: invert($color: $black);
+                color: invert($color: $black);
               }
             }
           }
@@ -147,8 +164,11 @@ div.page-list-environments {
             transition: background-color 0.5s ease-out;
 
             @include dark-contrast {
-              background-color: $gray-dark-light;
-              transition: background-color 0.5s ease-out;
+              background-color: $dt-dark;
+            }
+
+            @include invert-contrast {
+              background-color: invert($color: $white);
             }
           }
 
@@ -171,7 +191,11 @@ div.page-list-environments {
             }
 
             @include dark-contrast {
-              color: $gray-lightest;
+              color: $dt-green;
+            }
+
+            @include invert-contrast {
+              color: invert($color: $black);
             }
 
             span.column-description {
@@ -211,14 +235,38 @@ div.page-list-environments {
 
               &.status-available {
                 color: $green-dark;
+
+                @include dark-contrast {
+                  color: $dt-dark-green;
+                }
+
+                @include invert-contrast {
+                  color: invert($color: $green-dark);
+                }
               }
 
               &.status-maintenance {
                 color: $orange;
+
+                @include dark-contrast {
+                  color: $dt-orange;
+                }
+
+                @include invert-contrast {
+                  color: invert($color: $orange);
+                }
               }
 
               &.status-disabled {
                 color: $red-dark;
+
+                @include dark-contrast {
+                  color: $dt-red;
+                }
+
+                @include invert-contrast {
+                  color: invert($color: $red-dark);
+                }
               }
             }
 
@@ -245,6 +293,10 @@ div.page-list-environments {
                 &.icon-edit {
                   background: $primary;
 
+                  @include invert-contrast {
+                    background: invert($color: $primary);
+                  }
+
                   &:hover {
                     background: $primary;
                   }
@@ -252,6 +304,10 @@ div.page-list-environments {
 
                 &.icon-close {
                   background: $red;
+
+                  @include invert-contrast {
+                    background: invert($color: $red);
+                  }
 
                   &:hover {
                     background: $red-dark;
@@ -266,6 +322,10 @@ div.page-list-environments {
                   @include breakpoint(sm) {
                     width: 10px;
                     height: 10px;
+                  }
+
+                  @include invert-contrast {
+                    color: invert($color: $white);
                   }
                 }
               }

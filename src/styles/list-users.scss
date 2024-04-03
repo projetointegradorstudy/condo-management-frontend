@@ -10,8 +10,11 @@ div.page-list-users {
   transition: background-color 0.5s ease-out;
 
   @include dark-contrast {
-    background-color: $gray-dark;
-    transition: background-color 0.5s ease-out;
+    background-color: $dt-dark;
+  }
+
+  @include invert-contrast {
+    background-color: invert($color: $gray-lightest);
   }
 
   div.container-list-users {
@@ -59,7 +62,11 @@ div.page-list-users {
         }
 
         @include dark-contrast {
-          color: $gray-lightest;
+          color: $dt-yellow;
+        }
+
+        @include invert-contrast {
+          color: invert($color: $black);
         }
       }
     }
@@ -89,11 +96,16 @@ div.page-list-users {
         &::-webkit-scrollbar-thumb {
           background-color: $gray;
           border-radius: 20px;
-          border: 5px solid #F6F8FA;
+          border: 5px solid $gray-lightest;
 
           @include dark-contrast {
             background-color: $gray-dark-light;
-            border: 5px solid $gray-dark;
+            border: 5px solid $dt-dark;
+          }
+
+          @include invert-contrast {
+            background-color: invert($color: $gray);
+            border-color: invert($color: $gray-lightest);
           }
         }
 
@@ -119,7 +131,7 @@ div.page-list-users {
             th {
               position: sticky;
               top: 0;
-              background-color: #F6F8FA;
+              background-color: $gray-lightest;
               transition: background-color 0.5s ease-out;
               font-size: 16px;
               line-height: 24px;
@@ -134,9 +146,14 @@ div.page-list-users {
               }
 
               @include dark-contrast {
-                background-color: $gray-dark;
-                transition: background-color 0.5s ease-out;
-                color: $gray-lightest;
+                background-color: $dt-dark;
+                color: $dt-yellow;
+              }
+
+              @include invert-contrast {
+                background-color: invert($color: $gray-lightest);
+                color: invert($color: $black);
+                border-bottom-color: invert($color: $black);
               }
             }
           }
@@ -146,8 +163,11 @@ div.page-list-users {
             transition: background-color 0.5s ease-out;
 
             @include dark-contrast {
-              background-color: $gray-dark-light;
-              transition: background-color 0.5s ease-out;
+              background-color: $dt-dark;
+            }
+
+            @include invert-contrast {
+              background-color: invert($color: $white);
             }
           }
 
@@ -163,7 +183,11 @@ div.page-list-users {
             }
 
             @include dark-contrast {
-              color: $gray-lightest;
+              color: $dt-green;
+            }
+
+            @include invert-contrast {
+              color: invert($color: $black);
             }
 
             img {
@@ -201,6 +225,10 @@ div.page-list-users {
                 &.icon-edit {
                   background: $primary;
 
+                  @include invert-contrast {
+                    background: invert($color: $primary);
+                  }
+
                   &:hover {
                     background: $primary;
                   }
@@ -208,6 +236,10 @@ div.page-list-users {
 
                 &.icon-close {
                   background: $red;
+
+                  @include invert-contrast {
+                    background: invert($color: $red);
+                  }
 
                   &:hover {
                     background: $red-dark;
@@ -222,6 +254,10 @@ div.page-list-users {
                   @include breakpoint(sm) {
                     width: 10px;
                     height: 10px;
+                  }
+
+                  @include invert-contrast {
+                    color: invert($color: $white);
                   }
                 }
               }
