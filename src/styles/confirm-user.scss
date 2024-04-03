@@ -132,7 +132,7 @@ div.page-confirm-user {
 
     @include dark-contrast {
       background-image: url('../assets/wave-vertical-darkmode.png');
-      background-color: $gray-dark;
+      background-color: $dt-dark;
 
       @include breakpoint(md) {
         background-image: none;
@@ -149,7 +149,7 @@ div.page-confirm-user {
     }
 
     div.page-confirm-user-logo {
-      background-image: url('../assets//wave-horizontal.png');
+      background-image: url('../assets/wave-horizontal.png');
       background-position: bottom;
       background-size: contain;
       background-repeat: no-repeat;
@@ -168,6 +168,12 @@ div.page-confirm-user {
 
       @include dark-contrast {
         background-image: url('../assets/wave-horizontal-darkmode.png');
+        background-color: $dt-blue;
+      }
+
+      @include invert-contrast {
+        background-image: url('../assets/wave-horizontal-invertmode.png');
+        background-color: invert($color: $primary);
       }
 
       h1 {

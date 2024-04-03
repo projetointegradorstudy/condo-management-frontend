@@ -165,6 +165,12 @@ div.page-login {
 
       @include dark-contrast {
         background-image: url('../assets/wave-horizontal-darkmode.png');
+        background-color: $dt-blue;
+      }
+
+      @include invert-contrast {
+        background-image: url('../assets/wave-horizontal-invertmode.png');
+        background-color: invert($color: $primary);
       }
 
       h1 {

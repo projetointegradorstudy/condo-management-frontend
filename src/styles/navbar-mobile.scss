@@ -24,6 +24,10 @@ div.navbar-mobile {
     z-index: 1500;
     position: fixed;
 
+    @include dark-contrast {
+      background-color: $dt-blue;
+    }
+
     @include invert-contrast {
       background-color: invert($color: $primary);
     }
@@ -61,6 +65,10 @@ div.navbar-mobile {
         transition: transform 0.8s cubic-bezier(1, -0.01, 0.58, 1);
         z-index: -1;
         gap: 1rem;
+
+        @include dark-contrast {
+          background-color: $dt-blue;
+        }
 
         @include invert-contrast {
           background-color: invert($color: $primary);

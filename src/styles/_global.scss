@@ -22,6 +22,10 @@ body {
     background-color: invert($color: $gray-lightest);
   }
 
+  @include desaturated-contrast {
+    filter: grayscale(100%);
+  }
+
   img {
     @include invert-contrast {
       filter: invert(1);
