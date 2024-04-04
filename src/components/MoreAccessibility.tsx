@@ -1,6 +1,6 @@
 import { CircleHalf, Cloud, Moon, Sun, X } from 'phosphor-react';
 import { getContext } from '../utils/context-import';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import '../styles/more-accessibility.scss';
 
 export function MoreAccessibility() {
@@ -40,29 +40,25 @@ export function MoreAccessibility() {
     Desaturated: 'desaturated-contrast',
   };
 
-  const [isContrastTheme, setContrastTheme] = useState(contrastThemes.Dark);
+  const [isContrastTheme, setIsContrastTheme] = useState<string | null>(null);
 
-  const handleContrastTheme = useCallback((theme) => {
-    const htmlElement = document.querySelector('html');
-    if (htmlElement) {
-      Object.values(contrastThemes).forEach((themeValue) => {
-        htmlElement.classList.remove(themeValue);
-      });
-      htmlElement.classList.add(theme);
-      setContrastTheme(theme);
-    }
-  }, []);
-
-  useEffect(() => {
-    const htmlElement = document.querySelector('html');
-    if (htmlElement) {
-      Object.values(contrastThemes).forEach((themeValue) => {
-        if (htmlElement.classList.contains(themeValue)) {
-          setContrastTheme(themeValue);
+  const handleContrastTheme = useCallback(
+    (theme: string) => {
+      const htmlElement = document.querySelector('html');
+      if (htmlElement) {
+        if (isContrastTheme === theme) {
+          htmlElement.classList.remove(theme);
+          setIsContrastTheme(null);
+        } else {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          htmlElement.classList.remove(isContrastTheme!);
+          htmlElement.classList.add(theme);
+          setIsContrastTheme(theme);
         }
-      });
-    }
-  }, []);
+      }
+    },
+    [isContrastTheme],
+  );
 
   if (isOpenAccessibilityModal) {
     return (
