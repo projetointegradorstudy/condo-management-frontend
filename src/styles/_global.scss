@@ -2,14 +2,26 @@
 @import './variables';
 @import './mixins';
 
+@font-face {
+  font-family: 'Open Dyslexic';
+  src: url('../assets/font/OpenDyslexic-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
+  @include dyslexia {
+    font-family: 'Open Dyslexic', sans-serif !important;
+    font-weight: 500;
+  }
 }
 
 body {
-  font-family:'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: $gray-lightest;
   overflow-y: hidden;
   transition: background-color 0.5s ease-out;
@@ -35,5 +47,19 @@ body {
   @include breakpoint(sm) {
     overflow-y: scroll;
     scroll-behavior: smooth;
+  }
+
+  &.highlight-link {
+    a, 
+    button {
+      text-decoration: underline !important;
+      color: $dt-yellow !important;
+      background-color: $dt-dark !important;
+
+      svg,
+      span {
+        color: $dt-yellow !important;
+      }
+    }
   }
 }

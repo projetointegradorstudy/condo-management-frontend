@@ -16,3 +16,15 @@
   }
 }
 
+@mixin dyslexia {
+  body.dyslexia & {
+    @content;
+  }
+}
+
+@mixin custom-cursor {
+  body.custom-cursor & {
+    @content;
+  }
+}
+
