@@ -124,6 +124,10 @@ div.modal-create-environment-background {
               line-height: 14px;
             }
 
+            @include dark-contrast {
+              color: $dt-green;
+            }
+
             @include invert-contrast {
               color: invert($color: $black);
             }
