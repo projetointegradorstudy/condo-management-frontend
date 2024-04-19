@@ -15,7 +15,7 @@ export function ToggleButton() {
 
   return (
     <>
-      <div className="theme-color-mode">
+      <div className="accessibility-mode">
         <button className="toggle" onClick={() => setIsOpenAccessibilityModal(true)} title="+ Acessibilidade">
           <img src={iconAccessibility} alt="Ícone Acessibilidade" />
         </button>

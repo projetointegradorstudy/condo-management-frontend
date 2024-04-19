@@ -18,6 +18,11 @@
     font-family: 'Open Dyslexic', sans-serif !important;
     font-weight: 500;
   }
+
+  .zoom-one {
+    zoom: 1.1;
+  }
+  
 }
 
 body {
@@ -49,6 +54,12 @@ body {
     scroll-behavior: smooth;
   }
 
+  &.dyslexia {
+    div.navbar-items, div.sidebar-list-logout, button.sidebar-button-logout {
+      width: 220px!important;
+    }
+  }
+
   &.highlight-link {
     a, 
     button {
@@ -60,6 +71,34 @@ body {
       span {
         color: $dt-yellow !important;
       }
+    }
+  }
+    
+  &.letter-spacing-one {
+    h1, h2, h3, h4, p, span, a {
+      letter-spacing: 0.12em !important;
+    }
+
+    div.navbar-items, 
+    div.sidebar-list-logout, 
+    button.sidebar-button-logout {
+      width: 200px !important;
+    }
+  }
+
+  &.custom-cursor {
+    cursor: url('../assets/cursor.svg'), auto!important;
+
+    a, button, input {
+      cursor: url('../assets/pointing.svg'), auto !important;
+    }
+  }
+
+  &.dyslexia.letter-spacing-one {
+    div.navbar-items,
+    div.sidebar-list-logout,
+    button.sidebar-button-logout {
+      width: 220px !important;
     }
   }
 }

@@ -103,6 +103,7 @@ export function Navbar() {
                   style={{ justifyContent: isOpen ? '' : 'center', padding: isOpen ? '10px 1px 10px 18px' : '10px' }}
                   title={`${isOpen ? '' : navItem.name}`}
                   tabIndex={0}
+                  className="menu-items"
                 >
                   {navItem.icon}
                   <span style={{ display: !isOpen ? 'none' : 'block' }}>{navItem.name}</span>

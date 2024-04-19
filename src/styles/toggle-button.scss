@@ -2,13 +2,9 @@
 @import './variables';
 @import './mixins';
 
-div.theme-color-mode {
+div.accessibility-mode {
   width: 45px;
   height: 45px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: column;
   background-color: $navy;
   z-index: 1000;
   position: fixed;
@@ -18,7 +14,8 @@ div.theme-color-mode {
   margin: 4px;
 
   @include breakpoint(sm) {
-    display: none;
+    width: 35px;
+    height: 35px;
   }
 
   @include invert-contrast {
@@ -31,10 +28,23 @@ div.theme-color-mode {
     background-color: transparent;
     cursor: pointer;
     border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img {
       width: 30px;
       height: 30px;
+    }
+
+    @include breakpoint(sm) {
+      width: 35px;
+      height: 35px;
+
+      img {
+        width: 25px;
+        height: 25px;
+      }
     }
   }
 }

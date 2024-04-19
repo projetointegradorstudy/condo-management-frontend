@@ -1,4 +1,16 @@
-import { CircleHalf, Cloud, Moon, Sun, X, PersonSimple, Link, Bookmarks } from 'phosphor-react';
+import {
+  CircleHalf,
+  Cloud,
+  Moon,
+  Sun,
+  X,
+  PersonSimple,
+  Link,
+  Bookmarks,
+  Cursor,
+  MagnifyingGlassPlus,
+  ArrowsHorizontal,
+} from 'phosphor-react';
 import { getContext } from '../utils/context-import';
 import { useCallback, useState } from 'react';
 import '../styles/more-accessibility.scss';
@@ -53,6 +65,24 @@ export function MoreAccessibility() {
       onclick: () => handleReadingMask(),
       class: 'button-option',
     },
+    {
+      name: 'Cursor Grande',
+      icon: <Cursor size={22} weight="fill" />,
+      onclick: () => handleCustomCursor(),
+      class: 'button-option',
+    },
+    {
+      name: 'Zoom',
+      icon: <MagnifyingGlassPlus size={22} weight="fill" />,
+      onclick: () => handleZoom(),
+      class: 'button-option',
+    },
+    {
+      name: 'Espaçamento',
+      icon: <ArrowsHorizontal size={22} weight="fill" />,
+      onclick: () => handleLetterSpacing(),
+      class: 'button-option',
+    },
   ];
 
   const contrastThemes = {
@@ -70,10 +100,25 @@ export function MoreAccessibility() {
     highlight: 'highlight-link',
   };
 
+  const zoom = {
+    one: 'zoom-one',
+  };
+
+  const customCursor = {
+    custom: 'custom-cursor',
+  };
+
+  const letterSpacing = {
+    one: 'letter-spacing-one',
+  };
+
   const [isContrastTheme, setIsContrastTheme] = useState<string | null>(null);
   const [isDyslexiaFont, setIsDyslexiaFont] = useState<string | null>(null);
   const [isHighlightLink, setIsHighlightLink] = useState<string | null>(null);
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [isZoom, setIsZoom] = useState<string | null>(null);
+  const [isLetterSpacing, setIsLetterSpacing] = useState<string | null>(null);
+  const [isCustomCursor, setIsCustomCursor] = useState<string | null>(null);
 
   const handleContrastTheme = useCallback(
     (theme: string) => {
@@ -186,6 +231,48 @@ export function MoreAccessibility() {
     }
   }, [isActive]);
 
+  const handleZoom = useCallback(() => {
+    const bodyElement = document.querySelector('body');
+
+    if (bodyElement) {
+      if (isZoom === zoom.one) {
+        bodyElement.classList.remove(zoom.one);
+        setIsZoom(null);
+      } else {
+        bodyElement.classList.add(zoom.one);
+        setIsZoom(zoom.one);
+      }
+    }
+  }, [isZoom]);
+
+  const handleLetterSpacing = useCallback(() => {
+    const bodyElement = document.querySelector('body');
+
+    if (bodyElement) {
+      if (isLetterSpacing === letterSpacing.one) {
+        bodyElement.classList.remove(letterSpacing.one);
+        setIsLetterSpacing(null);
+      } else {
+        bodyElement.classList.add(letterSpacing.one);
+        setIsLetterSpacing(letterSpacing.one);
+      }
+    }
+  }, [isLetterSpacing]);
+
+  const handleCustomCursor = useCallback(() => {
+    const bodyElement = document.querySelector('body');
+
+    if (bodyElement) {
+      if (isCustomCursor === customCursor.custom) {
+        bodyElement.classList.remove(customCursor.custom);
+        setIsCustomCursor(null);
+      } else {
+        bodyElement.classList.add(customCursor.custom);
+        setIsCustomCursor(customCursor.custom);
+      }
+    }
+  }, [isCustomCursor]);
+
   if (isOpenAccessibilityModal) {
     return (
       <div role="banner" className="accessibility-player">
@@ -200,7 +287,7 @@ export function MoreAccessibility() {
             <nav role="navigation" className="acessibility-controls-menu">
               <ul role="menubar">
                 {navItemsAccessibility.map((navItemAccessibility) => (
-                  <li key={navItemAccessibility.name} role="none">
+                  <li key={navItemAccessibility.name} role="none" className={navItemAccessibility.class}>
                     <button
                       title={navItemAccessibility.name}
                       onClick={navItemAccessibility.onclick}
