@@ -13,6 +13,7 @@ import { Spinner } from '../components/Spinner';
 import { LoginSocialGoogle, LoginSocialFacebook, LoginSocialMicrosoft, IResolveParams } from 'reactjs-social-login';
 import { FacebookLoginButton, GoogleLoginButton, MicrosoftLoginButton } from 'react-social-login-buttons';
 import '../styles/login.scss';
+import { MfaModal } from '../components/MfaModal';
 
 export function Login() {
   const [hasError, setHasError] = useState({ email: false, password: false });
@@ -203,6 +204,7 @@ export function Login() {
         </main>
       </div>
       <ToastNotifications />
+      <MfaModal emailMfa={formData.email} />
     </>
   );
 }

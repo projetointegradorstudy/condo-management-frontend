@@ -36,12 +36,12 @@ div.page-edit-profile {
         font-weight: 600;
         color: $black;
         margin-bottom: 60px;
-    
+
         @include breakpoint(md) {
           font-size: 24px;
           line-height: 30px;
         }
-    
+
         @include breakpoint(sm) {
           font-size: 20px;
           line-height: 26px;
@@ -100,7 +100,7 @@ div.page-edit-profile {
           line-height: 24px;
           color: $primary;
           margin-bottom: 20px;
-        
+
           @include breakpoint(sm) {
             font-size: 14px;
             line-height: 24px;
@@ -118,6 +118,16 @@ div.page-edit-profile {
 
         form {
           width: 100%;
+        }
+
+        div.switch-button-container {
+          display: flex;
+          gap: 50px;
+
+          div.switch-button {
+            display: flex;
+            flex-direction: column;
+          }
         }
 
         div.content-edit-profile-button {
@@ -172,7 +182,7 @@ div.page-edit-profile {
               color: $white;
               font-weight: 600;
               cursor: pointer;
-          
+
               @include breakpoint(sm) {
                 font-size: 11px;
               }
@@ -210,14 +220,14 @@ div.page-edit-profile {
       gap: 1rem;
       width: 100%;
       height: 280px;
-    
+
       svg {
         width: 60px;
         height: 60px;
-    
+
         @include breakpoint(sm) {
           width: 40px;
-          height: 40px
+          height: 40px;
         }
       }
 

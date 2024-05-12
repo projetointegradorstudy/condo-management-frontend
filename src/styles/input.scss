@@ -9,7 +9,7 @@ div.input-content {
   input {
     width: 100%;
     height: 40px;
-    background-color: #EAEEF2;
+    background-color: #eaeef2;
     transition: background-color 0.5s ease-out;
     border-radius: 5px;
     border: 0px;
@@ -27,16 +27,24 @@ div.input-content {
     @include dark-contrast {
       background-color: $gray-dark;
       border: 1px solid $gray-lightest;
-      color: #AFB8C1;
+      color: #afb8c1;
     }
 
     @include invert-contrast {
-      background-color: invert($color: #EAEEF2);
+      background-color: invert($color: #eaeef2);
       color: invert($color: $primary);
     }
 
+    &:disabled {
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: #979797;
+      }
+    }
+
     &::placeholder {
-      color: #AFB8C1;
+      color: #afb8c1;
       font-size: 14px;
 
       @include invert-contrast {
@@ -49,7 +57,7 @@ div.input-content {
 
       @include dark-contrast {
         border: 0;
-        outline-color: $dt-coral!important;
+        outline-color: $dt-coral !important;
       }
 
       @include invert-contrast {
@@ -58,7 +66,7 @@ div.input-content {
       }
     }
 
-    &::-webkit-outer-spin-button, 
+    &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
@@ -94,4 +102,3 @@ div.input-content {
     }
   }
 }
-

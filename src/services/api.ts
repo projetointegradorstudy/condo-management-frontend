@@ -8,6 +8,7 @@ import {
   IEditUser,
   IFacebookOAuth,
   IGoogleOAuth,
+  IMfaAuthProps,
   IMicrosoftOAuth,
   IUpdateReservationDto,
   ReservationStatus,
@@ -17,6 +18,18 @@ export const api = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}` }
 
 export async function auth(authprops: IAuthProps) {
   return api.post('/auth', authprops);
+}
+
+export async function mfaAuth(mfaAuthProps: IMfaAuthProps) {
+  return api.post('/auth/mfa-auth', mfaAuthProps);
+}
+
+export async function twoFactorAuth(mfaAuthProps: IMfaAuthProps) {
+  return api.post('/auth/2fa-auth', mfaAuthProps);
+}
+
+export async function twoFactorCodeValidator(mfaAuthProps: IMfaAuthProps) {
+  return api.post('/auth/2fa-validate', mfaAuthProps);
 }
 
 export async function facebookOauth(credential: IFacebookOAuth) {
@@ -47,6 +60,10 @@ export async function getCountReservationsByStatus(status?: ReservationStatus) {
 /** USER CONTEXT */
 export async function getMyself() {
   return api.get('/users/myself');
+}
+
+export async function enableTwoFactorAuth() {
+  return api.patch('/users/myself/enable-2fa');
 }
 
 export async function createUser(email: string) {

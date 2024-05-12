@@ -50,6 +50,11 @@ export interface IAuthProps {
   password: string;
 }
 
+export interface IMfaAuthProps {
+  email: string;
+  token: string;
+}
+
 export interface IDataElementProps<T> {
   data: T;
 }
@@ -68,6 +73,7 @@ export interface IUser {
   passwordConfirmation: string;
   role: Roles;
   is_active: boolean;
+  mfaOption?: IMfaOption;
   partial_token: string;
   created_at: string;
   updated_at: string;
@@ -96,6 +102,11 @@ export interface IDeleteModal {
   source?: string;
 }
 
+export interface IMfaOption {
+  email: boolean;
+  appAuthenticator: boolean;
+}
+
 export interface IEditUser {
   id: string;
   avatar: string | File;
@@ -104,6 +115,7 @@ export interface IEditUser {
   name?: string;
   created_at: string;
   role: Roles;
+  mfaOption?: IMfaOption;
 }
 
 export interface IEditEnvironment {

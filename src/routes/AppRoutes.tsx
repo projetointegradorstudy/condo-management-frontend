@@ -17,15 +17,20 @@ import { Layout } from '../components/Layout';
 
 export function AppRoutes() {
   const IsLoggedOut = ({ children }: Iprops) => {
-    const { isAdmin, token, isAuthenticated } = getContext();
-    if (isAuthenticated && token && !isAdmin) return <Navigate to="/menu-user" replace />;
+    const { isAdmin, token, isAuthenticated, isMfaEnabled, isMfaAuthenticated } = getContext();
+    // console.log('isMfaEnabled', isMfaEnabled, 'isMfaAuthenticated', isMfaAuthenticated);
+    if (isAuthenticated && token && isMfaEnabled && !isMfaAuthenticated && !isAdmin) return <Navigate to="/" replace />;
+    if (isAuthenticated && token && isMfaEnabled && isMfaAuthenticated && !isAdmin)
+      return <Navigate to="/menu-user" replace />;
+    if (isAuthenticated && token && !isMfaEnabled && !isMfaAuthenticated && !isAdmin)
+      return <Navigate to="/menu-user" replace />;
     if (isAuthenticated && token && isAdmin) return <Navigate to="/dashboard-admin" replace />;
     return <>{children}</>;
   };
 
   const IsLoggedIn = ({ children }: Iprops) => {
-    const { isAdmin, token, isAuthenticated } = getContext();
-    if (!isAuthenticated || !token) return <Navigate to="/" replace />;
+    const { isAdmin, token, isAuthenticated, isMfaEnabled, isMfaAuthenticated } = getContext();
+    if (!isAuthenticated || !token || (isMfaEnabled && !isMfaAuthenticated)) return <Navigate to="/" replace />;
     if (isAdmin) return <Navigate to="/dashboard-admin" replace />;
     return <>{children}</>;
   };

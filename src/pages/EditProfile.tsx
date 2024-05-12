@@ -6,17 +6,63 @@ import { InputPassword } from '../components/InputPassword';
 import { Button } from '../components/Button';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import avatarDefault from '../assets/avatar-default.png';
-import { Case, IEditUser } from '../interfaces';
-import { updateUser } from '../services/api';
+import { Case, IEditUser, IMfaOption } from '../interfaces';
+import { enableTwoFactorAuth, updateUser } from '../services/api';
 import { ToastMessage, ToastNotifications } from '../components/ToastNotifications';
+import Switch from '@mui/material/Switch';
 import '../styles/edit-profile.scss';
+import { TwoFactorAuthModal } from '../components/TwoFactorAuthModal';
 
 export function EditProfile() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isFormValue, setIsFormValue] = useState<Partial<IEditUser>>();
   const { isMyselfData, setIsNeedRefresh } = getContext();
+  const [isOpenModalTwoFactor, setIsOpenModalTwoFactor] = useState<boolean>(false);
+  const [isQrCode, setIsQrCode] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isCheckedEmail, setIsCheckedEmail] = useState<boolean>(isMyselfData?.mfaOption?.email || false);
+  const [isCheckedAppAuth, setIsCheckedAppAuth] = useState(isMyselfData?.mfaOption?.appAuthenticator || false);
+  const [isFormValue, setIsFormValue] = useState<Partial<IEditUser>>();
   const [previewImage, setPreviewImage] = useState<string | undefined>(isMyselfData?.avatar);
   const [isChanged, setIsChanged] = useState<boolean>(false);
+
+  const handleSwitchChange = (event?: React.ChangeEvent<HTMLInputElement>) => {
+    const tempMfaOption: IMfaOption = isFormValue?.mfaOption
+      ? { ...isFormValue?.mfaOption }
+      : isMyselfData?.mfaOption
+      ? { ...isMyselfData?.mfaOption }
+      : { email: false, appAuthenticator: false };
+    if (event?.target?.name === 'email-mfa') {
+      setIsCheckedEmail(event.target.checked);
+      tempMfaOption.email = event.target.checked;
+      setIsChanged(true);
+    } else {
+      tempMfaOption.appAuthenticator = !isCheckedAppAuth;
+      setIsChanged(true);
+    }
+
+    setIsFormValue({ ...isFormValue, mfaOption: { ...tempMfaOption } });
+  };
+
+  const handleSwitchTwoFactorAuth = async () => {
+    if (!isCheckedAppAuth) {
+      const result = await enableTwoFactorAuth()
+        .then((res) => res)
+        .catch((e) => e);
+      if (!(result.status === 200)) ToastMessage({ message: 'Algo deu errado, tente novamente', type: Case.ERROR });
+
+      setIsQrCode(result.data);
+      setIsOpenModalTwoFactor(!isOpenModalTwoFactor);
+    } else {
+      setIsCheckedAppAuth(!isCheckedAppAuth);
+      handleSwitchChange();
+    }
+  };
+
+  const twoFactorWasEnabled = (value: boolean) => {
+    setIsCheckedAppAuth(value);
+    handleSwitchChange();
+    setIsOpenModalTwoFactor(!isOpenModalTwoFactor);
+    setIsQrCode('');
+  };
 
   const handleFieldChange = (e: ChangeEvent<any>) => {
     const field = e.target;
@@ -79,7 +125,9 @@ export function EditProfile() {
               <div className="image-upload-edit-user-preview">
                 <img
                   className="preview"
-                  src={previewImage?.length ? previewImage : avatarDefault}
+                  src={
+                    isMyselfData?.avatar ? isMyselfData?.avatar : previewImage?.length ? previewImage : avatarDefault
+                  }
                   alt="Sua foto de perfil"
                 />
 
@@ -130,6 +178,9 @@ export function EditProfile() {
                   isNotRequired
                 />
 
+                <Label title="Email" htmlFor="email" />
+                <Input name="email" id="email" type="text" placeholder={isMyselfData?.email} disabled />
+
                 <Label title="Senha" htmlFor="password" />
                 <InputPassword
                   name="password"
@@ -149,6 +200,30 @@ export function EditProfile() {
                   isNotRequired
                 />
 
+                <div>
+                  <h3>Autenticação multifator</h3>
+                  <div className="switch-button-container">
+                    <div className="switch-button">
+                      <Label title="Email" htmlFor="email-mfa" />
+                      <Switch
+                        name="email-mfa"
+                        checked={isCheckedEmail}
+                        onChange={handleSwitchChange}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                      />
+                    </div>
+                    <div className="switch-button">
+                      <Label title="App autenticador" htmlFor="appAuth-mfa" />
+                      <Switch
+                        name="appAuth-mfa"
+                        checked={isCheckedAppAuth}
+                        onChange={handleSwitchTwoFactorAuth}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
                 <div className="content-edit-profile-button">
                   <Button title="Confirmar" type="submit" isConfirm disabled={isChangedData()} />
                 </div>
@@ -158,6 +233,12 @@ export function EditProfile() {
         </div>
       </div>
       <ToastNotifications />
+      <TwoFactorAuthModal
+        emailTwoFactorEmail={isMyselfData?.email || ''}
+        isOpen={isOpenModalTwoFactor}
+        isQrcodeValue={isQrCode}
+        twoFactorSuccess={twoFactorWasEnabled}
+      />
     </>
   );
 }
